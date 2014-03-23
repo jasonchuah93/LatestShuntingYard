@@ -1,0 +1,19 @@
+---
+:source:
+  :path: test
+  :file: test_OperatorEvaluate.c
+:successes:
+- :test: test_operator_evaluate_should_calculate_2_PLUS_3
+  :line: 16
+  :message: ''
+- :test: test_operator_evaluate_should_calculate_2_PLUS_3_MULTIPLY_4
+  :line: 39
+  :message: ''
+:failures: []
+:ignores: []
+:counts:
+  :total: 2
+  :passed: 2
+  :failed: 0
+  :ignored: 0
+:stdout: []
