@@ -39,8 +39,7 @@ char* GlobalOrderError;
 //=======External Functions This Runner Calls=====
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_operator_evaluate_should_calculate_2_PLUS_3(void);
-extern void test_operator_evaluate_should_calculate_2_PLUS_3_MULTIPLY_4(void);
+extern void test_operator_evaluate_should_evaluate_2_PLUS_3(void);
 
 
 //=======Mock Management=====
@@ -88,8 +87,7 @@ int main(void)
 {
   Unity.TestFile = "test_OperatorEvaluate.c";
   UnityBegin();
-  RUN_TEST(test_operator_evaluate_should_calculate_2_PLUS_3, 16);
-  RUN_TEST(test_operator_evaluate_should_calculate_2_PLUS_3_MULTIPLY_4, 39);
+  RUN_TEST(test_operator_evaluate_should_evaluate_2_PLUS_3, 14);
 
   return (UnityEnd());
 }

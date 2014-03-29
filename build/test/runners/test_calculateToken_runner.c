@@ -27,7 +27,6 @@
 #include <setjmp.h>
 #include <stdio.h>
 #include "mock_Stack.h"
-#include "mock_calculateToken.h"
 #include "mock_getToken.h"
 #include "mock_initializeToken.h"
 #include "mock_operatorEvaluate.h"
@@ -40,9 +39,7 @@ char* GlobalOrderError;
 //=======External Functions This Runner Calls=====
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_shunting_yard_should_return_0_if_the_expression_is_null(void);
-extern void test_evaluate_2_PLUS_3(void);
-extern void test_evaluate_2_PLUS_3_MULTIPLY_4(void);
+extern void test_should_calculate_2_MULTIPLY_3(void);
 
 
 //=======Mock Management=====
@@ -52,7 +49,6 @@ static void CMock_Init(void)
   GlobalVerifyOrder = 0;
   GlobalOrderError = NULL;
   mock_Stack_Init();
-  mock_calculateToken_Init();
   mock_getToken_Init();
   mock_initializeToken_Init();
   mock_operatorEvaluate_Init();
@@ -61,7 +57,6 @@ static void CMock_Init(void)
 static void CMock_Verify(void)
 {
   mock_Stack_Verify();
-  mock_calculateToken_Verify();
   mock_getToken_Verify();
   mock_initializeToken_Verify();
   mock_operatorEvaluate_Verify();
@@ -70,7 +65,6 @@ static void CMock_Verify(void)
 static void CMock_Destroy(void)
 {
   mock_Stack_Destroy();
-  mock_calculateToken_Destroy();
   mock_getToken_Destroy();
   mock_initializeToken_Destroy();
   mock_operatorEvaluate_Destroy();
@@ -91,11 +85,9 @@ void resetTest()
 //=======MAIN=====
 int main(void)
 {
-  Unity.TestFile = "test_Evaluate.c";
+  Unity.TestFile = "test_calculateToken.c";
   UnityBegin();
-  RUN_TEST(test_shunting_yard_should_return_0_if_the_expression_is_null, 14);
-  RUN_TEST(test_evaluate_2_PLUS_3, 28);
-  RUN_TEST(test_evaluate_2_PLUS_3_MULTIPLY_4, 65);
+  RUN_TEST(test_should_calculate_2_MULTIPLY_3, 17);
 
   return (UnityEnd());
 }

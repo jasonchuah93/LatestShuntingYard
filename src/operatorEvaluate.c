@@ -26,9 +26,7 @@ void operatorEvaluate(Stack *numberStack , Stack *operatorStack){
 	Operator *operation;
 	Number *num1;
 	Number *num2;
-	int i;
-	int counter =0;
-	
+
 	token1=(Token*)stackPop(operatorStack);
 	if(token1!=NULL)
 	{

@@ -5,7 +5,7 @@
 
 //Function declaration
 
-Token *calculate(Operator *opeToken, Number *first , Number *second);
+void *calculate(Operator *opeToken, Number *first , Number *second);
 
 
 

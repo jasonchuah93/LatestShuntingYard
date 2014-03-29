@@ -1,10 +1,10 @@
 ---
 :source:
   :path: test
-  :file: test_OperatorEvaluate.c
+  :file: test_calculateToken.c
 :successes:
-- :test: test_operator_evaluate_should_evaluate_2_PLUS_3
-  :line: 14
+- :test: test_should_calculate_2_MULTIPLY_3
+  :line: 17
   :message: ''
 :failures: []
 :ignores: []
@@ -13,4 +13,5 @@
   :passed: 1
   :failed: 0
   :ignored: 0
-:stdout: []
+:stdout:
+- 'token : 2686668 '

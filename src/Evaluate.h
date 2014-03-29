@@ -42,6 +42,7 @@ typedef struct {
 }Identifier;
 
 int evaluate(char *expression);
-
+void operatorEvaluate(Stack *numberStack , Stack *operatorStack);
+void tryEvaluatethenPush(Token *token,Stack *numberStack,Stack *operatorStack);
 
 #endif // EVALUATE_H

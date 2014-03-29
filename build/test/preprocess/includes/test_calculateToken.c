@@ -1,0 +1,11 @@
+---
+- Evaluate.h
+- calculateToken.h
+- createNumberToken.h
+- mock_Stack.h
+- mock_getToken.h
+- mock_initializeToken.h
+- mock_operatorEvaluate.h
+- mock_tryEvaluatethenPush.h
+- stackForEvaluate.h
+- unity.h

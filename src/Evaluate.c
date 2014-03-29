@@ -41,7 +41,7 @@ int evaluate(char *expression){
 		else if(isOperator(token)) 
 		{
 			tryEvaluatethenPush(token,&numStack,&opeStack);
-			stackPush(token,&opeStack);
+			//stackPush(token,&opeStack);
 		}
 		counter ++;
 	}

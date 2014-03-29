@@ -51,7 +51,7 @@ void test_evaluate_2_PLUS_3(void){
 	isNumber_ExpectAndReturn(token2,0);
 	isOperator_ExpectAndReturn(token2,1);
 	tryEvaluatethenPush_Expect(token2,&numStack,&opeStack);
-	stackPush_Expect(token2,&opeStack);
+	//stackPush_Expect(token2,&opeStack);
 	
 	getToken_ExpectAndReturn(&tokenizer,token3);
 	isNumber_ExpectAndReturn(token3,1);
@@ -96,7 +96,7 @@ void test_evaluate_2_PLUS_3_MULTIPLY_4(void){
 	isNumber_ExpectAndReturn(token2,0);
 	isOperator_ExpectAndReturn(token2,1);
 	tryEvaluatethenPush_Expect(token2,&numStack,&opeStack);
-	stackPush_Expect(token2,&opeStack);
+	//stackPush_Expect(token2,&opeStack);
 	
 	getToken_ExpectAndReturn(&tokenizer,token3);
 	isNumber_ExpectAndReturn(token3,1);
@@ -106,7 +106,7 @@ void test_evaluate_2_PLUS_3_MULTIPLY_4(void){
 	isNumber_ExpectAndReturn(token4,0);
 	isOperator_ExpectAndReturn(token4,1);
 	tryEvaluatethenPush_Expect(token4,&numStack,&opeStack);
-	stackPush_Expect(token4,&opeStack);
+	//stackPush_Expect(token4,&opeStack);
 	
 	getToken_ExpectAndReturn(&tokenizer,token5);
 	isNumber_ExpectAndReturn(token5,1);
@@ -115,10 +115,10 @@ void test_evaluate_2_PLUS_3_MULTIPLY_4(void){
 	
 	operatorEvaluate_Expect(&numStack,&opeStack);
 	
-	
 	evaluate("2+3*4");
 }	
 
+/*
 void test_evaluate_2_MULTIPLY_3_PLUS_4(void){	
 	int check;
 	//Initialize tokenizer,token and stack
@@ -1207,4 +1207,4 @@ void test_NEGATIVE_LEFT_PARENTHESIS_POSITIVE_LEFT_PARENTHESIS_NEGATIVE_LEFT_PARE
 	
 	evaluate("-(+(-(-1)*3)-4)");
 }
-
+*/

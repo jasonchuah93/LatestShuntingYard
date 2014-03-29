@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <malloc.h>
 #include "Evaluate.h"
 #include "initializeToken.h"
 #include "getToken.h"

@@ -40,9 +40,6 @@ char* GlobalOrderError;
 //=======External Functions This Runner Calls=====
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_shunting_yard_should_return_0_if_the_expression_is_null(void);
-extern void test_evaluate_2_PLUS_3(void);
-extern void test_evaluate_2_PLUS_3_MULTIPLY_4(void);
 
 
 //=======Mock Management=====
@@ -91,11 +88,8 @@ void resetTest()
 //=======MAIN=====
 int main(void)
 {
-  Unity.TestFile = "test_Evaluate.c";
+  Unity.TestFile = "test_tryEvaluatethenPush.c";
   UnityBegin();
-  RUN_TEST(test_shunting_yard_should_return_0_if_the_expression_is_null, 14);
-  RUN_TEST(test_evaluate_2_PLUS_3, 28);
-  RUN_TEST(test_evaluate_2_PLUS_3_MULTIPLY_4, 65);
 
   return (UnityEnd());
 }
