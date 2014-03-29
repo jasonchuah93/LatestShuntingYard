@@ -18,19 +18,55 @@ void tearDown(void){}
 
 
 
-void test_should_calculate_2_MULTIPLY_3()
+
+
+
+
+void test_should_calculate_2_PLUS_3()
 
 {
 
  int check;
 
- Number *two = malloc (sizeof(Number));
+ Operator plus={.type=OPERATOR,.id=ADD};
 
- two->value=2;
+ Number two={.type=NUMBER,.value=2};
+
+ Number three={.type=NUMBER,.value=3};
 
 
 
- printf("token : %d ",&two);
+ check=calculate(&plus,&two,&three);
+
+
+
+ UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)28, UNITY_DISPLAY_STYLE_INT);
+
+
+
+}
+
+
+
+void test_should_calculate_10_MINUS_3()
+
+{
+
+ int check;
+
+ Operator subtract={.type=OPERATOR,.id=SUBTRACT};
+
+ Number ten={.type=NUMBER,.value=10};
+
+ Number three={.type=NUMBER,.value=3};
+
+
+
+ check=calculate(&subtract,&ten,&three);
+
+
+
+ UnityAssertEqualNumber((_U_SINT)((7)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)41, UNITY_DISPLAY_STYLE_INT);
 
 
 

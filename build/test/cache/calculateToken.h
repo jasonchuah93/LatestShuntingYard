@@ -11,4 +11,4 @@
 
 
 
-void *calculate(Operator *opeToken, Number *first , Number *second);
+int calculate(Operator *opeToken, Number *first , Number *second);

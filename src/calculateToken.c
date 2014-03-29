@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <malloc.h>
 #include "Evaluate.h"
 #include "Stack.h"
 #include "getToken.h"
@@ -9,16 +10,19 @@
 #include "stackForEvaluate.h"
 #include "createNumberToken.h"
 
-void *calculate(Operator *opeToken, Number *first, Number *second){
-	Token *token;
-	int number;
-	first->value=number;
-	second->value=number;
+int calculate(Operator *opeToken, Number *first, Number *second){
+	
+	int answer;
 	switch(opeToken->id)
 	{
-		case MULTIPLY:
-			createNumberToken(first->value * second->value);
+		case ADD:
+			answer=first->value+second->value;
 		break;	
+		
+		case SUBTRACT:
+			answer=first->value-second->value;
+		break;
 	}
-	return token;
+	
+	return answer;
 }

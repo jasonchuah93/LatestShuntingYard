@@ -9,7 +9,7 @@
 typedef struct _CMOCK_calculate_CALL_INSTANCE
 {
   UNITY_LINE_TYPE LineNumber;
-  void* ReturnVal;
+  int ReturnVal;
   int CallOrder;
   Operator* Expected_opeToken;
   Number* Expected_first;
@@ -20,7 +20,7 @@ typedef struct _CMOCK_calculate_CALL_INSTANCE
 static struct mock_calculateTokenInstance
 {
   int calculate_IgnoreBool;
-  void* calculate_FinalReturn;
+  int calculate_FinalReturn;
   CMOCK_calculate_CALLBACK calculate_CallbackFunctionPointer;
   int calculate_CallbackCalls;
   CMOCK_MEM_INDEX_TYPE calculate_CallInstance;
@@ -55,7 +55,7 @@ void mock_calculateToken_Destroy(void)
   GlobalVerifyOrder = 0;
 }
 
-void* calculate(Operator* opeToken, Number* first, Number* second)
+int calculate(Operator* opeToken, Number* first, Number* second)
 {
   UNITY_LINE_TYPE cmock_line = TEST_LINE_NUM;
   CMOCK_calculate_CALL_INSTANCE* cmock_call_instance = (CMOCK_calculate_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.calculate_CallInstance);
@@ -90,7 +90,7 @@ void CMockExpectParameters_calculate(CMOCK_calculate_CALL_INSTANCE* cmock_call_i
   cmock_call_instance->Expected_second = second;
 }
 
-void calculate_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, void* cmock_to_return)
+void calculate_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, int cmock_to_return)
 {
   CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_calculate_CALL_INSTANCE));
   CMOCK_calculate_CALL_INSTANCE* cmock_call_instance = (CMOCK_calculate_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
@@ -101,7 +101,7 @@ void calculate_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, void* cmock_to_r
   Mock.calculate_IgnoreBool = (int)1;
 }
 
-void calculate_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Operator* opeToken, Number* first, Number* second, void* cmock_to_return)
+void calculate_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Operator* opeToken, Number* first, Number* second, int cmock_to_return)
 {
   CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_calculate_CALL_INSTANCE));
   CMOCK_calculate_CALL_INSTANCE* cmock_call_instance = (CMOCK_calculate_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);

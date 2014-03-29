@@ -17,7 +17,7 @@ void tearDown(void){}
 
 
 
-void xtest_try_evaluate_then_push_for_2_PLUS_3(void){
+void test_try_evaluate_then_push_for_2_PLUS_3(void){
 
 
 
@@ -46,9 +46,5 @@ void xtest_try_evaluate_then_push_for_2_PLUS_3(void){
 
 
 
-
-
-
- tryEvaluatethenPush_CMockExpect(31, token2, &numStack, &opeStack);
 
 }

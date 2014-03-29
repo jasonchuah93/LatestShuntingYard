@@ -40,6 +40,7 @@ char* GlobalOrderError;
 //=======External Functions This Runner Calls=====
 extern void setUp(void);
 extern void tearDown(void);
+extern void test_try_evaluate_then_push_for_2_PLUS_3(void);
 
 
 //=======Mock Management=====
@@ -90,6 +91,7 @@ int main(void)
 {
   Unity.TestFile = "test_tryEvaluatethenPush.c";
   UnityBegin();
+  RUN_TEST(test_try_evaluate_then_push_for_2_PLUS_3, 15);
 
   return (UnityEnd());
 }

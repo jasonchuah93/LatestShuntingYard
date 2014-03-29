@@ -2,12 +2,15 @@
 :source:
   :path: test
   :file: test_tryEvaluatethenPush.c
-:successes: []
+:successes:
+- :test: test_try_evaluate_then_push_for_2_PLUS_3
+  :line: 15
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 0
-  :passed: 0
+  :total: 1
+  :passed: 1
   :failed: 0
   :ignored: 0
 :stdout: []

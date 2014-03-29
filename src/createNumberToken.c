@@ -17,6 +17,7 @@
 	return:
 	(Token*)newToken	The token that generated.
 */
+
 Token *createNumberToken(int number)
 {
 	Number *newToken = malloc (sizeof(Number));

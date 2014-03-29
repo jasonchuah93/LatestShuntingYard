@@ -3,15 +3,17 @@
   :path: test
   :file: test_calculateToken.c
 :successes:
-- :test: test_should_calculate_2_MULTIPLY_3
-  :line: 17
+- :test: test_should_calculate_2_PLUS_3
+  :line: 19
+  :message: ''
+- :test: test_should_calculate_10_MINUS_3
+  :line: 32
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 1
-  :passed: 1
+  :total: 2
+  :passed: 2
   :failed: 0
   :ignored: 0
-:stdout:
-- 'token : 2686668 '
+:stdout: []

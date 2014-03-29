@@ -11,6 +11,7 @@
 void setUp(void){}
 void tearDown(void){}
 
+/*
 void test_operator_evaluate_should_evaluate_2_PLUS_3(void){
 	
 	Number number2 = {.type= NUMBER, .value=2};
@@ -20,10 +21,8 @@ void test_operator_evaluate_should_evaluate_2_PLUS_3(void){
 	Operator plus = {.type= OPERATOR, .id = ADD};
 	Token *token2 = (Token*)&plus;
 	
-	
 	Number number3 = {.type= NUMBER, .value=3};
 	Token *token3 = (Token*)&number3;
-	
 	
 	Number answer = {.type=NUMBER, .value=5};
 	Token *ansToken = (Token*)&answer;
@@ -35,7 +34,7 @@ void test_operator_evaluate_should_evaluate_2_PLUS_3(void){
 	stackPush_Expect(ansToken,&numStack);
 	operatorEvaluate(&numStack,&opeStack);
 }
-
+*/
 /*
 void test_operator_evaluate_should_evaluate_2_PLUS_3_MULTIPLY_4(void){
 	

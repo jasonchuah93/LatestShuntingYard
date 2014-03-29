@@ -39,7 +39,8 @@ char* GlobalOrderError;
 //=======External Functions This Runner Calls=====
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_should_calculate_2_MULTIPLY_3(void);
+extern void test_should_calculate_2_PLUS_3(void);
+extern void test_should_calculate_10_MINUS_3(void);
 
 
 //=======Mock Management=====
@@ -87,7 +88,8 @@ int main(void)
 {
   Unity.TestFile = "test_calculateToken.c";
   UnityBegin();
-  RUN_TEST(test_should_calculate_2_MULTIPLY_3, 17);
+  RUN_TEST(test_should_calculate_2_PLUS_3, 19);
+  RUN_TEST(test_should_calculate_10_MINUS_3, 32);
 
   return (UnityEnd());
 }
