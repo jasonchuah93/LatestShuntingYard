@@ -5,6 +5,6 @@
 - mock_getToken.h
 - mock_initializeToken.h
 - mock_operatorEvaluate.h
-- mock_tryEvaluatethenPush.h
 - stackForEvaluate.h
+- tryEvaluatethenPush.h
 - unity.h

@@ -1,6 +1,6 @@
 #include "unity.h"
+#include "tryEvaluatethenPush.h"
 #include "stackForEvaluate.h"
-#include "mock_tryEvaluatethenPush.h"
 #include "mock_operatorEvaluate.h"
 #include "mock_initializeToken.h"
 #include "mock_getToken.h"
@@ -17,7 +17,7 @@ void tearDown(void){}
 
 
 
-void test_try_evaluate_then_push_for_2_PLUS_3(void){
+void test_try_evaluate_operator_for_2_PLUS_3(void){
 
 
 
@@ -27,7 +27,7 @@ void test_try_evaluate_then_push_for_2_PLUS_3(void){
 
 
 
- Operator plus = {.type= OPERATOR, .id = ADD};
+ Operator plus = {.type= OPERATOR, .id = ADD, .precedence=40};
 
  Token *token2 = (Token*)&plus;
 
@@ -44,6 +44,14 @@ void test_try_evaluate_then_push_for_2_PLUS_3(void){
  Token *ansToken = (Token*)&answer;
 
 
+
+
+
+ stackPush_CMockExpect(30, token2, &opeStack);
+
+
+
+ tryEvaluatethenPush(token2,&numStack,&opeStack);
 
 
 

@@ -9,17 +9,11 @@
 - :test: test_evaluate_2_PLUS_3
   :line: 28
   :message: ''
-- :test: test_evaluate_2_PLUS_3_MULTIPLY_4
-  :line: 65
-  :message: ''
-- :test: test_evaluate_2_MULTIPLY_3_PLUS_4
-  :line: 122
-  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 4
-  :passed: 4
+  :total: 2
+  :passed: 2
   :failed: 0
   :ignored: 0
 :stdout: []

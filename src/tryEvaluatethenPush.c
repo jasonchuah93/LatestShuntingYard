@@ -10,6 +10,10 @@
 
 void tryEvaluatethenPush(Token *token,Stack *numberStack,Stack *operatorStack)
 {
-			
-	
+	Token *previousToken;
+	if(operatorStack->topOfStack==NULL){
+		stackPush(token,operatorStack);
+	}
+	else{
+		stackPop(operatorStack,
 }

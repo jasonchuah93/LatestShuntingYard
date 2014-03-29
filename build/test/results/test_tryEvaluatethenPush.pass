@@ -3,7 +3,7 @@
   :path: test
   :file: test_tryEvaluatethenPush.c
 :successes:
-- :test: test_try_evaluate_then_push_for_2_PLUS_3
+- :test: test_try_evaluate_operator_for_2_PLUS_3
   :line: 15
   :message: ''
 :failures: []

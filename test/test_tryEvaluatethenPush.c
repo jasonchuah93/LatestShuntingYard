@@ -1,6 +1,6 @@
 #include "unity.h"
 #include "Evaluate.h"
-#include "mock_tryEvaluatethenPush.h"
+#include "tryEvaluatethenPush.h"
 #include "stackForEvaluate.h"
 #include "mock_initializeToken.h"
 #include "mock_getToken.h"
@@ -29,5 +29,6 @@ void test_try_evaluate_operator_for_2_PLUS_3(void){
 	//tryEvaluatethenPush_Expect(token2,&numStack,&opeStack);
 	stackPush_Expect(token2,&opeStack);
 	
+	tryEvaluatethenPush(token2,&numStack,&opeStack);
 	
 }

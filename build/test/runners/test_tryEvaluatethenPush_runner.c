@@ -31,7 +31,6 @@
 #include "mock_getToken.h"
 #include "mock_initializeToken.h"
 #include "mock_operatorEvaluate.h"
-#include "mock_tryEvaluatethenPush.h"
 
 int GlobalExpectCount;
 int GlobalVerifyOrder;
@@ -40,7 +39,7 @@ char* GlobalOrderError;
 //=======External Functions This Runner Calls=====
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_try_evaluate_then_push_for_2_PLUS_3(void);
+extern void test_try_evaluate_operator_for_2_PLUS_3(void);
 
 
 //=======Mock Management=====
@@ -54,7 +53,6 @@ static void CMock_Init(void)
   mock_getToken_Init();
   mock_initializeToken_Init();
   mock_operatorEvaluate_Init();
-  mock_tryEvaluatethenPush_Init();
 }
 static void CMock_Verify(void)
 {
@@ -63,7 +61,6 @@ static void CMock_Verify(void)
   mock_getToken_Verify();
   mock_initializeToken_Verify();
   mock_operatorEvaluate_Verify();
-  mock_tryEvaluatethenPush_Verify();
 }
 static void CMock_Destroy(void)
 {
@@ -72,7 +69,6 @@ static void CMock_Destroy(void)
   mock_getToken_Destroy();
   mock_initializeToken_Destroy();
   mock_operatorEvaluate_Destroy();
-  mock_tryEvaluatethenPush_Destroy();
 }
 
 //=======Test Reset Option=====
@@ -91,7 +87,7 @@ int main(void)
 {
   Unity.TestFile = "test_tryEvaluatethenPush.c";
   UnityBegin();
-  RUN_TEST(test_try_evaluate_then_push_for_2_PLUS_3, 15);
+  RUN_TEST(test_try_evaluate_operator_for_2_PLUS_3, 15);
 
   return (UnityEnd());
 }
