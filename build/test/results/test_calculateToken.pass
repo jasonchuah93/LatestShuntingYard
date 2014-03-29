@@ -9,11 +9,17 @@
 - :test: test_should_calculate_10_MINUS_3
   :line: 32
   :message: ''
+- :test: test_should_calculate_10_MULTIPLY_10
+  :line: 44
+  :message: ''
+- :test: test_should_calculate_1000_DIVIDE_10
+  :line: 56
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 2
-  :passed: 2
+  :total: 4
+  :passed: 4
   :failed: 0
   :ignored: 0
 :stdout: []

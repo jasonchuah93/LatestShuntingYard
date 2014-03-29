@@ -14,7 +14,14 @@ int calculate(Operator *opeToken, Number *first, Number *second){
 	
 	int answer;
 	switch(opeToken->id)
-	{
+	{	
+		case MULTIPLY:
+			answer=first->value*second->value;
+		break;
+		
+		case DIVIDE:
+			answer=first->value/second->value;
+		break;
 		case ADD:
 			answer=first->value+second->value;
 		break;	
@@ -22,6 +29,8 @@ int calculate(Operator *opeToken, Number *first, Number *second){
 		case SUBTRACT:
 			answer=first->value-second->value;
 		break;
+		
+	
 	}
 	
 	return answer;

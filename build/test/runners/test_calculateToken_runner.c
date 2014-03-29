@@ -41,6 +41,8 @@ extern void setUp(void);
 extern void tearDown(void);
 extern void test_should_calculate_2_PLUS_3(void);
 extern void test_should_calculate_10_MINUS_3(void);
+extern void test_should_calculate_10_MULTIPLY_10(void);
+extern void test_should_calculate_1000_DIVIDE_10(void);
 
 
 //=======Mock Management=====
@@ -90,6 +92,8 @@ int main(void)
   UnityBegin();
   RUN_TEST(test_should_calculate_2_PLUS_3, 19);
   RUN_TEST(test_should_calculate_10_MINUS_3, 32);
+  RUN_TEST(test_should_calculate_10_MULTIPLY_10, 44);
+  RUN_TEST(test_should_calculate_1000_DIVIDE_10, 56);
 
   return (UnityEnd());
 }

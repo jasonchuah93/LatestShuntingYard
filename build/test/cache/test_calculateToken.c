@@ -68,6 +68,52 @@ void test_should_calculate_10_MINUS_3()
 
  UnityAssertEqualNumber((_U_SINT)((7)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)41, UNITY_DISPLAY_STYLE_INT);
 
+}
 
+
+
+void test_should_calculate_10_MULTIPLY_10()
+
+{
+
+ int check;
+
+ Operator multiply={.type=OPERATOR,.id=MULTIPLY};
+
+ Number ten={.type=NUMBER,.value=10};
+
+ Number ten1={.type=NUMBER,.value=10};
+
+
+
+ check=calculate(&multiply,&ten,&ten1);
+
+
+
+ UnityAssertEqualNumber((_U_SINT)((100)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)53, UNITY_DISPLAY_STYLE_INT);
+
+}
+
+
+
+void test_should_calculate_1000_DIVIDE_10()
+
+{
+
+ int check;
+
+ Operator divide={.type=OPERATOR,.id=DIVIDE};
+
+ Number thousand={.type=NUMBER,.value=1000};
+
+ Number ten={.type=NUMBER,.value=10};
+
+
+
+ check=calculate(&divide,&thousand,&ten);
+
+
+
+ UnityAssertEqualNumber((_U_SINT)((100)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)65, UNITY_DISPLAY_STYLE_INT);
 
 }
