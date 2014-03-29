@@ -7,6 +7,7 @@
 #include "operatorEvaluate.h"
 #include "calculateToken.h"
 #include "stackForEvaluate.h"
+#include "createNumberToken.h" 
 
 /*
 	This function is to evaluate the expression  
@@ -22,7 +23,8 @@ void operatorEvaluate(Stack *numberStack , Stack *operatorStack){
 	Token *token1; //operator Token
 	Token *token2; // First number token
 	Token *token3; // Second number token
-	Token *ansToken; // The answer
+	int answer; // The answer
+	Token *answerToken;
 	Operator *operation;
 	Number *num1;
 	Number *num2;
@@ -35,7 +37,8 @@ void operatorEvaluate(Stack *numberStack , Stack *operatorStack){
 		num1=(Number*)token2;
 		token3=(Token*)stackPop(numberStack);
 		num2=(Number*)token3;
-		ansToken = calculate(operation,num1,num2);
-		stackPush(ansToken,numberStack);
+		answer = calculate(operation,num1,num2);
+		answerToken=createNumberToken(answer);
+		stackPush(answerToken,numberStack);
 	}
 }	

@@ -2,12 +2,18 @@
 :source:
   :path: test
   :file: test_OperatorEvaluate.c
-:successes: []
+:successes:
+- :test: test_operator_evaluate_should_evaluate_2_PLUS_3
+  :line: 16
+  :message: ''
+- :test: test_operator_evaluate_should_evaluate_2_PLUS_3_MULTIPLY_4
+  :line: 41
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 0
-  :passed: 0
+  :total: 2
+  :passed: 2
   :failed: 0
   :ignored: 0
 :stdout: []

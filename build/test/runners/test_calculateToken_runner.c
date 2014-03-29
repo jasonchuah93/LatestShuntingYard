@@ -43,6 +43,7 @@ extern void test_should_calculate_2_PLUS_3(void);
 extern void test_should_calculate_10_MINUS_3(void);
 extern void test_should_calculate_10_MULTIPLY_10(void);
 extern void test_should_calculate_1000_DIVIDE_10(void);
+extern void test_should_calculate_56_BITWISE_AND_30(void);
 
 
 //=======Mock Management=====
@@ -91,9 +92,10 @@ int main(void)
   Unity.TestFile = "test_calculateToken.c";
   UnityBegin();
   RUN_TEST(test_should_calculate_2_PLUS_3, 19);
-  RUN_TEST(test_should_calculate_10_MINUS_3, 32);
-  RUN_TEST(test_should_calculate_10_MULTIPLY_10, 44);
-  RUN_TEST(test_should_calculate_1000_DIVIDE_10, 56);
+  RUN_TEST(test_should_calculate_10_MINUS_3, 31);
+  RUN_TEST(test_should_calculate_10_MULTIPLY_10, 43);
+  RUN_TEST(test_should_calculate_1000_DIVIDE_10, 55);
+  RUN_TEST(test_should_calculate_56_BITWISE_AND_30, 67);
 
   return (UnityEnd());
 }

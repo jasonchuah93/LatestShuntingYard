@@ -7,19 +7,22 @@
   :line: 19
   :message: ''
 - :test: test_should_calculate_10_MINUS_3
-  :line: 32
+  :line: 31
   :message: ''
 - :test: test_should_calculate_10_MULTIPLY_10
-  :line: 44
+  :line: 43
   :message: ''
 - :test: test_should_calculate_1000_DIVIDE_10
-  :line: 56
+  :line: 55
+  :message: ''
+- :test: test_should_calculate_56_BITWISE_AND_30
+  :line: 67
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 4
-  :passed: 4
+  :total: 5
+  :passed: 5
   :failed: 0
   :ignored: 0
 :stdout: []

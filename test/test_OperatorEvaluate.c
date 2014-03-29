@@ -7,11 +7,12 @@
 #include "mock_Stack.h"
 #include "mock_tryEvaluatethenPush.h"
 #include "mock_calculateToken.h"
+#include "mock_createNumberToken.h"
 
 void setUp(void){}
 void tearDown(void){}
 
-/*
+
 void test_operator_evaluate_should_evaluate_2_PLUS_3(void){
 	
 	Number number2 = {.type= NUMBER, .value=2};
@@ -24,18 +25,19 @@ void test_operator_evaluate_should_evaluate_2_PLUS_3(void){
 	Number number3 = {.type= NUMBER, .value=3};
 	Token *token3 = (Token*)&number3;
 	
-	Number answer = {.type=NUMBER, .value=5};
-	Token *ansToken = (Token*)&answer;
+	int answer;
+	Token *answerToken;
 	
 	stackPop_ExpectAndReturn(&opeStack,token2);
 	stackPop_ExpectAndReturn(&numStack,token1);
 	stackPop_ExpectAndReturn(&numStack,token3);
-	calculate_ExpectAndReturn(&plus,&number2,&number3,ansToken);
-	stackPush_Expect(ansToken,&numStack);
+	calculate_ExpectAndReturn(&plus,&number2,&number3,answer);
+	createNumberToken_ExpectAndReturn(answer,answerToken);
+	stackPush_Expect(answerToken,&numStack);
 	operatorEvaluate(&numStack,&opeStack);
 }
-*/
-/*
+
+
 void test_operator_evaluate_should_evaluate_2_PLUS_3_MULTIPLY_4(void){
 	
 	Number number12 = {.type= NUMBER, .value=12};
@@ -47,17 +49,19 @@ void test_operator_evaluate_should_evaluate_2_PLUS_3_MULTIPLY_4(void){
 	Number number2 = {.type= NUMBER, .value=2};
 	Token *token3 = (Token*)&number2;
 	
-	Number answer = {.type=NUMBER, .value=14};
-	Token *ansToken = (Token*)&answer;
+	int answer;
+	Token *answerToken;
 	
 	stackPop_ExpectAndReturn(&opeStack,token2);
 	stackPop_ExpectAndReturn(&numStack,token1);
 	stackPop_ExpectAndReturn(&numStack,token3);
-	calculate_ExpectAndReturn(&plus,&number12,&number2,ansToken);
-	stackPush_Expect(ansToken,&numStack);
-	
+	calculate_ExpectAndReturn(&plus,&number12,&number2,answer);
+	createNumberToken_ExpectAndReturn(answer,answerToken);
+	stackPush_Expect(answerToken,&numStack);
 	operatorEvaluate(&numStack,&opeStack);
+	
 }
-*/
+
+
 
 

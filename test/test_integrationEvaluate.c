@@ -1,18 +1,13 @@
 #include "unity.h"
-#include "Evaluate.h"
-#include "mock_initializeToken.h"
-#include "mock_getToken.h"
-#include "mock_Stack.h"
-#include "mock_tryEvaluatethenPush.h"
-#include "operatorEvaluate.h"
-#include "mock_calculateToken.h"
-#include "stackForEvaluate.h"
+
+
 
 void setUp(void){}
 void tearDown(void){}
 
-/*
+
 void test_shunting_yard_should_return_0_if_the_expression_is_null(){
+	/*
 	int check;
 	Tokenizer tokenizer = {.rawString = "0", .startIndex = 0, .length = 1};
 	
@@ -23,8 +18,9 @@ void test_shunting_yard_should_return_0_if_the_expression_is_null(){
 	
 	check=evaluate(NULL);
 	TEST_ASSERT_EQUAL(0,check);
+	*/
 }
-*/
+
 /*
 void test_evaluate_2_PLUS_3(void){
 	int check;

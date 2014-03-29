@@ -16,7 +16,7 @@ void tearDown(void){}
 
 //Token *calculate(Operator *opeToken, Number *first, Number *second)
 
-void test_should_calculate_2_PLUS_3()
+void test_should_calculate_2_PLUS_3(void)
 {
 	int check;
 	Operator plus={.type=OPERATOR,.id=ADD};
@@ -26,10 +26,9 @@ void test_should_calculate_2_PLUS_3()
 	check=calculate(&plus,&two,&three);
 	
 	TEST_ASSERT_EQUAL(5,check);
-	
 }
 
-void test_should_calculate_10_MINUS_3()
+void test_should_calculate_10_MINUS_3(void)
 {
 	int check;
 	Operator subtract={.type=OPERATOR,.id=SUBTRACT};
@@ -41,7 +40,7 @@ void test_should_calculate_10_MINUS_3()
 	TEST_ASSERT_EQUAL(7,check);
 }
 
-void test_should_calculate_10_MULTIPLY_10()
+void test_should_calculate_10_MULTIPLY_10(void)
 {
 	int check;
 	Operator multiply={.type=OPERATOR,.id=MULTIPLY};
@@ -53,7 +52,7 @@ void test_should_calculate_10_MULTIPLY_10()
 	TEST_ASSERT_EQUAL(100,check);
 }
 
-void test_should_calculate_1000_DIVIDE_10()
+void test_should_calculate_1000_DIVIDE_10(void)
 {
 	int check;
 	Operator divide={.type=OPERATOR,.id=DIVIDE};
@@ -64,3 +63,17 @@ void test_should_calculate_1000_DIVIDE_10()
 	
 	TEST_ASSERT_EQUAL(100,check);
 }
+
+void test_should_calculate_56_BITWISE_AND_30(void)
+{
+	int check;
+	Operator bitwiseAnd ={.type=OPERATOR,.id=BITWISE_AND};
+	Number fiftySix ={.type=NUMBER,.value=56};
+	Number thirty ={.type=NUMBER,.value=30};
+	
+	check=calculate(&bitwiseAnd,&fiftySix,&thirty);
+	
+	TEST_ASSERT_EQUAL(24,check);
+}
+
+
