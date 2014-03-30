@@ -39,7 +39,8 @@ char* GlobalOrderError;
 //=======External Functions This Runner Calls=====
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_try_evaluate_operator_for_2_PLUS_3(void);
+extern void test_try_evaluate_2_PLUS_3_and_push_operator_token_if_top_of_stack_is_empty(void);
+extern void test_try_evaluate_2_PLUS_3_MULTIPLY_4_and_compare_operators_to_determine_the_operator_to_be_push_into_stack(void);
 
 
 //=======Mock Management=====
@@ -87,7 +88,8 @@ int main(void)
 {
   Unity.TestFile = "test_tryEvaluatethenPush.c";
   UnityBegin();
-  RUN_TEST(test_try_evaluate_operator_for_2_PLUS_3, 15);
+  RUN_TEST(test_try_evaluate_2_PLUS_3_and_push_operator_token_if_top_of_stack_is_empty, 16);
+  RUN_TEST(test_try_evaluate_2_PLUS_3_MULTIPLY_4_and_compare_operators_to_determine_the_operator_to_be_push_into_stack, 35);
 
   return (UnityEnd());
 }

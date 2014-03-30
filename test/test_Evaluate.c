@@ -61,7 +61,7 @@ void test_evaluate_2_PLUS_3(void){
 	operatorEvaluate_Expect(&numStack,&opeStack);
 	evaluate("2+3");
 }
-/*
+
 void test_evaluate_2_PLUS_3_MULTIPLY_4(void){
 	int check;
 	//Initialize tokenizer,token and stack
@@ -175,7 +175,7 @@ void test_evaluate_2_MULTIPLY_3_PLUS_4(void){
 	
 	evaluate("2*3+4");
 }
-
+/*
 void test_evaluate_2_PLUS_3_MULTIPLY_4_PLUS_5_MULTIPLY_6(void){
 	int check;
 	//Initialize tokenizer,token and stack

@@ -42,6 +42,8 @@ extern void setUp(void);
 extern void tearDown(void);
 extern void test_shunting_yard_should_return_0_if_the_expression_is_null(void);
 extern void test_evaluate_2_PLUS_3(void);
+extern void test_evaluate_2_PLUS_3_MULTIPLY_4(void);
+extern void test_evaluate_2_MULTIPLY_3_PLUS_4(void);
 
 
 //=======Mock Management=====
@@ -94,6 +96,8 @@ int main(void)
   UnityBegin();
   RUN_TEST(test_shunting_yard_should_return_0_if_the_expression_is_null, 14);
   RUN_TEST(test_evaluate_2_PLUS_3, 28);
+  RUN_TEST(test_evaluate_2_PLUS_3_MULTIPLY_4, 65);
+  RUN_TEST(test_evaluate_2_MULTIPLY_3_PLUS_4, 122);
 
   return (UnityEnd());
 }

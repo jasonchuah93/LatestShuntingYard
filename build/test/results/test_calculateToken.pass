@@ -18,11 +18,14 @@
 - :test: test_should_calculate_56_BITWISE_AND_30
   :line: 67
   :message: ''
+- :test: test_should_calculate_90_BITWISE_OR_20
+  :line: 79
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 5
-  :passed: 5
+  :total: 6
+  :passed: 6
   :failed: 0
   :ignored: 0
 :stdout: []

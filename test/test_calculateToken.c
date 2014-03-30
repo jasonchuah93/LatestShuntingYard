@@ -76,4 +76,14 @@ void test_should_calculate_56_BITWISE_AND_30(void)
 	TEST_ASSERT_EQUAL(24,check);
 }
 
-
+void test_should_calculate_90_BITWISE_OR_20(void)
+{
+	int check;
+	Operator bitwiseOR ={.type=OPERATOR,.id=BITWISE_OR};
+	Number ninety ={.type=NUMBER,.value=90};
+	Number twenty ={.type=NUMBER,.value=20};
+	
+	check=calculate(&bitwiseOR,&ninety,&twenty);
+	
+	TEST_ASSERT_EQUAL(94,check);
+}

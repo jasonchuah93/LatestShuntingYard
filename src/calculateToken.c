@@ -33,8 +33,11 @@ int calculate(Operator *opeToken, Number *first, Number *second){
 		case BITWISE_AND:
 			answer=first->value&second->value;
 		break;
-
-	
+		
+		case BITWISE_OR:
+			answer=first->value|second->value;
+		break;
+		
 	}
 	
 	return answer;

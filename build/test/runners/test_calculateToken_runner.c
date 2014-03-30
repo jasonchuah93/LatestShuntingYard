@@ -44,6 +44,7 @@ extern void test_should_calculate_10_MINUS_3(void);
 extern void test_should_calculate_10_MULTIPLY_10(void);
 extern void test_should_calculate_1000_DIVIDE_10(void);
 extern void test_should_calculate_56_BITWISE_AND_30(void);
+extern void test_should_calculate_90_BITWISE_OR_20(void);
 
 
 //=======Mock Management=====
@@ -96,6 +97,7 @@ int main(void)
   RUN_TEST(test_should_calculate_10_MULTIPLY_10, 43);
   RUN_TEST(test_should_calculate_1000_DIVIDE_10, 55);
   RUN_TEST(test_should_calculate_56_BITWISE_AND_30, 67);
+  RUN_TEST(test_should_calculate_90_BITWISE_OR_20, 79);
 
   return (UnityEnd());
 }

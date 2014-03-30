@@ -139,3 +139,27 @@ void test_should_calculate_56_BITWISE_AND_30(void)
  UnityAssertEqualNumber((_U_SINT)((24)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)76, UNITY_DISPLAY_STYLE_INT);
 
 }
+
+
+
+void test_should_calculate_90_BITWISE_OR_20(void)
+
+{
+
+ int check;
+
+ Operator bitwiseOR ={.type=OPERATOR,.id=BITWISE_OR};
+
+ Number ninety ={.type=NUMBER,.value=90};
+
+ Number twenty ={.type=NUMBER,.value=20};
+
+
+
+ check=calculate(&bitwiseOR,&ninety,&twenty);
+
+
+
+ UnityAssertEqualNumber((_U_SINT)((94)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)88, UNITY_DISPLAY_STYLE_INT);
+
+}
