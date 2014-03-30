@@ -123,3 +123,28 @@ void test_should_calculate_68_MODULUS_7(void)
 	
 	TEST_ASSERT_EQUAL(5,check);
 }
+
+void test_should_complement_78(void){
+	int check;
+	Operator complement ={.type=OPERATOR,.id=COMPLEMENT};
+	Number seventyEight ={.type=NUMBER,.value=78};
+	
+	
+	check=calculate(&complement,&seventyEight,NULL);
+	
+	TEST_ASSERT_EQUAL(-79,check);
+}
+
+void test_should_complement_2(void){
+	int check;
+	Operator complement ={.type=OPERATOR,.id=COMPLEMENT};
+	Number two ={.type=NUMBER,.value=2};
+	
+	
+	check=calculate(&complement,&two,NULL);
+	
+	TEST_ASSERT_EQUAL(-3,check);
+}
+
+
+

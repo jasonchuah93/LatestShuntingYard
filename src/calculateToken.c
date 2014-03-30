@@ -45,6 +45,12 @@ int calculate(Operator *opeToken, Number *first, Number *second){
 		case MODULUS:
 			answer=first->value%second->value;
 		break;
+		
+		case COMPLEMENT:
+			answer=~first->value;
+		break;
+		
+		
 	}
 	
 	return answer;

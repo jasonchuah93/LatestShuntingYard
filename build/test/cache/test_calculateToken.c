@@ -235,3 +235,47 @@ void test_should_calculate_68_MODULUS_7(void)
  UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)124, UNITY_DISPLAY_STYLE_INT);
 
 }
+
+
+
+void test_should_complement_78(void){
+
+ int check;
+
+ Operator complement ={.type=OPERATOR,.id=COMPLEMENT};
+
+ Number seventyEight ={.type=NUMBER,.value=78};
+
+
+
+
+
+ check=calculate(&complement,&seventyEight,((void *)0));
+
+
+
+ UnityAssertEqualNumber((_U_SINT)((-79)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)135, UNITY_DISPLAY_STYLE_INT);
+
+}
+
+
+
+void test_should_complement_2(void){
+
+ int check;
+
+ Operator complement ={.type=OPERATOR,.id=COMPLEMENT};
+
+ Number two ={.type=NUMBER,.value=2};
+
+
+
+
+
+ check=calculate(&complement,&two,((void *)0));
+
+
+
+ UnityAssertEqualNumber((_U_SINT)((-3)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)146, UNITY_DISPLAY_STYLE_INT);
+
+}

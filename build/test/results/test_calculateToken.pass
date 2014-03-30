@@ -30,11 +30,17 @@
 - :test: test_should_calculate_68_MODULUS_7
   :line: 115
   :message: ''
+- :test: test_should_complement_78
+  :line: 127
+  :message: ''
+- :test: test_should_complement_2
+  :line: 138
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 9
-  :passed: 9
+  :total: 11
+  :passed: 11
   :failed: 0
   :ignored: 0
 :stdout: []
