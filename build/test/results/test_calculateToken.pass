@@ -21,11 +21,20 @@
 - :test: test_should_calculate_90_BITWISE_OR_20
   :line: 79
   :message: ''
+- :test: test_should_calculate_99_BITWISE_XOR_66
+  :line: 91
+  :message: ''
+- :test: test_should_calculate_55_MODULUS_3
+  :line: 103
+  :message: ''
+- :test: test_should_calculate_68_MODULUS_7
+  :line: 115
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 6
-  :passed: 6
+  :total: 9
+  :passed: 9
   :failed: 0
   :ignored: 0
 :stdout: []

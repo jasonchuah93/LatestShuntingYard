@@ -46,6 +46,8 @@ extern void test_should_calculate_1000_DIVIDE_10(void);
 extern void test_should_calculate_56_BITWISE_AND_30(void);
 extern void test_should_calculate_90_BITWISE_OR_20(void);
 extern void test_should_calculate_99_BITWISE_XOR_66(void);
+extern void test_should_calculate_55_MODULUS_3(void);
+extern void test_should_calculate_68_MODULUS_7(void);
 
 
 //=======Mock Management=====
@@ -100,6 +102,8 @@ int main(void)
   RUN_TEST(test_should_calculate_56_BITWISE_AND_30, 67);
   RUN_TEST(test_should_calculate_90_BITWISE_OR_20, 79);
   RUN_TEST(test_should_calculate_99_BITWISE_XOR_66, 91);
+  RUN_TEST(test_should_calculate_55_MODULUS_3, 103);
+  RUN_TEST(test_should_calculate_68_MODULUS_7, 115);
 
   return (UnityEnd());
 }

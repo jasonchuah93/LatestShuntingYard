@@ -97,5 +97,29 @@ void test_should_calculate_99_BITWISE_XOR_66(void)
 	
 	check=calculate(&bitwiseXOR,&ninetyNine,&sistySix);
 	
-	TEST_ASSERT_EQUAL(94,check);
+	TEST_ASSERT_EQUAL(33,check);
+}
+
+void test_should_calculate_55_MODULUS_3(void)
+{
+	int check;
+	Operator modulus ={.type=OPERATOR,.id=MODULUS};
+	Number fiftyFive ={.type=NUMBER,.value=55};
+	Number three ={.type=NUMBER,.value=3};
+	
+	check=calculate(&modulus,&fiftyFive,&three);
+	
+	TEST_ASSERT_EQUAL(1,check);
+}
+
+void test_should_calculate_68_MODULUS_7(void)
+{
+	int check;
+	Operator modulus ={.type=OPERATOR,.id=MODULUS};
+	Number sixtyEight ={.type=NUMBER,.value=68};
+	Number seven ={.type=NUMBER,.value=7};
+	
+	check=calculate(&modulus,&sixtyEight,&seven);
+	
+	TEST_ASSERT_EQUAL(5,check);
 }

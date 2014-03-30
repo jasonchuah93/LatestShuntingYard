@@ -184,6 +184,54 @@ void test_should_calculate_99_BITWISE_XOR_66(void)
 
 
 
- UnityAssertEqualNumber((_U_SINT)((94)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)100, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((33)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)100, UNITY_DISPLAY_STYLE_INT);
+
+}
+
+
+
+void test_should_calculate_55_MODULUS_3(void)
+
+{
+
+ int check;
+
+ Operator modulus ={.type=OPERATOR,.id=MODULUS};
+
+ Number fiftyFive ={.type=NUMBER,.value=55};
+
+ Number three ={.type=NUMBER,.value=3};
+
+
+
+ check=calculate(&modulus,&fiftyFive,&three);
+
+
+
+ UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)112, UNITY_DISPLAY_STYLE_INT);
+
+}
+
+
+
+void test_should_calculate_68_MODULUS_7(void)
+
+{
+
+ int check;
+
+ Operator modulus ={.type=OPERATOR,.id=MODULUS};
+
+ Number sixtyEight ={.type=NUMBER,.value=68};
+
+ Number seven ={.type=NUMBER,.value=7};
+
+
+
+ check=calculate(&modulus,&sixtyEight,&seven);
+
+
+
+ UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)124, UNITY_DISPLAY_STYLE_INT);
 
 }
