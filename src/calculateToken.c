@@ -38,6 +38,9 @@ int calculate(Operator *opeToken, Number *first, Number *second){
 			answer=first->value|second->value;
 		break;
 		
+		case BITWISE_XOR:
+			answer=first->value^second->value;
+		break;
 	}
 	
 	return answer;

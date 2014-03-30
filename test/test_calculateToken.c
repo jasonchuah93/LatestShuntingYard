@@ -87,3 +87,15 @@ void test_should_calculate_90_BITWISE_OR_20(void)
 	
 	TEST_ASSERT_EQUAL(94,check);
 }
+
+void test_should_calculate_99_BITWISE_XOR_66(void)
+{
+	int check;
+	Operator bitwiseXOR ={.type=OPERATOR,.id=BITWISE_XOR};
+	Number ninetyNine ={.type=NUMBER,.value=99};
+	Number sistySix ={.type=NUMBER,.value=66};
+	
+	check=calculate(&bitwiseXOR,&ninetyNine,&sistySix);
+	
+	TEST_ASSERT_EQUAL(94,check);
+}

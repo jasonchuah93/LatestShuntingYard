@@ -163,3 +163,27 @@ void test_should_calculate_90_BITWISE_OR_20(void)
  UnityAssertEqualNumber((_U_SINT)((94)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)88, UNITY_DISPLAY_STYLE_INT);
 
 }
+
+
+
+void test_should_calculate_99_BITWISE_XOR_66(void)
+
+{
+
+ int check;
+
+ Operator bitwiseXOR ={.type=OPERATOR,.id=BITWISE_XOR};
+
+ Number ninetyNine ={.type=NUMBER,.value=99};
+
+ Number sistySix ={.type=NUMBER,.value=66};
+
+
+
+ check=calculate(&bitwiseXOR,&ninetyNine,&sistySix);
+
+
+
+ UnityAssertEqualNumber((_U_SINT)((94)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)100, UNITY_DISPLAY_STYLE_INT);
+
+}
