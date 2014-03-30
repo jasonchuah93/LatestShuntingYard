@@ -248,13 +248,11 @@ void test_should_complement_78(void){
 
 
 
-
-
  check=calculate(&complement,&seventyEight,((void *)0));
 
 
 
- UnityAssertEqualNumber((_U_SINT)((-79)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)135, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((-79)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)134, UNITY_DISPLAY_STYLE_INT);
 
 }
 
@@ -270,12 +268,72 @@ void test_should_complement_2(void){
 
 
 
-
-
  check=calculate(&complement,&two,((void *)0));
 
 
 
- UnityAssertEqualNumber((_U_SINT)((-3)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)146, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((-3)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)144, UNITY_DISPLAY_STYLE_INT);
+
+}
+
+
+
+void test_should_PLUS_PLUS_3(void){
+
+ int check;
+
+ Operator increment ={.type=OPERATOR,.id=INCREMENT};
+
+ Number three ={.type=NUMBER,.value=3};
+
+
+
+ check=calculate(&increment,&three,((void *)0));
+
+
+
+ UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)154, UNITY_DISPLAY_STYLE_INT);
+
+}
+
+
+
+void test_should_PLUS_PLUS_100(void){
+
+ int check;
+
+ Operator increment ={.type=OPERATOR,.id=INCREMENT};
+
+ Number hundred ={.type=NUMBER,.value=100};
+
+
+
+ check=calculate(&increment,&hundred,((void *)0));
+
+
+
+ UnityAssertEqualNumber((_U_SINT)((101)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)164, UNITY_DISPLAY_STYLE_INT);
+
+}
+
+
+
+void test_should_MINUS_MINUS_10(void){
+
+ int check;
+
+ Operator decrement ={.type=OPERATOR,.id=DECREMENT};
+
+ Number ten ={.type=NUMBER,.value=10};
+
+
+
+ check=calculate(&decrement,&ten,((void *)0));
+
+
+
+ UnityAssertEqualNumber((_U_SINT)((9)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)174, UNITY_DISPLAY_STYLE_INT);
+
+
 
 }

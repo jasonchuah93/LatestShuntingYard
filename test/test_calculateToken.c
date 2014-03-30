@@ -129,7 +129,6 @@ void test_should_complement_78(void){
 	Operator complement ={.type=OPERATOR,.id=COMPLEMENT};
 	Number seventyEight ={.type=NUMBER,.value=78};
 	
-	
 	check=calculate(&complement,&seventyEight,NULL);
 	
 	TEST_ASSERT_EQUAL(-79,check);
@@ -140,11 +139,40 @@ void test_should_complement_2(void){
 	Operator complement ={.type=OPERATOR,.id=COMPLEMENT};
 	Number two ={.type=NUMBER,.value=2};
 	
-	
 	check=calculate(&complement,&two,NULL);
 	
 	TEST_ASSERT_EQUAL(-3,check);
 }
 
+void test_should_PLUS_PLUS_3(void){
+	int check;
+	Operator increment ={.type=OPERATOR,.id=INCREMENT};
+	Number three ={.type=NUMBER,.value=3};
+	
+	check=calculate(&increment,&three,NULL);
+	
+	TEST_ASSERT_EQUAL(4,check);
+}
+
+void test_should_PLUS_PLUS_100(void){
+	int check;
+	Operator increment ={.type=OPERATOR,.id=INCREMENT};
+	Number hundred ={.type=NUMBER,.value=100};
+	
+	check=calculate(&increment,&hundred,NULL);
+	
+	TEST_ASSERT_EQUAL(101,check);
+}
+
+void test_should_MINUS_MINUS_10(void){
+	int check;
+	Operator decrement ={.type=OPERATOR,.id=DECREMENT};
+	Number ten ={.type=NUMBER,.value=10};
+	
+	check=calculate(&decrement,&ten,NULL);
+	
+	TEST_ASSERT_EQUAL(9,check);
+	
+}
 
 

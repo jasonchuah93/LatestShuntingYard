@@ -50,6 +50,9 @@ extern void test_should_calculate_55_MODULUS_3(void);
 extern void test_should_calculate_68_MODULUS_7(void);
 extern void test_should_complement_78(void);
 extern void test_should_complement_2(void);
+extern void test_should_PLUS_PLUS_3(void);
+extern void test_should_PLUS_PLUS_100(void);
+extern void test_should_MINUS_MINUS_10(void);
 
 
 //=======Mock Management=====
@@ -107,7 +110,10 @@ int main(void)
   RUN_TEST(test_should_calculate_55_MODULUS_3, 103);
   RUN_TEST(test_should_calculate_68_MODULUS_7, 115);
   RUN_TEST(test_should_complement_78, 127);
-  RUN_TEST(test_should_complement_2, 138);
+  RUN_TEST(test_should_complement_2, 137);
+  RUN_TEST(test_should_PLUS_PLUS_3, 147);
+  RUN_TEST(test_should_PLUS_PLUS_100, 157);
+  RUN_TEST(test_should_MINUS_MINUS_10, 167);
 
   return (UnityEnd());
 }

@@ -34,13 +34,22 @@
   :line: 127
   :message: ''
 - :test: test_should_complement_2
-  :line: 138
+  :line: 137
+  :message: ''
+- :test: test_should_PLUS_PLUS_3
+  :line: 147
+  :message: ''
+- :test: test_should_PLUS_PLUS_100
+  :line: 157
+  :message: ''
+- :test: test_should_MINUS_MINUS_10
+  :line: 167
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 11
-  :passed: 11
+  :total: 14
+  :passed: 14
   :failed: 0
   :ignored: 0
 :stdout: []
