@@ -1,14 +1,18 @@
 #ifndef __STACK_H__
 #define __STACK_H__
 
+#include "LinkedList.h"
 
+typedef struct
+{
+	
+	Element *topOfStack;
 
-typedef struct Stack_t{
-	void *topOfStack;
 }Stack;
 
 //Function declaration
-void stackPush(void *element,Stack *stack );
+Stack *createStack();
+void stackPush(void * data,Stack *stack);
 void *stackPop(Stack *stack);
-
+void destroyStack(Stack *stack);
 #endif //__STACK_H__

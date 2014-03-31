@@ -14,20 +14,32 @@ void mock_getToken_Verify(void);
 #define getToken_IgnoreAndReturn(cmock_retval) getToken_CMockIgnoreAndReturn(__LINE__, cmock_retval)
 void getToken_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, Token* cmock_to_return);
 #define getToken_ExpectAndReturn(tokenizer, cmock_retval) getToken_CMockExpectAndReturn(__LINE__, tokenizer, cmock_retval)
-void getToken_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Tokenizer* tokenizer, Token* cmock_to_return);
-typedef Token* (* CMOCK_getToken_CALLBACK)(Tokenizer* tokenizer, int cmock_num_calls);
+void getToken_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, String* tokenizer, Token* cmock_to_return);
+typedef Token* (* CMOCK_getToken_CALLBACK)(String* tokenizer, int cmock_num_calls);
 void getToken_StubWithCallback(CMOCK_getToken_CALLBACK Callback);
-#define isNumber_IgnoreAndReturn(cmock_retval) isNumber_CMockIgnoreAndReturn(__LINE__, cmock_retval)
-void isNumber_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, int cmock_to_return);
-#define isNumber_ExpectAndReturn(tokens, cmock_retval) isNumber_CMockExpectAndReturn(__LINE__, tokens, cmock_retval)
-void isNumber_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Token* tokens, int cmock_to_return);
-typedef int (* CMOCK_isNumber_CALLBACK)(Token* tokens, int cmock_num_calls);
-void isNumber_StubWithCallback(CMOCK_isNumber_CALLBACK Callback);
 #define isOperator_IgnoreAndReturn(cmock_retval) isOperator_CMockIgnoreAndReturn(__LINE__, cmock_retval)
 void isOperator_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, int cmock_to_return);
-#define isOperator_ExpectAndReturn(tokens, cmock_retval) isOperator_CMockExpectAndReturn(__LINE__, tokens, cmock_retval)
-void isOperator_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Token* tokens, int cmock_to_return);
-typedef int (* CMOCK_isOperator_CALLBACK)(Token* tokens, int cmock_num_calls);
+#define isOperator_ExpectAndReturn(unknownToken, cmock_retval) isOperator_CMockExpectAndReturn(__LINE__, unknownToken, cmock_retval)
+void isOperator_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Token* unknownToken, int cmock_to_return);
+typedef int (* CMOCK_isOperator_CALLBACK)(Token* unknownToken, int cmock_num_calls);
 void isOperator_StubWithCallback(CMOCK_isOperator_CALLBACK Callback);
+#define isNumber_IgnoreAndReturn(cmock_retval) isNumber_CMockIgnoreAndReturn(__LINE__, cmock_retval)
+void isNumber_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, int cmock_to_return);
+#define isNumber_ExpectAndReturn(unknownToken, cmock_retval) isNumber_CMockExpectAndReturn(__LINE__, unknownToken, cmock_retval)
+void isNumber_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Token* unknownToken, int cmock_to_return);
+typedef int (* CMOCK_isNumber_CALLBACK)(Token* unknownToken, int cmock_num_calls);
+void isNumber_StubWithCallback(CMOCK_isNumber_CALLBACK Callback);
+#define detectOperator_IgnoreAndReturn(cmock_retval) detectOperator_CMockIgnoreAndReturn(__LINE__, cmock_retval)
+void detectOperator_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, Operator* cmock_to_return);
+#define detectOperator_ExpectAndReturn(tokenizer, i, cmock_retval) detectOperator_CMockExpectAndReturn(__LINE__, tokenizer, i, cmock_retval)
+void detectOperator_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, String* tokenizer, int i, Operator* cmock_to_return);
+typedef Operator* (* CMOCK_detectOperator_CALLBACK)(String* tokenizer, int i, int cmock_num_calls);
+void detectOperator_StubWithCallback(CMOCK_detectOperator_CALLBACK Callback);
+#define checkIdentifier_IgnoreAndReturn(cmock_retval) checkIdentifier_CMockIgnoreAndReturn(__LINE__, cmock_retval)
+void checkIdentifier_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, Token* cmock_to_return);
+#define checkIdentifier_ExpectAndReturn(name, cmock_retval) checkIdentifier_CMockExpectAndReturn(__LINE__, name, cmock_retval)
+void checkIdentifier_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, char* name, Token* cmock_to_return);
+typedef Token* (* CMOCK_checkIdentifier_CALLBACK)(char* name, int cmock_num_calls);
+void checkIdentifier_StubWithCallback(CMOCK_checkIdentifier_CALLBACK Callback);
 
 #endif

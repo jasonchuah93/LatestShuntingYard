@@ -11,10 +11,20 @@
 
 
 
-Token *getToken(Tokenizer *tokenizer);
+
+
+Token *getToken(String *tokenizer);
 
 
 
-int isNumber(Token *tokens);
+int isOperator (Token * unknownToken);
 
-int isOperator(Token *tokens);
+int isNumber (Token * unknownToken);
+
+
+
+
+
+Operator *detectOperator(String *tokenizer, int i);
+
+Token *checkIdentifier(char *name);

@@ -8,6 +8,7 @@
 #include "calculateToken.h"
 #include "stackForEvaluate.h"
 #include "createNumberToken.h"
+#include "LinkedList.h"
 
 void tryEvaluatethenPush(Token *token,Stack *numberStack,Stack *operatorStack)
 {
@@ -22,7 +23,7 @@ void tryEvaluatethenPush(Token *token,Stack *numberStack,Stack *operatorStack)
 	Token *tempAnswerToken;
 	ope1=(Operator*)token;
 	ope2=(Operator*)previousToken;
-	Token data;
+	Element data;
 	
 	if(operatorStack->topOfStack==NULL){
 		stackPush(token,operatorStack);

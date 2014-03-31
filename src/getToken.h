@@ -5,10 +5,14 @@
 
 
 //Function declaration
-Token *getToken(Tokenizer *tokenizer);
 
-int isNumber(Token *tokens);
-int isOperator(Token *tokens);
+Token *getToken(String *tokenizer);
 
+int isOperator (Token * unknownToken);
+int isNumber (Token * unknownToken);
+
+//Sub-function
+Operator *detectOperator(String *tokenizer, int i);
+Token *checkIdentifier(char *name);
 
 #endif //__GETTOKEN_H__

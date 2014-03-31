@@ -1,5 +1,6 @@
 #include "unity.h"
 #include "Evaluate.h"
+#include "StringObject.h"
 #include "mock_initializeToken.h"
 #include "mock_getToken.h"
 #include "mock_Stack.h"

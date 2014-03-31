@@ -1,6 +1,7 @@
 #include "unity.h"
 #include <malloc.h>
 #include "Evaluate.h"
+#include "StringObject.h"
 #include "stackForEvaluate.h"
 #include "calculateToken.h"
 #include "mock_operatorEvaluate.h"
@@ -172,7 +173,8 @@ void test_should_MINUS_MINUS_10(void){
 	check=calculate(&decrement,&ten,NULL);
 	
 	TEST_ASSERT_EQUAL(9,check);
-	
 }
+
+
 
 

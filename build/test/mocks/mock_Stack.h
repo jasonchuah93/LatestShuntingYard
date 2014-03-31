@@ -11,11 +11,17 @@ void mock_Stack_Verify(void);
 
 
 
+#define createStack_IgnoreAndReturn(cmock_retval) createStack_CMockIgnoreAndReturn(__LINE__, cmock_retval)
+void createStack_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, Stack* cmock_to_return);
+#define createStack_ExpectAndReturn(cmock_retval) createStack_CMockExpectAndReturn(__LINE__, cmock_retval)
+void createStack_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Stack* cmock_to_return);
+typedef Stack* (* CMOCK_createStack_CALLBACK)(int cmock_num_calls);
+void createStack_StubWithCallback(CMOCK_createStack_CALLBACK Callback);
 #define stackPush_Ignore() stackPush_CMockIgnore()
 void stackPush_CMockIgnore(void);
-#define stackPush_Expect(element, stack) stackPush_CMockExpect(__LINE__, element, stack)
-void stackPush_CMockExpect(UNITY_LINE_TYPE cmock_line, void* element, Stack* stack);
-typedef void (* CMOCK_stackPush_CALLBACK)(void* element, Stack* stack, int cmock_num_calls);
+#define stackPush_Expect(data, stack) stackPush_CMockExpect(__LINE__, data, stack)
+void stackPush_CMockExpect(UNITY_LINE_TYPE cmock_line, void* data, Stack* stack);
+typedef void (* CMOCK_stackPush_CALLBACK)(void* data, Stack* stack, int cmock_num_calls);
 void stackPush_StubWithCallback(CMOCK_stackPush_CALLBACK Callback);
 #define stackPop_IgnoreAndReturn(cmock_retval) stackPop_CMockIgnoreAndReturn(__LINE__, cmock_retval)
 void stackPop_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, void* cmock_to_return);
@@ -23,5 +29,11 @@ void stackPop_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, void* cmock_to_re
 void stackPop_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Stack* stack, void* cmock_to_return);
 typedef void* (* CMOCK_stackPop_CALLBACK)(Stack* stack, int cmock_num_calls);
 void stackPop_StubWithCallback(CMOCK_stackPop_CALLBACK Callback);
+#define destroyStack_Ignore() destroyStack_CMockIgnore()
+void destroyStack_CMockIgnore(void);
+#define destroyStack_Expect(stack) destroyStack_CMockExpect(__LINE__, stack)
+void destroyStack_CMockExpect(UNITY_LINE_TYPE cmock_line, Stack* stack);
+typedef void (* CMOCK_destroyStack_CALLBACK)(Stack* stack, int cmock_num_calls);
+void destroyStack_StubWithCallback(CMOCK_destroyStack_CALLBACK Callback);
 
 #endif

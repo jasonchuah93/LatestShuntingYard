@@ -41,4 +41,6 @@ void operatorEvaluate(Stack *numberStack , Stack *operatorStack){
 		answerToken=createNumberToken(answer);
 		stackPush(answerToken,numberStack);
 	}
+	
 }	
+

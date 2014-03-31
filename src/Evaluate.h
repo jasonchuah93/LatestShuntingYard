@@ -20,11 +20,18 @@ typedef enum {DECREMENT,INCREMENT,XOR_SET_EQUAL,OR_SET_EQUAL,
 //Will be update when discuss with bing xuan group.
 typedef enum {INVALID_INDENTIFIER,UNKNOWN_OPERATOR} Error;
 
+
 typedef struct {
 	char *rawString;
 	int startIndex;
 	int length;
 }Tokenizer;
+
+typedef struct {
+	char *rawString;
+	int startIndex;
+	int length;
+} String;
 
 //Three type of token needed.
 typedef struct {
@@ -43,7 +50,7 @@ typedef struct {
 	char *name;
 }Identifier;
 
+//Main functions
 int evaluate(char *expression);
-
 
 #endif // EVALUATE_H
