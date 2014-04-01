@@ -4,16 +4,19 @@
   :file: test_OperatorEvaluate.c
 :successes:
 - :test: test_operator_evaluate_should_evaluate_2_PLUS_3
-  :line: 16
+  :line: 17
   :message: ''
 - :test: test_operator_evaluate_should_evaluate_2_PLUS_3_MULTIPLY_4
   :line: 41
   :message: ''
+- :test: test_NEGATIVE_LEFT_PARENTHESIS_NEGATIVE_2_RIGHT_PARENTHESIS
+  :line: 64
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 2
-  :passed: 2
+  :total: 3
+  :passed: 3
   :failed: 0
   :ignored: 0
 :stdout: []

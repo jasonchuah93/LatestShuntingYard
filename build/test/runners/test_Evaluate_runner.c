@@ -8,10 +8,13 @@
   Unity.NumberOfTests++; \
   if (TEST_PROTECT()) \
   { \
+    CEXCEPTION_T e; \
+    Try { \
       CMock_Init(); \
       setUp(); \
       TestFunc(); \
       CMock_Verify(); \
+    } Catch(e) { TEST_ASSERT_EQUAL_HEX32_MESSAGE(CEXCEPTION_NONE, e, "Unhandled Exception!"); } \
   } \
   CMock_Destroy(); \
   if (TEST_PROTECT() && !TEST_IS_IGNORED) \
@@ -26,6 +29,7 @@
 #include "cmock.h"
 #include <setjmp.h>
 #include <stdio.h>
+#include "CException.h"
 #include "mock_Stack.h"
 #include "mock_StringObject.h"
 #include "mock_calculateToken.h"

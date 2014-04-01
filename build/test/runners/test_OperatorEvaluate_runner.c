@@ -8,10 +8,13 @@
   Unity.NumberOfTests++; \
   if (TEST_PROTECT()) \
   { \
+    CEXCEPTION_T e; \
+    Try { \
       CMock_Init(); \
       setUp(); \
       TestFunc(); \
       CMock_Verify(); \
+    } Catch(e) { TEST_ASSERT_EQUAL_HEX32_MESSAGE(CEXCEPTION_NONE, e, "Unhandled Exception!"); } \
   } \
   CMock_Destroy(); \
   if (TEST_PROTECT() && !TEST_IS_IGNORED) \
@@ -26,7 +29,9 @@
 #include "cmock.h"
 #include <setjmp.h>
 #include <stdio.h>
+#include "CException.h"
 #include "mock_Stack.h"
+#include "mock_StringObject.h"
 #include "mock_calculateToken.h"
 #include "mock_createNumberToken.h"
 #include "mock_getToken.h"
@@ -42,6 +47,7 @@ extern void setUp(void);
 extern void tearDown(void);
 extern void test_operator_evaluate_should_evaluate_2_PLUS_3(void);
 extern void test_operator_evaluate_should_evaluate_2_PLUS_3_MULTIPLY_4(void);
+extern void test_NEGATIVE_LEFT_PARENTHESIS_NEGATIVE_2_RIGHT_PARENTHESIS(void);
 
 
 //=======Mock Management=====
@@ -51,6 +57,7 @@ static void CMock_Init(void)
   GlobalVerifyOrder = 0;
   GlobalOrderError = NULL;
   mock_Stack_Init();
+  mock_StringObject_Init();
   mock_calculateToken_Init();
   mock_createNumberToken_Init();
   mock_getToken_Init();
@@ -60,6 +67,7 @@ static void CMock_Init(void)
 static void CMock_Verify(void)
 {
   mock_Stack_Verify();
+  mock_StringObject_Verify();
   mock_calculateToken_Verify();
   mock_createNumberToken_Verify();
   mock_getToken_Verify();
@@ -69,6 +77,7 @@ static void CMock_Verify(void)
 static void CMock_Destroy(void)
 {
   mock_Stack_Destroy();
+  mock_StringObject_Destroy();
   mock_calculateToken_Destroy();
   mock_createNumberToken_Destroy();
   mock_getToken_Destroy();
@@ -92,8 +101,9 @@ int main(void)
 {
   Unity.TestFile = "test_OperatorEvaluate.c";
   UnityBegin();
-  RUN_TEST(test_operator_evaluate_should_evaluate_2_PLUS_3, 16);
+  RUN_TEST(test_operator_evaluate_should_evaluate_2_PLUS_3, 17);
   RUN_TEST(test_operator_evaluate_should_evaluate_2_PLUS_3_MULTIPLY_4, 41);
+  RUN_TEST(test_NEGATIVE_LEFT_PARENTHESIS_NEGATIVE_2_RIGHT_PARENTHESIS, 64);
 
   return (UnityEnd());
 }

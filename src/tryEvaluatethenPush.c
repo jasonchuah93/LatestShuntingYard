@@ -8,7 +8,7 @@
 #include "calculateToken.h"
 #include "stackForEvaluate.h"
 #include "createNumberToken.h"
-#include "LinkedList.h"
+
 
 void tryEvaluatethenPush(Token *token,Stack *numberStack,Stack *operatorStack)
 {
@@ -32,6 +32,7 @@ void tryEvaluatethenPush(Token *token,Stack *numberStack,Stack *operatorStack)
 	{
 		if(ope1->precedence >= ope2->precedence)
 		{
+			
 			stackPush(token,operatorStack);
 		}
 		else

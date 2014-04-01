@@ -5,6 +5,7 @@
 #include "mock_initializeToken.h"
 #include "mock_getToken.h"
 #include "mock_calculateToken.h"
+#include "mock_StringObject.h"
 #include "mock_Stack.h"
 #include "createNumberToken.h"
 #include "Evaluate.h"
@@ -46,7 +47,7 @@ void test_try_evaluate_2_PLUS_3_and_push_operator_token_if_top_of_stack_is_empty
 
 
 
- stackPush_CMockExpect(30, token2, &opeStack);
+ stackPush_CMockExpect(31, token2, &opeStack);
 
 
 
@@ -98,7 +99,7 @@ void test_try_evaluate_2_PLUS_3_MULTIPLY_4_and_compare_operators_to_determine_th
 
 
 
- stackPush_CMockExpect(56, token4, &opeStack);
+ stackPush_CMockExpect(57, token4, &opeStack);
 
 
 

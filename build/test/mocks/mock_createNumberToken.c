@@ -12,6 +12,7 @@ typedef struct _CMOCK_createNumberToken_CALL_INSTANCE
   Token* ReturnVal;
   int CallOrder;
   int Expected_number;
+  CEXCEPTION_T ExceptionToThrow;
 
 } CMOCK_createNumberToken_CALL_INSTANCE;
 
@@ -76,6 +77,10 @@ Token* createNumberToken(int number)
   if (cmock_call_instance->CallOrder < GlobalVerifyOrder)
     UNITY_TEST_FAIL(cmock_line, "Function 'createNumberToken' called later than expected.");
   UNITY_TEST_ASSERT_EQUAL_INT(cmock_call_instance->Expected_number, number, cmock_line, "Function 'createNumberToken' called with unexpected value for argument 'number'.");
+  if (cmock_call_instance->ExceptionToThrow != CEXCEPTION_NONE)
+  {
+    Throw(cmock_call_instance->ExceptionToThrow);
+  }
   return cmock_call_instance->ReturnVal;
 }
 
@@ -91,6 +96,7 @@ void createNumberToken_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, Token* c
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
   Mock.createNumberToken_CallInstance = CMock_Guts_MemChain(Mock.createNumberToken_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   cmock_call_instance->ReturnVal = cmock_to_return;
   Mock.createNumberToken_IgnoreBool = (int)1;
 }
@@ -103,6 +109,7 @@ void createNumberToken_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, int numb
   Mock.createNumberToken_CallInstance = CMock_Guts_MemChain(Mock.createNumberToken_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   CMockExpectParameters_createNumberToken(cmock_call_instance, number);
   cmock_call_instance->ReturnVal = cmock_to_return;
 }
@@ -110,5 +117,18 @@ void createNumberToken_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, int numb
 void createNumberToken_StubWithCallback(CMOCK_createNumberToken_CALLBACK Callback)
 {
   Mock.createNumberToken_CallbackFunctionPointer = Callback;
+}
+
+void createNumberToken_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, int number, CEXCEPTION_T cmock_to_throw)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_createNumberToken_CALL_INSTANCE));
+  CMOCK_createNumberToken_CALL_INSTANCE* cmock_call_instance = (CMOCK_createNumberToken_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.createNumberToken_CallInstance = CMock_Guts_MemChain(Mock.createNumberToken_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_createNumberToken(cmock_call_instance, number);
+  cmock_call_instance->ExceptionToThrow = cmock_to_throw;
 }
 

@@ -1,6 +1,7 @@
 #ifndef convertValue_H
 #define convertValue_H
-#include "Token.h"
+
+#include "getToken.h"
 #include "Iterator.h"
 #include "GetElement.h"
 

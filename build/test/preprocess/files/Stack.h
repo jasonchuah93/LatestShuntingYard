@@ -1,7 +1,18 @@
-#include "LinkedList.h"
 
 
 
+
+
+
+typedef struct Element_t
+
+{
+
+ struct Element_t *next;
+
+ void *data;
+
+}Element;
 
 
 

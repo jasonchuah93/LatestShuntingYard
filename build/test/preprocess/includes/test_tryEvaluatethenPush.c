@@ -2,6 +2,7 @@
 - Evaluate.h
 - createNumberToken.h
 - mock_Stack.h
+- mock_StringObject.h
 - mock_calculateToken.h
 - mock_getToken.h
 - mock_initializeToken.h

@@ -3,6 +3,7 @@
 #define _MOCK_GETTOKEN_H
 
 #include "getToken.h"
+#include "CException.h"
 
 void mock_getToken_Init(void);
 void mock_getToken_Destroy(void);
@@ -17,29 +18,39 @@ void getToken_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, Token* cmock_to_r
 void getToken_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, String* tokenizer, Token* cmock_to_return);
 typedef Token* (* CMOCK_getToken_CALLBACK)(String* tokenizer, int cmock_num_calls);
 void getToken_StubWithCallback(CMOCK_getToken_CALLBACK Callback);
+#define getToken_ExpectAndThrow(tokenizer, cmock_to_throw) getToken_CMockExpectAndThrow(__LINE__, tokenizer, cmock_to_throw)
+void getToken_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, String* tokenizer, CEXCEPTION_T cmock_to_throw);
 #define isOperator_IgnoreAndReturn(cmock_retval) isOperator_CMockIgnoreAndReturn(__LINE__, cmock_retval)
 void isOperator_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, int cmock_to_return);
 #define isOperator_ExpectAndReturn(unknownToken, cmock_retval) isOperator_CMockExpectAndReturn(__LINE__, unknownToken, cmock_retval)
 void isOperator_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Token* unknownToken, int cmock_to_return);
 typedef int (* CMOCK_isOperator_CALLBACK)(Token* unknownToken, int cmock_num_calls);
 void isOperator_StubWithCallback(CMOCK_isOperator_CALLBACK Callback);
+#define isOperator_ExpectAndThrow(unknownToken, cmock_to_throw) isOperator_CMockExpectAndThrow(__LINE__, unknownToken, cmock_to_throw)
+void isOperator_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, Token* unknownToken, CEXCEPTION_T cmock_to_throw);
 #define isNumber_IgnoreAndReturn(cmock_retval) isNumber_CMockIgnoreAndReturn(__LINE__, cmock_retval)
 void isNumber_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, int cmock_to_return);
 #define isNumber_ExpectAndReturn(unknownToken, cmock_retval) isNumber_CMockExpectAndReturn(__LINE__, unknownToken, cmock_retval)
 void isNumber_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Token* unknownToken, int cmock_to_return);
 typedef int (* CMOCK_isNumber_CALLBACK)(Token* unknownToken, int cmock_num_calls);
 void isNumber_StubWithCallback(CMOCK_isNumber_CALLBACK Callback);
+#define isNumber_ExpectAndThrow(unknownToken, cmock_to_throw) isNumber_CMockExpectAndThrow(__LINE__, unknownToken, cmock_to_throw)
+void isNumber_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, Token* unknownToken, CEXCEPTION_T cmock_to_throw);
 #define detectOperator_IgnoreAndReturn(cmock_retval) detectOperator_CMockIgnoreAndReturn(__LINE__, cmock_retval)
 void detectOperator_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, Operator* cmock_to_return);
 #define detectOperator_ExpectAndReturn(tokenizer, i, cmock_retval) detectOperator_CMockExpectAndReturn(__LINE__, tokenizer, i, cmock_retval)
 void detectOperator_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, String* tokenizer, int i, Operator* cmock_to_return);
 typedef Operator* (* CMOCK_detectOperator_CALLBACK)(String* tokenizer, int i, int cmock_num_calls);
 void detectOperator_StubWithCallback(CMOCK_detectOperator_CALLBACK Callback);
+#define detectOperator_ExpectAndThrow(tokenizer, i, cmock_to_throw) detectOperator_CMockExpectAndThrow(__LINE__, tokenizer, i, cmock_to_throw)
+void detectOperator_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, String* tokenizer, int i, CEXCEPTION_T cmock_to_throw);
 #define checkIdentifier_IgnoreAndReturn(cmock_retval) checkIdentifier_CMockIgnoreAndReturn(__LINE__, cmock_retval)
 void checkIdentifier_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, Token* cmock_to_return);
 #define checkIdentifier_ExpectAndReturn(name, cmock_retval) checkIdentifier_CMockExpectAndReturn(__LINE__, name, cmock_retval)
 void checkIdentifier_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, char* name, Token* cmock_to_return);
 typedef Token* (* CMOCK_checkIdentifier_CALLBACK)(char* name, int cmock_num_calls);
 void checkIdentifier_StubWithCallback(CMOCK_checkIdentifier_CALLBACK Callback);
+#define checkIdentifier_ExpectAndThrow(name, cmock_to_throw) checkIdentifier_CMockExpectAndThrow(__LINE__, name, cmock_to_throw)
+void checkIdentifier_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, char* name, CEXCEPTION_T cmock_to_throw);
 
 #endif

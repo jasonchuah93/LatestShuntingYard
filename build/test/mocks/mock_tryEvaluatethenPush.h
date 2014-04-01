@@ -3,6 +3,7 @@
 #define _MOCK_TRYEVALUATETHENPUSH_H
 
 #include "tryEvaluatethenPush.h"
+#include "CException.h"
 
 void mock_tryEvaluatethenPush_Init(void);
 void mock_tryEvaluatethenPush_Destroy(void);
@@ -17,5 +18,7 @@ void tryEvaluatethenPush_CMockIgnore(void);
 void tryEvaluatethenPush_CMockExpect(UNITY_LINE_TYPE cmock_line, Token* token, Stack* numberStack, Stack* operatorStack);
 typedef void (* CMOCK_tryEvaluatethenPush_CALLBACK)(Token* token, Stack* numberStack, Stack* operatorStack, int cmock_num_calls);
 void tryEvaluatethenPush_StubWithCallback(CMOCK_tryEvaluatethenPush_CALLBACK Callback);
+#define tryEvaluatethenPush_ExpectAndThrow(token, numberStack, operatorStack, cmock_to_throw) tryEvaluatethenPush_CMockExpectAndThrow(__LINE__, token, numberStack, operatorStack, cmock_to_throw)
+void tryEvaluatethenPush_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, Token* token, Stack* numberStack, Stack* operatorStack, CEXCEPTION_T cmock_to_throw);
 
 #endif

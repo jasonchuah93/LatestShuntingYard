@@ -3,6 +3,7 @@
 #define _MOCK_STRINGOBJECT_H
 
 #include "StringObject.h"
+#include "CException.h"
 
 void mock_StringObject_Init(void);
 void mock_StringObject_Destroy(void);
@@ -17,5 +18,15 @@ void stringCreate_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, String* cmock
 void stringCreate_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, char* expression, String* cmock_to_return);
 typedef String* (* CMOCK_stringCreate_CALLBACK)(char* expression, int cmock_num_calls);
 void stringCreate_StubWithCallback(CMOCK_stringCreate_CALLBACK Callback);
+#define stringCreate_ExpectAndThrow(expression, cmock_to_throw) stringCreate_CMockExpectAndThrow(__LINE__, expression, cmock_to_throw)
+void stringCreate_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, char* expression, CEXCEPTION_T cmock_to_throw);
+#define stringCopy_Ignore() stringCopy_CMockIgnore()
+void stringCopy_CMockIgnore(void);
+#define stringCopy_Expect(source, destination, startLocation, length) stringCopy_CMockExpect(__LINE__, source, destination, startLocation, length)
+void stringCopy_CMockExpect(UNITY_LINE_TYPE cmock_line, char* source, char* destination, int startLocation, int length);
+typedef void (* CMOCK_stringCopy_CALLBACK)(char* source, char* destination, int startLocation, int length, int cmock_num_calls);
+void stringCopy_StubWithCallback(CMOCK_stringCopy_CALLBACK Callback);
+#define stringCopy_ExpectAndThrow(source, destination, startLocation, length, cmock_to_throw) stringCopy_CMockExpectAndThrow(__LINE__, source, destination, startLocation, length, cmock_to_throw)
+void stringCopy_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, char* source, char* destination, int startLocation, int length, CEXCEPTION_T cmock_to_throw);
 
 #endif

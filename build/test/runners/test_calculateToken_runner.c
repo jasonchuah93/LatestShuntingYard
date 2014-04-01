@@ -8,10 +8,13 @@
   Unity.NumberOfTests++; \
   if (TEST_PROTECT()) \
   { \
+    CEXCEPTION_T e; \
+    Try { \
       CMock_Init(); \
       setUp(); \
       TestFunc(); \
       CMock_Verify(); \
+    } Catch(e) { TEST_ASSERT_EQUAL_HEX32_MESSAGE(CEXCEPTION_NONE, e, "Unhandled Exception!"); } \
   } \
   CMock_Destroy(); \
   if (TEST_PROTECT() && !TEST_IS_IGNORED) \
@@ -26,7 +29,9 @@
 #include "cmock.h"
 #include <setjmp.h>
 #include <stdio.h>
+#include "CException.h"
 #include "mock_Stack.h"
+#include "mock_StringObject.h"
 #include "mock_getToken.h"
 #include "mock_initializeToken.h"
 #include "mock_operatorEvaluate.h"
@@ -62,6 +67,7 @@ static void CMock_Init(void)
   GlobalVerifyOrder = 0;
   GlobalOrderError = NULL;
   mock_Stack_Init();
+  mock_StringObject_Init();
   mock_getToken_Init();
   mock_initializeToken_Init();
   mock_operatorEvaluate_Init();
@@ -70,6 +76,7 @@ static void CMock_Init(void)
 static void CMock_Verify(void)
 {
   mock_Stack_Verify();
+  mock_StringObject_Verify();
   mock_getToken_Verify();
   mock_initializeToken_Verify();
   mock_operatorEvaluate_Verify();
@@ -78,6 +85,7 @@ static void CMock_Verify(void)
 static void CMock_Destroy(void)
 {
   mock_Stack_Destroy();
+  mock_StringObject_Destroy();
   mock_getToken_Destroy();
   mock_initializeToken_Destroy();
   mock_operatorEvaluate_Destroy();
@@ -100,20 +108,20 @@ int main(void)
 {
   Unity.TestFile = "test_calculateToken.c";
   UnityBegin();
-  RUN_TEST(test_should_calculate_2_PLUS_3, 19);
-  RUN_TEST(test_should_calculate_10_MINUS_3, 31);
-  RUN_TEST(test_should_calculate_10_MULTIPLY_10, 43);
-  RUN_TEST(test_should_calculate_1000_DIVIDE_10, 55);
-  RUN_TEST(test_should_calculate_56_BITWISE_AND_30, 67);
-  RUN_TEST(test_should_calculate_90_BITWISE_OR_20, 79);
-  RUN_TEST(test_should_calculate_99_BITWISE_XOR_66, 91);
-  RUN_TEST(test_should_calculate_55_MODULUS_3, 103);
-  RUN_TEST(test_should_calculate_68_MODULUS_7, 115);
-  RUN_TEST(test_should_complement_78, 127);
-  RUN_TEST(test_should_complement_2, 137);
-  RUN_TEST(test_should_PLUS_PLUS_3, 147);
-  RUN_TEST(test_should_PLUS_PLUS_100, 157);
-  RUN_TEST(test_should_MINUS_MINUS_10, 167);
+  RUN_TEST(test_should_calculate_2_PLUS_3, 20);
+  RUN_TEST(test_should_calculate_10_MINUS_3, 32);
+  RUN_TEST(test_should_calculate_10_MULTIPLY_10, 44);
+  RUN_TEST(test_should_calculate_1000_DIVIDE_10, 56);
+  RUN_TEST(test_should_calculate_56_BITWISE_AND_30, 68);
+  RUN_TEST(test_should_calculate_90_BITWISE_OR_20, 80);
+  RUN_TEST(test_should_calculate_99_BITWISE_XOR_66, 92);
+  RUN_TEST(test_should_calculate_55_MODULUS_3, 104);
+  RUN_TEST(test_should_calculate_68_MODULUS_7, 116);
+  RUN_TEST(test_should_complement_78, 128);
+  RUN_TEST(test_should_complement_2, 138);
+  RUN_TEST(test_should_PLUS_PLUS_3, 148);
+  RUN_TEST(test_should_PLUS_PLUS_100, 158);
+  RUN_TEST(test_should_MINUS_MINUS_10, 168);
 
   return (UnityEnd());
 }

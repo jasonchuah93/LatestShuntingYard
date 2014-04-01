@@ -17,9 +17,9 @@ Token *getToken(String *tokenizer);
 
 
 
-int isOperator (Token * unknownToken);
+int isOperator(Token * unknownToken);
 
-int isNumber (Token * unknownToken);
+int isNumber(Token * unknownToken);
 
 
 

@@ -3,6 +3,7 @@
 #define _MOCK_CREATENUMBERTOKEN_H
 
 #include "createNumberToken.h"
+#include "CException.h"
 
 void mock_createNumberToken_Init(void);
 void mock_createNumberToken_Destroy(void);
@@ -17,5 +18,7 @@ void createNumberToken_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, Token* c
 void createNumberToken_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, int number, Token* cmock_to_return);
 typedef Token* (* CMOCK_createNumberToken_CALLBACK)(int number, int cmock_num_calls);
 void createNumberToken_StubWithCallback(CMOCK_createNumberToken_CALLBACK Callback);
+#define createNumberToken_ExpectAndThrow(number, cmock_to_throw) createNumberToken_CMockExpectAndThrow(__LINE__, number, cmock_to_throw)
+void createNumberToken_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, int number, CEXCEPTION_T cmock_to_throw);
 
 #endif

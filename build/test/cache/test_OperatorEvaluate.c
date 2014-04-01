@@ -6,6 +6,7 @@
 #include "mock_getToken.h"
 #include "mock_createNumberToken.h"
 #include "mock_calculateToken.h"
+#include "mock_StringObject.h"
 #include "mock_Stack.h"
 #include "Evaluate.h"
 
@@ -48,23 +49,21 @@ void test_operator_evaluate_should_evaluate_2_PLUS_3(void){
 
 
 
- stackPop_CMockExpectAndReturn(31, &opeStack, token2);
+ stackPop_CMockExpectAndReturn(32, &opeStack, token2);
 
- stackPop_CMockExpectAndReturn(32, &numStack, token1);
+ stackPop_CMockExpectAndReturn(33, &numStack, token1);
 
- stackPop_CMockExpectAndReturn(33, &numStack, token3);
+ stackPop_CMockExpectAndReturn(34, &numStack, token3);
 
- calculate_CMockExpectAndReturn(34, &plus, &number2, &number3, answer);
+ calculate_CMockExpectAndReturn(35, &plus, &number2, &number3, answer);
 
- createNumberToken_CMockExpectAndReturn(35, answer, answerToken);
+ createNumberToken_CMockExpectAndReturn(36, answer, answerToken);
 
- stackPush_CMockExpect(36, answerToken, &numStack);
+ stackPush_CMockExpect(37, answerToken, &numStack);
 
  operatorEvaluate(&numStack,&opeStack);
 
 }
-
-
 
 
 
@@ -109,6 +108,52 @@ void test_operator_evaluate_should_evaluate_2_PLUS_3_MULTIPLY_4(void){
  stackPush_CMockExpect(60, answerToken, &numStack);
 
  operatorEvaluate(&numStack,&opeStack);
+
+}
+
+
+
+void test_NEGATIVE_LEFT_PARENTHESIS_NEGATIVE_2_RIGHT_PARENTHESIS(void){
+
+ Tokenizer tokenizer = {.rawString = "-(-2)", .startIndex = 0, .length = 5 };
+
+
+
+ Operator negative = {.type= OPERATOR, .id = SUBTRACT};
+
+ Token *token1 = (Token*)&negative;
+
+
+
+ Operator leftBracket = {.type= OPERATOR, .id = LEFT_PARENTHESIS};
+
+ Token *token2 = (Token*)&leftBracket;
+
+
+
+ Operator negative2 = {.type= OPERATOR, .id = SUBTRACT};
+
+ Token *token3 = (Token*)&negative2;
+
+
+
+ Number number2 = {.type= NUMBER, .value=2};
+
+ Token *token4 = (Token*)&number2;
+
+
+
+ Operator rightBracket = {.type= OPERATOR, .id = RIGHT_PARENTHESIS};
+
+ Token *token5 = (Token*)&rightBracket;
+
+
+
+ int answer;
+
+ Token *answerToken;
+
+
 
 
 

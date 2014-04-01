@@ -1,11 +1,12 @@
 #ifndef Iterator_H
 #define Iterator_H
 
+/*
 typedef struct {
 	void *head;
 	void *tail;
 } LinkedList;
-
+*/
 typedef struct {
 	LinkedList *list;
 	void *current;

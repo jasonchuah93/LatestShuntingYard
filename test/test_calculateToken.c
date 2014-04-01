@@ -1,7 +1,7 @@
 #include "unity.h"
 #include <malloc.h>
 #include "Evaluate.h"
-#include "StringObject.h"
+#include "mock_StringObject.h"
 #include "stackForEvaluate.h"
 #include "calculateToken.h"
 #include "mock_operatorEvaluate.h"

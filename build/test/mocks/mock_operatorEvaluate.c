@@ -12,6 +12,7 @@ typedef struct _CMOCK_operatorEvaluate_CALL_INSTANCE
   int CallOrder;
   Stack* Expected_numberStack;
   Stack* Expected_operatorStack;
+  CEXCEPTION_T ExceptionToThrow;
 
 } CMOCK_operatorEvaluate_CALL_INSTANCE;
 
@@ -74,6 +75,10 @@ void operatorEvaluate(Stack* numberStack, Stack* operatorStack)
     UNITY_TEST_FAIL(cmock_line, "Function 'operatorEvaluate' called later than expected.");
   UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_numberStack), (void*)(numberStack), sizeof(Stack), cmock_line, "Function 'operatorEvaluate' called with unexpected value for argument 'numberStack'.");
   UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_operatorStack), (void*)(operatorStack), sizeof(Stack), cmock_line, "Function 'operatorEvaluate' called with unexpected value for argument 'operatorStack'.");
+  if (cmock_call_instance->ExceptionToThrow != CEXCEPTION_NONE)
+  {
+    Throw(cmock_call_instance->ExceptionToThrow);
+  }
 }
 
 void CMockExpectParameters_operatorEvaluate(CMOCK_operatorEvaluate_CALL_INSTANCE* cmock_call_instance, Stack* numberStack, Stack* operatorStack)
@@ -95,11 +100,25 @@ void operatorEvaluate_CMockExpect(UNITY_LINE_TYPE cmock_line, Stack* numberStack
   Mock.operatorEvaluate_CallInstance = CMock_Guts_MemChain(Mock.operatorEvaluate_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   CMockExpectParameters_operatorEvaluate(cmock_call_instance, numberStack, operatorStack);
 }
 
 void operatorEvaluate_StubWithCallback(CMOCK_operatorEvaluate_CALLBACK Callback)
 {
   Mock.operatorEvaluate_CallbackFunctionPointer = Callback;
+}
+
+void operatorEvaluate_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, Stack* numberStack, Stack* operatorStack, CEXCEPTION_T cmock_to_throw)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_operatorEvaluate_CALL_INSTANCE));
+  CMOCK_operatorEvaluate_CALL_INSTANCE* cmock_call_instance = (CMOCK_operatorEvaluate_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.operatorEvaluate_CallInstance = CMock_Guts_MemChain(Mock.operatorEvaluate_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_operatorEvaluate(cmock_call_instance, numberStack, operatorStack);
+  cmock_call_instance->ExceptionToThrow = cmock_to_throw;
 }
 

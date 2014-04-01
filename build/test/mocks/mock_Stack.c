@@ -11,6 +11,7 @@ typedef struct _CMOCK_createStack_CALL_INSTANCE
   UNITY_LINE_TYPE LineNumber;
   Stack* ReturnVal;
   int CallOrder;
+  CEXCEPTION_T ExceptionToThrow;
 
 } CMOCK_createStack_CALL_INSTANCE;
 
@@ -20,6 +21,7 @@ typedef struct _CMOCK_stackPush_CALL_INSTANCE
   int CallOrder;
   void* Expected_data;
   Stack* Expected_stack;
+  CEXCEPTION_T ExceptionToThrow;
 
 } CMOCK_stackPush_CALL_INSTANCE;
 
@@ -29,6 +31,7 @@ typedef struct _CMOCK_stackPop_CALL_INSTANCE
   void* ReturnVal;
   int CallOrder;
   Stack* Expected_stack;
+  CEXCEPTION_T ExceptionToThrow;
 
 } CMOCK_stackPop_CALL_INSTANCE;
 
@@ -37,6 +40,7 @@ typedef struct _CMOCK_destroyStack_CALL_INSTANCE
   UNITY_LINE_TYPE LineNumber;
   int CallOrder;
   Stack* Expected_stack;
+  CEXCEPTION_T ExceptionToThrow;
 
 } CMOCK_destroyStack_CALL_INSTANCE;
 
@@ -134,6 +138,10 @@ Stack* createStack(void)
     UNITY_TEST_FAIL(cmock_line, "Function 'createStack' called earlier than expected.");
   if (cmock_call_instance->CallOrder < GlobalVerifyOrder)
     UNITY_TEST_FAIL(cmock_line, "Function 'createStack' called later than expected.");
+  if (cmock_call_instance->ExceptionToThrow != CEXCEPTION_NONE)
+  {
+    Throw(cmock_call_instance->ExceptionToThrow);
+  }
   return cmock_call_instance->ReturnVal;
 }
 
@@ -144,6 +152,7 @@ void createStack_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, Stack* cmock_t
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
   Mock.createStack_CallInstance = CMock_Guts_MemChain(Mock.createStack_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   cmock_call_instance->ReturnVal = cmock_to_return;
   Mock.createStack_IgnoreBool = (int)1;
 }
@@ -156,12 +165,25 @@ void createStack_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Stack* cmock_t
   Mock.createStack_CallInstance = CMock_Guts_MemChain(Mock.createStack_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   cmock_call_instance->ReturnVal = cmock_to_return;
 }
 
 void createStack_StubWithCallback(CMOCK_createStack_CALLBACK Callback)
 {
   Mock.createStack_CallbackFunctionPointer = Callback;
+}
+
+void createStack_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, CEXCEPTION_T cmock_to_throw)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_createStack_CALL_INSTANCE));
+  CMOCK_createStack_CALL_INSTANCE* cmock_call_instance = (CMOCK_createStack_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.createStack_CallInstance = CMock_Guts_MemChain(Mock.createStack_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  cmock_call_instance->ExceptionToThrow = cmock_to_throw;
 }
 
 void stackPush(void* data, Stack* stack)
@@ -186,6 +208,10 @@ void stackPush(void* data, Stack* stack)
     UNITY_TEST_FAIL(cmock_line, "Function 'stackPush' called later than expected.");
   UNITY_TEST_ASSERT_EQUAL_PTR(cmock_call_instance->Expected_data, data, cmock_line, "Function 'stackPush' called with unexpected value for argument 'data'.");
   UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_stack), (void*)(stack), sizeof(Stack), cmock_line, "Function 'stackPush' called with unexpected value for argument 'stack'.");
+  if (cmock_call_instance->ExceptionToThrow != CEXCEPTION_NONE)
+  {
+    Throw(cmock_call_instance->ExceptionToThrow);
+  }
 }
 
 void CMockExpectParameters_stackPush(CMOCK_stackPush_CALL_INSTANCE* cmock_call_instance, void* data, Stack* stack)
@@ -207,12 +233,26 @@ void stackPush_CMockExpect(UNITY_LINE_TYPE cmock_line, void* data, Stack* stack)
   Mock.stackPush_CallInstance = CMock_Guts_MemChain(Mock.stackPush_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   CMockExpectParameters_stackPush(cmock_call_instance, data, stack);
 }
 
 void stackPush_StubWithCallback(CMOCK_stackPush_CALLBACK Callback)
 {
   Mock.stackPush_CallbackFunctionPointer = Callback;
+}
+
+void stackPush_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, void* data, Stack* stack, CEXCEPTION_T cmock_to_throw)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_stackPush_CALL_INSTANCE));
+  CMOCK_stackPush_CALL_INSTANCE* cmock_call_instance = (CMOCK_stackPush_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.stackPush_CallInstance = CMock_Guts_MemChain(Mock.stackPush_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_stackPush(cmock_call_instance, data, stack);
+  cmock_call_instance->ExceptionToThrow = cmock_to_throw;
 }
 
 void* stackPop(Stack* stack)
@@ -238,6 +278,10 @@ void* stackPop(Stack* stack)
   if (cmock_call_instance->CallOrder < GlobalVerifyOrder)
     UNITY_TEST_FAIL(cmock_line, "Function 'stackPop' called later than expected.");
   UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_stack), (void*)(stack), sizeof(Stack), cmock_line, "Function 'stackPop' called with unexpected value for argument 'stack'.");
+  if (cmock_call_instance->ExceptionToThrow != CEXCEPTION_NONE)
+  {
+    Throw(cmock_call_instance->ExceptionToThrow);
+  }
   return cmock_call_instance->ReturnVal;
 }
 
@@ -253,6 +297,7 @@ void stackPop_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, void* cmock_to_re
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
   Mock.stackPop_CallInstance = CMock_Guts_MemChain(Mock.stackPop_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   cmock_call_instance->ReturnVal = cmock_to_return;
   Mock.stackPop_IgnoreBool = (int)1;
 }
@@ -265,6 +310,7 @@ void stackPop_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Stack* stack, voi
   Mock.stackPop_CallInstance = CMock_Guts_MemChain(Mock.stackPop_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   CMockExpectParameters_stackPop(cmock_call_instance, stack);
   cmock_call_instance->ReturnVal = cmock_to_return;
 }
@@ -272,6 +318,19 @@ void stackPop_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Stack* stack, voi
 void stackPop_StubWithCallback(CMOCK_stackPop_CALLBACK Callback)
 {
   Mock.stackPop_CallbackFunctionPointer = Callback;
+}
+
+void stackPop_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, Stack* stack, CEXCEPTION_T cmock_to_throw)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_stackPop_CALL_INSTANCE));
+  CMOCK_stackPop_CALL_INSTANCE* cmock_call_instance = (CMOCK_stackPop_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.stackPop_CallInstance = CMock_Guts_MemChain(Mock.stackPop_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_stackPop(cmock_call_instance, stack);
+  cmock_call_instance->ExceptionToThrow = cmock_to_throw;
 }
 
 void destroyStack(Stack* stack)
@@ -295,6 +354,10 @@ void destroyStack(Stack* stack)
   if (cmock_call_instance->CallOrder < GlobalVerifyOrder)
     UNITY_TEST_FAIL(cmock_line, "Function 'destroyStack' called later than expected.");
   UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_stack), (void*)(stack), sizeof(Stack), cmock_line, "Function 'destroyStack' called with unexpected value for argument 'stack'.");
+  if (cmock_call_instance->ExceptionToThrow != CEXCEPTION_NONE)
+  {
+    Throw(cmock_call_instance->ExceptionToThrow);
+  }
 }
 
 void CMockExpectParameters_destroyStack(CMOCK_destroyStack_CALL_INSTANCE* cmock_call_instance, Stack* stack)
@@ -315,11 +378,25 @@ void destroyStack_CMockExpect(UNITY_LINE_TYPE cmock_line, Stack* stack)
   Mock.destroyStack_CallInstance = CMock_Guts_MemChain(Mock.destroyStack_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   CMockExpectParameters_destroyStack(cmock_call_instance, stack);
 }
 
 void destroyStack_StubWithCallback(CMOCK_destroyStack_CALLBACK Callback)
 {
   Mock.destroyStack_CallbackFunctionPointer = Callback;
+}
+
+void destroyStack_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, Stack* stack, CEXCEPTION_T cmock_to_throw)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_destroyStack_CALL_INSTANCE));
+  CMOCK_destroyStack_CALL_INSTANCE* cmock_call_instance = (CMOCK_destroyStack_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.destroyStack_CallInstance = CMock_Guts_MemChain(Mock.destroyStack_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_destroyStack(cmock_call_instance, stack);
+  cmock_call_instance->ExceptionToThrow = cmock_to_throw;
 }
 

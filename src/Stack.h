@@ -1,7 +1,12 @@
 #ifndef __STACK_H__
 #define __STACK_H__
 
-#include "LinkedList.h"
+typedef struct Element_t
+{
+	struct Element_t *next;
+	void *data;
+}Element;
+
 
 typedef struct
 {

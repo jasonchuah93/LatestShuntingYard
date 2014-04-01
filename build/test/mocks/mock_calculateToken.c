@@ -14,6 +14,7 @@ typedef struct _CMOCK_calculate_CALL_INSTANCE
   Operator* Expected_opeToken;
   Number* Expected_first;
   Number* Expected_second;
+  CEXCEPTION_T ExceptionToThrow;
 
 } CMOCK_calculate_CALL_INSTANCE;
 
@@ -80,6 +81,10 @@ int calculate(Operator* opeToken, Number* first, Number* second)
   UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_opeToken), (void*)(opeToken), sizeof(Operator), cmock_line, "Function 'calculate' called with unexpected value for argument 'opeToken'.");
   UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_first), (void*)(first), sizeof(Number), cmock_line, "Function 'calculate' called with unexpected value for argument 'first'.");
   UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_second), (void*)(second), sizeof(Number), cmock_line, "Function 'calculate' called with unexpected value for argument 'second'.");
+  if (cmock_call_instance->ExceptionToThrow != CEXCEPTION_NONE)
+  {
+    Throw(cmock_call_instance->ExceptionToThrow);
+  }
   return cmock_call_instance->ReturnVal;
 }
 
@@ -97,6 +102,7 @@ void calculate_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, int cmock_to_ret
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
   Mock.calculate_CallInstance = CMock_Guts_MemChain(Mock.calculate_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   cmock_call_instance->ReturnVal = cmock_to_return;
   Mock.calculate_IgnoreBool = (int)1;
 }
@@ -109,6 +115,7 @@ void calculate_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Operator* opeTok
   Mock.calculate_CallInstance = CMock_Guts_MemChain(Mock.calculate_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   CMockExpectParameters_calculate(cmock_call_instance, opeToken, first, second);
   cmock_call_instance->ReturnVal = cmock_to_return;
 }
@@ -116,5 +123,18 @@ void calculate_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Operator* opeTok
 void calculate_StubWithCallback(CMOCK_calculate_CALLBACK Callback)
 {
   Mock.calculate_CallbackFunctionPointer = Callback;
+}
+
+void calculate_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, Operator* opeToken, Number* first, Number* second, CEXCEPTION_T cmock_to_throw)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_calculate_CALL_INSTANCE));
+  CMOCK_calculate_CALL_INSTANCE* cmock_call_instance = (CMOCK_calculate_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.calculate_CallInstance = CMock_Guts_MemChain(Mock.calculate_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_calculate(cmock_call_instance, opeToken, first, second);
+  cmock_call_instance->ExceptionToThrow = cmock_to_throw;
 }
 

@@ -8,8 +8,8 @@
 
 Token *getToken(String *tokenizer);
 
-int isOperator (Token * unknownToken);
-int isNumber (Token * unknownToken);
+int isOperator(Token * unknownToken);
+int isNumber(Token * unknownToken);
 
 //Sub-function
 Operator *detectOperator(String *tokenizer, int i);

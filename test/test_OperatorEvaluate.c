@@ -2,7 +2,7 @@
 #include "Evaluate.h"
 #include "operatorEvaluate.h"
 #include "stackForEvaluate.h"
-#include "StringObject.h"
+#include "mock_StringObject.h"
 #include "mock_initializeToken.h"
 #include "mock_getToken.h"
 #include "mock_Stack.h"

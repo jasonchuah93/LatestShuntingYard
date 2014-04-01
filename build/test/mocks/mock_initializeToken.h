@@ -3,6 +3,7 @@
 #define _MOCK_INITIALIZETOKEN_H
 
 #include "initializeToken.h"
+#include "CException.h"
 
 void mock_initializeToken_Init(void);
 void mock_initializeToken_Destroy(void);
@@ -17,5 +18,7 @@ void initTokenizer_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, Tokenizer* c
 void initTokenizer_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, char* expressions, Tokenizer* cmock_to_return);
 typedef Tokenizer* (* CMOCK_initTokenizer_CALLBACK)(char* expressions, int cmock_num_calls);
 void initTokenizer_StubWithCallback(CMOCK_initTokenizer_CALLBACK Callback);
+#define initTokenizer_ExpectAndThrow(expressions, cmock_to_throw) initTokenizer_CMockExpectAndThrow(__LINE__, expressions, cmock_to_throw)
+void initTokenizer_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, char* expressions, CEXCEPTION_T cmock_to_throw);
 
 #endif

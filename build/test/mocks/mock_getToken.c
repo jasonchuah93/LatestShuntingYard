@@ -12,6 +12,7 @@ typedef struct _CMOCK_getToken_CALL_INSTANCE
   Token* ReturnVal;
   int CallOrder;
   String* Expected_tokenizer;
+  CEXCEPTION_T ExceptionToThrow;
 
 } CMOCK_getToken_CALL_INSTANCE;
 
@@ -21,6 +22,7 @@ typedef struct _CMOCK_isOperator_CALL_INSTANCE
   int ReturnVal;
   int CallOrder;
   Token* Expected_unknownToken;
+  CEXCEPTION_T ExceptionToThrow;
 
 } CMOCK_isOperator_CALL_INSTANCE;
 
@@ -30,6 +32,7 @@ typedef struct _CMOCK_isNumber_CALL_INSTANCE
   int ReturnVal;
   int CallOrder;
   Token* Expected_unknownToken;
+  CEXCEPTION_T ExceptionToThrow;
 
 } CMOCK_isNumber_CALL_INSTANCE;
 
@@ -40,6 +43,7 @@ typedef struct _CMOCK_detectOperator_CALL_INSTANCE
   int CallOrder;
   String* Expected_tokenizer;
   int Expected_i;
+  CEXCEPTION_T ExceptionToThrow;
 
 } CMOCK_detectOperator_CALL_INSTANCE;
 
@@ -49,6 +53,7 @@ typedef struct _CMOCK_checkIdentifier_CALL_INSTANCE
   Token* ReturnVal;
   int CallOrder;
   char* Expected_name;
+  CEXCEPTION_T ExceptionToThrow;
 
 } CMOCK_checkIdentifier_CALL_INSTANCE;
 
@@ -161,6 +166,10 @@ Token* getToken(String* tokenizer)
   if (cmock_call_instance->CallOrder < GlobalVerifyOrder)
     UNITY_TEST_FAIL(cmock_line, "Function 'getToken' called later than expected.");
   UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_tokenizer), (void*)(tokenizer), sizeof(String), cmock_line, "Function 'getToken' called with unexpected value for argument 'tokenizer'.");
+  if (cmock_call_instance->ExceptionToThrow != CEXCEPTION_NONE)
+  {
+    Throw(cmock_call_instance->ExceptionToThrow);
+  }
   return cmock_call_instance->ReturnVal;
 }
 
@@ -176,6 +185,7 @@ void getToken_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, Token* cmock_to_r
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
   Mock.getToken_CallInstance = CMock_Guts_MemChain(Mock.getToken_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   cmock_call_instance->ReturnVal = cmock_to_return;
   Mock.getToken_IgnoreBool = (int)1;
 }
@@ -188,6 +198,7 @@ void getToken_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, String* tokenizer
   Mock.getToken_CallInstance = CMock_Guts_MemChain(Mock.getToken_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   CMockExpectParameters_getToken(cmock_call_instance, tokenizer);
   cmock_call_instance->ReturnVal = cmock_to_return;
 }
@@ -195,6 +206,19 @@ void getToken_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, String* tokenizer
 void getToken_StubWithCallback(CMOCK_getToken_CALLBACK Callback)
 {
   Mock.getToken_CallbackFunctionPointer = Callback;
+}
+
+void getToken_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, String* tokenizer, CEXCEPTION_T cmock_to_throw)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_getToken_CALL_INSTANCE));
+  CMOCK_getToken_CALL_INSTANCE* cmock_call_instance = (CMOCK_getToken_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.getToken_CallInstance = CMock_Guts_MemChain(Mock.getToken_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_getToken(cmock_call_instance, tokenizer);
+  cmock_call_instance->ExceptionToThrow = cmock_to_throw;
 }
 
 int isOperator(Token* unknownToken)
@@ -220,6 +244,10 @@ int isOperator(Token* unknownToken)
   if (cmock_call_instance->CallOrder < GlobalVerifyOrder)
     UNITY_TEST_FAIL(cmock_line, "Function 'isOperator' called later than expected.");
   UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_unknownToken), (void*)(unknownToken), sizeof(Token), cmock_line, "Function 'isOperator' called with unexpected value for argument 'unknownToken'.");
+  if (cmock_call_instance->ExceptionToThrow != CEXCEPTION_NONE)
+  {
+    Throw(cmock_call_instance->ExceptionToThrow);
+  }
   return cmock_call_instance->ReturnVal;
 }
 
@@ -235,6 +263,7 @@ void isOperator_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, int cmock_to_re
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
   Mock.isOperator_CallInstance = CMock_Guts_MemChain(Mock.isOperator_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   cmock_call_instance->ReturnVal = cmock_to_return;
   Mock.isOperator_IgnoreBool = (int)1;
 }
@@ -247,6 +276,7 @@ void isOperator_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Token* unknownT
   Mock.isOperator_CallInstance = CMock_Guts_MemChain(Mock.isOperator_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   CMockExpectParameters_isOperator(cmock_call_instance, unknownToken);
   cmock_call_instance->ReturnVal = cmock_to_return;
 }
@@ -254,6 +284,19 @@ void isOperator_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Token* unknownT
 void isOperator_StubWithCallback(CMOCK_isOperator_CALLBACK Callback)
 {
   Mock.isOperator_CallbackFunctionPointer = Callback;
+}
+
+void isOperator_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, Token* unknownToken, CEXCEPTION_T cmock_to_throw)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_isOperator_CALL_INSTANCE));
+  CMOCK_isOperator_CALL_INSTANCE* cmock_call_instance = (CMOCK_isOperator_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.isOperator_CallInstance = CMock_Guts_MemChain(Mock.isOperator_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_isOperator(cmock_call_instance, unknownToken);
+  cmock_call_instance->ExceptionToThrow = cmock_to_throw;
 }
 
 int isNumber(Token* unknownToken)
@@ -279,6 +322,10 @@ int isNumber(Token* unknownToken)
   if (cmock_call_instance->CallOrder < GlobalVerifyOrder)
     UNITY_TEST_FAIL(cmock_line, "Function 'isNumber' called later than expected.");
   UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_unknownToken), (void*)(unknownToken), sizeof(Token), cmock_line, "Function 'isNumber' called with unexpected value for argument 'unknownToken'.");
+  if (cmock_call_instance->ExceptionToThrow != CEXCEPTION_NONE)
+  {
+    Throw(cmock_call_instance->ExceptionToThrow);
+  }
   return cmock_call_instance->ReturnVal;
 }
 
@@ -294,6 +341,7 @@ void isNumber_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, int cmock_to_retu
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
   Mock.isNumber_CallInstance = CMock_Guts_MemChain(Mock.isNumber_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   cmock_call_instance->ReturnVal = cmock_to_return;
   Mock.isNumber_IgnoreBool = (int)1;
 }
@@ -306,6 +354,7 @@ void isNumber_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Token* unknownTok
   Mock.isNumber_CallInstance = CMock_Guts_MemChain(Mock.isNumber_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   CMockExpectParameters_isNumber(cmock_call_instance, unknownToken);
   cmock_call_instance->ReturnVal = cmock_to_return;
 }
@@ -313,6 +362,19 @@ void isNumber_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, Token* unknownTok
 void isNumber_StubWithCallback(CMOCK_isNumber_CALLBACK Callback)
 {
   Mock.isNumber_CallbackFunctionPointer = Callback;
+}
+
+void isNumber_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, Token* unknownToken, CEXCEPTION_T cmock_to_throw)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_isNumber_CALL_INSTANCE));
+  CMOCK_isNumber_CALL_INSTANCE* cmock_call_instance = (CMOCK_isNumber_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.isNumber_CallInstance = CMock_Guts_MemChain(Mock.isNumber_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_isNumber(cmock_call_instance, unknownToken);
+  cmock_call_instance->ExceptionToThrow = cmock_to_throw;
 }
 
 Operator* detectOperator(String* tokenizer, int i)
@@ -339,6 +401,10 @@ Operator* detectOperator(String* tokenizer, int i)
     UNITY_TEST_FAIL(cmock_line, "Function 'detectOperator' called later than expected.");
   UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_tokenizer), (void*)(tokenizer), sizeof(String), cmock_line, "Function 'detectOperator' called with unexpected value for argument 'tokenizer'.");
   UNITY_TEST_ASSERT_EQUAL_INT(cmock_call_instance->Expected_i, i, cmock_line, "Function 'detectOperator' called with unexpected value for argument 'i'.");
+  if (cmock_call_instance->ExceptionToThrow != CEXCEPTION_NONE)
+  {
+    Throw(cmock_call_instance->ExceptionToThrow);
+  }
   return cmock_call_instance->ReturnVal;
 }
 
@@ -355,6 +421,7 @@ void detectOperator_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, Operator* c
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
   Mock.detectOperator_CallInstance = CMock_Guts_MemChain(Mock.detectOperator_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   cmock_call_instance->ReturnVal = cmock_to_return;
   Mock.detectOperator_IgnoreBool = (int)1;
 }
@@ -367,6 +434,7 @@ void detectOperator_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, String* tok
   Mock.detectOperator_CallInstance = CMock_Guts_MemChain(Mock.detectOperator_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   CMockExpectParameters_detectOperator(cmock_call_instance, tokenizer, i);
   cmock_call_instance->ReturnVal = cmock_to_return;
 }
@@ -374,6 +442,19 @@ void detectOperator_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, String* tok
 void detectOperator_StubWithCallback(CMOCK_detectOperator_CALLBACK Callback)
 {
   Mock.detectOperator_CallbackFunctionPointer = Callback;
+}
+
+void detectOperator_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, String* tokenizer, int i, CEXCEPTION_T cmock_to_throw)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_detectOperator_CALL_INSTANCE));
+  CMOCK_detectOperator_CALL_INSTANCE* cmock_call_instance = (CMOCK_detectOperator_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.detectOperator_CallInstance = CMock_Guts_MemChain(Mock.detectOperator_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_detectOperator(cmock_call_instance, tokenizer, i);
+  cmock_call_instance->ExceptionToThrow = cmock_to_throw;
 }
 
 Token* checkIdentifier(char* name)
@@ -399,6 +480,10 @@ Token* checkIdentifier(char* name)
   if (cmock_call_instance->CallOrder < GlobalVerifyOrder)
     UNITY_TEST_FAIL(cmock_line, "Function 'checkIdentifier' called later than expected.");
   UNITY_TEST_ASSERT_EQUAL_STRING(cmock_call_instance->Expected_name, name, cmock_line, "Function 'checkIdentifier' called with unexpected value for argument 'name'.");
+  if (cmock_call_instance->ExceptionToThrow != CEXCEPTION_NONE)
+  {
+    Throw(cmock_call_instance->ExceptionToThrow);
+  }
   return cmock_call_instance->ReturnVal;
 }
 
@@ -414,6 +499,7 @@ void checkIdentifier_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, Token* cmo
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
   Mock.checkIdentifier_CallInstance = CMock_Guts_MemChain(Mock.checkIdentifier_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   cmock_call_instance->ReturnVal = cmock_to_return;
   Mock.checkIdentifier_IgnoreBool = (int)1;
 }
@@ -426,6 +512,7 @@ void checkIdentifier_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, char* name
   Mock.checkIdentifier_CallInstance = CMock_Guts_MemChain(Mock.checkIdentifier_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   CMockExpectParameters_checkIdentifier(cmock_call_instance, name);
   cmock_call_instance->ReturnVal = cmock_to_return;
 }
@@ -433,5 +520,18 @@ void checkIdentifier_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, char* name
 void checkIdentifier_StubWithCallback(CMOCK_checkIdentifier_CALLBACK Callback)
 {
   Mock.checkIdentifier_CallbackFunctionPointer = Callback;
+}
+
+void checkIdentifier_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, char* name, CEXCEPTION_T cmock_to_throw)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_checkIdentifier_CALL_INSTANCE));
+  CMOCK_checkIdentifier_CALL_INSTANCE* cmock_call_instance = (CMOCK_checkIdentifier_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.checkIdentifier_CallInstance = CMock_Guts_MemChain(Mock.checkIdentifier_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_checkIdentifier(cmock_call_instance, name);
+  cmock_call_instance->ExceptionToThrow = cmock_to_throw;
 }
 

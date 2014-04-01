@@ -27,6 +27,7 @@
 #include <setjmp.h>
 #include <stdio.h>
 #include "mock_Stack.h"
+#include "mock_StringObject.h"
 #include "mock_calculateToken.h"
 #include "mock_getToken.h"
 #include "mock_initializeToken.h"
@@ -50,6 +51,7 @@ static void CMock_Init(void)
   GlobalVerifyOrder = 0;
   GlobalOrderError = NULL;
   mock_Stack_Init();
+  mock_StringObject_Init();
   mock_calculateToken_Init();
   mock_getToken_Init();
   mock_initializeToken_Init();
@@ -58,6 +60,7 @@ static void CMock_Init(void)
 static void CMock_Verify(void)
 {
   mock_Stack_Verify();
+  mock_StringObject_Verify();
   mock_calculateToken_Verify();
   mock_getToken_Verify();
   mock_initializeToken_Verify();
@@ -66,6 +69,7 @@ static void CMock_Verify(void)
 static void CMock_Destroy(void)
 {
   mock_Stack_Destroy();
+  mock_StringObject_Destroy();
   mock_calculateToken_Destroy();
   mock_getToken_Destroy();
   mock_initializeToken_Destroy();
@@ -88,8 +92,8 @@ int main(void)
 {
   Unity.TestFile = "test_tryEvaluatethenPush.c";
   UnityBegin();
-  RUN_TEST(test_try_evaluate_2_PLUS_3_and_push_operator_token_if_top_of_stack_is_empty, 16);
-  RUN_TEST(test_try_evaluate_2_PLUS_3_MULTIPLY_4_and_compare_operators_to_determine_the_operator_to_be_push_into_stack, 35);
+  RUN_TEST(test_try_evaluate_2_PLUS_3_and_push_operator_token_if_top_of_stack_is_empty, 17);
+  RUN_TEST(test_try_evaluate_2_PLUS_3_MULTIPLY_4_and_compare_operators_to_determine_the_operator_to_be_push_into_stack, 36);
 
   return (UnityEnd());
 }

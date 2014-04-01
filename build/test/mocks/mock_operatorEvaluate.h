@@ -3,6 +3,7 @@
 #define _MOCK_OPERATOREVALUATE_H
 
 #include "operatorEvaluate.h"
+#include "CException.h"
 
 void mock_operatorEvaluate_Init(void);
 void mock_operatorEvaluate_Destroy(void);
@@ -17,5 +18,7 @@ void operatorEvaluate_CMockIgnore(void);
 void operatorEvaluate_CMockExpect(UNITY_LINE_TYPE cmock_line, Stack* numberStack, Stack* operatorStack);
 typedef void (* CMOCK_operatorEvaluate_CALLBACK)(Stack* numberStack, Stack* operatorStack, int cmock_num_calls);
 void operatorEvaluate_StubWithCallback(CMOCK_operatorEvaluate_CALLBACK Callback);
+#define operatorEvaluate_ExpectAndThrow(numberStack, operatorStack, cmock_to_throw) operatorEvaluate_CMockExpectAndThrow(__LINE__, numberStack, operatorStack, cmock_to_throw)
+void operatorEvaluate_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, Stack* numberStack, Stack* operatorStack, CEXCEPTION_T cmock_to_throw);
 
 #endif

@@ -12,8 +12,21 @@ typedef struct _CMOCK_stringCreate_CALL_INSTANCE
   String* ReturnVal;
   int CallOrder;
   char* Expected_expression;
+  CEXCEPTION_T ExceptionToThrow;
 
 } CMOCK_stringCreate_CALL_INSTANCE;
+
+typedef struct _CMOCK_stringCopy_CALL_INSTANCE
+{
+  UNITY_LINE_TYPE LineNumber;
+  int CallOrder;
+  char* Expected_source;
+  char* Expected_destination;
+  int Expected_startLocation;
+  int Expected_length;
+  CEXCEPTION_T ExceptionToThrow;
+
+} CMOCK_stringCopy_CALL_INSTANCE;
 
 static struct mock_StringObjectInstance
 {
@@ -22,6 +35,10 @@ static struct mock_StringObjectInstance
   CMOCK_stringCreate_CALLBACK stringCreate_CallbackFunctionPointer;
   int stringCreate_CallbackCalls;
   CMOCK_MEM_INDEX_TYPE stringCreate_CallInstance;
+  int stringCopy_IgnoreBool;
+  CMOCK_stringCopy_CALLBACK stringCopy_CallbackFunctionPointer;
+  int stringCopy_CallbackCalls;
+  CMOCK_MEM_INDEX_TYPE stringCopy_CallInstance;
 } Mock;
 
 extern jmp_buf AbortFrame;
@@ -36,6 +53,11 @@ void mock_StringObject_Verify(void)
   UNITY_TEST_ASSERT(CMOCK_GUTS_NONE == Mock.stringCreate_CallInstance, cmock_line, "Function 'stringCreate' called less times than expected.");
   if (Mock.stringCreate_CallbackFunctionPointer != NULL)
     Mock.stringCreate_CallInstance = CMOCK_GUTS_NONE;
+  if (Mock.stringCopy_IgnoreBool)
+    Mock.stringCopy_CallInstance = CMOCK_GUTS_NONE;
+  UNITY_TEST_ASSERT(CMOCK_GUTS_NONE == Mock.stringCopy_CallInstance, cmock_line, "Function 'stringCopy' called less times than expected.");
+  if (Mock.stringCopy_CallbackFunctionPointer != NULL)
+    Mock.stringCopy_CallInstance = CMOCK_GUTS_NONE;
 }
 
 void mock_StringObject_Init(void)
@@ -49,6 +71,8 @@ void mock_StringObject_Destroy(void)
   memset(&Mock, 0, sizeof(Mock));
   Mock.stringCreate_CallbackFunctionPointer = NULL;
   Mock.stringCreate_CallbackCalls = 0;
+  Mock.stringCopy_CallbackFunctionPointer = NULL;
+  Mock.stringCopy_CallbackCalls = 0;
   GlobalExpectCount = 0;
   GlobalVerifyOrder = 0;
 }
@@ -76,6 +100,10 @@ String* stringCreate(char* expression)
   if (cmock_call_instance->CallOrder < GlobalVerifyOrder)
     UNITY_TEST_FAIL(cmock_line, "Function 'stringCreate' called later than expected.");
   UNITY_TEST_ASSERT_EQUAL_STRING(cmock_call_instance->Expected_expression, expression, cmock_line, "Function 'stringCreate' called with unexpected value for argument 'expression'.");
+  if (cmock_call_instance->ExceptionToThrow != CEXCEPTION_NONE)
+  {
+    Throw(cmock_call_instance->ExceptionToThrow);
+  }
   return cmock_call_instance->ReturnVal;
 }
 
@@ -91,6 +119,7 @@ void stringCreate_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, String* cmock
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
   Mock.stringCreate_CallInstance = CMock_Guts_MemChain(Mock.stringCreate_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   cmock_call_instance->ReturnVal = cmock_to_return;
   Mock.stringCreate_IgnoreBool = (int)1;
 }
@@ -103,6 +132,7 @@ void stringCreate_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, char* express
   Mock.stringCreate_CallInstance = CMock_Guts_MemChain(Mock.stringCreate_CallInstance, cmock_guts_index);
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   CMockExpectParameters_stringCreate(cmock_call_instance, expression);
   cmock_call_instance->ReturnVal = cmock_to_return;
 }
@@ -110,5 +140,91 @@ void stringCreate_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, char* express
 void stringCreate_StubWithCallback(CMOCK_stringCreate_CALLBACK Callback)
 {
   Mock.stringCreate_CallbackFunctionPointer = Callback;
+}
+
+void stringCreate_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, char* expression, CEXCEPTION_T cmock_to_throw)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_stringCreate_CALL_INSTANCE));
+  CMOCK_stringCreate_CALL_INSTANCE* cmock_call_instance = (CMOCK_stringCreate_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.stringCreate_CallInstance = CMock_Guts_MemChain(Mock.stringCreate_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_stringCreate(cmock_call_instance, expression);
+  cmock_call_instance->ExceptionToThrow = cmock_to_throw;
+}
+
+void stringCopy(char* source, char* destination, int startLocation, int length)
+{
+  UNITY_LINE_TYPE cmock_line = TEST_LINE_NUM;
+  CMOCK_stringCopy_CALL_INSTANCE* cmock_call_instance = (CMOCK_stringCopy_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.stringCopy_CallInstance);
+  Mock.stringCopy_CallInstance = CMock_Guts_MemNext(Mock.stringCopy_CallInstance);
+  if (Mock.stringCopy_IgnoreBool)
+  {
+    return;
+  }
+  if (Mock.stringCopy_CallbackFunctionPointer != NULL)
+  {
+    Mock.stringCopy_CallbackFunctionPointer(source, destination, startLocation, length, Mock.stringCopy_CallbackCalls++);
+    return;
+  }
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "Function 'stringCopy' called more times than expected.");
+  cmock_line = cmock_call_instance->LineNumber;
+  if (cmock_call_instance->CallOrder > ++GlobalVerifyOrder)
+    UNITY_TEST_FAIL(cmock_line, "Function 'stringCopy' called earlier than expected.");
+  if (cmock_call_instance->CallOrder < GlobalVerifyOrder)
+    UNITY_TEST_FAIL(cmock_line, "Function 'stringCopy' called later than expected.");
+  UNITY_TEST_ASSERT_EQUAL_STRING(cmock_call_instance->Expected_source, source, cmock_line, "Function 'stringCopy' called with unexpected value for argument 'source'.");
+  UNITY_TEST_ASSERT_EQUAL_STRING(cmock_call_instance->Expected_destination, destination, cmock_line, "Function 'stringCopy' called with unexpected value for argument 'destination'.");
+  UNITY_TEST_ASSERT_EQUAL_INT(cmock_call_instance->Expected_startLocation, startLocation, cmock_line, "Function 'stringCopy' called with unexpected value for argument 'startLocation'.");
+  UNITY_TEST_ASSERT_EQUAL_INT(cmock_call_instance->Expected_length, length, cmock_line, "Function 'stringCopy' called with unexpected value for argument 'length'.");
+  if (cmock_call_instance->ExceptionToThrow != CEXCEPTION_NONE)
+  {
+    Throw(cmock_call_instance->ExceptionToThrow);
+  }
+}
+
+void CMockExpectParameters_stringCopy(CMOCK_stringCopy_CALL_INSTANCE* cmock_call_instance, char* source, char* destination, int startLocation, int length)
+{
+  cmock_call_instance->Expected_source = source;
+  cmock_call_instance->Expected_destination = destination;
+  cmock_call_instance->Expected_startLocation = startLocation;
+  cmock_call_instance->Expected_length = length;
+}
+
+void stringCopy_CMockIgnore(void)
+{
+  Mock.stringCopy_IgnoreBool = (int)1;
+}
+
+void stringCopy_CMockExpect(UNITY_LINE_TYPE cmock_line, char* source, char* destination, int startLocation, int length)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_stringCopy_CALL_INSTANCE));
+  CMOCK_stringCopy_CALL_INSTANCE* cmock_call_instance = (CMOCK_stringCopy_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.stringCopy_CallInstance = CMock_Guts_MemChain(Mock.stringCopy_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_stringCopy(cmock_call_instance, source, destination, startLocation, length);
+}
+
+void stringCopy_StubWithCallback(CMOCK_stringCopy_CALLBACK Callback)
+{
+  Mock.stringCopy_CallbackFunctionPointer = Callback;
+}
+
+void stringCopy_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, char* source, char* destination, int startLocation, int length, CEXCEPTION_T cmock_to_throw)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_stringCopy_CALL_INSTANCE));
+  CMOCK_stringCopy_CALL_INSTANCE* cmock_call_instance = (CMOCK_stringCopy_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.stringCopy_CallInstance = CMock_Guts_MemChain(Mock.stringCopy_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_stringCopy(cmock_call_instance, source, destination, startLocation, length);
+  cmock_call_instance->ExceptionToThrow = cmock_to_throw;
 }
 

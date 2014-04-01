@@ -4,10 +4,10 @@
   :file: test_tryEvaluatethenPush.c
 :successes:
 - :test: test_try_evaluate_2_PLUS_3_and_push_operator_token_if_top_of_stack_is_empty
-  :line: 16
+  :line: 17
   :message: ''
 - :test: test_try_evaluate_2_PLUS_3_MULTIPLY_4_and_compare_operators_to_determine_the_operator_to_be_push_into_stack
-  :line: 35
+  :line: 36
   :message: ''
 :failures: []
 :ignores: []
