@@ -13,6 +13,41 @@
 void setUp(void){}
 void tearDown(void){}
 
+void test_operator_evaluate_should_evaluate_99_PLUS_99(void){
+	int check;
+	int tempAnswer;
+	Token *tempToken;
+	Number *tempAns;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "99+99", .startIndex = 0, .length = 3};
+	
+	Number numberA99 = {.type= NUMBER, .value=99};
+	Token *token1 = (Token*)&numberA99;
+	
+	Operator plus = {.type= OPERATOR, .id = ADD};
+	Token *token2 = (Token*)&plus;
+	
+	Number numberB99 = {.type= NUMBER, .value=99};
+	Token *token3 = (Token*)&numberB99;
+	
+	Stack *operatorStack = createStack();
+	Stack *numberStack = createStack();
+	
+	TEST_ASSERT_NOT_NULL(operatorStack);
+	TEST_ASSERT_NOT_NULL(numberStack);
+	TEST_ASSERT_NULL(operatorStack->topOfStack);
+	TEST_ASSERT_NULL(numberStack->topOfStack);
+	
+	stackPush(token1,numberStack);
+	stackPush(token2,operatorStack);
+	stackPush(token3,numberStack);
+	
+	operatorEvaluate(numberStack ,operatorStack);
+	tempToken=(Token*)stackPop(numberStack);
+	tempAns=(Number*)tempToken;
+	TEST_ASSERT_EQUAL(198,tempAns->value);
+}
+
 void test_operator_evaluate_should_evaluate_2_PLUS_3(void){
 	int check;
 	int tempAnswer;
@@ -221,4 +256,39 @@ void test_operator_evaluate_should_evaluate_10000_DIVIDE_20(void){
 	tempToken=(Token*)stackPop(numberStack);
 	tempAns=(Number*)tempToken;
 	TEST_ASSERT_EQUAL(500,tempAns->value);
+}
+
+void test_operator_evaluate_should_evaluate_56_BITWISE_AND_30(void){
+	int check;
+	int tempAnswer;
+	Token *tempToken;
+	Number *tempAns;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "56&30", .startIndex = 0, .length = 3};
+	
+	Number number56 = {.type= NUMBER, .value=56};
+	Token *token1 = (Token*)&number56;
+	
+	Operator bitwizeAND = {.type= OPERATOR, .id = BITWISE_AND};
+	Token *token2 = (Token*)&bitwizeAND;
+	
+	Number number30 = {.type= NUMBER, .value=30};
+	Token *token3 = (Token*)&number30;
+	
+	Stack *operatorStack = createStack();
+	Stack *numberStack = createStack();
+	
+	TEST_ASSERT_NOT_NULL(operatorStack);
+	TEST_ASSERT_NOT_NULL(numberStack);
+	TEST_ASSERT_NULL(operatorStack->topOfStack);
+	TEST_ASSERT_NULL(numberStack->topOfStack);
+	
+	stackPush(token1,numberStack);
+	stackPush(token2,operatorStack);
+	stackPush(token3,numberStack);
+	
+	operatorEvaluate(numberStack ,operatorStack);
+	tempToken=(Token*)stackPop(numberStack);
+	tempAns=(Number*)tempToken;
+	TEST_ASSERT_EQUAL(24,tempAns->value);
 }

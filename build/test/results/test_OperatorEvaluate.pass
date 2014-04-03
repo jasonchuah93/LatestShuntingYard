@@ -3,29 +3,35 @@
   :path: test
   :file: test_OperatorEvaluate.c
 :successes:
-- :test: test_operator_evaluate_should_evaluate_2_PLUS_3
+- :test: test_operator_evaluate_should_evaluate_99_PLUS_99
   :line: 16
   :message: ''
-- :test: test_operator_evaluate_should_evaluate_20_MINUS_15
+- :test: test_operator_evaluate_should_evaluate_2_PLUS_3
   :line: 51
   :message: ''
-- :test: test_operator_evaluate_should_evaluate_100_MINUS_67
+- :test: test_operator_evaluate_should_evaluate_20_MINUS_15
   :line: 86
   :message: ''
-- :test: test_operator_evaluate_should_evaluate_100_MULTIPLY_67
+- :test: test_operator_evaluate_should_evaluate_100_MINUS_67
   :line: 121
   :message: ''
-- :test: test_operator_evaluate_should_evaluate_100_DIVIDE_67
+- :test: test_operator_evaluate_should_evaluate_100_MULTIPLY_67
   :line: 156
   :message: ''
-- :test: test_operator_evaluate_should_evaluate_10000_DIVIDE_20
+- :test: test_operator_evaluate_should_evaluate_100_DIVIDE_67
   :line: 191
+  :message: ''
+- :test: test_operator_evaluate_should_evaluate_10000_DIVIDE_20
+  :line: 226
+  :message: ''
+- :test: test_operator_evaluate_should_evaluate_56_BITWISE_AND_30
+  :line: 261
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 6
-  :passed: 6
+  :total: 8
+  :passed: 8
   :failed: 0
   :ignored: 0
 :stdout: []

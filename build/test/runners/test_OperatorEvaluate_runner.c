@@ -41,12 +41,14 @@ char* GlobalOrderError;
 //=======External Functions This Runner Calls=====
 extern void setUp(void);
 extern void tearDown(void);
+extern void test_operator_evaluate_should_evaluate_99_PLUS_99(void);
 extern void test_operator_evaluate_should_evaluate_2_PLUS_3(void);
 extern void test_operator_evaluate_should_evaluate_20_MINUS_15(void);
 extern void test_operator_evaluate_should_evaluate_100_MINUS_67(void);
 extern void test_operator_evaluate_should_evaluate_100_MULTIPLY_67(void);
 extern void test_operator_evaluate_should_evaluate_100_DIVIDE_67(void);
 extern void test_operator_evaluate_should_evaluate_10000_DIVIDE_20(void);
+extern void test_operator_evaluate_should_evaluate_56_BITWISE_AND_30(void);
 
 
 //=======Mock Management=====
@@ -88,12 +90,14 @@ int main(void)
 {
   Unity.TestFile = "test_OperatorEvaluate.c";
   UnityBegin();
-  RUN_TEST(test_operator_evaluate_should_evaluate_2_PLUS_3, 16);
-  RUN_TEST(test_operator_evaluate_should_evaluate_20_MINUS_15, 51);
-  RUN_TEST(test_operator_evaluate_should_evaluate_100_MINUS_67, 86);
-  RUN_TEST(test_operator_evaluate_should_evaluate_100_MULTIPLY_67, 121);
-  RUN_TEST(test_operator_evaluate_should_evaluate_100_DIVIDE_67, 156);
-  RUN_TEST(test_operator_evaluate_should_evaluate_10000_DIVIDE_20, 191);
+  RUN_TEST(test_operator_evaluate_should_evaluate_99_PLUS_99, 16);
+  RUN_TEST(test_operator_evaluate_should_evaluate_2_PLUS_3, 51);
+  RUN_TEST(test_operator_evaluate_should_evaluate_20_MINUS_15, 86);
+  RUN_TEST(test_operator_evaluate_should_evaluate_100_MINUS_67, 121);
+  RUN_TEST(test_operator_evaluate_should_evaluate_100_MULTIPLY_67, 156);
+  RUN_TEST(test_operator_evaluate_should_evaluate_100_DIVIDE_67, 191);
+  RUN_TEST(test_operator_evaluate_should_evaluate_10000_DIVIDE_20, 226);
+  RUN_TEST(test_operator_evaluate_should_evaluate_56_BITWISE_AND_30, 261);
 
   return (UnityEnd());
 }
