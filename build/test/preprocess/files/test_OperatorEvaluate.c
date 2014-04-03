@@ -714,3 +714,143 @@ void test_operator_evaluate_should_evaluate_99_BITWISE_XOR_66(void){
  UnityAssertEqualNumber((_U_SINT)((33)), (_U_SINT)((tempAns->value)), (((void *)0)), (_U_UINT)363, UNITY_DISPLAY_STYLE_INT);
 
 }
+
+
+
+void test_operator_evaluate_should_evaluate_55_MUDULUS_3(void){
+
+ int check;
+
+ int tempAnswer;
+
+ Token *tempToken;
+
+ Number *tempAns;
+
+
+
+ String tokenizer = {.rawString = "55^3", .startIndex = 0, .length = 3};
+
+
+
+ Number number55 = {.type= NUMBER, .value=55};
+
+ Token *token1 = (Token*)&number55;
+
+
+
+ Operator modulus = {.type= OPERATOR, .id = MODULUS};
+
+ Token *token2 = (Token*)&modulus;
+
+
+
+ Number number3 = {.type= NUMBER, .value=3};
+
+ Token *token3 = (Token*)&number3;
+
+
+
+ Stack *operatorStack = createStack();
+
+ Stack *numberStack = createStack();
+
+
+
+ if ((((operatorStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)386);;};
+
+ if ((((numberStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)387);;};
+
+ if ((((operatorStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)388);;};
+
+ if ((((numberStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)389);;};
+
+
+
+ stackPush(token1,numberStack);
+
+ stackPush(token2,operatorStack);
+
+ stackPush(token3,numberStack);
+
+
+
+ operatorEvaluate(numberStack ,operatorStack);
+
+ tempToken=(Token*)stackPop(numberStack);
+
+ tempAns=(Number*)tempToken;
+
+ UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((tempAns->value)), (((void *)0)), (_U_UINT)398, UNITY_DISPLAY_STYLE_INT);
+
+}
+
+
+
+void test_operator_evaluate_should_evaluate_68_MUDULUS_7(void){
+
+ int check;
+
+ int tempAnswer;
+
+ Token *tempToken;
+
+ Number *tempAns;
+
+
+
+ String tokenizer = {.rawString = "68^7", .startIndex = 0, .length = 3};
+
+
+
+ Number number68 = {.type= NUMBER, .value=68};
+
+ Token *token1 = (Token*)&number68;
+
+
+
+ Operator modulus = {.type= OPERATOR, .id = MODULUS};
+
+ Token *token2 = (Token*)&modulus;
+
+
+
+ Number number7 = {.type= NUMBER, .value=7};
+
+ Token *token3 = (Token*)&number7;
+
+
+
+ Stack *operatorStack = createStack();
+
+ Stack *numberStack = createStack();
+
+
+
+ if ((((operatorStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)421);;};
+
+ if ((((numberStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)422);;};
+
+ if ((((operatorStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)423);;};
+
+ if ((((numberStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)424);;};
+
+
+
+ stackPush(token1,numberStack);
+
+ stackPush(token2,operatorStack);
+
+ stackPush(token3,numberStack);
+
+
+
+ operatorEvaluate(numberStack ,operatorStack);
+
+ tempToken=(Token*)stackPop(numberStack);
+
+ tempAns=(Number*)tempToken;
+
+ UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((tempAns->value)), (((void *)0)), (_U_UINT)433, UNITY_DISPLAY_STYLE_INT);
+
+}

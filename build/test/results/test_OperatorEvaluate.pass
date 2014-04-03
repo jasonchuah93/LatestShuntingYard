@@ -33,11 +33,17 @@
 - :test: test_operator_evaluate_should_evaluate_99_BITWISE_XOR_66
   :line: 331
   :message: ''
+- :test: test_operator_evaluate_should_evaluate_55_MUDULUS_3
+  :line: 366
+  :message: ''
+- :test: test_operator_evaluate_should_evaluate_68_MUDULUS_7
+  :line: 401
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 10
-  :passed: 10
+  :total: 12
+  :passed: 12
   :failed: 0
   :ignored: 0
 :stdout: []

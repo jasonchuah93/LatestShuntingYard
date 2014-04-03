@@ -362,3 +362,73 @@ void test_operator_evaluate_should_evaluate_99_BITWISE_XOR_66(void){
 	tempAns=(Number*)tempToken;
 	TEST_ASSERT_EQUAL(33,tempAns->value);
 }
+
+void test_operator_evaluate_should_evaluate_55_MUDULUS_3(void){
+	int check;
+	int tempAnswer;
+	Token *tempToken;
+	Number *tempAns;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "55^3", .startIndex = 0, .length = 3};
+	
+	Number number55 = {.type= NUMBER, .value=55};
+	Token *token1 = (Token*)&number55;
+	
+	Operator modulus = {.type= OPERATOR, .id = MODULUS};
+	Token *token2 = (Token*)&modulus;
+	
+	Number number3 = {.type= NUMBER, .value=3};
+	Token *token3 = (Token*)&number3;
+	
+	Stack *operatorStack = createStack();
+	Stack *numberStack = createStack();
+	
+	TEST_ASSERT_NOT_NULL(operatorStack);
+	TEST_ASSERT_NOT_NULL(numberStack);
+	TEST_ASSERT_NULL(operatorStack->topOfStack);
+	TEST_ASSERT_NULL(numberStack->topOfStack);
+	
+	stackPush(token1,numberStack);
+	stackPush(token2,operatorStack);
+	stackPush(token3,numberStack);
+	
+	operatorEvaluate(numberStack ,operatorStack);
+	tempToken=(Token*)stackPop(numberStack);
+	tempAns=(Number*)tempToken;
+	TEST_ASSERT_EQUAL(1,tempAns->value);
+}
+
+void test_operator_evaluate_should_evaluate_68_MUDULUS_7(void){
+	int check;
+	int tempAnswer;
+	Token *tempToken;
+	Number *tempAns;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "68^7", .startIndex = 0, .length = 3};
+	
+	Number number68 = {.type= NUMBER, .value=68};
+	Token *token1 = (Token*)&number68;
+	
+	Operator modulus = {.type= OPERATOR, .id = MODULUS};
+	Token *token2 = (Token*)&modulus;
+	
+	Number number7 = {.type= NUMBER, .value=7};
+	Token *token3 = (Token*)&number7;
+	
+	Stack *operatorStack = createStack();
+	Stack *numberStack = createStack();
+	
+	TEST_ASSERT_NOT_NULL(operatorStack);
+	TEST_ASSERT_NOT_NULL(numberStack);
+	TEST_ASSERT_NULL(operatorStack->topOfStack);
+	TEST_ASSERT_NULL(numberStack->topOfStack);
+	
+	stackPush(token1,numberStack);
+	stackPush(token2,operatorStack);
+	stackPush(token3,numberStack);
+	
+	operatorEvaluate(numberStack ,operatorStack);
+	tempToken=(Token*)stackPop(numberStack);
+	tempAns=(Number*)tempToken;
+	TEST_ASSERT_EQUAL(5,tempAns->value);
+}
