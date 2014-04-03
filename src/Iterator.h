@@ -1,27 +1,14 @@
 #ifndef Iterator_H
 #define Iterator_H
+#include "LinkedList.h"
 
-/*
-typedef struct {
-	void *head;
-	void *tail;
-} LinkedList;
-*/
 typedef struct {
 	LinkedList *list;
-	void *current;
-	void *(*next)(void);
+	Element *current;
+	Element *(*next)(Element *);
 } Iterator;
 
-//Element that Ee pak use to store identifier value.
-typedef struct DefineElement_t{
-	struct DefineElement_t *next;
-	char *ID;
-	char *actualID;
-}DefineElement;
-
-void *getIterator(LinkedList *list);
-void *getNext(void);
+Iterator *getIterator(LinkedList *list);
+Element *getNext(Element *current);
 
 #endif // Iterator_H
-

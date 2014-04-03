@@ -30,12 +30,8 @@
 #include <setjmp.h>
 #include <stdio.h>
 #include "CException.h"
-#include "mock_Stack.h"
 #include "mock_StringObject.h"
-#include "mock_calculateToken.h"
-#include "mock_createNumberToken.h"
 #include "mock_getToken.h"
-#include "mock_initializeToken.h"
 #include "mock_tryEvaluatethenPush.h"
 
 int GlobalExpectCount;
@@ -46,8 +42,11 @@ char* GlobalOrderError;
 extern void setUp(void);
 extern void tearDown(void);
 extern void test_operator_evaluate_should_evaluate_2_PLUS_3(void);
-extern void test_operator_evaluate_should_evaluate_2_PLUS_3_MULTIPLY_4(void);
-extern void test_NEGATIVE_LEFT_PARENTHESIS_NEGATIVE_2_RIGHT_PARENTHESIS(void);
+extern void test_operator_evaluate_should_evaluate_20_MINUS_15(void);
+extern void test_operator_evaluate_should_evaluate_100_MINUS_67(void);
+extern void test_operator_evaluate_should_evaluate_100_MULTIPLY_67(void);
+extern void test_operator_evaluate_should_evaluate_100_DIVIDE_67(void);
+extern void test_operator_evaluate_should_evaluate_10000_DIVIDE_20(void);
 
 
 //=======Mock Management=====
@@ -56,32 +55,20 @@ static void CMock_Init(void)
   GlobalExpectCount = 0;
   GlobalVerifyOrder = 0;
   GlobalOrderError = NULL;
-  mock_Stack_Init();
   mock_StringObject_Init();
-  mock_calculateToken_Init();
-  mock_createNumberToken_Init();
   mock_getToken_Init();
-  mock_initializeToken_Init();
   mock_tryEvaluatethenPush_Init();
 }
 static void CMock_Verify(void)
 {
-  mock_Stack_Verify();
   mock_StringObject_Verify();
-  mock_calculateToken_Verify();
-  mock_createNumberToken_Verify();
   mock_getToken_Verify();
-  mock_initializeToken_Verify();
   mock_tryEvaluatethenPush_Verify();
 }
 static void CMock_Destroy(void)
 {
-  mock_Stack_Destroy();
   mock_StringObject_Destroy();
-  mock_calculateToken_Destroy();
-  mock_createNumberToken_Destroy();
   mock_getToken_Destroy();
-  mock_initializeToken_Destroy();
   mock_tryEvaluatethenPush_Destroy();
 }
 
@@ -101,9 +88,12 @@ int main(void)
 {
   Unity.TestFile = "test_OperatorEvaluate.c";
   UnityBegin();
-  RUN_TEST(test_operator_evaluate_should_evaluate_2_PLUS_3, 17);
-  RUN_TEST(test_operator_evaluate_should_evaluate_2_PLUS_3_MULTIPLY_4, 41);
-  RUN_TEST(test_NEGATIVE_LEFT_PARENTHESIS_NEGATIVE_2_RIGHT_PARENTHESIS, 64);
+  RUN_TEST(test_operator_evaluate_should_evaluate_2_PLUS_3, 16);
+  RUN_TEST(test_operator_evaluate_should_evaluate_20_MINUS_15, 51);
+  RUN_TEST(test_operator_evaluate_should_evaluate_100_MINUS_67, 86);
+  RUN_TEST(test_operator_evaluate_should_evaluate_100_MULTIPLY_67, 121);
+  RUN_TEST(test_operator_evaluate_should_evaluate_100_DIVIDE_67, 156);
+  RUN_TEST(test_operator_evaluate_should_evaluate_10000_DIVIDE_20, 191);
 
   return (UnityEnd());
 }

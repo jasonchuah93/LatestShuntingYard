@@ -1,32 +1,15 @@
+#include "LinkedList.h"
 
 
 
 
 
 
-typedef struct Element_t
-
-{
-
- struct Element_t *next;
-
- void *data;
-
-}Element;
 
 
-
-
-
-typedef struct
-
-{
-
-
+typedef struct{
 
  Element *topOfStack;
-
-
 
 }Stack;
 
@@ -36,7 +19,7 @@ typedef struct
 
 Stack *createStack();
 
-void stackPush(void * data,Stack *stack);
+void stackPush(void * data,Stack *stack );
 
 void *stackPop(Stack *stack);
 

@@ -4,46 +4,46 @@
   :file: test_calculateToken.c
 :successes:
 - :test: test_should_calculate_2_PLUS_3
-  :line: 20
+  :line: 22
   :message: ''
 - :test: test_should_calculate_10_MINUS_3
-  :line: 32
+  :line: 34
   :message: ''
 - :test: test_should_calculate_10_MULTIPLY_10
-  :line: 44
+  :line: 46
   :message: ''
 - :test: test_should_calculate_1000_DIVIDE_10
-  :line: 56
+  :line: 58
   :message: ''
 - :test: test_should_calculate_56_BITWISE_AND_30
-  :line: 68
+  :line: 70
   :message: ''
 - :test: test_should_calculate_90_BITWISE_OR_20
-  :line: 80
+  :line: 82
   :message: ''
 - :test: test_should_calculate_99_BITWISE_XOR_66
-  :line: 92
+  :line: 94
   :message: ''
 - :test: test_should_calculate_55_MODULUS_3
-  :line: 104
+  :line: 106
   :message: ''
 - :test: test_should_calculate_68_MODULUS_7
-  :line: 116
+  :line: 118
   :message: ''
 - :test: test_should_complement_78
-  :line: 128
+  :line: 130
   :message: ''
 - :test: test_should_complement_2
-  :line: 138
+  :line: 140
   :message: ''
 - :test: test_should_PLUS_PLUS_3
-  :line: 148
+  :line: 150
   :message: ''
 - :test: test_should_PLUS_PLUS_100
-  :line: 158
+  :line: 160
   :message: ''
 - :test: test_should_MINUS_MINUS_10
-  :line: 168
+  :line: 170
   :message: ''
 :failures: []
 :ignores: []

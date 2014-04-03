@@ -1,15 +1,17 @@
 #include "unity.h"
 #include <malloc.h>
 #include "Evaluate.h"
-#include "mock_StringObject.h"
-#include "stackForEvaluate.h"
+#include "LinkedList.h"
 #include "calculateToken.h"
+#include "mock_Stack.h"
+#include "createNumberToken.h"
+#include "mock_StringObject.h"
 #include "mock_operatorEvaluate.h"
 #include "mock_initializeToken.h"
 #include "mock_getToken.h"
-#include "mock_Stack.h"
 #include "mock_tryEvaluatethenPush.h"
-#include "createNumberToken.h"
+#include "stackForEvaluate.h"
+
 
 
 void setUp(void){}

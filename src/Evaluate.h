@@ -1,10 +1,6 @@
 #ifndef EVALUATE_H
 #define EVALUATE_H
 
-#include "Stack.h"
-#include "stackForEvaluate.h"
-
-
 typedef enum {NUMBER,OPERATOR,IDENTIFIER}Token;
 //Updating in progress, please be patient.....
 typedef enum {DECREMENT,INCREMENT,XOR_SET_EQUAL,OR_SET_EQUAL,

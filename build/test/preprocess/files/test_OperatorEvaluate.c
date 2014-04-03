@@ -2,12 +2,12 @@
 #include "stackForEvaluate.h"
 #include "operatorEvaluate.h"
 #include "mock_tryEvaluatethenPush.h"
-#include "mock_initializeToken.h"
 #include "mock_getToken.h"
-#include "mock_createNumberToken.h"
-#include "mock_calculateToken.h"
 #include "mock_StringObject.h"
-#include "mock_Stack.h"
+#include "createNumberToken.h"
+#include "calculateToken.h"
+#include "Stack.h"
+#include "LinkedList.h"
 #include "Evaluate.h"
 
 
@@ -17,17 +17,25 @@ void tearDown(void){}
 
 
 
-
-
 void test_operator_evaluate_should_evaluate_2_PLUS_3(void){
+
+ int check;
+
+ int tempAnswer;
+
+ Token *tempToken;
+
+ Number *tempAns;
+
+
+
+ String tokenizer = {.rawString = "2+3", .startIndex = 0, .length = 3};
 
 
 
  Number number2 = {.type= NUMBER, .value=2};
 
  Token *token1 = (Token*)&number2;
-
-
 
 
 
@@ -43,118 +51,386 @@ void test_operator_evaluate_should_evaluate_2_PLUS_3(void){
 
 
 
- int answer;
+ Stack *operatorStack = createStack();
 
- Token *answerToken;
-
-
-
- stackPop_CMockExpectAndReturn(32, &opeStack, token2);
-
- stackPop_CMockExpectAndReturn(33, &numStack, token1);
-
- stackPop_CMockExpectAndReturn(34, &numStack, token3);
-
- calculate_CMockExpectAndReturn(35, &plus, &number2, &number3, answer);
-
- createNumberToken_CMockExpectAndReturn(36, answer, answerToken);
-
- stackPush_CMockExpect(37, answerToken, &numStack);
-
- operatorEvaluate(&numStack,&opeStack);
-
-}
+ Stack *numberStack = createStack();
 
 
 
-void test_operator_evaluate_should_evaluate_2_PLUS_3_MULTIPLY_4(void){
+ if ((((operatorStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)36);;};
+
+ if ((((numberStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)37);;};
+
+ if ((((operatorStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)38);;};
+
+ if ((((numberStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)39);;};
 
 
 
- Number number12 = {.type= NUMBER, .value=12};
+ stackPush(token1,numberStack);
 
- Token *token1 = (Token*)&number12;
+ stackPush(token2,operatorStack);
 
-
-
- Operator plus = {.type= OPERATOR, .id = ADD};
-
- Token *token2 = (Token*)&plus;
+ stackPush(token3,numberStack);
 
 
 
- Number number2 = {.type= NUMBER, .value=2};
+ operatorEvaluate(numberStack ,operatorStack);
 
- Token *token3 = (Token*)&number2;
+ tempToken=(Token*)stackPop(numberStack);
 
+ tempAns=(Number*)tempToken;
 
-
- int answer;
-
- Token *answerToken;
-
-
-
- stackPop_CMockExpectAndReturn(55, &opeStack, token2);
-
- stackPop_CMockExpectAndReturn(56, &numStack, token1);
-
- stackPop_CMockExpectAndReturn(57, &numStack, token3);
-
- calculate_CMockExpectAndReturn(58, &plus, &number12, &number2, answer);
-
- createNumberToken_CMockExpectAndReturn(59, answer, answerToken);
-
- stackPush_CMockExpect(60, answerToken, &numStack);
-
- operatorEvaluate(&numStack,&opeStack);
+ UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((tempAns->value)), (((void *)0)), (_U_UINT)48, UNITY_DISPLAY_STYLE_INT);
 
 }
 
 
 
-void test_NEGATIVE_LEFT_PARENTHESIS_NEGATIVE_2_RIGHT_PARENTHESIS(void){
+void test_operator_evaluate_should_evaluate_20_MINUS_15(void){
 
- Tokenizer tokenizer = {.rawString = "-(-2)", .startIndex = 0, .length = 5 };
+ int check;
 
+ int tempAnswer;
 
+ Token *tempToken;
 
- Operator negative = {.type= OPERATOR, .id = SUBTRACT};
-
- Token *token1 = (Token*)&negative;
-
-
-
- Operator leftBracket = {.type= OPERATOR, .id = LEFT_PARENTHESIS};
-
- Token *token2 = (Token*)&leftBracket;
+ Number *tempAns;
 
 
 
- Operator negative2 = {.type= OPERATOR, .id = SUBTRACT};
-
- Token *token3 = (Token*)&negative2;
+ String tokenizer = {.rawString = "20-15", .startIndex = 0, .length = 3};
 
 
 
- Number number2 = {.type= NUMBER, .value=2};
+ Number number20 = {.type= NUMBER, .value=20};
 
- Token *token4 = (Token*)&number2;
-
-
-
- Operator rightBracket = {.type= OPERATOR, .id = RIGHT_PARENTHESIS};
-
- Token *token5 = (Token*)&rightBracket;
+ Token *token1 = (Token*)&number20;
 
 
 
- int answer;
+ Operator minus = {.type= OPERATOR, .id = SUBTRACT};
 
- Token *answerToken;
-
-
+ Token *token2 = (Token*)&minus;
 
 
+
+ Number number15 = {.type= NUMBER, .value=15};
+
+ Token *token3 = (Token*)&number15;
+
+
+
+ Stack *operatorStack = createStack();
+
+ Stack *numberStack = createStack();
+
+
+
+ if ((((operatorStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)71);;};
+
+ if ((((numberStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)72);;};
+
+ if ((((operatorStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)73);;};
+
+ if ((((numberStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)74);;};
+
+
+
+ stackPush(token1,numberStack);
+
+ stackPush(token2,operatorStack);
+
+ stackPush(token3,numberStack);
+
+
+
+ operatorEvaluate(numberStack ,operatorStack);
+
+ tempToken=(Token*)stackPop(numberStack);
+
+ tempAns=(Number*)tempToken;
+
+ UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((tempAns->value)), (((void *)0)), (_U_UINT)83, UNITY_DISPLAY_STYLE_INT);
+
+}
+
+
+
+void test_operator_evaluate_should_evaluate_100_MINUS_67(void){
+
+ int check;
+
+ int tempAnswer;
+
+ Token *tempToken;
+
+ Number *tempAns;
+
+
+
+ String tokenizer = {.rawString = "100-67", .startIndex = 0, .length = 3};
+
+
+
+ Number number100 = {.type= NUMBER, .value=100};
+
+ Token *token1 = (Token*)&number100;
+
+
+
+ Operator minus = {.type= OPERATOR, .id = SUBTRACT};
+
+ Token *token2 = (Token*)&minus;
+
+
+
+ Number number67 = {.type= NUMBER, .value=67};
+
+ Token *token3 = (Token*)&number67;
+
+
+
+ Stack *operatorStack = createStack();
+
+ Stack *numberStack = createStack();
+
+
+
+ if ((((operatorStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)106);;};
+
+ if ((((numberStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)107);;};
+
+ if ((((operatorStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)108);;};
+
+ if ((((numberStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)109);;};
+
+
+
+ stackPush(token1,numberStack);
+
+ stackPush(token2,operatorStack);
+
+ stackPush(token3,numberStack);
+
+
+
+ operatorEvaluate(numberStack ,operatorStack);
+
+ tempToken=(Token*)stackPop(numberStack);
+
+ tempAns=(Number*)tempToken;
+
+ UnityAssertEqualNumber((_U_SINT)((33)), (_U_SINT)((tempAns->value)), (((void *)0)), (_U_UINT)118, UNITY_DISPLAY_STYLE_INT);
+
+}
+
+
+
+void test_operator_evaluate_should_evaluate_100_MULTIPLY_67(void){
+
+ int check;
+
+ int tempAnswer;
+
+ Token *tempToken;
+
+ Number *tempAns;
+
+
+
+ String tokenizer = {.rawString = "100*67", .startIndex = 0, .length = 3};
+
+
+
+ Number number100 = {.type= NUMBER, .value=100};
+
+ Token *token1 = (Token*)&number100;
+
+
+
+ Operator multiply = {.type= OPERATOR, .id = MULTIPLY};
+
+ Token *token2 = (Token*)&multiply;
+
+
+
+ Number number67 = {.type= NUMBER, .value=67};
+
+ Token *token3 = (Token*)&number67;
+
+
+
+ Stack *operatorStack = createStack();
+
+ Stack *numberStack = createStack();
+
+
+
+ if ((((operatorStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)141);;};
+
+ if ((((numberStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)142);;};
+
+ if ((((operatorStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)143);;};
+
+ if ((((numberStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)144);;};
+
+
+
+ stackPush(token1,numberStack);
+
+ stackPush(token2,operatorStack);
+
+ stackPush(token3,numberStack);
+
+
+
+ operatorEvaluate(numberStack ,operatorStack);
+
+ tempToken=(Token*)stackPop(numberStack);
+
+ tempAns=(Number*)tempToken;
+
+ UnityAssertEqualNumber((_U_SINT)((6700)), (_U_SINT)((tempAns->value)), (((void *)0)), (_U_UINT)153, UNITY_DISPLAY_STYLE_INT);
+
+}
+
+
+
+void test_operator_evaluate_should_evaluate_100_DIVIDE_67(void){
+
+ int check;
+
+ int tempAnswer;
+
+ Token *tempToken;
+
+ Number *tempAns;
+
+
+
+ String tokenizer = {.rawString = "100*10", .startIndex = 0, .length = 3};
+
+
+
+ Number number100 = {.type= NUMBER, .value=100};
+
+ Token *token1 = (Token*)&number100;
+
+
+
+ Operator divide = {.type= OPERATOR, .id = DIVIDE};
+
+ Token *token2 = (Token*)&divide;
+
+
+
+ Number number10 = {.type= NUMBER, .value=10};
+
+ Token *token3 = (Token*)&number10;
+
+
+
+ Stack *operatorStack = createStack();
+
+ Stack *numberStack = createStack();
+
+
+
+ if ((((operatorStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)176);;};
+
+ if ((((numberStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)177);;};
+
+ if ((((operatorStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)178);;};
+
+ if ((((numberStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)179);;};
+
+
+
+ stackPush(token1,numberStack);
+
+ stackPush(token2,operatorStack);
+
+ stackPush(token3,numberStack);
+
+
+
+ operatorEvaluate(numberStack ,operatorStack);
+
+ tempToken=(Token*)stackPop(numberStack);
+
+ tempAns=(Number*)tempToken;
+
+ UnityAssertEqualNumber((_U_SINT)((10)), (_U_SINT)((tempAns->value)), (((void *)0)), (_U_UINT)188, UNITY_DISPLAY_STYLE_INT);
+
+}
+
+
+
+void test_operator_evaluate_should_evaluate_10000_DIVIDE_20(void){
+
+ int check;
+
+ int tempAnswer;
+
+ Token *tempToken;
+
+ Number *tempAns;
+
+
+
+ String tokenizer = {.rawString = "10000*20", .startIndex = 0, .length = 3};
+
+
+
+ Number number10000 = {.type= NUMBER, .value=10000};
+
+ Token *token1 = (Token*)&number10000;
+
+
+
+ Operator divide = {.type= OPERATOR, .id = DIVIDE};
+
+ Token *token2 = (Token*)&divide;
+
+
+
+ Number number20 = {.type= NUMBER, .value=20};
+
+ Token *token3 = (Token*)&number20;
+
+
+
+ Stack *operatorStack = createStack();
+
+ Stack *numberStack = createStack();
+
+
+
+ if ((((operatorStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)211);;};
+
+ if ((((numberStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)212);;};
+
+ if ((((operatorStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)213);;};
+
+ if ((((numberStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)214);;};
+
+
+
+ stackPush(token1,numberStack);
+
+ stackPush(token2,operatorStack);
+
+ stackPush(token3,numberStack);
+
+
+
+ operatorEvaluate(numberStack ,operatorStack);
+
+ tempToken=(Token*)stackPop(numberStack);
+
+ tempAns=(Number*)tempToken;
+
+ UnityAssertEqualNumber((_U_SINT)((500)), (_U_SINT)((tempAns->value)), (((void *)0)), (_U_UINT)223, UNITY_DISPLAY_STYLE_INT);
 
 }

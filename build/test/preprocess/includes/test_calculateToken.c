@@ -1,5 +1,6 @@
 ---
 - Evaluate.h
+- LinkedList.h
 - calculateToken.h
 - createNumberToken.h
 - mock_Stack.h

@@ -1,3 +1,2 @@
 ---
-- Evaluate.h
 - Stack.h

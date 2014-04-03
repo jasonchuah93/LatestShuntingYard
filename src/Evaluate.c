@@ -2,14 +2,12 @@
 #include <string.h>
 #include "Evaluate.h"
 #include "StringObject.h"
-#include "Stack.h"
 #include "getToken.h"
-#include "LinkedList.h"
 #include "tryEvaluatethenPush.h"
 #include "operatorEvaluate.h"
 #include "calculateToken.h"
+#include "Stack.h"
 #include "stackForEvaluate.h"
-
 
 /*
 	This function is to push tokens that tokenize from expression to stack 
@@ -37,9 +35,7 @@ int evaluate(char *expression){
 	
 	while((token=getToken(tokenizer))!=NULL){
 		if(isNumber(token)){
-			Stack *createStack();
 			stackPush(token,&numStack);
-			
 		}
 		
 		else if(isOperator(token)) 
@@ -50,7 +46,7 @@ int evaluate(char *expression){
 	}
 	 
 	operatorEvaluate(&numStack,&opeStack);
-	destroyStack(&numStack);
+	
 	return counter;
 }
 

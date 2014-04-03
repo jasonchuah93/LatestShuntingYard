@@ -1,12 +1,14 @@
 #include "unity.h"
 #include "Evaluate.h"
+#include "mock_Stack.h"
+#include "LinkedList.h"
 #include "mock_StringObject.h"
 #include "mock_getToken.h"
-#include "mock_Stack.h"
 #include "mock_tryEvaluatethenPush.h"
 #include "mock_operatorEvaluate.h"
 #include "mock_calculateToken.h"
 #include "stackForEvaluate.h"
+
 
 void setUp(void){}
 void tearDown(void){}
@@ -53,7 +55,6 @@ void test_evaluate_2_PLUS_3(void){
 	isNumber_ExpectAndReturn(token2,0);
 	isOperator_ExpectAndReturn(token2,1);
 	tryEvaluatethenPush_Expect(token2,&numStack,&opeStack);
-	//stackPush_Expect(token2,&opeStack);
 	
 	//Number token 3
 	getToken_ExpectAndReturn(&tokenizer,token3);
@@ -62,7 +63,7 @@ void test_evaluate_2_PLUS_3(void){
 	getToken_ExpectAndReturn(&tokenizer,NULL);
 	
 	operatorEvaluate_Expect(&numStack,&opeStack);
-	destroyStack_Expect(&numStack);
+
 	evaluate("2+3");
 }
 
@@ -123,7 +124,7 @@ void test_evaluate_2_PLUS_3_MULTIPLY_4(void){
 	getToken_ExpectAndReturn(&tokenizer,NULL);
 	
 	operatorEvaluate_Expect(&numStack,&opeStack);
-	destroyStack_Expect(&numStack);
+
 	evaluate("2+3*4");
 }	
 
@@ -185,7 +186,7 @@ void test_evaluate_2_MULTIPLY_3_PLUS_4(void){
 	getToken_ExpectAndReturn(&tokenizer,NULL);
 	
 	operatorEvaluate_Expect(&numStack,&opeStack);
-	destroyStack_Expect(&numStack);
+
 	evaluate("2*3+4");
 }
 
@@ -282,7 +283,7 @@ void test_evaluate_2_PLUS_3_MULTIPLY_4_PLUS_5_MULTIPLY_6(void){
 	getToken_ExpectAndReturn(&tokenizer,NULL);
 	
 	operatorEvaluate_Expect(&numStack,&opeStack);
-	destroyStack_Expect(&numStack);
+
 	evaluate("2+3*4+5*6");
 }
 
@@ -379,7 +380,7 @@ void test_evaluate_2_MULTIPLY_3_PLUS_4_MULTIPLY_5_PLUS_6(void){
 	getToken_ExpectAndReturn(&tokenizer,NULL);
 	
 	operatorEvaluate_Expect(&numStack,&opeStack);
-	destroyStack_Expect(&numStack);
+	
 	evaluate("2*3+4*5+6");
 
 }
@@ -493,7 +494,7 @@ void test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10(void){
 	getToken_ExpectAndReturn(&tokenizer,NULL);
 
 	operatorEvaluate_Expect(&numStack,&opeStack);
-	destroyStack_Expect(&numStack);
+	
 	evaluate("2|3+4*5-6-10");
 	
 }
@@ -573,7 +574,7 @@ void test_LEFT_PARENTHESIS_2_PLUS_3_RIGHT_PARENTHESIS_MULTIPLY_4(void){
 	getToken_ExpectAndReturn(&tokenizer,NULL);
 	
 	operatorEvaluate_Expect(&numStack,&opeStack);
-	destroyStack_Expect(&numStack);
+	
 	evaluate("(2+3)*4");
 }
 
@@ -653,7 +654,7 @@ void test_2_MULTIPLY_LEFT_PARENTHESIS_THREE_PLUS_FOUR_RIGHT_PARENTHESIS(void){
 	
 	//ANSWER
 	operatorEvaluate_Expect(&numStack,&opeStack);
-	destroyStack_Expect(&numStack);
+	
 	evaluate("2*(3+4)");
 }
 
@@ -687,7 +688,7 @@ void test_NEGATIVE_2_SHOULD_RETURN_NEGATIVE_2(void){
 	
 	//ANSWER
 	operatorEvaluate_Expect(&numStack,&opeStack);
-	destroyStack_Expect(&numStack);
+	
 	evaluate("-2");
 }
 
@@ -749,7 +750,7 @@ void test_NEGATIVE_2_PLUS_NEGATIVE_3(void){
 	
 	//ANSWER
 	operatorEvaluate_Expect(&numStack,&opeStack);
-	destroyStack_Expect(&numStack);
+	
 	evaluate("-2+-3");
 }
 
@@ -824,7 +825,7 @@ void test_NEGATIVE_NEGATIVE_NEGATIVE_NEGATIVE_NEGATIVE_2(void){
 	
 	//ANSWER
 	operatorEvaluate_Expect(&numStack,&opeStack);
-	destroyStack_Expect(&numStack);
+	
 	evaluate("-----2");
 	
 }
@@ -1029,7 +1030,7 @@ void test_LEFT_PARENTHESIS_10_MULTIPLY_100_RIGHT_PARENTHESIS_DIVIDE_BY_LEFT_PARE
 	
 	//ANSWER
 	operatorEvaluate_Expect(&numStack,&opeStack);
-	destroyStack_Expect(&numStack);
+	
 	evaluate("(10*100)/((-5*6)-(2-30))");
 }
 
@@ -1093,7 +1094,7 @@ void test_NEGATIVE_LEFT_PARENTHESIS_NEGATIVE_2_RIGHT_PARENTHESIS(void){
 	
 	//ANSWER
 	operatorEvaluate_Expect(&numStack,&opeStack);
-	destroyStack_Expect(&numStack);
+	
 	evaluate("-(-2)");
 }
 
@@ -1253,7 +1254,7 @@ void test_NEGATIVE_LEFT_PARENTHESIS_POSITIVE_LEFT_PARENTHESIS_NEGATIVE_LEFT_PARE
 	
 	//ANSWER
 	operatorEvaluate_Expect(&numStack,&opeStack);
-	destroyStack_Expect(&numStack);
+	
 	evaluate("-(+(-(-1)*3)-4)");
 }
 

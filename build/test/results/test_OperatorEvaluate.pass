@@ -4,19 +4,28 @@
   :file: test_OperatorEvaluate.c
 :successes:
 - :test: test_operator_evaluate_should_evaluate_2_PLUS_3
-  :line: 17
+  :line: 16
   :message: ''
-- :test: test_operator_evaluate_should_evaluate_2_PLUS_3_MULTIPLY_4
-  :line: 41
+- :test: test_operator_evaluate_should_evaluate_20_MINUS_15
+  :line: 51
   :message: ''
-- :test: test_NEGATIVE_LEFT_PARENTHESIS_NEGATIVE_2_RIGHT_PARENTHESIS
-  :line: 64
+- :test: test_operator_evaluate_should_evaluate_100_MINUS_67
+  :line: 86
+  :message: ''
+- :test: test_operator_evaluate_should_evaluate_100_MULTIPLY_67
+  :line: 121
+  :message: ''
+- :test: test_operator_evaluate_should_evaluate_100_DIVIDE_67
+  :line: 156
+  :message: ''
+- :test: test_operator_evaluate_should_evaluate_10000_DIVIDE_20
+  :line: 191
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 3
-  :passed: 3
+  :total: 6
+  :passed: 6
   :failed: 0
   :ignored: 0
 :stdout: []

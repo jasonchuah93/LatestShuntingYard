@@ -108,20 +108,20 @@ int main(void)
 {
   Unity.TestFile = "test_calculateToken.c";
   UnityBegin();
-  RUN_TEST(test_should_calculate_2_PLUS_3, 20);
-  RUN_TEST(test_should_calculate_10_MINUS_3, 32);
-  RUN_TEST(test_should_calculate_10_MULTIPLY_10, 44);
-  RUN_TEST(test_should_calculate_1000_DIVIDE_10, 56);
-  RUN_TEST(test_should_calculate_56_BITWISE_AND_30, 68);
-  RUN_TEST(test_should_calculate_90_BITWISE_OR_20, 80);
-  RUN_TEST(test_should_calculate_99_BITWISE_XOR_66, 92);
-  RUN_TEST(test_should_calculate_55_MODULUS_3, 104);
-  RUN_TEST(test_should_calculate_68_MODULUS_7, 116);
-  RUN_TEST(test_should_complement_78, 128);
-  RUN_TEST(test_should_complement_2, 138);
-  RUN_TEST(test_should_PLUS_PLUS_3, 148);
-  RUN_TEST(test_should_PLUS_PLUS_100, 158);
-  RUN_TEST(test_should_MINUS_MINUS_10, 168);
+  RUN_TEST(test_should_calculate_2_PLUS_3, 22);
+  RUN_TEST(test_should_calculate_10_MINUS_3, 34);
+  RUN_TEST(test_should_calculate_10_MULTIPLY_10, 46);
+  RUN_TEST(test_should_calculate_1000_DIVIDE_10, 58);
+  RUN_TEST(test_should_calculate_56_BITWISE_AND_30, 70);
+  RUN_TEST(test_should_calculate_90_BITWISE_OR_20, 82);
+  RUN_TEST(test_should_calculate_99_BITWISE_XOR_66, 94);
+  RUN_TEST(test_should_calculate_55_MODULUS_3, 106);
+  RUN_TEST(test_should_calculate_68_MODULUS_7, 118);
+  RUN_TEST(test_should_complement_78, 130);
+  RUN_TEST(test_should_complement_2, 140);
+  RUN_TEST(test_should_PLUS_PLUS_3, 150);
+  RUN_TEST(test_should_PLUS_PLUS_100, 160);
+  RUN_TEST(test_should_MINUS_MINUS_10, 170);
 
   return (UnityEnd());
 }

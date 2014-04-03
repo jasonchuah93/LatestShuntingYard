@@ -1,3 +1,4 @@
+/*
 #include <stdio.h>
 #include <string.h>
 #include "Evaluate.h"
@@ -8,10 +9,11 @@
 #include "calculateToken.h"
 #include "stackForEvaluate.h"
 #include "createNumberToken.h"
-
-
+*/
+/*
 void tryEvaluatethenPush(Token *token,Stack *numberStack,Stack *operatorStack)
 {
+	
 	Token *previousToken;
 	Token *numToken1;
 	Token *numToken2;
@@ -26,14 +28,14 @@ void tryEvaluatethenPush(Token *token,Stack *numberStack,Stack *operatorStack)
 	Element data;
 	
 	if(operatorStack->topOfStack==NULL){
-		stackPush(token,operatorStack);
+		stackPush(operatorStack,token);
 	}
 	else if(operatorStack->topOfStack =&data)
 	{
 		if(ope1->precedence >= ope2->precedence)
 		{
 			
-			stackPush(token,operatorStack);
+			stackPush(operatorStack,token);
 		}
 		else
 		{
@@ -44,8 +46,9 @@ void tryEvaluatethenPush(Token *token,Stack *numberStack,Stack *operatorStack)
 			number2=(Number*)numToken2;
 			tempAnswer=calculate(ope2,number1,number2);
 			tempAnswerToken = createNumberToken(tempAnswer);
-			stackPush(tempAnswerToken,numberStack);
-			stackPush(token,operatorStack);
+			stackPush(numberStack,tempAnswerToken);
+			stackPush(operatorStack,token);
 		}
 	}
 }
+*/

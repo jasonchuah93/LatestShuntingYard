@@ -1,9 +1,4 @@
 #include "Stack.h"
-#include "Evaluate.h"
-
-
-
-
 
 
 
