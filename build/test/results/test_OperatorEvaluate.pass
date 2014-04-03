@@ -27,11 +27,14 @@
 - :test: test_operator_evaluate_should_evaluate_56_BITWISE_AND_30
   :line: 261
   :message: ''
+- :test: test_operator_evaluate_should_evaluate_90_BITWISE_OR_20
+  :line: 296
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 8
-  :passed: 8
+  :total: 9
+  :passed: 9
   :failed: 0
   :ignored: 0
 :stdout: []

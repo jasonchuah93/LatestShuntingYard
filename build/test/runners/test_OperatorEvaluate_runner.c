@@ -49,6 +49,7 @@ extern void test_operator_evaluate_should_evaluate_100_MULTIPLY_67(void);
 extern void test_operator_evaluate_should_evaluate_100_DIVIDE_67(void);
 extern void test_operator_evaluate_should_evaluate_10000_DIVIDE_20(void);
 extern void test_operator_evaluate_should_evaluate_56_BITWISE_AND_30(void);
+extern void test_operator_evaluate_should_evaluate_90_BITWISE_OR_20(void);
 
 
 //=======Mock Management=====
@@ -98,6 +99,7 @@ int main(void)
   RUN_TEST(test_operator_evaluate_should_evaluate_100_DIVIDE_67, 191);
   RUN_TEST(test_operator_evaluate_should_evaluate_10000_DIVIDE_20, 226);
   RUN_TEST(test_operator_evaluate_should_evaluate_56_BITWISE_AND_30, 261);
+  RUN_TEST(test_operator_evaluate_should_evaluate_90_BITWISE_OR_20, 296);
 
   return (UnityEnd());
 }

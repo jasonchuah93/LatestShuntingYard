@@ -292,3 +292,38 @@ void test_operator_evaluate_should_evaluate_56_BITWISE_AND_30(void){
 	tempAns=(Number*)tempToken;
 	TEST_ASSERT_EQUAL(24,tempAns->value);
 }
+
+void test_operator_evaluate_should_evaluate_90_BITWISE_OR_20(void){
+	int check;
+	int tempAnswer;
+	Token *tempToken;
+	Number *tempAns;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "90|20", .startIndex = 0, .length = 3};
+	
+	Number number90 = {.type= NUMBER, .value=90};
+	Token *token1 = (Token*)&number90;
+	
+	Operator bitwizeOR = {.type= OPERATOR, .id = BITWISE_OR};
+	Token *token2 = (Token*)&bitwizeOR;
+	
+	Number number20 = {.type= NUMBER, .value=20};
+	Token *token3 = (Token*)&number20;
+	
+	Stack *operatorStack = createStack();
+	Stack *numberStack = createStack();
+	
+	TEST_ASSERT_NOT_NULL(operatorStack);
+	TEST_ASSERT_NOT_NULL(numberStack);
+	TEST_ASSERT_NULL(operatorStack->topOfStack);
+	TEST_ASSERT_NULL(numberStack->topOfStack);
+	
+	stackPush(token1,numberStack);
+	stackPush(token2,operatorStack);
+	stackPush(token3,numberStack);
+	
+	operatorEvaluate(numberStack ,operatorStack);
+	tempToken=(Token*)stackPop(numberStack);
+	tempAns=(Number*)tempToken;
+	TEST_ASSERT_EQUAL(94,tempAns->value);
+}

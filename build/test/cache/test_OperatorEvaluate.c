@@ -574,3 +574,73 @@ void test_operator_evaluate_should_evaluate_56_BITWISE_AND_30(void){
  UnityAssertEqualNumber((_U_SINT)((24)), (_U_SINT)((tempAns->value)), (((void *)0)), (_U_UINT)293, UNITY_DISPLAY_STYLE_INT);
 
 }
+
+
+
+void test_operator_evaluate_should_evaluate_90_BITWISE_OR_20(void){
+
+ int check;
+
+ int tempAnswer;
+
+ Token *tempToken;
+
+ Number *tempAns;
+
+
+
+ String tokenizer = {.rawString = "90|20", .startIndex = 0, .length = 3};
+
+
+
+ Number number90 = {.type= NUMBER, .value=90};
+
+ Token *token1 = (Token*)&number90;
+
+
+
+ Operator bitwizeOR = {.type= OPERATOR, .id = BITWISE_OR};
+
+ Token *token2 = (Token*)&bitwizeOR;
+
+
+
+ Number number20 = {.type= NUMBER, .value=20};
+
+ Token *token3 = (Token*)&number20;
+
+
+
+ Stack *operatorStack = createStack();
+
+ Stack *numberStack = createStack();
+
+
+
+ if ((((operatorStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)316);;};
+
+ if ((((numberStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)317);;};
+
+ if ((((operatorStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)318);;};
+
+ if ((((numberStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)319);;};
+
+
+
+ stackPush(token1,numberStack);
+
+ stackPush(token2,operatorStack);
+
+ stackPush(token3,numberStack);
+
+
+
+ operatorEvaluate(numberStack ,operatorStack);
+
+ tempToken=(Token*)stackPop(numberStack);
+
+ tempAns=(Number*)tempToken;
+
+ UnityAssertEqualNumber((_U_SINT)((94)), (_U_SINT)((tempAns->value)), (((void *)0)), (_U_UINT)328, UNITY_DISPLAY_STYLE_INT);
+
+}
