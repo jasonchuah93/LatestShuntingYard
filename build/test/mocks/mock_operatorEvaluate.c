@@ -16,12 +16,26 @@ typedef struct _CMOCK_operatorEvaluate_CALL_INSTANCE
 
 } CMOCK_operatorEvaluate_CALL_INSTANCE;
 
+typedef struct _CMOCK_halfOperatorEvaluate_CALL_INSTANCE
+{
+  UNITY_LINE_TYPE LineNumber;
+  int CallOrder;
+  Stack* Expected_numberStack;
+  Stack* Expected_operatorStack;
+  CEXCEPTION_T ExceptionToThrow;
+
+} CMOCK_halfOperatorEvaluate_CALL_INSTANCE;
+
 static struct mock_operatorEvaluateInstance
 {
   int operatorEvaluate_IgnoreBool;
   CMOCK_operatorEvaluate_CALLBACK operatorEvaluate_CallbackFunctionPointer;
   int operatorEvaluate_CallbackCalls;
   CMOCK_MEM_INDEX_TYPE operatorEvaluate_CallInstance;
+  int halfOperatorEvaluate_IgnoreBool;
+  CMOCK_halfOperatorEvaluate_CALLBACK halfOperatorEvaluate_CallbackFunctionPointer;
+  int halfOperatorEvaluate_CallbackCalls;
+  CMOCK_MEM_INDEX_TYPE halfOperatorEvaluate_CallInstance;
 } Mock;
 
 extern jmp_buf AbortFrame;
@@ -36,6 +50,11 @@ void mock_operatorEvaluate_Verify(void)
   UNITY_TEST_ASSERT(CMOCK_GUTS_NONE == Mock.operatorEvaluate_CallInstance, cmock_line, "Function 'operatorEvaluate' called less times than expected.");
   if (Mock.operatorEvaluate_CallbackFunctionPointer != NULL)
     Mock.operatorEvaluate_CallInstance = CMOCK_GUTS_NONE;
+  if (Mock.halfOperatorEvaluate_IgnoreBool)
+    Mock.halfOperatorEvaluate_CallInstance = CMOCK_GUTS_NONE;
+  UNITY_TEST_ASSERT(CMOCK_GUTS_NONE == Mock.halfOperatorEvaluate_CallInstance, cmock_line, "Function 'halfOperatorEvaluate' called less times than expected.");
+  if (Mock.halfOperatorEvaluate_CallbackFunctionPointer != NULL)
+    Mock.halfOperatorEvaluate_CallInstance = CMOCK_GUTS_NONE;
 }
 
 void mock_operatorEvaluate_Init(void)
@@ -49,6 +68,8 @@ void mock_operatorEvaluate_Destroy(void)
   memset(&Mock, 0, sizeof(Mock));
   Mock.operatorEvaluate_CallbackFunctionPointer = NULL;
   Mock.operatorEvaluate_CallbackCalls = 0;
+  Mock.halfOperatorEvaluate_CallbackFunctionPointer = NULL;
+  Mock.halfOperatorEvaluate_CallbackCalls = 0;
   GlobalExpectCount = 0;
   GlobalVerifyOrder = 0;
 }
@@ -119,6 +140,75 @@ void operatorEvaluate_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, Stack* num
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
   cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   CMockExpectParameters_operatorEvaluate(cmock_call_instance, numberStack, operatorStack);
+  cmock_call_instance->ExceptionToThrow = cmock_to_throw;
+}
+
+void halfOperatorEvaluate(Stack* numberStack, Stack* operatorStack)
+{
+  UNITY_LINE_TYPE cmock_line = TEST_LINE_NUM;
+  CMOCK_halfOperatorEvaluate_CALL_INSTANCE* cmock_call_instance = (CMOCK_halfOperatorEvaluate_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.halfOperatorEvaluate_CallInstance);
+  Mock.halfOperatorEvaluate_CallInstance = CMock_Guts_MemNext(Mock.halfOperatorEvaluate_CallInstance);
+  if (Mock.halfOperatorEvaluate_IgnoreBool)
+  {
+    return;
+  }
+  if (Mock.halfOperatorEvaluate_CallbackFunctionPointer != NULL)
+  {
+    Mock.halfOperatorEvaluate_CallbackFunctionPointer(numberStack, operatorStack, Mock.halfOperatorEvaluate_CallbackCalls++);
+    return;
+  }
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "Function 'halfOperatorEvaluate' called more times than expected.");
+  cmock_line = cmock_call_instance->LineNumber;
+  if (cmock_call_instance->CallOrder > ++GlobalVerifyOrder)
+    UNITY_TEST_FAIL(cmock_line, "Function 'halfOperatorEvaluate' called earlier than expected.");
+  if (cmock_call_instance->CallOrder < GlobalVerifyOrder)
+    UNITY_TEST_FAIL(cmock_line, "Function 'halfOperatorEvaluate' called later than expected.");
+  UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_numberStack), (void*)(numberStack), sizeof(Stack), cmock_line, "Function 'halfOperatorEvaluate' called with unexpected value for argument 'numberStack'.");
+  UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_operatorStack), (void*)(operatorStack), sizeof(Stack), cmock_line, "Function 'halfOperatorEvaluate' called with unexpected value for argument 'operatorStack'.");
+  if (cmock_call_instance->ExceptionToThrow != CEXCEPTION_NONE)
+  {
+    Throw(cmock_call_instance->ExceptionToThrow);
+  }
+}
+
+void CMockExpectParameters_halfOperatorEvaluate(CMOCK_halfOperatorEvaluate_CALL_INSTANCE* cmock_call_instance, Stack* numberStack, Stack* operatorStack)
+{
+  cmock_call_instance->Expected_numberStack = numberStack;
+  cmock_call_instance->Expected_operatorStack = operatorStack;
+}
+
+void halfOperatorEvaluate_CMockIgnore(void)
+{
+  Mock.halfOperatorEvaluate_IgnoreBool = (int)1;
+}
+
+void halfOperatorEvaluate_CMockExpect(UNITY_LINE_TYPE cmock_line, Stack* numberStack, Stack* operatorStack)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_halfOperatorEvaluate_CALL_INSTANCE));
+  CMOCK_halfOperatorEvaluate_CALL_INSTANCE* cmock_call_instance = (CMOCK_halfOperatorEvaluate_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.halfOperatorEvaluate_CallInstance = CMock_Guts_MemChain(Mock.halfOperatorEvaluate_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_halfOperatorEvaluate(cmock_call_instance, numberStack, operatorStack);
+}
+
+void halfOperatorEvaluate_StubWithCallback(CMOCK_halfOperatorEvaluate_CALLBACK Callback)
+{
+  Mock.halfOperatorEvaluate_CallbackFunctionPointer = Callback;
+}
+
+void halfOperatorEvaluate_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, Stack* numberStack, Stack* operatorStack, CEXCEPTION_T cmock_to_throw)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_halfOperatorEvaluate_CALL_INSTANCE));
+  CMOCK_halfOperatorEvaluate_CALL_INSTANCE* cmock_call_instance = (CMOCK_halfOperatorEvaluate_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.halfOperatorEvaluate_CallInstance = CMock_Guts_MemChain(Mock.halfOperatorEvaluate_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_halfOperatorEvaluate(cmock_call_instance, numberStack, operatorStack);
   cmock_call_instance->ExceptionToThrow = cmock_to_throw;
 }
 

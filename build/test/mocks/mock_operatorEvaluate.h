@@ -20,5 +20,13 @@ typedef void (* CMOCK_operatorEvaluate_CALLBACK)(Stack* numberStack, Stack* oper
 void operatorEvaluate_StubWithCallback(CMOCK_operatorEvaluate_CALLBACK Callback);
 #define operatorEvaluate_ExpectAndThrow(numberStack, operatorStack, cmock_to_throw) operatorEvaluate_CMockExpectAndThrow(__LINE__, numberStack, operatorStack, cmock_to_throw)
 void operatorEvaluate_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, Stack* numberStack, Stack* operatorStack, CEXCEPTION_T cmock_to_throw);
+#define halfOperatorEvaluate_Ignore() halfOperatorEvaluate_CMockIgnore()
+void halfOperatorEvaluate_CMockIgnore(void);
+#define halfOperatorEvaluate_Expect(numberStack, operatorStack) halfOperatorEvaluate_CMockExpect(__LINE__, numberStack, operatorStack)
+void halfOperatorEvaluate_CMockExpect(UNITY_LINE_TYPE cmock_line, Stack* numberStack, Stack* operatorStack);
+typedef void (* CMOCK_halfOperatorEvaluate_CALLBACK)(Stack* numberStack, Stack* operatorStack, int cmock_num_calls);
+void halfOperatorEvaluate_StubWithCallback(CMOCK_halfOperatorEvaluate_CALLBACK Callback);
+#define halfOperatorEvaluate_ExpectAndThrow(numberStack, operatorStack, cmock_to_throw) halfOperatorEvaluate_CMockExpectAndThrow(__LINE__, numberStack, operatorStack, cmock_to_throw)
+void halfOperatorEvaluate_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, Stack* numberStack, Stack* operatorStack, CEXCEPTION_T cmock_to_throw);
 
 #endif

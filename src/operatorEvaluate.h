@@ -5,6 +5,6 @@
 
 //Function declaration
 void operatorEvaluate(Stack *numberStack,Stack *operatorStack);
-
+void halfOperatorEvaluate(Stack*numberStack,Stack *operatorStack);
 
 #endif //__OPERATOREVALUATE_H__

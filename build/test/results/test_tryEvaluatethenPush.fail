@@ -6,14 +6,37 @@
 - :test: test_try_evaluate_2_PLUS_3_and_compare_operators_to_determine_the_operator_to_be_push_into_stack
   :line: 16
   :message: ''
+- :test: test_try_evaluate_20_MINUS_3_and_compare_operators_to_determine_the_operator_to_be_push_into_stack
+  :line: 51
+  :message: ''
+- :test: test_try_evaluate_56_MULTIPLY_5_and_compare_operators_to_determine_the_operator_to_be_push_into_stack
+  :line: 86
+  :message: ''
+- :test: test_try_evaluate_55_DIVIDE_11_and_compare_operators_to_determine_the_operator_to_be_push_into_stack
+  :line: 121
+  :message: ''
+- :test: test_try_evaluate_99_MODULUS_8_and_compare_operators_to_determine_the_operator_to_be_push_into_stack
+  :line: 156
+  :message: ''
+- :test: test_try_evaluate_71_BITWISEAND_45_and_compare_operators_to_determine_the_operator_to_be_push_into_stack
+  :line: 191
+  :message: ''
+- :test: test_try_evaluate_71_BITWISEOR_45_and_compare_operators_to_determine_the_operator_to_be_push_into_stack
+  :line: 226
+  :message: ''
+- :test: test_try_evaluate_71_BITWISEXOR_45_and_compare_operators_to_determine_the_operator_to_be_push_into_stack
+  :line: 261
+  :message: ''
 :failures:
-- :test: test_try_evaluate_2_PLUS_3_MULTIPLY_4_and_compare_operators_to_determine_the_operator_to_be_push_into_stack
-  :line: 91
-  :message: Expected 5 Was 7
+- :test: test_try_evaluate_5_PLUS_6_MULTIPLY_7_and_compare_operators_to_determine_the_operator_to_be_push_into_stack
+  :line: 345
+  :message: Expected 10 Was 42
 :ignores: []
 :counts:
-  :total: 2
-  :passed: 1
+  :total: 9
+  :passed: 8
   :failed: 1
   :ignored: 0
-:stdout: []
+:stdout:
+- 'tempAns : 42 '
+- 'finalAns : 42 '
