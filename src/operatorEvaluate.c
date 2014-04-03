@@ -19,7 +19,6 @@
 	return : final token 
 	
 */	
-
 void operatorEvaluate(Stack *numberStack , Stack *operatorStack){
 	Token *token1; //operator Token
 	Token *token2; // First number token
@@ -45,5 +44,6 @@ void operatorEvaluate(Stack *numberStack , Stack *operatorStack){
 	}
 	destroyStack(operatorStack);
 }	
+
 
 

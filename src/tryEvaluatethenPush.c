@@ -1,19 +1,19 @@
-/*
 #include <stdio.h>
 #include <string.h>
 #include "Evaluate.h"
 #include "Stack.h"
+#include "StringObject.h"
 #include "getToken.h"
 #include "tryEvaluatethenPush.h"
 #include "operatorEvaluate.h"
 #include "calculateToken.h"
+#include "createNumberToken.h" 
+#include "LinkedList.h"
 #include "stackForEvaluate.h"
-#include "createNumberToken.h"
-*/
-/*
+
+
 void tryEvaluatethenPush(Token *token,Stack *numberStack,Stack *operatorStack)
 {
-	
 	Token *previousToken;
 	Token *numToken1;
 	Token *numToken2;
@@ -23,32 +23,34 @@ void tryEvaluatethenPush(Token *token,Stack *numberStack,Stack *operatorStack)
 	Operator *ope2;
 	int tempAnswer;
 	Token *tempAnswerToken;
-	ope1=(Operator*)token;
-	ope2=(Operator*)previousToken;
-	Element data;
 	
+	
+	ope1=(Operator*)token;
 	if(operatorStack->topOfStack==NULL){
-		stackPush(operatorStack,token);
+		stackPush(token,operatorStack);
+
 	}
-	else if(operatorStack->topOfStack =&data)
-	{
+	else
+	{	
+		previousToken=(Token*)stackPop(operatorStack);
+		ope2=(Operator*)previousToken;
 		if(ope1->precedence >= ope2->precedence)
-		{
+		{	
 			
-			stackPush(operatorStack,token);
+			stackPush(token,operatorStack);
 		}
-		else
+		else 
 		{
-			previousToken=(Token*)stackPop(operatorStack);
 			numToken1=(Token*)stackPop(numberStack);
 			number1=(Number*)numToken1;
 			numToken2=(Token*)stackPop(numberStack);
 			number2=(Number*)numToken2;
-			tempAnswer=calculate(ope2,number1,number2);
+			tempAnswer=calculate(ope2,number2,number1);
 			tempAnswerToken = createNumberToken(tempAnswer);
-			stackPush(numberStack,tempAnswerToken);
-			stackPush(operatorStack,token);
+			stackPush(tempAnswerToken,numberStack);
+			stackPush(token,operatorStack);
+			
+			
 		}
 	}
 }
-*/

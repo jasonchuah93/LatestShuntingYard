@@ -4,7 +4,6 @@
 #include "Evaluate.h"
 #include "Stack.h"
 
-
 //Function declaration
 void tryEvaluatethenPush(Token *token,Stack *numberStack,Stack *operatorStack);
 

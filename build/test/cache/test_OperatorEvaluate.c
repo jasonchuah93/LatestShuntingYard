@@ -717,6 +717,76 @@ void test_operator_evaluate_should_evaluate_99_BITWISE_XOR_66(void){
 
 
 
+void test_operator_evaluate_should_evaluate_33_BITWISE_XOR_44(void){
+
+ int check;
+
+ int tempAnswer;
+
+ Token *tempToken;
+
+ Number *tempAns;
+
+
+
+ String tokenizer = {.rawString = "33^44", .startIndex = 0, .length = 3};
+
+
+
+ Number number33 = {.type= NUMBER, .value=33};
+
+ Token *token1 = (Token*)&number33;
+
+
+
+ Operator bitwizeXOR = {.type= OPERATOR, .id = BITWISE_XOR};
+
+ Token *token2 = (Token*)&bitwizeXOR;
+
+
+
+ Number number44 = {.type= NUMBER, .value=44};
+
+ Token *token3 = (Token*)&number44;
+
+
+
+ Stack *operatorStack = createStack();
+
+ Stack *numberStack = createStack();
+
+
+
+ if ((((operatorStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)386);;};
+
+ if ((((numberStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)387);;};
+
+ if ((((operatorStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)388);;};
+
+ if ((((numberStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)389);;};
+
+
+
+ stackPush(token1,numberStack);
+
+ stackPush(token2,operatorStack);
+
+ stackPush(token3,numberStack);
+
+
+
+ operatorEvaluate(numberStack ,operatorStack);
+
+ tempToken=(Token*)stackPop(numberStack);
+
+ tempAns=(Number*)tempToken;
+
+ UnityAssertEqualNumber((_U_SINT)((13)), (_U_SINT)((tempAns->value)), (((void *)0)), (_U_UINT)398, UNITY_DISPLAY_STYLE_INT);
+
+}
+
+
+
 void test_operator_evaluate_should_evaluate_55_MUDULUS_3(void){
 
  int check;
@@ -757,13 +827,13 @@ void test_operator_evaluate_should_evaluate_55_MUDULUS_3(void){
 
 
 
- if ((((operatorStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)386);;};
+ if ((((operatorStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)421);;};
 
- if ((((numberStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)387);;};
+ if ((((numberStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)422);;};
 
- if ((((operatorStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)388);;};
+ if ((((operatorStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)423);;};
 
- if ((((numberStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)389);;};
+ if ((((numberStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)424);;};
 
 
 
@@ -781,7 +851,7 @@ void test_operator_evaluate_should_evaluate_55_MUDULUS_3(void){
 
  tempAns=(Number*)tempToken;
 
- UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((tempAns->value)), (((void *)0)), (_U_UINT)398, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((tempAns->value)), (((void *)0)), (_U_UINT)433, UNITY_DISPLAY_STYLE_INT);
 
 }
 
@@ -827,13 +897,13 @@ void test_operator_evaluate_should_evaluate_68_MUDULUS_7(void){
 
 
 
- if ((((operatorStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)421);;};
+ if ((((operatorStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)456);;};
 
- if ((((numberStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)422);;};
+ if ((((numberStack)) != ((void *)0))) {} else {UnityFail( (" Expected Non-NULL"), (_U_UINT)(_U_UINT)(_U_UINT)457);;};
 
- if ((((operatorStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)423);;};
+ if ((((operatorStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)458);;};
 
- if ((((numberStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)424);;};
+ if ((((numberStack->topOfStack)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)459);;};
 
 
 
@@ -851,6 +921,6 @@ void test_operator_evaluate_should_evaluate_68_MUDULUS_7(void){
 
  tempAns=(Number*)tempToken;
 
- UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((tempAns->value)), (((void *)0)), (_U_UINT)433, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((tempAns->value)), (((void *)0)), (_U_UINT)468, UNITY_DISPLAY_STYLE_INT);
 
 }

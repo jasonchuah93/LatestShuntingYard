@@ -1,0 +1,19 @@
+---
+:source:
+  :path: test
+  :file: test_tryEvaluatethenPush.c
+:successes:
+- :test: test_try_evaluate_2_PLUS_3_and_compare_operators_to_determine_the_operator_to_be_push_into_stack
+  :line: 16
+  :message: ''
+:failures:
+- :test: test_try_evaluate_2_PLUS_3_MULTIPLY_4_and_compare_operators_to_determine_the_operator_to_be_push_into_stack
+  :line: 91
+  :message: Expected 5 Was 7
+:ignores: []
+:counts:
+  :total: 2
+  :passed: 1
+  :failed: 1
+  :ignored: 0
+:stdout: []

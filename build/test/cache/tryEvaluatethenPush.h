@@ -10,6 +10,4 @@
 
 
 
-
-
 void tryEvaluatethenPush(Token *token,Stack *numberStack,Stack *operatorStack);

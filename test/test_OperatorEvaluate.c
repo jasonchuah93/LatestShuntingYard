@@ -363,6 +363,41 @@ void test_operator_evaluate_should_evaluate_99_BITWISE_XOR_66(void){
 	TEST_ASSERT_EQUAL(33,tempAns->value);
 }
 
+void test_operator_evaluate_should_evaluate_33_BITWISE_XOR_44(void){
+	int check;
+	int tempAnswer;
+	Token *tempToken;
+	Number *tempAns;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "33^44", .startIndex = 0, .length = 3};
+	
+	Number number33 = {.type= NUMBER, .value=33};
+	Token *token1 = (Token*)&number33;
+	
+	Operator bitwizeXOR = {.type= OPERATOR, .id = BITWISE_XOR};
+	Token *token2 = (Token*)&bitwizeXOR;
+	
+	Number number44 = {.type= NUMBER, .value=44};
+	Token *token3 = (Token*)&number44;
+	
+	Stack *operatorStack = createStack();
+	Stack *numberStack = createStack();
+	
+	TEST_ASSERT_NOT_NULL(operatorStack);
+	TEST_ASSERT_NOT_NULL(numberStack);
+	TEST_ASSERT_NULL(operatorStack->topOfStack);
+	TEST_ASSERT_NULL(numberStack->topOfStack);
+	
+	stackPush(token1,numberStack);
+	stackPush(token2,operatorStack);
+	stackPush(token3,numberStack);
+	
+	operatorEvaluate(numberStack ,operatorStack);
+	tempToken=(Token*)stackPop(numberStack);
+	tempAns=(Number*)tempToken;
+	TEST_ASSERT_EQUAL(13,tempAns->value);
+}
+
 void test_operator_evaluate_should_evaluate_55_MUDULUS_3(void){
 	int check;
 	int tempAnswer;
