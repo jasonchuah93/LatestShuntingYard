@@ -327,3 +327,38 @@ void test_operator_evaluate_should_evaluate_90_BITWISE_OR_20(void){
 	tempAns=(Number*)tempToken;
 	TEST_ASSERT_EQUAL(94,tempAns->value);
 }
+
+void test_operator_evaluate_should_evaluate_99_BITWISE_XOR_66(void){
+	int check;
+	int tempAnswer;
+	Token *tempToken;
+	Number *tempAns;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "99^66", .startIndex = 0, .length = 3};
+	
+	Number number99 = {.type= NUMBER, .value=99};
+	Token *token1 = (Token*)&number99;
+	
+	Operator bitwizeXOR = {.type= OPERATOR, .id = BITWISE_XOR};
+	Token *token2 = (Token*)&bitwizeXOR;
+	
+	Number number66 = {.type= NUMBER, .value=66};
+	Token *token3 = (Token*)&number66;
+	
+	Stack *operatorStack = createStack();
+	Stack *numberStack = createStack();
+	
+	TEST_ASSERT_NOT_NULL(operatorStack);
+	TEST_ASSERT_NOT_NULL(numberStack);
+	TEST_ASSERT_NULL(operatorStack->topOfStack);
+	TEST_ASSERT_NULL(numberStack->topOfStack);
+	
+	stackPush(token1,numberStack);
+	stackPush(token2,operatorStack);
+	stackPush(token3,numberStack);
+	
+	operatorEvaluate(numberStack ,operatorStack);
+	tempToken=(Token*)stackPop(numberStack);
+	tempAns=(Number*)tempToken;
+	TEST_ASSERT_EQUAL(33,tempAns->value);
+}
