@@ -160,3 +160,141 @@ void test_tryEvaluateOperatorOnStackThenPush_will_not_push_OperatorTOken_into_Op
  tryEvaluateOperatorOnStackThenPush(&minusA,&numberStack,&operatorStack);
 
 }
+
+
+
+void test_tryEvaluateOperatorOnStackThenPush_evaluate_all_operatorTokens_to_be_push_in_the_operator_stack_1(void)
+
+{
+
+ Stack numberStack;
+
+ Stack operatorStack;
+
+
+
+ Number number21 = {.type= NUMBER, .value=21};
+
+ Operator multiply = {.type= OPERATOR, .id=MULTIPLY, .precedence=100};
+
+ Number number22 = {.type= NUMBER, .value=22};
+
+
+
+ Number tempAns = {.type= NUMBER, .value=462};
+
+ Token *tempAnsToken =(Token*)&tempAns;
+
+
+
+ Operator plus = {.type= OPERATOR, .id=ADD, .precedence=70};
+
+ Number number30 = {.type= NUMBER, .value=30};
+
+ Operator divide = {.type= OPERATOR, .id=DIVIDE, .precedence=100};
+
+ Number number6 = {.type= NUMBER, .value=6};
+
+
+
+
+
+ stackPop_CMockExpectAndReturn(125, &operatorStack, &multiply);
+
+ stackPop_CMockExpectAndReturn(126, &numberStack, &number22);
+
+ stackPop_CMockExpectAndReturn(127, &numberStack, &number21);
+
+ createNumberToken_CMockExpectAndReturn(128, 462, tempAnsToken);
+
+ stackPush_CMockExpect(129, tempAnsToken, &numberStack);
+
+
+
+ stackPop_CMockExpectAndReturn(131, &operatorStack, &plus);
+
+ stackPush_CMockExpect(132, &plus, &operatorStack);
+
+ stackPush_CMockExpect(133, &divide, &operatorStack);
+
+
+
+ tryEvaluateOperatorOnStackThenPush(&divide,&numberStack,&operatorStack);
+
+}
+
+
+
+void test_tryEvaluateOperatorOnStackThenPush_evaluate_all_operatorTokens_to_be_push_in_the_operator_stack_2(void)
+
+{
+
+ Stack dataStack;
+
+ Stack operatorStack;
+
+
+
+ Number number21 = {.type= NUMBER, .value=21};
+
+ Operator plus = {.type= OPERATOR, .id=ADD, .precedence=70};
+
+ Number number22 = {.type= NUMBER, .value=22};
+
+
+
+ Number tempAns1 = {.type= NUMBER, .value=43};
+
+ Token *tempAnsToken1 =(Token*)&tempAns1;
+
+
+
+ Operator bitwiseAND = {.type= OPERATOR, .id=BITWISE_AND, .precedence=20};
+
+ Number number30 = {.type= NUMBER, .value=30};
+
+ Operator bitwiseOR = {.type= OPERATOR, .id=BITWISE_OR, .precedence=10};
+
+ Number number6 = {.type= NUMBER, .value=6};
+
+
+
+ Number tempAns2 = {.type= NUMBER, .value=6};
+
+ Token *tempAnsToken2 =(Token*)&tempAns2;
+
+
+
+ stackPop_CMockExpectAndReturn(158, &operatorStack, &plus);
+
+ stackPop_CMockExpectAndReturn(159, &dataStack, &number22);
+
+ stackPop_CMockExpectAndReturn(160, &dataStack, &number21);
+
+ createNumberToken_CMockExpectAndReturn(161, 43, tempAnsToken1);
+
+ stackPush_CMockExpect(162, tempAnsToken1, &dataStack);
+
+
+
+ stackPop_CMockExpectAndReturn(164, &operatorStack, &bitwiseAND);
+
+ stackPop_CMockExpectAndReturn(165, &dataStack, &number30);
+
+ stackPop_CMockExpectAndReturn(166, &dataStack, &number6);
+
+ createNumberToken_CMockExpectAndReturn(167, 6, tempAnsToken2);
+
+ stackPush_CMockExpect(168, tempAnsToken2, &dataStack);
+
+
+
+ stackPop_CMockExpectAndReturn(170, &operatorStack, ((void *)0));
+
+ stackPush_CMockExpect(171, &bitwiseOR, &operatorStack);
+
+
+
+ tryEvaluateOperatorOnStackThenPush(&bitwiseOR,&dataStack,&operatorStack);
+
+}

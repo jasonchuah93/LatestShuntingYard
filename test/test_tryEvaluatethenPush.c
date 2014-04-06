@@ -104,6 +104,75 @@ void test_tryEvaluateOperatorOnStackThenPush_will_not_push_OperatorTOken_into_Op
 	tryEvaluateOperatorOnStackThenPush(&minusA,&numberStack,&operatorStack);
 }
 
+void test_tryEvaluateOperatorOnStackThenPush_evaluate_all_operatorTokens_to_be_push_in_the_operator_stack_1(void)
+{
+	Stack numberStack;
+	Stack operatorStack;
+	//21*22+30/6
+	Number number21 = {.type= NUMBER, .value=21};
+	Operator multiply = {.type= OPERATOR, .id=MULTIPLY, .precedence=100};
+	Number number22 = {.type= NUMBER, .value=22};
+	
+	Number tempAns = {.type= NUMBER, .value=462};
+	Token *tempAnsToken =(Token*)&tempAns;
+	
+	Operator plus = {.type= OPERATOR, .id=ADD, .precedence=70};
+	Number number30 = {.type= NUMBER, .value=30};
+	Operator divide = {.type= OPERATOR, .id=DIVIDE, .precedence=100};
+	Number number6 = {.type= NUMBER, .value=6};
+	
+		
+	stackPop_ExpectAndReturn(&operatorStack,&multiply);
+	stackPop_ExpectAndReturn(&numberStack,&number22);
+	stackPop_ExpectAndReturn(&numberStack,&number21);
+	createNumberToken_ExpectAndReturn(462,tempAnsToken);
+	stackPush_Expect(tempAnsToken,&numberStack);
+
+	stackPop_ExpectAndReturn(&operatorStack,&plus);
+	stackPush_Expect(&plus,&operatorStack);
+	stackPush_Expect(&divide,&operatorStack);
+	
+	tryEvaluateOperatorOnStackThenPush(&divide,&numberStack,&operatorStack);
+}
+
+void test_tryEvaluateOperatorOnStackThenPush_evaluate_all_operatorTokens_to_be_push_in_the_operator_stack_2(void)
+{
+	Stack dataStack;
+	Stack operatorStack;
+	//21+22&30|6
+	Number number21 = {.type= NUMBER, .value=21};
+	Operator plus = {.type= OPERATOR, .id=ADD, .precedence=70};
+	Number number22 = {.type= NUMBER, .value=22};
+	
+	Number tempAns1 = {.type= NUMBER, .value=43};
+	Token *tempAnsToken1 =(Token*)&tempAns1;
+	
+	Operator bitwiseAND = {.type= OPERATOR, .id=BITWISE_AND, .precedence=20};
+	Number number30 = {.type= NUMBER, .value=30};
+	Operator bitwiseOR = {.type= OPERATOR, .id=BITWISE_OR, .precedence=10};
+	Number number6 = {.type= NUMBER, .value=6};
+	
+	Number tempAns2 = {.type= NUMBER, .value=6};
+	Token *tempAnsToken2 =(Token*)&tempAns2;
+	
+	stackPop_ExpectAndReturn(&operatorStack,&plus);
+	stackPop_ExpectAndReturn(&dataStack,&number22);
+	stackPop_ExpectAndReturn(&dataStack,&number21);
+	createNumberToken_ExpectAndReturn(43,tempAnsToken1);
+	stackPush_Expect(tempAnsToken1,&dataStack);
+
+	stackPop_ExpectAndReturn(&operatorStack,&bitwiseAND);
+	stackPop_ExpectAndReturn(&dataStack,&number30);
+	stackPop_ExpectAndReturn(&dataStack,&number6);
+	createNumberToken_ExpectAndReturn(6,tempAnsToken2);
+	stackPush_Expect(tempAnsToken2,&dataStack);
+	
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	stackPush_Expect(&bitwiseOR,&operatorStack);
+	
+	tryEvaluateOperatorOnStackThenPush(&bitwiseOR,&dataStack,&operatorStack);
+}
+
  
  
  
