@@ -11,23 +11,22 @@
 #include "LinkedList.h"
 #include "stackForEvaluate.h"
 
-
+/**
+	Evaluate all operator token on the operator stack that have strictly lower
+	precedence than the operator token to be pushed. The evaluation of operators token
+	is from the top of stack to bottom
+	
+	Input :
+		stack the operatorStack
+		operator the operator to be pushed onto the operator stack 
+		
+**/
+/*
 void tryEvaluatethenPush(Token *token,Stack *numberStack,Stack *operatorStack)
 {
 	Token *previousToken;
-	Token *currentToken;
-	Token *numToken1;
-	Token *numToken2;
-	Token *numToken3;
-	Number *number1;
-	Number *number2;
-	Number *number3;
-	Operator *ope1;
-	Operator *ope2;
-	int tempAnswer;
-	Token *tempAnswerToken;
-	
-	if(operatorStack->topOfStack==NULL){
+	previousToken=(Operator*)pop(operatorStack);
+	if(operatorSt){
 		stackPush(token,operatorStack);
 	}
 	else
@@ -54,3 +53,4 @@ void tryEvaluatethenPush(Token *token,Stack *numberStack,Stack *operatorStack)
 	}
 	
 }
+*/

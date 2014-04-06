@@ -20,6 +20,7 @@
 **/
 
 void operatorEvaluate(Stack *numberStack , Operator *opeToken){
+	
 	Number *num1;
 	Number *num2;
 	Token *token1; 
@@ -53,7 +54,4 @@ void evaluateAllOperatorOnStack(Stack *numberStack,Stack *operatorStack){
 		operatorEvaluate(numberStack,opeToken);
 	}
 }
-
-
-
 

@@ -60,6 +60,7 @@ void test_operatorEvaluate_3_PLUS_7(void)
 	Number number3 = {.type= NUMBER, .value=3};
 	Operator plus = {.type= OPERATOR, .id=ADD , .precedence=70};
 	Number number7 = {.type= NUMBER, .value=7};
+	
 	Number answer;
 	Token *answerToken=(Token*)&answer;
 	
@@ -82,6 +83,7 @@ void test_operatorEvaluate_100_MINUS_37(void)
 	Number number100 = {.type= NUMBER, .value=100};
 	Operator minus = {.type= OPERATOR, .id=SUBTRACT , .precedence=70};
 	Number number37 = {.type= NUMBER, .value=37};
+	
 	Number answer;
 	Token *answerToken=(Token*)&answer;
 	
@@ -236,6 +238,7 @@ void test_operatorEvaluate_56_BITWISEXOR_30(void)
 								6)operatorEvaluate
 								
  ***********************************************************************/	
+ 
  void test_evaluateAllOperatorOnStack_2_plus_3_plus_4(void){
 	Stack numStack;
 	Stack operatorStack;
@@ -735,77 +738,6 @@ void test_evaluateAllOperatorOnStack_100_divide_5_multiply_6_plus_99_minus_20_mo
 	
 	evaluateAllOperatorOnStack(&numStack,&operatorStack);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

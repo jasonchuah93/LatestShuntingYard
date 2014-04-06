@@ -10,46 +10,46 @@
   :line: 52
   :message: ''
 - :test: test_operatorEvaluate_100_MINUS_37
-  :line: 74
+  :line: 75
   :message: ''
 - :test: test_operatorEvaluate_100_MULTIPLY_50
-  :line: 96
+  :line: 98
   :message: ''
 - :test: test_operatorEvaluate_99_DIVIDE_3
-  :line: 118
+  :line: 120
   :message: ''
 - :test: test_operatorEvaluate_60_MODULUS_7
-  :line: 140
+  :line: 142
   :message: ''
 - :test: test_operatorEvaluate_45_BITWISEAND_54
-  :line: 162
+  :line: 164
   :message: ''
 - :test: test_operatorEvaluate_56_BITWISEOR_30
-  :line: 184
+  :line: 186
   :message: ''
 - :test: test_operatorEvaluate_56_BITWISEXOR_30
-  :line: 206
+  :line: 208
   :message: ''
 - :test: test_evaluateAllOperatorOnStack_2_plus_3_plus_4
-  :line: 239
+  :line: 242
   :message: ''
 - :test: test_evaluateAllOperatorOnStack_10_plus_3_multiply_9
-  :line: 287
+  :line: 290
   :message: ''
 - :test: test_evaluateAllOperatorOnStack_100_divide_5_plus_60
-  :line: 335
+  :line: 338
   :message: ''
 - :test: test_evaluateAllOperatorOnStack_99_XOR_66_divide_11_plus_10
-  :line: 383
+  :line: 386
   :message: ''
 - :test: test_evaluateAllOperatorOnStack_100_divide_5_multiply_6_plus_99_minus_20
-  :line: 448
+  :line: 451
   :message: ''
 - :test: test_evaluateAllOperatorOnStack_100_divide_5_multiply_6_plus_99_minus_20_modulus_30
-  :line: 529
+  :line: 532
   :message: ''
 - :test: test_evaluateAllOperatorOnStack_100_divide_5_multiply_6_plus_99_minus_20_modulus_30_bitwiseAnd_89
-  :line: 626
+  :line: 629
   :message: ''
 :failures: []
 :ignores: []
