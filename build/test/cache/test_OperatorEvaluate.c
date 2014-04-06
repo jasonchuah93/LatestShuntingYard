@@ -96,7 +96,7 @@ void test_operatorEvaluate_3_PLUS_7(void)
 
  Number number7 = {.type= NUMBER, .value=7};
 
- Number answer = {.type= NUMBER, .value=10};
+ Number answer;
 
  Token *answerToken=(Token*)&answer;
 
@@ -113,5 +113,49 @@ void test_operatorEvaluate_3_PLUS_7(void)
 
 
  operatorEvaluate(&numberStack,&plus);
+
+}
+
+
+
+void test_operatorEvaluate_100_MINUS_37(void)
+
+{
+
+ Stack numberStack;
+
+ Token *tempToken;
+
+ Number *tempAns;
+
+ int check;
+
+
+
+ String tokenizer = {.rawString = "100-37", .startIndex = 0, .length=3};
+
+ Number number100 = {.type= NUMBER, .value=100};
+
+ Operator minus = {.type= OPERATOR, .id=SUBTRACT , .precedence=70};
+
+ Number number37 = {.type= NUMBER, .value=37};
+
+ Number answer;
+
+ Token *answerToken=(Token*)&answer;
+
+
+
+ stackPop_CMockExpectAndReturn(81, &numberStack, &number37);
+
+ stackPop_CMockExpectAndReturn(82, &numberStack, &number100);
+
+ createNumberToken_CMockExpectAndReturn(83, 63, answerToken);
+
+ stackPush_CMockExpect(84, &answer, &numberStack);
+
+
+
+ operatorEvaluate(&numberStack,&minus);
 
 }

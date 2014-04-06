@@ -53,7 +53,7 @@ void test_operatorEvaluate_3_PLUS_7(void)
 	Number number3 = {.type= NUMBER, .value=3};
 	Operator plus = {.type= OPERATOR, .id=ADD , .precedence=70};
 	Number number7 = {.type= NUMBER, .value=7};
-	Number answer = {.type= NUMBER, .value=10};
+	Number answer;
 	Token *answerToken=(Token*)&answer;
 	
 	stackPop_ExpectAndReturn(&numberStack,&number7);
@@ -61,9 +61,30 @@ void test_operatorEvaluate_3_PLUS_7(void)
 	createNumberToken_ExpectAndReturn(10,answerToken);
 	stackPush_Expect(&answer,&numberStack);
 	
-	operatorEvaluate(&numberStack,&plus):
+	operatorEvaluate(&numberStack,&plus);
 }
 
+void test_operatorEvaluate_100_MINUS_37(void)
+{
+	Stack numberStack;
+	Token *tempToken;
+	Number *tempAns;
+	int check;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "100-37", .startIndex = 0, .length=3};
+	Number number100 = {.type= NUMBER, .value=100};
+	Operator minus = {.type= OPERATOR, .id=SUBTRACT , .precedence=70};
+	Number number37 = {.type= NUMBER, .value=37};
+	Number answer;
+	Token *answerToken=(Token*)&answer;
+	
+	stackPop_ExpectAndReturn(&numberStack,&number37);
+	stackPop_ExpectAndReturn(&numberStack,&number100);
+	createNumberToken_ExpectAndReturn(63,answerToken);
+	stackPush_Expect(&answer,&numberStack);
+	
+	operatorEvaluate(&numberStack,&minus);
+}
 
 
 

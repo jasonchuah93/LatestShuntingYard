@@ -45,6 +45,7 @@ extern void setUp(void);
 extern void tearDown(void);
 extern void test_operatorEvaluate_should_throw_error_when_encounter_invalid_operator(void);
 extern void test_operatorEvaluate_3_PLUS_7(void);
+extern void test_operatorEvaluate_100_MINUS_37(void);
 
 
 //=======Mock Management=====
@@ -94,6 +95,7 @@ int main(void)
   UnityBegin();
   RUN_TEST(test_operatorEvaluate_should_throw_error_when_encounter_invalid_operator, 20);
   RUN_TEST(test_operatorEvaluate_3_PLUS_7, 45);
+  RUN_TEST(test_operatorEvaluate_100_MINUS_37, 67);
 
   return (UnityEnd());
 }
