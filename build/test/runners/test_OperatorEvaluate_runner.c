@@ -53,6 +53,7 @@ extern void test_operatorEvaluate_45_BITWISEAND_54(void);
 extern void test_operatorEvaluate_56_BITWISEOR_30(void);
 extern void test_operatorEvaluate_56_BITWISEXOR_30(void);
 extern void test_evaluateAllOperatorOnStack_2_plus_3_plus_4(void);
+extern void test_evaluateAllOperatorOnStack_10_plus_3_multiply_9(void);
 
 
 //=======Mock Management=====
@@ -110,6 +111,7 @@ int main(void)
   RUN_TEST(test_operatorEvaluate_56_BITWISEOR_30, 183);
   RUN_TEST(test_operatorEvaluate_56_BITWISEXOR_30, 205);
   RUN_TEST(test_evaluateAllOperatorOnStack_2_plus_3_plus_4, 237);
+  RUN_TEST(test_evaluateAllOperatorOnStack_10_plus_3_multiply_9, 279);
 
   return (UnityEnd());
 }

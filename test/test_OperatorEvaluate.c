@@ -241,7 +241,7 @@ void test_operatorEvaluate_56_BITWISEXOR_30(void)
 	Number *tempAns;
 	int check;
 	//Initialize tokenizer,token and stack
-	String tokenizer = {.rawString = "2+3+4", .startIndex = 0};
+	String tokenizer = {.rawString = "2+3+4", .startIndex = 0 ,.length=5};
 	
 	Number number2 = {.type= NUMBER, .value=2};
 	Token *token1 = (Token*)&number2;
@@ -276,6 +276,47 @@ void test_operatorEvaluate_56_BITWISEXOR_30(void)
 	evaluateAllOperatorOnStack(&numStack,&operatorStack);
 }	
 
+void test_evaluateAllOperatorOnStack_10_plus_3_multiply_9(void){
+	Stack numStack;
+	Stack operatorStack;
+	Token *tempToken;
+	Number *tempAns;
+	int check;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "10+3*9", .startIndex = 0, .length=5};
+	
+	Number number10 = {.type= NUMBER, .value=10};
+	Token *token1 = (Token*)&number10;
+	Operator plus = {.type= OPERATOR, .id=ADD ,.precedence=70};
+	Token *token2 = (Token*)&plus;
+	Number number3 = {.type= NUMBER, .value=3};
+	Token *token3 = (Token*)&number3;
+	Operator multiply = {.type= OPERATOR, .id=MULTIPLY ,.precedence=70};
+	Token *token4 = (Token*)&multiply;
+	Number number9 = {.type= NUMBER, .value=9};
+	Token *token5 = (Token*)&number9;
+	Number tempAnswer = {.type= NUMBER, .value=13};
+	Token *tempAnsToken = (Token*)&tempAnswer;
+	Number finalAnswer;
+	Token *finalAnsToken = (Token*)&finalAnswer;
+	
+	//2+3
+	stackPop_ExpectAndReturn(&operatorStack,token2);
+	stackPop_ExpectAndReturn(&numStack,token3);
+	stackPop_ExpectAndReturn(&numStack,token1);
+	createNumberToken_ExpectAndReturn(13,tempAnsToken);
+	stackPush_Expect(tempAnsToken,&numStack);
+	
+	//5+4
+	stackPop_ExpectAndReturn(&operatorStack,token4);
+	stackPop_ExpectAndReturn(&numStack,token5);
+	stackPop_ExpectAndReturn(&numStack,tempAnsToken);
+	createNumberToken_ExpectAndReturn(117,finalAnsToken);
+	stackPush_Expect(finalAnsToken,&numStack);
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	
+	evaluateAllOperatorOnStack(&numStack,&operatorStack);
+}	
 
 
 

@@ -430,7 +430,7 @@ void test_operatorEvaluate_56_BITWISEXOR_30(void)
 
 
 
- String tokenizer = {.rawString = "2+3+4", .startIndex = 0};
+ String tokenizer = {.rawString = "2+3+4", .startIndex = 0 ,.length=5};
 
 
 
@@ -491,6 +491,90 @@ void test_operatorEvaluate_56_BITWISEXOR_30(void)
  stackPush_CMockExpect(273, finalAnsToken, &numStack);
 
  stackPop_CMockExpectAndReturn(274, &operatorStack, ((void *)0));
+
+
+
+ evaluateAllOperatorOnStack(&numStack,&operatorStack);
+
+}
+
+
+
+void test_evaluateAllOperatorOnStack_10_plus_3_multiply_9(void){
+
+ Stack numStack;
+
+ Stack operatorStack;
+
+ Token *tempToken;
+
+ Number *tempAns;
+
+ int check;
+
+
+
+ String tokenizer = {.rawString = "10+3*9", .startIndex = 0, .length=5};
+
+
+
+ Number number10 = {.type= NUMBER, .value=10};
+
+ Token *token1 = (Token*)&number10;
+
+ Operator plus = {.type= OPERATOR, .id=ADD ,.precedence=70};
+
+ Token *token2 = (Token*)&plus;
+
+ Number number3 = {.type= NUMBER, .value=3};
+
+ Token *token3 = (Token*)&number3;
+
+ Operator multiply = {.type= OPERATOR, .id=MULTIPLY ,.precedence=70};
+
+ Token *token4 = (Token*)&multiply;
+
+ Number number9 = {.type= NUMBER, .value=9};
+
+ Token *token5 = (Token*)&number9;
+
+ Number tempAnswer = {.type= NUMBER, .value=13};
+
+ Token *tempAnsToken = (Token*)&tempAnswer;
+
+ Number finalAnswer;
+
+ Token *finalAnsToken = (Token*)&finalAnswer;
+
+
+
+
+
+ stackPop_CMockExpectAndReturn(304, &operatorStack, token2);
+
+ stackPop_CMockExpectAndReturn(305, &numStack, token3);
+
+ stackPop_CMockExpectAndReturn(306, &numStack, token1);
+
+ createNumberToken_CMockExpectAndReturn(307, 13, tempAnsToken);
+
+ stackPush_CMockExpect(308, tempAnsToken, &numStack);
+
+
+
+
+
+ stackPop_CMockExpectAndReturn(311, &operatorStack, token4);
+
+ stackPop_CMockExpectAndReturn(312, &numStack, token5);
+
+ stackPop_CMockExpectAndReturn(313, &numStack, tempAnsToken);
+
+ createNumberToken_CMockExpectAndReturn(314, 117, finalAnsToken);
+
+ stackPush_CMockExpect(315, finalAnsToken, &numStack);
+
+ stackPop_CMockExpectAndReturn(316, &operatorStack, ((void *)0));
 
 
 
