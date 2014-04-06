@@ -250,7 +250,7 @@ void test_operatorEvaluate_99_DIVIDE_3(void)
 
 
 
-void test_operatorEvaluate_60_DIVIDE_7(void)
+void test_operatorEvaluate_60_MODULUS_7(void)
 
 {
 
@@ -289,5 +289,49 @@ void test_operatorEvaluate_60_DIVIDE_7(void)
 
 
  operatorEvaluate(&numberStack,&modulus);
+
+}
+
+
+
+void test_operatorEvaluate_45_BITWISEAND_54(void)
+
+{
+
+ Stack numberStack;
+
+ Token *tempToken;
+
+ Number *tempAns;
+
+ int check;
+
+
+
+ String tokenizer = {.rawString = "45&54", .startIndex = 0, .length=3};
+
+ Number number45 = {.type= NUMBER, .value=45};
+
+ Operator bitwiseAND = {.type= OPERATOR, .id=BITWISE_AND , .precedence=20};
+
+ Number number54 = {.type= NUMBER, .value=54};
+
+ Number answer;
+
+ Token *answerToken=(Token*)&answer;
+
+
+
+ stackPop_CMockExpectAndReturn(169, &numberStack, &number54);
+
+ stackPop_CMockExpectAndReturn(170, &numberStack, &number45);
+
+ createNumberToken_CMockExpectAndReturn(171, 36, answerToken);
+
+ stackPush_CMockExpect(172, &answer, &numberStack);
+
+
+
+ operatorEvaluate(&numberStack,&bitwiseAND);
 
 }

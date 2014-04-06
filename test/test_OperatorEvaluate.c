@@ -130,7 +130,7 @@ void test_operatorEvaluate_99_DIVIDE_3(void)
 	operatorEvaluate(&numberStack,&divide);
 }
 
-void test_operatorEvaluate_60_DIVIDE_7(void)
+void test_operatorEvaluate_60_MODULUS_7(void)
 {
 	Stack numberStack;
 	Token *tempToken;
@@ -150,6 +150,28 @@ void test_operatorEvaluate_60_DIVIDE_7(void)
 	stackPush_Expect(&answer,&numberStack);
 	
 	operatorEvaluate(&numberStack,&modulus);
+}
+
+void test_operatorEvaluate_45_BITWISEAND_54(void)
+{
+	Stack numberStack;
+	Token *tempToken;
+	Number *tempAns;
+	int check;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "45&54", .startIndex = 0, .length=3};
+	Number number45 = {.type= NUMBER, .value=45};
+	Operator bitwiseAND = {.type= OPERATOR, .id=BITWISE_AND , .precedence=20};
+	Number number54 = {.type= NUMBER, .value=54};
+	Number answer;
+	Token *answerToken=(Token*)&answer;
+	
+	stackPop_ExpectAndReturn(&numberStack,&number54);
+	stackPop_ExpectAndReturn(&numberStack,&number45);
+	createNumberToken_ExpectAndReturn(36,answerToken);
+	stackPush_Expect(&answer,&numberStack);
+	
+	operatorEvaluate(&numberStack,&bitwiseAND);
 }
 
 

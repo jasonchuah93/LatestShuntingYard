@@ -18,14 +18,17 @@
 - :test: test_operatorEvaluate_99_DIVIDE_3
   :line: 111
   :message: ''
-- :test: test_operatorEvaluate_60_DIVIDE_7
+- :test: test_operatorEvaluate_60_MODULUS_7
   :line: 133
+  :message: ''
+- :test: test_operatorEvaluate_45_BITWISEAND_54
+  :line: 155
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 6
-  :passed: 6
+  :total: 7
+  :passed: 7
   :failed: 0
   :ignored: 0
 :stdout: []
