@@ -55,6 +55,7 @@ extern void test_operatorEvaluate_56_BITWISEXOR_30(void);
 extern void test_evaluateAllOperatorOnStack_2_plus_3_plus_4(void);
 extern void test_evaluateAllOperatorOnStack_10_plus_3_multiply_9(void);
 extern void test_evaluateAllOperatorOnStack_100_divide_5_plus_60(void);
+extern void test_evaluateAllOperatorOnStack_99_XOR_66_divide_11_plus_10(void);
 
 
 //=======Mock Management=====
@@ -102,18 +103,19 @@ int main(void)
 {
   Unity.TestFile = "test_OperatorEvaluate.c";
   UnityBegin();
-  RUN_TEST(test_operatorEvaluate_should_throw_error_when_encounter_invalid_operator, 26);
-  RUN_TEST(test_operatorEvaluate_3_PLUS_7, 51);
-  RUN_TEST(test_operatorEvaluate_100_MINUS_37, 73);
-  RUN_TEST(test_operatorEvaluate_100_MULTIPLY_50, 95);
-  RUN_TEST(test_operatorEvaluate_99_DIVIDE_3, 117);
-  RUN_TEST(test_operatorEvaluate_60_MODULUS_7, 139);
-  RUN_TEST(test_operatorEvaluate_45_BITWISEAND_54, 161);
-  RUN_TEST(test_operatorEvaluate_56_BITWISEOR_30, 183);
-  RUN_TEST(test_operatorEvaluate_56_BITWISEXOR_30, 205);
-  RUN_TEST(test_evaluateAllOperatorOnStack_2_plus_3_plus_4, 237);
-  RUN_TEST(test_evaluateAllOperatorOnStack_10_plus_3_multiply_9, 279);
-  RUN_TEST(test_evaluateAllOperatorOnStack_100_divide_5_plus_60, 321);
+  RUN_TEST(test_operatorEvaluate_should_throw_error_when_encounter_invalid_operator, 27);
+  RUN_TEST(test_operatorEvaluate_3_PLUS_7, 52);
+  RUN_TEST(test_operatorEvaluate_100_MINUS_37, 74);
+  RUN_TEST(test_operatorEvaluate_100_MULTIPLY_50, 96);
+  RUN_TEST(test_operatorEvaluate_99_DIVIDE_3, 118);
+  RUN_TEST(test_operatorEvaluate_60_MODULUS_7, 140);
+  RUN_TEST(test_operatorEvaluate_45_BITWISEAND_54, 162);
+  RUN_TEST(test_operatorEvaluate_56_BITWISEOR_30, 184);
+  RUN_TEST(test_operatorEvaluate_56_BITWISEXOR_30, 206);
+  RUN_TEST(test_evaluateAllOperatorOnStack_2_plus_3_plus_4, 239);
+  RUN_TEST(test_evaluateAllOperatorOnStack_10_plus_3_multiply_9, 287);
+  RUN_TEST(test_evaluateAllOperatorOnStack_100_divide_5_plus_60, 335);
+  RUN_TEST(test_evaluateAllOperatorOnStack_99_XOR_66_divide_11_plus_10, 383);
 
   return (UnityEnd());
 }
