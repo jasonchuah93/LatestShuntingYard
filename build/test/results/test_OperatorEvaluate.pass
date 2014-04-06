@@ -42,11 +42,14 @@
 - :test: test_evaluateAllOperatorOnStack_99_XOR_66_divide_11_plus_10
   :line: 383
   :message: ''
+- :test: test_evaluateAllOperatorOnStack_100_divide_5_multiply_6_plus_99_minus_20
+  :line: 448
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 13
-  :passed: 13
+  :total: 14
+  :passed: 14
   :failed: 0
   :ignored: 0
 :stdout: []

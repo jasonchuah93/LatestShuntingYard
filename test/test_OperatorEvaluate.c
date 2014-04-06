@@ -387,7 +387,7 @@ void test_evaluateAllOperatorOnStack_99_XOR_66_divide_11_plus_10(void){
 	Number *tempAns;
 	int check;
 	//Initialize tokenizer,token and stack
-	String tokenizer = {.rawString = "99^66/11", .startIndex = 0, .length=7};
+	String tokenizer = {.rawString = "99^66/11+10", .startIndex = 0, .length=7};
 	
 	Number number99 = {.type= NUMBER, .value=99};
 	Token *token1 = (Token*)&number99;
@@ -445,8 +445,164 @@ void test_evaluateAllOperatorOnStack_99_XOR_66_divide_11_plus_10(void){
 	evaluateAllOperatorOnStack(&numStack,&operatorStack);
 }
 
+void test_evaluateAllOperatorOnStack_100_divide_5_multiply_6_plus_99_minus_20(void){
+	Stack numStack;
+	Stack operatorStack;
+	Token *tempToken;
+	Number *tempAns;
+	int check;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "100/5*6+99-20", .startIndex = 0, .length=9};
+	
+	Number number100 = {.type= NUMBER, .value=100};
+	Token *token1 = (Token*)&number100;
+	
+	Operator divide= {.type= OPERATOR, .id=DIVIDE ,.precedence=100};
+	Token *token2 = (Token*)&divide;
+	
+	Number number5 = {.type= NUMBER, .value=5};
+	Token *token3 = (Token*)&number5;
+	
+	Operator multiply = {.type= OPERATOR, .id=MULTIPLY ,.precedence=100};
+	Token *token4 = (Token*)&multiply;
+	
+	Number number6 = {.type= NUMBER, .value=6};
+	Token *token5 = (Token*)&number6;
+	
+	Operator plus = {.type= OPERATOR, .id=ADD ,.precedence=70};
+	Token *token6 = (Token*)&plus;
+	
+	Number number99 = {.type= NUMBER, .value=99};
+	Token *token7 = (Token*)&number99;
+	
+	Operator minus = {.type= OPERATOR, .id=SUBTRACT ,.precedence=70};
+	Token *token8 = (Token*)&minus;
+	
+	Number number20 = {.type= NUMBER, .value=20};
+	Token *token9 = (Token*)&number20;
 
+	//tempAnswer need to initialize value because the stackPush and stackPop is mocked
+	Number tempAnswer = {.type= NUMBER, .value=20};
+	Token *tempAnsToken = (Token*)&tempAnswer;
+	
+	Number tempAnswer2 = {.type= NUMBER, .value=120};
+	Token *tempAnsToken2 = (Token*)&tempAnswer2;
+	
+	Number tempAnswer3 = {.type= NUMBER, .value=219};
+	Token *tempAnsToken3 = (Token*)&tempAnswer3;
+	
+	Number finalAnswer;
+	Token *finalAnsToken = (Token*)&finalAnswer;
+	
+	//100/5
+	stackPop_ExpectAndReturn(&operatorStack,token2);
+	stackPop_ExpectAndReturn(&numStack,token3);
+	stackPop_ExpectAndReturn(&numStack,token1);
+	createNumberToken_ExpectAndReturn(20,tempAnsToken);
+	stackPush_Expect(tempAnsToken,&numStack);
+	
+	//20*6
+	stackPop_ExpectAndReturn(&operatorStack,token4);
+	stackPop_ExpectAndReturn(&numStack,token5);
+	stackPop_ExpectAndReturn(&numStack,tempAnsToken);
+	createNumberToken_ExpectAndReturn(120,tempAnsToken2);
+	stackPush_Expect(tempAnsToken2,&numStack);
+	
+	//120+99
+	stackPop_ExpectAndReturn(&operatorStack,token6);
+	stackPop_ExpectAndReturn(&numStack,token7);
+	stackPop_ExpectAndReturn(&numStack,tempAnsToken2);
+	createNumberToken_ExpectAndReturn(219,tempAnsToken3);
+	stackPush_Expect(tempAnsToken3,&numStack);
+	
+	//219-20
+	stackPop_ExpectAndReturn(&operatorStack,token8);
+	stackPop_ExpectAndReturn(&numStack,token9);
+	stackPop_ExpectAndReturn(&numStack,tempAnsToken3);
+	createNumberToken_ExpectAndReturn(199,finalAnsToken);
+	stackPush_Expect(finalAnsToken,&numStack);
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	
+	evaluateAllOperatorOnStack(&numStack,&operatorStack);
+}
 
+/*
+void test_evaluateAllOperatorOnStack_100_divide_5_multiply_6_plus_99_minus_20_modulus_5(void){
+	Stack numStack;
+	Stack operatorStack;
+	Token *tempToken;
+	Number *tempAns;
+	int check;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "100/5*11+10-20%5", .startIndex = 0, .length=11};
+	
+	Number number100 = {.type= NUMBER, .value=100};
+	Token *token1 = (Token*)&number100;
+	
+	Operator divide= {.type= OPERATOR, .id=DIVIDE ,.precedence=100};
+	Token *token2 = (Token*)&divide;
+	
+	Number number5 = {.type= NUMBER, .value=5};
+	Token *token3 = (Token*)&number5;
+	
+	Operator multiply = {.type= OPERATOR, .id=MULTIPLY ,.precedence=100};
+	Token *token4 = (Token*)&multiply;
+	
+	Number number11 = {.type= NUMBER, .value=11};
+	Token *token5 = (Token*)&number11;
+	
+	Operator plus = {.type= OPERATOR, .id=ADD ,.precedence=70};
+	Token *token6 = (Token*)&plus;
+	
+	Number number10 = {.type= NUMBER, .value=10};
+	Token *token7 = (Token*)&number10;
+	
+	//tempAnswer need to initialize value because the stackPush and stackPop is mocked
+	Number tempAnswer = {.type= NUMBER, .value=33};
+	Token *tempAnsToken = (Token*)&tempAnswer;
+	
+	Number tempAnswer2 = {.type= NUMBER, .value=3};
+	Token *tempAnsToken2 = (Token*)&tempAnswer2;
+	
+	Number tempAnswer3 = {.type= NUMBER, .value=13};
+	Token *tempAnsToken2 = (Token*)&tempAnswer3;
+	
+	Number finalAnswer;
+	Token *finalAnsToken = (Token*)&finalAnswer;
+	
+	//99^66
+	stackPop_ExpectAndReturn(&operatorStack,token2);
+	stackPop_ExpectAndReturn(&numStack,token3);
+	stackPop_ExpectAndReturn(&numStack,token1);
+	createNumberToken_ExpectAndReturn(33,tempAnsToken);
+	stackPush_Expect(tempAnsToken,&numStack);
+	
+	//33/11
+	stackPop_ExpectAndReturn(&operatorStack,token4);
+	stackPop_ExpectAndReturn(&numStack,token5);
+	stackPop_ExpectAndReturn(&numStack,tempAnsToken);
+	createNumberToken_ExpectAndReturn(3,tempAnsToken2);
+	stackPush_Expect(tempAnsToken2,&numStack);
+	
+	//3+10
+	stackPop_ExpectAndReturn(&operatorStack,token6);
+	stackPop_ExpectAndReturn(&numStack,token7);
+	stackPop_ExpectAndReturn(&numStack,tempAnsToken2);
+	createNumberToken_ExpectAndReturn(13,tempAnsToken3);
+	stackPush_Expect(tempAnsToken3,&numStack);
+	
+	//13%5
+	stackPop_ExpectAndReturn(&operatorStack,token6);
+	stackPop_ExpectAndReturn(&numStack,token7);
+	stackPop_ExpectAndReturn(&numStack,tempAnsToken3);
+	createNumberToken_ExpectAndReturn(13,finalAnsToken);
+	stackPush_Expect(finalAnsToken,&numStack);
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+
+	evaluateAllOperatorOnStack(&numStack,&operatorStack);
+}
+
+*/
 
 
 

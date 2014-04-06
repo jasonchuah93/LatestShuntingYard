@@ -56,6 +56,7 @@ extern void test_evaluateAllOperatorOnStack_2_plus_3_plus_4(void);
 extern void test_evaluateAllOperatorOnStack_10_plus_3_multiply_9(void);
 extern void test_evaluateAllOperatorOnStack_100_divide_5_plus_60(void);
 extern void test_evaluateAllOperatorOnStack_99_XOR_66_divide_11_plus_10(void);
+extern void test_evaluateAllOperatorOnStack_100_divide_5_multiply_6_plus_99_minus_20(void);
 
 
 //=======Mock Management=====
@@ -116,6 +117,7 @@ int main(void)
   RUN_TEST(test_evaluateAllOperatorOnStack_10_plus_3_multiply_9, 287);
   RUN_TEST(test_evaluateAllOperatorOnStack_100_divide_5_plus_60, 335);
   RUN_TEST(test_evaluateAllOperatorOnStack_99_XOR_66_divide_11_plus_10, 383);
+  RUN_TEST(test_evaluateAllOperatorOnStack_100_divide_5_multiply_6_plus_99_minus_20, 448);
 
   return (UnityEnd());
 }
