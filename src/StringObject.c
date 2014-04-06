@@ -5,6 +5,8 @@
 #include <malloc.h>
 #include "Error.h"
 #include "CException.h"
+#include "getToken.h"
+#include "convertValue.h"
 
 /*
  * This function will generate a string
@@ -26,7 +28,7 @@ String *stringCreate(char *expression) {
 	int tempIndex,stringStartLocation,lengthOfTheIdentifier=0; 
 	Token *newToken;
 	char name[20];
-	Error exception;
+	ErrorCode exception;
 	stringCopy(expression, newRawString, 0, length);
 	newString->rawString = newRawString;
 	newString->startIndex = 0;
@@ -92,9 +94,9 @@ String *stringCreate(char *expression) {
 		{
 			Throw(UNDEFINED_IDENTIFIER);
 		}
-		else if(exception == INVALID_EXPRESSION)
+		else if(exception == ERR_INVALID_EXPRESSION)
 		{
-			Throw(INVALID_EXPRESSION);
+			Throw(ERR_INVALID_EXPRESSION);
 		}
 	}
 	newString->startIndex=0;

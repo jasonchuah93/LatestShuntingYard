@@ -8,7 +8,13 @@ typedef struct {
 	Element *(*next)(Element *);
 } Iterator;
 
-Iterator *getIterator(LinkedList *list);
-Element *getNext(Element *current);
+typedef struct DefineElement_t{
+	struct DefineElement_t *next;
+	char *ID;
+	char *actualID;
+}DefineElement;
+
+void *getIterator(LinkedList *list);
+void *getNext(void);
 
 #endif // Iterator_H

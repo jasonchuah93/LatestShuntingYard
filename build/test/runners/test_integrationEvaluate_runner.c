@@ -34,8 +34,6 @@ char* GlobalOrderError;
 //=======External Functions This Runner Calls=====
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_shunting_yard_should_return_0_if_the_expression_is_null(void);
-extern void test_evaluate_2_PLUS_3(void);
 
 
 //=======Test Reset Option=====
@@ -51,8 +49,6 @@ int main(void)
 {
   Unity.TestFile = "test_integrationEvaluate.c";
   UnityBegin();
-  RUN_TEST(test_shunting_yard_should_return_0_if_the_expression_is_null, 8);
-  RUN_TEST(test_evaluate_2_PLUS_3, 14);
 
   return (UnityEnd());
 }

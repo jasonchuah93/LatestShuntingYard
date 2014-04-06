@@ -48,6 +48,7 @@ extern void test_should_return_6_for_60_divide_10(void);
 extern void test_evaluate_2_MULTIPLY_3_PLUS_4(void);
 extern void test_evaluate_2_PLUS_3_MULTIPLY_4_PLUS_5_MULTIPLY_6(void);
 extern void test_evaluate_2_MULTIPLY_3_PLUS_4_MULTIPLY_5_PLUS_6(void);
+extern void test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10(void);
 
 
 //=======Mock Management=====
@@ -98,6 +99,7 @@ int main(void)
   RUN_TEST(test_evaluate_2_MULTIPLY_3_PLUS_4, 168);
   RUN_TEST(test_evaluate_2_PLUS_3_MULTIPLY_4_PLUS_5_MULTIPLY_6, 250);
   RUN_TEST(test_evaluate_2_MULTIPLY_3_PLUS_4_MULTIPLY_5_PLUS_6, 389);
+  RUN_TEST(test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10, 524);
 
   return (UnityEnd());
 }

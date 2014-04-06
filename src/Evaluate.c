@@ -37,11 +37,12 @@ int evaluate(char *expression){
 	Stack *operatorStack;
 	operatorStack=createStack();
 	tokenizer = stringCreate(expression);
+	Operator *prefixToken=(Operator*)token;
 	if(expression ==NULL){	
 		Throw(ERR_INVALID_EXPRESSION);
 	}
-	
 	while((token=getToken(tokenizer))!=NULL){
+		
 		if(counter%2==0&&*token==OPERATOR){
 			Throw(UNKNOWN_DATA);
 		}
@@ -60,6 +61,7 @@ int evaluate(char *expression){
 		
 		counter ++;
 	}
+	
 	evaluateAllOperatorOnStack(numberStack,operatorStack);
 	result=(Number*)stackPop(numberStack);
 	printf("Loop needed for each expression to completely evaluate : %d \n",counter);

@@ -21,11 +21,14 @@
 - :test: test_evaluate_2_MULTIPLY_3_PLUS_4_MULTIPLY_5_PLUS_6
   :line: 389
   :message: ''
+- :test: test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10
+  :line: 524
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 6
-  :passed: 6
+  :total: 7
+  :passed: 7
   :failed: 0
   :ignored: 0
 :stdout:
@@ -39,3 +42,5 @@
 - 'Answer : 44 '
 - 'Loop needed for each expression to completely evaluate : 9 '
 - 'Answer : 32 '
+- 'Loop needed for each expression to completely evaluate : 11 '
+- 'Answer : 7 '
