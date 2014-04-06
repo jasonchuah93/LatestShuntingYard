@@ -47,6 +47,7 @@ extern void test_operatorEvaluate_should_throw_error_when_encounter_invalid_oper
 extern void test_operatorEvaluate_3_PLUS_7(void);
 extern void test_operatorEvaluate_100_MINUS_37(void);
 extern void test_operatorEvaluate_100_MULTIPLY_50(void);
+extern void test_operatorEvaluate_99_DIVIDE_3(void);
 
 
 //=======Mock Management=====
@@ -98,6 +99,7 @@ int main(void)
   RUN_TEST(test_operatorEvaluate_3_PLUS_7, 45);
   RUN_TEST(test_operatorEvaluate_100_MINUS_37, 67);
   RUN_TEST(test_operatorEvaluate_100_MULTIPLY_50, 89);
+  RUN_TEST(test_operatorEvaluate_99_DIVIDE_3, 111);
 
   return (UnityEnd());
 }

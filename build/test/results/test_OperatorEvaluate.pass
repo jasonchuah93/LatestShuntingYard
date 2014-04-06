@@ -15,11 +15,14 @@
 - :test: test_operatorEvaluate_100_MULTIPLY_50
   :line: 89
   :message: ''
+- :test: test_operatorEvaluate_99_DIVIDE_3
+  :line: 111
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 4
-  :passed: 4
+  :total: 5
+  :passed: 5
   :failed: 0
   :ignored: 0
 :stdout: []

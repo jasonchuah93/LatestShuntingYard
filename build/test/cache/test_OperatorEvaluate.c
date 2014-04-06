@@ -203,3 +203,47 @@ void test_operatorEvaluate_100_MULTIPLY_50(void)
  operatorEvaluate(&numberStack,&multiply);
 
 }
+
+
+
+void test_operatorEvaluate_99_DIVIDE_3(void)
+
+{
+
+ Stack numberStack;
+
+ Token *tempToken;
+
+ Number *tempAns;
+
+ int check;
+
+
+
+ String tokenizer = {.rawString = "99/3", .startIndex = 0, .length=3};
+
+ Number number99 = {.type= NUMBER, .value=99};
+
+ Operator divide = {.type= OPERATOR, .id=DIVIDE , .precedence=100};
+
+ Number number3 = {.type= NUMBER, .value=3};
+
+ Number answer;
+
+ Token *answerToken=(Token*)&answer;
+
+
+
+ stackPop_CMockExpectAndReturn(125, &numberStack, &number3);
+
+ stackPop_CMockExpectAndReturn(126, &numberStack, &number99);
+
+ createNumberToken_CMockExpectAndReturn(127, 33, answerToken);
+
+ stackPush_CMockExpect(128, &answer, &numberStack);
+
+
+
+ operatorEvaluate(&numberStack,&divide);
+
+}
