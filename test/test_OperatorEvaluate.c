@@ -2,13 +2,13 @@
 #include "Evaluate.h"
 #include "LinkedList.h"
 #include "mock_Stack.h"
-#include "mock_StringObject.h"
-#include "mock_getToken.h"
-#include "mock_tryEvaluatethenPush.h"
 #include "operatorEvaluate.h"
 #include "calculateToken.h"
 #include "stackForEvaluate.h"
 #include "mock_createNumberToken.h"
+#include "mock_StringObject.h"
+#include "mock_getToken.h"
+#include "mock_tryEvaluatethenPush.h"
 #include "Error.h"
 
 void setUp(void){}
@@ -16,6 +16,12 @@ void tearDown(void){}
 
 /***********************************************************************	
  Test on function operatorEvaluate
+ Using following mock function : 
+								1)stringCreate()
+								2)getToken()
+								3)stackPop()  
+								4)stackPush()
+								5)createNumberToken()
  ***********************************************************************/	
  void test_operatorEvaluate_should_throw_error_when_encounter_invalid_operator(void){
 	
@@ -218,7 +224,57 @@ void test_operatorEvaluate_56_BITWISEXOR_30(void)
 	operatorEvaluate(&numberStack,&bitwiseXOR);
 }
 
-
+/***********************************************************************	
+ Test on function evaluateAllOperatorOnStack
+ Using following mock function : 
+								1)stringCreate()
+								2)getToken()
+								3)stackPop()  
+								4)stackPush()
+								5)createNumberToken()
+								6)operatorEvaluate
+ ***********************************************************************/	
+ void test_evaluateAllOperatorOnStack_2_plus_3_plus_4(void){
+	Stack numStack;
+	Stack operatorStack;
+	Token *tempToken;
+	Number *tempAns;
+	int check;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "2+3+4", .startIndex = 0};
+	
+	Number number2 = {.type= NUMBER, .value=2};
+	Token *token1 = (Token*)&number2;
+	Operator plus = {.type= OPERATOR, .id=ADD ,.precedence=70};
+	Token *token2 = (Token*)&plus;
+	Number number3 = {.type= NUMBER, .value=3};
+	Token *token3 = (Token*)&number3;
+	Operator add = {.type= OPERATOR, .id=ADD ,.precedence=70};
+	Token *token4 = (Token*)&add;
+	Number number4 = {.type= NUMBER, .value=4};
+	Token *token5 = (Token*)&number4;
+	Number tempAnswer = {.type= NUMBER, .value=5};
+	Token *tempAnsToken = (Token*)&tempAnswer;
+	Number finalAnswer;
+	Token *finalAnsToken = (Token*)&finalAnswer;
+	
+	//2+3
+	stackPop_ExpectAndReturn(&operatorStack,token2);
+	stackPop_ExpectAndReturn(&numStack,token3);
+	stackPop_ExpectAndReturn(&numStack,token1);
+	createNumberToken_ExpectAndReturn(5,tempAnsToken);
+	stackPush_Expect(tempAnsToken,&numStack);
+	
+	//5+4
+	stackPop_ExpectAndReturn(&operatorStack,token4);
+	stackPop_ExpectAndReturn(&numStack,token5);
+	stackPop_ExpectAndReturn(&numStack,tempAnsToken);
+	createNumberToken_ExpectAndReturn(9,finalAnsToken);
+	stackPush_Expect(finalAnsToken,&numStack);
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	
+	evaluateAllOperatorOnStack(&numStack,&operatorStack);
+}	
 
 
 
