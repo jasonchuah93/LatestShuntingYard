@@ -159,3 +159,47 @@ void test_operatorEvaluate_100_MINUS_37(void)
  operatorEvaluate(&numberStack,&minus);
 
 }
+
+
+
+void test_operatorEvaluate_100_MULTIPLY_50(void)
+
+{
+
+ Stack numberStack;
+
+ Token *tempToken;
+
+ Number *tempAns;
+
+ int check;
+
+
+
+ String tokenizer = {.rawString = "100*50", .startIndex = 0, .length=3};
+
+ Number number100 = {.type= NUMBER, .value=100};
+
+ Operator multiply = {.type= OPERATOR, .id=MULTIPLY , .precedence=100};
+
+ Number number50 = {.type= NUMBER, .value=50};
+
+ Number answer;
+
+ Token *answerToken=(Token*)&answer;
+
+
+
+ stackPop_CMockExpectAndReturn(103, &numberStack, &number50);
+
+ stackPop_CMockExpectAndReturn(104, &numberStack, &number100);
+
+ createNumberToken_CMockExpectAndReturn(105, 5000, answerToken);
+
+ stackPush_CMockExpect(106, &answer, &numberStack);
+
+
+
+ operatorEvaluate(&numberStack,&multiply);
+
+}

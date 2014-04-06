@@ -12,11 +12,14 @@
 - :test: test_operatorEvaluate_100_MINUS_37
   :line: 67
   :message: ''
+- :test: test_operatorEvaluate_100_MULTIPLY_50
+  :line: 89
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 3
-  :passed: 3
+  :total: 4
+  :passed: 4
   :failed: 0
   :ignored: 0
 :stdout: []
