@@ -530,7 +530,7 @@ void test_evaluateAllOperatorOnStack_10_plus_3_multiply_9(void){
 
  Token *token3 = (Token*)&number3;
 
- Operator multiply = {.type= OPERATOR, .id=MULTIPLY ,.precedence=70};
+ Operator multiply = {.type= OPERATOR, .id=MULTIPLY ,.precedence=100};
 
  Token *token4 = (Token*)&multiply;
 
@@ -575,6 +575,90 @@ void test_evaluateAllOperatorOnStack_10_plus_3_multiply_9(void){
  stackPush_CMockExpect(315, finalAnsToken, &numStack);
 
  stackPop_CMockExpectAndReturn(316, &operatorStack, ((void *)0));
+
+
+
+ evaluateAllOperatorOnStack(&numStack,&operatorStack);
+
+}
+
+
+
+void test_evaluateAllOperatorOnStack_100_divide_5_plus_60(void){
+
+ Stack numStack;
+
+ Stack operatorStack;
+
+ Token *tempToken;
+
+ Number *tempAns;
+
+ int check;
+
+
+
+ String tokenizer = {.rawString = "100/5+60", .startIndex = 0, .length=5};
+
+
+
+ Number number100 = {.type= NUMBER, .value=100};
+
+ Token *token1 = (Token*)&number100;
+
+ Operator divide = {.type= OPERATOR, .id=DIVIDE ,.precedence=70};
+
+ Token *token2 = (Token*)&divide;
+
+ Number number5 = {.type= NUMBER, .value=5};
+
+ Token *token3 = (Token*)&number5;
+
+ Operator plus = {.type= OPERATOR, .id=ADD ,.precedence=70};
+
+ Token *token4 = (Token*)&plus;
+
+ Number number60 = {.type= NUMBER, .value=60};
+
+ Token *token5 = (Token*)&number60;
+
+ Number tempAnswer = {.type= NUMBER, .value=20};
+
+ Token *tempAnsToken = (Token*)&tempAnswer;
+
+ Number finalAnswer;
+
+ Token *finalAnsToken = (Token*)&finalAnswer;
+
+
+
+
+
+ stackPop_CMockExpectAndReturn(346, &operatorStack, token2);
+
+ stackPop_CMockExpectAndReturn(347, &numStack, token3);
+
+ stackPop_CMockExpectAndReturn(348, &numStack, token1);
+
+ createNumberToken_CMockExpectAndReturn(349, 20, tempAnsToken);
+
+ stackPush_CMockExpect(350, tempAnsToken, &numStack);
+
+
+
+
+
+ stackPop_CMockExpectAndReturn(353, &operatorStack, token4);
+
+ stackPop_CMockExpectAndReturn(354, &numStack, token5);
+
+ stackPop_CMockExpectAndReturn(355, &numStack, tempAnsToken);
+
+ createNumberToken_CMockExpectAndReturn(356, 80, finalAnsToken);
+
+ stackPush_CMockExpect(357, finalAnsToken, &numStack);
+
+ stackPop_CMockExpectAndReturn(358, &operatorStack, ((void *)0));
 
 
 

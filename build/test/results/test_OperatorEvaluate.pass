@@ -36,11 +36,14 @@
 - :test: test_evaluateAllOperatorOnStack_10_plus_3_multiply_9
   :line: 279
   :message: ''
+- :test: test_evaluateAllOperatorOnStack_100_divide_5_plus_60
+  :line: 321
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 11
-  :passed: 11
+  :total: 12
+  :passed: 12
   :failed: 0
   :ignored: 0
 :stdout: []

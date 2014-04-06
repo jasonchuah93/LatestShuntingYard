@@ -291,7 +291,7 @@ void test_evaluateAllOperatorOnStack_10_plus_3_multiply_9(void){
 	Token *token2 = (Token*)&plus;
 	Number number3 = {.type= NUMBER, .value=3};
 	Token *token3 = (Token*)&number3;
-	Operator multiply = {.type= OPERATOR, .id=MULTIPLY ,.precedence=70};
+	Operator multiply = {.type= OPERATOR, .id=MULTIPLY ,.precedence=100};
 	Token *token4 = (Token*)&multiply;
 	Number number9 = {.type= NUMBER, .value=9};
 	Token *token5 = (Token*)&number9;
@@ -318,7 +318,47 @@ void test_evaluateAllOperatorOnStack_10_plus_3_multiply_9(void){
 	evaluateAllOperatorOnStack(&numStack,&operatorStack);
 }	
 
-
+void test_evaluateAllOperatorOnStack_100_divide_5_plus_60(void){
+	Stack numStack;
+	Stack operatorStack;
+	Token *tempToken;
+	Number *tempAns;
+	int check;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "100/5+60", .startIndex = 0, .length=5};
+	
+	Number number100 = {.type= NUMBER, .value=100};
+	Token *token1 = (Token*)&number100;
+	Operator divide = {.type= OPERATOR, .id=DIVIDE ,.precedence=70};
+	Token *token2 = (Token*)&divide;
+	Number number5 = {.type= NUMBER, .value=5};
+	Token *token3 = (Token*)&number5;
+	Operator plus = {.type= OPERATOR, .id=ADD ,.precedence=70};
+	Token *token4 = (Token*)&plus;
+	Number number60 = {.type= NUMBER, .value=60};
+	Token *token5 = (Token*)&number60;
+	Number tempAnswer = {.type= NUMBER, .value=20};
+	Token *tempAnsToken = (Token*)&tempAnswer;
+	Number finalAnswer;
+	Token *finalAnsToken = (Token*)&finalAnswer;
+	
+	//2+3
+	stackPop_ExpectAndReturn(&operatorStack,token2);
+	stackPop_ExpectAndReturn(&numStack,token3);
+	stackPop_ExpectAndReturn(&numStack,token1);
+	createNumberToken_ExpectAndReturn(20,tempAnsToken);
+	stackPush_Expect(tempAnsToken,&numStack);
+	
+	//5+4
+	stackPop_ExpectAndReturn(&operatorStack,token4);
+	stackPop_ExpectAndReturn(&numStack,token5);
+	stackPop_ExpectAndReturn(&numStack,tempAnsToken);
+	createNumberToken_ExpectAndReturn(80,finalAnsToken);
+	stackPush_Expect(finalAnsToken,&numStack);
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	
+	evaluateAllOperatorOnStack(&numStack,&operatorStack);
+}	
 
 
 
