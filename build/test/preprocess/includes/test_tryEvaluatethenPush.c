@@ -1,10 +1,10 @@
 ---
 - Evaluate.h
 - LinkedList.h
-- Stack.h
 - calculateToken.h
-- createNumberToken.h
+- mock_Stack.h
 - mock_StringObject.h
+- mock_createNumberToken.h
 - mock_getToken.h
 - operatorEvaluate.h
 - stackForEvaluate.h

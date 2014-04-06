@@ -2,12 +2,24 @@
 :source:
   :path: test
   :file: test_tryEvaluatethenPush.c
-:successes: []
+:successes:
+- :test: test_tryEvaluateOperatorOnStackThenPush_will_push_OperatorToken_if_Operator_Stack_is_empty
+  :line: 33
+  :message: ''
+- :test: test_tryEvaluateOperatorOnStaclThenPush_will_push_OperatorTOken_into_Operator_Stack_if_newToken_precendence_is_higher_than_previousToken
+  :line: 43
+  :message: ''
+- :test: test_tryEvaluateOperatorOnStackThenPush_will_not_push_OperatorTOken_into_Operator_Stack_if_newToken_precendence_is_lower_than_previousToken
+  :line: 57
+  :message: ''
+- :test: test_tryEvaluateOperatorOnStackThenPush_evaluate_newToke_and_previousToken_if_both_have_same_precedence
+  :line: 82
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 0
-  :passed: 0
+  :total: 4
+  :passed: 4
   :failed: 0
   :ignored: 0
 :stdout: []

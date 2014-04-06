@@ -5,7 +5,7 @@
 #include "Stack.h"
 
 //Function declaration
-void tryEvaluatethenPush(Token *token,Stack *numberStack,Stack *operatorStack);
+void tryEvaluateOperatorOnStackThenPush(Operator *newToken,Stack *numberStack,Stack *operatorStack);
 
 
 #endif //__TRYEVALUATETHANPUSH_H__

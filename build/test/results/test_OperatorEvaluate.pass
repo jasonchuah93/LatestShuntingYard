@@ -4,52 +4,52 @@
   :file: test_OperatorEvaluate.c
 :successes:
 - :test: test_operatorEvaluate_should_throw_error_when_encounter_invalid_operator
-  :line: 27
+  :line: 31
   :message: ''
 - :test: test_operatorEvaluate_3_PLUS_7
-  :line: 52
+  :line: 56
   :message: ''
 - :test: test_operatorEvaluate_100_MINUS_37
-  :line: 75
+  :line: 79
   :message: ''
 - :test: test_operatorEvaluate_100_MULTIPLY_50
-  :line: 98
+  :line: 102
   :message: ''
 - :test: test_operatorEvaluate_99_DIVIDE_3
-  :line: 120
+  :line: 124
   :message: ''
 - :test: test_operatorEvaluate_60_MODULUS_7
-  :line: 142
+  :line: 146
   :message: ''
 - :test: test_operatorEvaluate_45_BITWISEAND_54
-  :line: 164
+  :line: 168
   :message: ''
 - :test: test_operatorEvaluate_56_BITWISEOR_30
-  :line: 186
+  :line: 190
   :message: ''
 - :test: test_operatorEvaluate_56_BITWISEXOR_30
-  :line: 208
+  :line: 212
   :message: ''
 - :test: test_evaluateAllOperatorOnStack_2_plus_3_plus_4
-  :line: 242
+  :line: 250
   :message: ''
 - :test: test_evaluateAllOperatorOnStack_10_plus_3_multiply_9
-  :line: 290
+  :line: 298
   :message: ''
 - :test: test_evaluateAllOperatorOnStack_100_divide_5_plus_60
-  :line: 338
+  :line: 346
   :message: ''
 - :test: test_evaluateAllOperatorOnStack_99_XOR_66_divide_11_plus_10
-  :line: 386
+  :line: 394
   :message: ''
 - :test: test_evaluateAllOperatorOnStack_100_divide_5_multiply_6_plus_99_minus_20
-  :line: 451
+  :line: 459
   :message: ''
 - :test: test_evaluateAllOperatorOnStack_100_divide_5_multiply_6_plus_99_minus_20_modulus_30
-  :line: 532
+  :line: 540
   :message: ''
 - :test: test_evaluateAllOperatorOnStack_100_divide_5_multiply_6_plus_99_minus_20_modulus_30_bitwiseAnd_89
-  :line: 629
+  :line: 637
   :message: ''
 :failures: []
 :ignores: []

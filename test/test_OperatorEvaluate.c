@@ -16,6 +16,10 @@ void tearDown(void){}
 
 /***********************************************************************	
  Test on function operatorEvaluate
+ Input parameter : 
+					1)Stack *numberStack
+					2)Operator *opeToken
+
  Using following mock function : 
 								1)stringCreate()
 								2)getToken()
@@ -229,6 +233,10 @@ void test_operatorEvaluate_56_BITWISEXOR_30(void)
 
 /***********************************************************************	
  Test on function evaluateAllOperatorOnStack
+ Input parameter : 
+					1)Stack *numberStack
+					2)Stack *operatorStack
+					
  Using following mock function : 
 								1)stringCreate()
 								2)getToken()

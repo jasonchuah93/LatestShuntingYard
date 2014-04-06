@@ -1,6 +1,6 @@
 #include "unity.h"
 #include "Evaluate.h"
-#include "Stack.h"
+#include "mock_Stack.h"
 #include "LinkedList.h"
 #include "mock_StringObject.h"
 #include "mock_getToken.h"
@@ -8,12 +8,114 @@
 #include "operatorEvaluate.h"
 #include "calculateToken.h"
 #include "stackForEvaluate.h"
-#include "createNumberToken.h"
+#include "mock_createNumberToken.h"
 
 void setUp(void){}
 void tearDown(void){}
 
-/*
+/***********************************************************************	
+ Test on tryEvaluateOperatorOnStackThenPush
+ Input parameter : 
+					1)Operator *newToken
+					2)Stack *numberStack
+					3)Stack *operatorStack
+
+ Using following mock function : 
+								1)stringCreate()
+								2)getToken()
+								3)stackPop()  
+								4)stackPush()
+								5)createNumberToken()
+								6)operatorEvaluate
+								
+ ***********************************************************************/	
+
+ void test_tryEvaluateOperatorOnStackThenPush_will_push_OperatorToken_if_Operator_Stack_is_empty(void){
+	Stack numberStack;
+	Stack operatorStack;
+	Operator *opeToken;
+	
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	stackPush_Expect(opeToken,&operatorStack);
+	tryEvaluateOperatorOnStackThenPush(opeToken,&numberStack,&operatorStack);
+}
+ 
+void test_tryEvaluateOperatorOnStaclThenPush_will_push_OperatorTOken_into_Operator_Stack_if_newToken_precendence_is_higher_than_previousToken(void)
+{
+	Stack numberStack;
+	Stack operatorStack;
+	
+	Operator plus = {.type= OPERATOR, .id=ADD , .precedence =70};
+	Operator multiply = {.type= OPERATOR, .id=MULTIPLY , .precedence =100};
+	
+	stackPop_ExpectAndReturn(&operatorStack,&plus);
+	stackPush_Expect(&plus,&operatorStack);
+	stackPush_Expect(&multiply,&operatorStack);
+	tryEvaluateOperatorOnStackThenPush(&multiply,&numberStack,&operatorStack);
+}
+ 
+void test_tryEvaluateOperatorOnStackThenPush_will_not_push_OperatorTOken_into_Operator_Stack_if_newToken_precendence_is_lower_than_previousToken(void)
+{
+	Stack numberStack;
+	Stack operatorStack;
+	
+	//1*2+3
+	Number number1 = {.type= NUMBER, .value=1};
+	Operator multiply = {.type= OPERATOR, .id=MULTIPLY, .precedence=100};
+	Number number2 = {.type= NUMBER, .value=2};
+	Operator plus = {.type= OPERATOR, .id=ADD, .precedence=70};
+	Number number3 = {.type= NUMBER, .value=3};
+	
+	Number tempAns = {.type= NUMBER, .value=2};
+	Token *tempAnsToken =(Token*)&tempAns;
+	stackPop_ExpectAndReturn(&operatorStack,&multiply);
+	stackPop_ExpectAndReturn(&numberStack,&number2);
+	stackPop_ExpectAndReturn(&numberStack,&number1);
+	createNumberToken_ExpectAndReturn(2,tempAnsToken);
+	stackPush_Expect(&tempAns,&numberStack);
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	stackPush_Expect(&plus,&operatorStack);
+	
+	tryEvaluateOperatorOnStackThenPush(&plus,&numberStack,&operatorStack);
+}
+ 
+ void test_tryEvaluateOperatorOnStackThenPush_evaluate_newToke_and_previousToken_if_both_have_same_precedence(void)
+{
+	Stack numberStack;
+	Stack operatorStack;
+	
+	//100-20-16
+	Number number100 = {.type= NUMBER, .value=100};
+	Operator minus = {.type= OPERATOR, .id=SUBTRACT, .precedence=70};
+	Number number20 = {.type= NUMBER, .value=20};
+	Operator minusA = {.type= OPERATOR, .id=SUBTRACT , .precedence=70};
+	Number number16 = {.type= NUMBER, .value=16};
+	Number tempAns = {.type= NUMBER, .value=80};
+	Token *tempAnsToken =(Token*)&tempAns;
+	
+	stackPop_ExpectAndReturn(&operatorStack,&minus);
+	stackPop_ExpectAndReturn(&numberStack,&number20);
+	stackPop_ExpectAndReturn(&numberStack,&number100);
+	createNumberToken_ExpectAndReturn(80,tempAnsToken);
+	stackPush_Expect(&tempAns,&numberStack);
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	stackPush_Expect(&minusA,&operatorStack);
+	
+	tryEvaluateOperatorOnStackThenPush(&minusA,&numberStack,&operatorStack);
+}
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ /*
 void test_try_evaluate_2_PLUS_3_and_compare_operators_to_determine_the_operator_to_be_push_into_stack(void){
 	int check;
 	int tempAnswer;

@@ -21,36 +21,32 @@
 		operator the operator to be pushed onto the operator stack 
 		
 **/
-/*
-void tryEvaluatethenPush(Token *token,Stack *numberStack,Stack *operatorStack)
+
+void tryEvaluateOperatorOnStackThenPush(Operator *newToken,Stack *numberStack,Stack *operatorStack)
 {
-	Token *previousToken;
-	previousToken=(Operator*)pop(operatorStack);
-	if(operatorSt){
-		stackPush(token,operatorStack);
+	Operator *previousToken;
+	previousToken=(Operator*)stackPop(operatorStack);
+	if(previousToken==NULL)
+	{
+		stackPush(newToken,operatorStack);
 	}
-	else
-	{	
-		previousToken=(Token*)stackPop(operatorStack);
-		ope2=(Operator*)previousToken;
-		ope1=(Operator*)token;
-		if(ope1->precedence >= ope2->precedence)
-		{	
-			stackPush(token,operatorStack);
+	else{
+		while(previousToken!=NULL)
+		{
+			if(newToken->precedence > previousToken->precedence)
+			{
+				break;
+			}
+			else
+			{
+				operatorEvaluate(numberStack,previousToken);
+			}
+			previousToken=(Operator*)stackPop(operatorStack);
 		}
-		else 
-		{	
-			numToken1=(Token*)stackPop(numberStack);
-			number1=(Number*)numToken1;
-			numToken2=(Token*)stackPop(numberStack);
-			number2=(Number*)numToken2;
-			tempAnswer=calculate(ope2,number2,number1);
-			tempAnswerToken = createNumberToken(tempAnswer);
-			printf("tempAns2 : %d \n",tempAnswer);
-			stackPush(tempAnswerToken,numberStack);
-			stackPush(token,operatorStack);
+		if(previousToken!=NULL)
+		{
+			stackPush(previousToken,operatorStack);
 		}
+		stackPush(newToken,operatorStack);
 	}
-	
 }
-*/

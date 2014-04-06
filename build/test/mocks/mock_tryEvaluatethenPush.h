@@ -12,13 +12,13 @@ void mock_tryEvaluatethenPush_Verify(void);
 
 
 
-#define tryEvaluatethenPush_Ignore() tryEvaluatethenPush_CMockIgnore()
-void tryEvaluatethenPush_CMockIgnore(void);
-#define tryEvaluatethenPush_Expect(token, numberStack, operatorStack) tryEvaluatethenPush_CMockExpect(__LINE__, token, numberStack, operatorStack)
-void tryEvaluatethenPush_CMockExpect(UNITY_LINE_TYPE cmock_line, Token* token, Stack* numberStack, Stack* operatorStack);
-typedef void (* CMOCK_tryEvaluatethenPush_CALLBACK)(Token* token, Stack* numberStack, Stack* operatorStack, int cmock_num_calls);
-void tryEvaluatethenPush_StubWithCallback(CMOCK_tryEvaluatethenPush_CALLBACK Callback);
-#define tryEvaluatethenPush_ExpectAndThrow(token, numberStack, operatorStack, cmock_to_throw) tryEvaluatethenPush_CMockExpectAndThrow(__LINE__, token, numberStack, operatorStack, cmock_to_throw)
-void tryEvaluatethenPush_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, Token* token, Stack* numberStack, Stack* operatorStack, CEXCEPTION_T cmock_to_throw);
+#define tryEvaluateOperatorOnStackThenPush_Ignore() tryEvaluateOperatorOnStackThenPush_CMockIgnore()
+void tryEvaluateOperatorOnStackThenPush_CMockIgnore(void);
+#define tryEvaluateOperatorOnStackThenPush_Expect(newToken, numberStack, operatorStack) tryEvaluateOperatorOnStackThenPush_CMockExpect(__LINE__, newToken, numberStack, operatorStack)
+void tryEvaluateOperatorOnStackThenPush_CMockExpect(UNITY_LINE_TYPE cmock_line, Operator* newToken, Stack* numberStack, Stack* operatorStack);
+typedef void (* CMOCK_tryEvaluateOperatorOnStackThenPush_CALLBACK)(Operator* newToken, Stack* numberStack, Stack* operatorStack, int cmock_num_calls);
+void tryEvaluateOperatorOnStackThenPush_StubWithCallback(CMOCK_tryEvaluateOperatorOnStackThenPush_CALLBACK Callback);
+#define tryEvaluateOperatorOnStackThenPush_ExpectAndThrow(newToken, numberStack, operatorStack, cmock_to_throw) tryEvaluateOperatorOnStackThenPush_CMockExpectAndThrow(__LINE__, newToken, numberStack, operatorStack, cmock_to_throw)
+void tryEvaluateOperatorOnStackThenPush_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, Operator* newToken, Stack* numberStack, Stack* operatorStack, CEXCEPTION_T cmock_to_throw);
 
 #endif

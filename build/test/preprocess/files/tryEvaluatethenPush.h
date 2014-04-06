@@ -10,4 +10,4 @@
 
 
 
-void tryEvaluatethenPush(Token *token,Stack *numberStack,Stack *operatorStack);
+void tryEvaluateOperatorOnStackThenPush(Operator *newToken,Stack *numberStack,Stack *operatorStack);
