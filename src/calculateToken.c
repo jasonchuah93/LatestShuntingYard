@@ -9,6 +9,7 @@
 #include "calculateToken.h"
 #include "stackForEvaluate.h"
 #include "createNumberToken.h"
+#include "Error.h"
 
 int calculate(Operator *opeToken, Number *first, Number *second){
 	
@@ -57,6 +58,11 @@ int calculate(Operator *opeToken, Number *first, Number *second){
 		case DECREMENT:
 			answer=--first->value;
 		break;
+		
+		default:
+		{
+			Throw(UNKNOWN_OPERATOR);
+		}
 	}
 	
 	return answer;

@@ -30,7 +30,9 @@
 #include <setjmp.h>
 #include <stdio.h>
 #include "CException.h"
+#include "mock_Stack.h"
 #include "mock_StringObject.h"
+#include "mock_createNumberToken.h"
 #include "mock_getToken.h"
 #include "mock_tryEvaluatethenPush.h"
 
@@ -41,19 +43,8 @@ char* GlobalOrderError;
 //=======External Functions This Runner Calls=====
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_operator_evaluate_should_evaluate_99_PLUS_99(void);
-extern void test_operator_evaluate_should_evaluate_2_PLUS_3(void);
-extern void test_operator_evaluate_should_evaluate_20_MINUS_15(void);
-extern void test_operator_evaluate_should_evaluate_100_MINUS_67(void);
-extern void test_operator_evaluate_should_evaluate_100_MULTIPLY_67(void);
-extern void test_operator_evaluate_should_evaluate_100_DIVIDE_67(void);
-extern void test_operator_evaluate_should_evaluate_10000_DIVIDE_20(void);
-extern void test_operator_evaluate_should_evaluate_56_BITWISE_AND_30(void);
-extern void test_operator_evaluate_should_evaluate_90_BITWISE_OR_20(void);
-extern void test_operator_evaluate_should_evaluate_99_BITWISE_XOR_66(void);
-extern void test_operator_evaluate_should_evaluate_33_BITWISE_XOR_44(void);
-extern void test_operator_evaluate_should_evaluate_55_MUDULUS_3(void);
-extern void test_operator_evaluate_should_evaluate_68_MUDULUS_7(void);
+extern void test_operatorEvaluate_should_throw_error_when_encounter_invalid_operator(void);
+extern void test_operatorEvaluate_3_PLUS_7(void);
 
 
 //=======Mock Management=====
@@ -62,19 +53,25 @@ static void CMock_Init(void)
   GlobalExpectCount = 0;
   GlobalVerifyOrder = 0;
   GlobalOrderError = NULL;
+  mock_Stack_Init();
   mock_StringObject_Init();
+  mock_createNumberToken_Init();
   mock_getToken_Init();
   mock_tryEvaluatethenPush_Init();
 }
 static void CMock_Verify(void)
 {
+  mock_Stack_Verify();
   mock_StringObject_Verify();
+  mock_createNumberToken_Verify();
   mock_getToken_Verify();
   mock_tryEvaluatethenPush_Verify();
 }
 static void CMock_Destroy(void)
 {
+  mock_Stack_Destroy();
   mock_StringObject_Destroy();
+  mock_createNumberToken_Destroy();
   mock_getToken_Destroy();
   mock_tryEvaluatethenPush_Destroy();
 }
@@ -95,19 +92,8 @@ int main(void)
 {
   Unity.TestFile = "test_OperatorEvaluate.c";
   UnityBegin();
-  RUN_TEST(test_operator_evaluate_should_evaluate_99_PLUS_99, 16);
-  RUN_TEST(test_operator_evaluate_should_evaluate_2_PLUS_3, 51);
-  RUN_TEST(test_operator_evaluate_should_evaluate_20_MINUS_15, 86);
-  RUN_TEST(test_operator_evaluate_should_evaluate_100_MINUS_67, 121);
-  RUN_TEST(test_operator_evaluate_should_evaluate_100_MULTIPLY_67, 156);
-  RUN_TEST(test_operator_evaluate_should_evaluate_100_DIVIDE_67, 191);
-  RUN_TEST(test_operator_evaluate_should_evaluate_10000_DIVIDE_20, 226);
-  RUN_TEST(test_operator_evaluate_should_evaluate_56_BITWISE_AND_30, 261);
-  RUN_TEST(test_operator_evaluate_should_evaluate_90_BITWISE_OR_20, 296);
-  RUN_TEST(test_operator_evaluate_should_evaluate_99_BITWISE_XOR_66, 331);
-  RUN_TEST(test_operator_evaluate_should_evaluate_33_BITWISE_XOR_44, 366);
-  RUN_TEST(test_operator_evaluate_should_evaluate_55_MUDULUS_3, 401);
-  RUN_TEST(test_operator_evaluate_should_evaluate_68_MUDULUS_7, 436);
+  RUN_TEST(test_operatorEvaluate_should_throw_error_when_encounter_invalid_operator, 20);
+  RUN_TEST(test_operatorEvaluate_3_PLUS_7, 45);
 
   return (UnityEnd());
 }

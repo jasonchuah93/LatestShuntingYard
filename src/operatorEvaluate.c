@@ -11,60 +11,49 @@
 #include "LinkedList.h"
 #include "stackForEvaluate.h"
 
-/*
-	This function is to evaluate the expression and return final token
+/**
+	Evaluate all operators on the operator stack, with top of stack 
+	operator being evaluated first.
 	
-	input  : token
-	output : none
-	return : final token 
-	
-*/	
-void operatorEvaluate(Stack *numberStack , Stack *operatorStack){
-	Token *token1; //operator Token
-	Token *token2; // First number token
-	Token *token3; // Second number token
-	int answer; // The answer
-	Token *answerToken; //Cast answer into token
-	Operator *operation; 
+	Input :
+		stack the operatorStack
+**/
+
+void operatorEvaluate(Stack *numberStack , Operator *opeToken){
 	Number *num1;
 	Number *num2;
+	Token *token1; 
+	Token *token2; 
+	int answer; 
+	Token *answerToken; 
 	
-	token1=(Token*)stackPop(operatorStack); //Pop token from operator stack
-	if(token1!=NULL) 
-	{
-		operation=(Operator*)token1; //Cast token1 into operator type
-		token2=(Token*)stackPop(numberStack); //Pop token from number stack
-		num1=(Number*)token2; //Cast the token2 into number type
-		token3=(Token*)stackPop(numberStack); //Pop second token from number stack 
-		num2=(Number*)token3; //Cast the token3 into number type
-		answer = calculate(operation,num2,num1); //Calculate these token and return answer
-		answerToken=createNumberToken(answer); //Cast the answer into token type
-		stackPush(answerToken,numberStack); //Push back to number stack
-	}
-	destroyStack(operatorStack);
+	token1=(Token*)stackPop(numberStack); 
+	num1=(Number*)token1; 
+	token2=(Token*)stackPop(numberStack); 
+	num2=(Number*)token2;
+	answer = calculate(opeToken,num2,num1); 
+	answerToken=createNumberToken(answer);
+	stackPush(answerToken,numberStack);
 }	
 
-void halfOperatorEvaluate(Stack*numberStack,Stack *operatorStack){
-	Token *token1; //operator Token
-	Token *token2; // First number token
-	Token *token3; // Second number token
-	int answer; // The answer
-	Token *answerToken; //Cast answer into token
-	Operator *operation; 
-	Number *num1;
-	Number *num2;
+/**
+	Evaluate all operators on the operator stack, with top of stack 
+	operator being evaluated first.
 	
+	Input :
+		stack the operatorStack
+**/
+
+void evaluateAllOperatorOnStack(Stack *numberStack,Stack *operatorStack){
 	
-	token1=(Token*)stackPop(operatorStack); //Pop token from operator stack
-	operation=(Operator*)token1; //Cast token1 into operator type
-	token2=(Token*)stackPop(numberStack); //Pop token from number stack
-	num1=(Number*)token2; //Cast the token2 into number type
-	token3=(Token*)stackPop(numberStack); //Pop second token from number stack 
-	num2=(Number*)token3; //Cast the token3 into number type
-	answer = calculate(operation,num2,num1); //Calculate these token and return answer
-	answerToken=createNumberToken(answer); //Cast the answer into token type
-	stackPush(answerToken,numberStack); //Push back to number stack
+	Operator *opeToken;
 	
+	while((opeToken=stackPop(operatorStack))!=NULL)
+	{
+		operatorEvaluate(numberStack,opeToken);
+	}
 }
+
+
 
 

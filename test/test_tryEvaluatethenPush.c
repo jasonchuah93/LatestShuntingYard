@@ -13,6 +13,7 @@
 void setUp(void){}
 void tearDown(void){}
 
+/*
 void test_try_evaluate_2_PLUS_3_and_compare_operators_to_determine_the_operator_to_be_push_into_stack(void){
 	int check;
 	int tempAnswer;
@@ -345,3 +346,4 @@ void test_try_evaluate_5_PLUS_6_MULTIPLY_7_and_compare_operators_to_determine_th
 	TEST_ASSERT_EQUAL(10,finalAns->value);
 	
 }
+*/

@@ -21,6 +21,7 @@
 					  
 */	
 
+/*
 int evaluate(char *expression){
 	
 	String *tokenizer;
@@ -50,7 +51,7 @@ int evaluate(char *expression){
 	return counter;
 }
 
-
+*/
 
 
 

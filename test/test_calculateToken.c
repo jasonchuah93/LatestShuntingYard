@@ -3,7 +3,6 @@
 #include "Evaluate.h"
 #include "LinkedList.h"
 #include "calculateToken.h"
-#include "mock_Stack.h"
 #include "createNumberToken.h"
 #include "mock_StringObject.h"
 #include "mock_operatorEvaluate.h"
@@ -11,13 +10,10 @@
 #include "mock_getToken.h"
 #include "mock_tryEvaluatethenPush.h"
 #include "stackForEvaluate.h"
-
-
+#include "Stack.h"
 
 void setUp(void){}
 void tearDown(void){}
-
-//Token *calculate(Operator *opeToken, Number *first, Number *second)
 
 void test_should_calculate_2_PLUS_3(void)
 {

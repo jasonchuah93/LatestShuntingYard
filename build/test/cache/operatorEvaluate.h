@@ -1,4 +1,5 @@
 #include "Stack.h"
+#include "Evaluate.h"
 
 
 
@@ -9,6 +10,6 @@
 
 
 
-void operatorEvaluate(Stack *numberStack,Stack *operatorStack);
+void operatorEvaluate(Stack *numberStack , Operator *opeToken);
 
-void halfOperatorEvaluate(Stack*numberStack,Stack *operatorStack);
+void evaluateAllOperatorOnStack(Stack *numberStack,Stack *operatorStack);

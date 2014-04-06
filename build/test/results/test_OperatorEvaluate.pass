@@ -3,50 +3,17 @@
   :path: test
   :file: test_OperatorEvaluate.c
 :successes:
-- :test: test_operator_evaluate_should_evaluate_99_PLUS_99
-  :line: 16
+- :test: test_operatorEvaluate_should_throw_error_when_encounter_invalid_operator
+  :line: 20
   :message: ''
-- :test: test_operator_evaluate_should_evaluate_2_PLUS_3
-  :line: 51
-  :message: ''
-- :test: test_operator_evaluate_should_evaluate_20_MINUS_15
-  :line: 86
-  :message: ''
-- :test: test_operator_evaluate_should_evaluate_100_MINUS_67
-  :line: 121
-  :message: ''
-- :test: test_operator_evaluate_should_evaluate_100_MULTIPLY_67
-  :line: 156
-  :message: ''
-- :test: test_operator_evaluate_should_evaluate_100_DIVIDE_67
-  :line: 191
-  :message: ''
-- :test: test_operator_evaluate_should_evaluate_10000_DIVIDE_20
-  :line: 226
-  :message: ''
-- :test: test_operator_evaluate_should_evaluate_56_BITWISE_AND_30
-  :line: 261
-  :message: ''
-- :test: test_operator_evaluate_should_evaluate_90_BITWISE_OR_20
-  :line: 296
-  :message: ''
-- :test: test_operator_evaluate_should_evaluate_99_BITWISE_XOR_66
-  :line: 331
-  :message: ''
-- :test: test_operator_evaluate_should_evaluate_33_BITWISE_XOR_44
-  :line: 366
-  :message: ''
-- :test: test_operator_evaluate_should_evaluate_55_MUDULUS_3
-  :line: 401
-  :message: ''
-- :test: test_operator_evaluate_should_evaluate_68_MUDULUS_7
-  :line: 436
+- :test: test_operatorEvaluate_3_PLUS_7
+  :line: 45
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 13
-  :passed: 13
+  :total: 2
+  :passed: 2
   :failed: 0
   :ignored: 0
 :stdout: []

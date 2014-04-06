@@ -40,15 +40,6 @@ char* GlobalOrderError;
 //=======External Functions This Runner Calls=====
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_try_evaluate_2_PLUS_3_and_compare_operators_to_determine_the_operator_to_be_push_into_stack(void);
-extern void test_try_evaluate_20_MINUS_3_and_compare_operators_to_determine_the_operator_to_be_push_into_stack(void);
-extern void test_try_evaluate_56_MULTIPLY_5_and_compare_operators_to_determine_the_operator_to_be_push_into_stack(void);
-extern void test_try_evaluate_55_DIVIDE_11_and_compare_operators_to_determine_the_operator_to_be_push_into_stack(void);
-extern void test_try_evaluate_99_MODULUS_8_and_compare_operators_to_determine_the_operator_to_be_push_into_stack(void);
-extern void test_try_evaluate_71_BITWISEAND_45_and_compare_operators_to_determine_the_operator_to_be_push_into_stack(void);
-extern void test_try_evaluate_71_BITWISEOR_45_and_compare_operators_to_determine_the_operator_to_be_push_into_stack(void);
-extern void test_try_evaluate_71_BITWISEXOR_45_and_compare_operators_to_determine_the_operator_to_be_push_into_stack(void);
-extern void test_try_evaluate_5_PLUS_6_MULTIPLY_7_and_compare_operators_to_determine_the_operator_to_be_push_into_stack(void);
 
 
 //=======Mock Management=====
@@ -87,15 +78,6 @@ int main(void)
 {
   Unity.TestFile = "test_tryEvaluatethenPush.c";
   UnityBegin();
-  RUN_TEST(test_try_evaluate_2_PLUS_3_and_compare_operators_to_determine_the_operator_to_be_push_into_stack, 16);
-  RUN_TEST(test_try_evaluate_20_MINUS_3_and_compare_operators_to_determine_the_operator_to_be_push_into_stack, 51);
-  RUN_TEST(test_try_evaluate_56_MULTIPLY_5_and_compare_operators_to_determine_the_operator_to_be_push_into_stack, 86);
-  RUN_TEST(test_try_evaluate_55_DIVIDE_11_and_compare_operators_to_determine_the_operator_to_be_push_into_stack, 121);
-  RUN_TEST(test_try_evaluate_99_MODULUS_8_and_compare_operators_to_determine_the_operator_to_be_push_into_stack, 156);
-  RUN_TEST(test_try_evaluate_71_BITWISEAND_45_and_compare_operators_to_determine_the_operator_to_be_push_into_stack, 191);
-  RUN_TEST(test_try_evaluate_71_BITWISEOR_45_and_compare_operators_to_determine_the_operator_to_be_push_into_stack, 226);
-  RUN_TEST(test_try_evaluate_71_BITWISEXOR_45_and_compare_operators_to_determine_the_operator_to_be_push_into_stack, 261);
-  RUN_TEST(test_try_evaluate_5_PLUS_6_MULTIPLY_7_and_compare_operators_to_determine_the_operator_to_be_push_into_stack, 296);
 
   return (UnityEnd());
 }

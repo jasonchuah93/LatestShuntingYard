@@ -5,24 +5,16 @@
 #include "mock_initializeToken.h"
 #include "mock_getToken.h"
 #include "mock_StringObject.h"
-#include "mock_Stack.h"
 #include "createNumberToken.h"
 #include "calculateToken.h"
+#include "Stack.h"
 #include "LinkedList.h"
 #include "Evaluate.h"
-
-
-
-
 
 
 void setUp(void){}
 
 void tearDown(void){}
-
-
-
-
 
 
 
@@ -44,7 +36,7 @@ void test_should_calculate_2_PLUS_3(void)
 
 
 
- UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)31, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)27, UNITY_DISPLAY_STYLE_INT);
 
 }
 
@@ -68,7 +60,7 @@ void test_should_calculate_10_MINUS_3(void)
 
 
 
- UnityAssertEqualNumber((_U_SINT)((7)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)43, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((7)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)39, UNITY_DISPLAY_STYLE_INT);
 
 }
 
@@ -92,7 +84,7 @@ void test_should_calculate_10_MULTIPLY_10(void)
 
 
 
- UnityAssertEqualNumber((_U_SINT)((100)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)55, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((100)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)51, UNITY_DISPLAY_STYLE_INT);
 
 }
 
@@ -116,7 +108,7 @@ void test_should_calculate_1000_DIVIDE_10(void)
 
 
 
- UnityAssertEqualNumber((_U_SINT)((100)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)67, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((100)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)63, UNITY_DISPLAY_STYLE_INT);
 
 }
 
@@ -140,7 +132,7 @@ void test_should_calculate_56_BITWISE_AND_30(void)
 
 
 
- UnityAssertEqualNumber((_U_SINT)((24)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)79, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((24)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)75, UNITY_DISPLAY_STYLE_INT);
 
 }
 
@@ -164,7 +156,7 @@ void test_should_calculate_90_BITWISE_OR_20(void)
 
 
 
- UnityAssertEqualNumber((_U_SINT)((94)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)91, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((94)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)87, UNITY_DISPLAY_STYLE_INT);
 
 }
 
@@ -188,7 +180,7 @@ void test_should_calculate_99_BITWISE_XOR_66(void)
 
 
 
- UnityAssertEqualNumber((_U_SINT)((33)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)103, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((33)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)99, UNITY_DISPLAY_STYLE_INT);
 
 }
 
@@ -212,7 +204,7 @@ void test_should_calculate_55_MODULUS_3(void)
 
 
 
- UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)115, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)111, UNITY_DISPLAY_STYLE_INT);
 
 }
 
@@ -236,7 +228,7 @@ void test_should_calculate_68_MODULUS_7(void)
 
 
 
- UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)127, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)123, UNITY_DISPLAY_STYLE_INT);
 
 }
 
@@ -256,7 +248,7 @@ void test_should_complement_78(void){
 
 
 
- UnityAssertEqualNumber((_U_SINT)((-79)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)137, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((-79)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)133, UNITY_DISPLAY_STYLE_INT);
 
 }
 
@@ -276,7 +268,7 @@ void test_should_complement_2(void){
 
 
 
- UnityAssertEqualNumber((_U_SINT)((-3)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)147, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((-3)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)143, UNITY_DISPLAY_STYLE_INT);
 
 }
 
@@ -296,7 +288,7 @@ void test_should_PLUS_PLUS_3(void){
 
 
 
- UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)157, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)153, UNITY_DISPLAY_STYLE_INT);
 
 }
 
@@ -316,7 +308,7 @@ void test_should_PLUS_PLUS_100(void){
 
 
 
- UnityAssertEqualNumber((_U_SINT)((101)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)167, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((101)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)163, UNITY_DISPLAY_STYLE_INT);
 
 }
 
@@ -336,6 +328,6 @@ void test_should_MINUS_MINUS_10(void){
 
 
 
- UnityAssertEqualNumber((_U_SINT)((9)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)177, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((9)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)173, UNITY_DISPLAY_STYLE_INT);
 
 }

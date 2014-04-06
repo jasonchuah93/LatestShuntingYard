@@ -30,7 +30,6 @@
 #include <setjmp.h>
 #include <stdio.h>
 #include "CException.h"
-#include "mock_Stack.h"
 #include "mock_StringObject.h"
 #include "mock_getToken.h"
 #include "mock_initializeToken.h"
@@ -66,7 +65,6 @@ static void CMock_Init(void)
   GlobalExpectCount = 0;
   GlobalVerifyOrder = 0;
   GlobalOrderError = NULL;
-  mock_Stack_Init();
   mock_StringObject_Init();
   mock_getToken_Init();
   mock_initializeToken_Init();
@@ -75,7 +73,6 @@ static void CMock_Init(void)
 }
 static void CMock_Verify(void)
 {
-  mock_Stack_Verify();
   mock_StringObject_Verify();
   mock_getToken_Verify();
   mock_initializeToken_Verify();
@@ -84,7 +81,6 @@ static void CMock_Verify(void)
 }
 static void CMock_Destroy(void)
 {
-  mock_Stack_Destroy();
   mock_StringObject_Destroy();
   mock_getToken_Destroy();
   mock_initializeToken_Destroy();
@@ -108,20 +104,20 @@ int main(void)
 {
   Unity.TestFile = "test_calculateToken.c";
   UnityBegin();
-  RUN_TEST(test_should_calculate_2_PLUS_3, 22);
-  RUN_TEST(test_should_calculate_10_MINUS_3, 34);
-  RUN_TEST(test_should_calculate_10_MULTIPLY_10, 46);
-  RUN_TEST(test_should_calculate_1000_DIVIDE_10, 58);
-  RUN_TEST(test_should_calculate_56_BITWISE_AND_30, 70);
-  RUN_TEST(test_should_calculate_90_BITWISE_OR_20, 82);
-  RUN_TEST(test_should_calculate_99_BITWISE_XOR_66, 94);
-  RUN_TEST(test_should_calculate_55_MODULUS_3, 106);
-  RUN_TEST(test_should_calculate_68_MODULUS_7, 118);
-  RUN_TEST(test_should_complement_78, 130);
-  RUN_TEST(test_should_complement_2, 140);
-  RUN_TEST(test_should_PLUS_PLUS_3, 150);
-  RUN_TEST(test_should_PLUS_PLUS_100, 160);
-  RUN_TEST(test_should_MINUS_MINUS_10, 170);
+  RUN_TEST(test_should_calculate_2_PLUS_3, 18);
+  RUN_TEST(test_should_calculate_10_MINUS_3, 30);
+  RUN_TEST(test_should_calculate_10_MULTIPLY_10, 42);
+  RUN_TEST(test_should_calculate_1000_DIVIDE_10, 54);
+  RUN_TEST(test_should_calculate_56_BITWISE_AND_30, 66);
+  RUN_TEST(test_should_calculate_90_BITWISE_OR_20, 78);
+  RUN_TEST(test_should_calculate_99_BITWISE_XOR_66, 90);
+  RUN_TEST(test_should_calculate_55_MODULUS_3, 102);
+  RUN_TEST(test_should_calculate_68_MODULUS_7, 114);
+  RUN_TEST(test_should_complement_78, 126);
+  RUN_TEST(test_should_complement_2, 136);
+  RUN_TEST(test_should_PLUS_PLUS_3, 146);
+  RUN_TEST(test_should_PLUS_PLUS_100, 156);
+  RUN_TEST(test_should_MINUS_MINUS_10, 166);
 
   return (UnityEnd());
 }
