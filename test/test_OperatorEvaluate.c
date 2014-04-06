@@ -61,7 +61,7 @@ void test_operatorEvaluate_3_PLUS_7(void)
 	createNumberToken_ExpectAndReturn(10,answerToken);
 	stackPush_Expect(&answer,&numberStack);
 	
-	operatorEvaluate(&numberStack,&plus);
+	operatorEvaluate(&numberStack,&plus):
 }
 
 
