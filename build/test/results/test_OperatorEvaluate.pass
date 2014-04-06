@@ -48,11 +48,14 @@
 - :test: test_evaluateAllOperatorOnStack_100_divide_5_multiply_6_plus_99_minus_20_modulus_30
   :line: 529
   :message: ''
+- :test: test_evaluateAllOperatorOnStack_100_divide_5_multiply_6_plus_99_minus_20_modulus_30_bitwiseAnd_89
+  :line: 626
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 15
-  :passed: 15
+  :total: 16
+  :passed: 16
   :failed: 0
   :ignored: 0
 :stdout: []
