@@ -24,11 +24,14 @@
 - :test: test_operatorEvaluate_45_BITWISEAND_54
   :line: 155
   :message: ''
+- :test: test_operatorEvaluate_56_BITWISEOR_30
+  :line: 177
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 7
-  :passed: 7
+  :total: 8
+  :passed: 8
   :failed: 0
   :ignored: 0
 :stdout: []

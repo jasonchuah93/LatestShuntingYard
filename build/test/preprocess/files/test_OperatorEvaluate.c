@@ -335,3 +335,47 @@ void test_operatorEvaluate_45_BITWISEAND_54(void)
  operatorEvaluate(&numberStack,&bitwiseAND);
 
 }
+
+
+
+void test_operatorEvaluate_56_BITWISEOR_30(void)
+
+{
+
+ Stack numberStack;
+
+ Token *tempToken;
+
+ Number *tempAns;
+
+ int check;
+
+
+
+ String tokenizer = {.rawString = "56|30", .startIndex = 0, .length=3};
+
+ Number number56 = {.type= NUMBER, .value=56};
+
+ Operator bitwiseOR = {.type= OPERATOR, .id=BITWISE_OR , .precedence=10};
+
+ Number number30 = {.type= NUMBER, .value=30};
+
+ Number answer;
+
+ Token *answerToken=(Token*)&answer;
+
+
+
+ stackPop_CMockExpectAndReturn(191, &numberStack, &number30);
+
+ stackPop_CMockExpectAndReturn(192, &numberStack, &number56);
+
+ createNumberToken_CMockExpectAndReturn(193, 62, answerToken);
+
+ stackPush_CMockExpect(194, &answer, &numberStack);
+
+
+
+ operatorEvaluate(&numberStack,&bitwiseOR);
+
+}

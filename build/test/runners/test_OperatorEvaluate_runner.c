@@ -50,6 +50,7 @@ extern void test_operatorEvaluate_100_MULTIPLY_50(void);
 extern void test_operatorEvaluate_99_DIVIDE_3(void);
 extern void test_operatorEvaluate_60_MODULUS_7(void);
 extern void test_operatorEvaluate_45_BITWISEAND_54(void);
+extern void test_operatorEvaluate_56_BITWISEOR_30(void);
 
 
 //=======Mock Management=====
@@ -104,6 +105,7 @@ int main(void)
   RUN_TEST(test_operatorEvaluate_99_DIVIDE_3, 111);
   RUN_TEST(test_operatorEvaluate_60_MODULUS_7, 133);
   RUN_TEST(test_operatorEvaluate_45_BITWISEAND_54, 155);
+  RUN_TEST(test_operatorEvaluate_56_BITWISEOR_30, 177);
 
   return (UnityEnd());
 }
