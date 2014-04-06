@@ -8,6 +8,7 @@
 #include "calculateToken.h"
 #include "Stack.h"
 #include "stackForEvaluate.h"
+#include "Error.h"
 
 /*
 	This function is to push tokens that tokenize from expression to stack 
@@ -21,37 +22,53 @@
 					  
 */	
 
-/*
+
 int evaluate(char *expression){
-	
 	String *tokenizer;
 	Token *token;
+	Token *ansToken;
+	ErrorCode exception;
 	int i;
 	int counter =0;
+	Number *result;
 	
+	Stack *numberStack;
+	numberStack=createStack();
+	Stack *operatorStack;
+	operatorStack=createStack();
 	tokenizer = stringCreate(expression);
 	if(expression ==NULL){	
-		return 0;
+		Throw(ERR_INVALID_EXPRESSION);
 	}
 	
 	while((token=getToken(tokenizer))!=NULL){
-		if(isNumber(token)){
-			stackPush(token,&numStack);
+		if(counter%2==0&&*token==OPERATOR){
+			Throw(UNKNOWN_DATA);
+		}
+		else if(counter%2==1&&*token==NUMBER){
+			Throw(UNKNOWN_OPERATOR);
 		}
 		
+		if(isNumber(token)){
+			
+			stackPush(token,numberStack);
+		}
 		else if(isOperator(token)) 
 		{
-			tryEvaluatethenPush(token,&numStack,&opeStack);
+			tryEvaluateOperatorOnStackThenPush((Operator*)token,numberStack,operatorStack);
 		}
+		
 		counter ++;
 	}
-	 
-	operatorEvaluate(&numStack,&opeStack);
-	
-	return counter;
+	evaluateAllOperatorOnStack(numberStack,operatorStack);
+	result=(Number*)stackPop(numberStack);
+	printf("Loop needed for each expression to completely evaluate : %d \n",counter);
+	return result->value;
 }
 
-*/
+
+
+
 
 
 

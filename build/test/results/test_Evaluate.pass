@@ -2,12 +2,25 @@
 :source:
   :path: test
   :file: test_Evaluate.c
-:successes: []
+:successes:
+- :test: test_shunting_yard_should_return_0_if_the_expression_is_null
+  :line: 34
+  :message: ''
+- :test: test_should_return_3_for_1_plus_2
+  :line: 59
+  :message: ''
+- :test: test_should_return_6_for_60_divide_10
+  :line: 113
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 0
-  :passed: 0
+  :total: 3
+  :passed: 3
   :failed: 0
   :ignored: 0
-:stdout: []
+:stdout:
+- 'Loop needed for each expression to completely evaluate : 3 '
+- 'Answer : 3 '
+- 'Loop needed for each expression to completely evaluate : 3 '
+- 'Answer : 6 '

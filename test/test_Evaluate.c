@@ -4,70 +4,177 @@
 #include "LinkedList.h"
 #include "mock_StringObject.h"
 #include "mock_getToken.h"
-#include "mock_tryEvaluatethenPush.h"
-#include "mock_operatorEvaluate.h"
-#include "mock_calculateToken.h"
+#include "tryEvaluatethenPush.h"
+#include "operatorEvaluate.h"
+#include "calculateToken.h"
+#include "mock_createNumberToken.h"
 #include "stackForEvaluate.h"
-
+#include "Error.h"
 
 void setUp(void){}
 void tearDown(void){}
 
-/*
+/*********************************************************************************************************************************
+ Test on function evaluate
+ Input parameter : 
+					1)char *expression
+
+ Using following mock function : 
+								1)stringCreate()
+								2)getToken()
+								3)stackPop()  
+								4)stackPush()
+								5)createNumberToken()
+Using following real function : 
+							1)operatorEvaluate(Stack *numberStack , Operator *opeToken);
+							2)evaluateAllOperatorOnStack(Stack *numberStack,Stack *operatorStack);
+							3)tryEvaluateOperatorOnStackThenPush(Operator *newToken,Stack *numberStack,Stack *operatorStack);
+							4)calculate(Operator *opeToken, Number *first , Number *second);
+ ********************************************************************************************************************************/	
 void test_shunting_yard_should_return_0_if_the_expression_is_null(){
 	int check;
-	String tokenizer = {.rawString = "0", .startIndex = 0, .length = 1};
+	Stack numberStack;
+	Stack operatorStack;
+	ErrorCode exception;
+	String tokenizer = {.rawString = "0", .startIndex = 0, .length=1};
 	
 	Number number2 = {.type= NUMBER, .value=0};
 	Token *token1 = (Token*)&number2;
 	
+	createStack_ExpectAndReturn(&numberStack);
+	createStack_ExpectAndReturn(&operatorStack);
 	stringCreate_ExpectAndReturn(NULL,&tokenizer);
 	
-	check=evaluate(NULL);
-	TEST_ASSERT_EQUAL(0,check);
+	Try
+	{
+		check = evaluate(NULL);
+		TEST_FAIL_MESSAGE("Should throw Error no expression ");
+	}
+	Catch(exception)
+	{
+		TEST_ASSERT_EQUAL(ERR_INVALID_EXPRESSION,exception);
+	}
 }
 
-
-void test_evaluate_2_PLUS_3(void){
+void test_should_return_3_for_1_plus_2(void){
+	Stack dataStack;
+	Stack operatorStack;
 	int check;
 	//Initialize tokenizer,token and stack
-	String tokenizer = {.rawString = "2+3", .startIndex = 0, .length = 3};
+	String tokenizer = {.rawString = "1+2", .startIndex = 0, .length=3};
 	
-	Number number2 = {.type= NUMBER, .value=2};
-	Token *token1 = (Token*)&number2;
+	Number number1 = {.type= NUMBER, .value=1};
+	Token *token1 = (Token*)&number1;
 	
-	Operator plus = {.type= OPERATOR, .id = ADD};
+	Operator plus = {.type= OPERATOR, .id=ADD, .precedence=70};
 	Token *token2 = (Token*)&plus;
 	
-	Number number3 = {.type= NUMBER, .value=3};
-	Token *token3 = (Token*)&number3;
+	Number number2 = {.type= NUMBER, .value=2};
+	Token *token3 = (Token*)&number2;
 	
-	//Evaluate the expression
-	//Initialize token and push token to stacks
-	stringCreate_ExpectAndReturn("2+3",&tokenizer);
-	
-	//Number token 2
+	Number answer = {.type= NUMBER, .value=3};
+	Token *answerToken = (Token*)&answer;
+	createStack_ExpectAndReturn(&dataStack);
+	createStack_ExpectAndReturn(&operatorStack);
+	stringCreate_ExpectAndReturn("1+2",&tokenizer);
+	//Number1
 	getToken_ExpectAndReturn(&tokenizer,token1);
 	isNumber_ExpectAndReturn(token1,1);
-	stackPush_Expect(token1,&numStack);
+	stackPush_Expect(token1,&dataStack);
 	
 	//Operator token plus
 	getToken_ExpectAndReturn(&tokenizer,token2);
 	isNumber_ExpectAndReturn(token2,0);
 	isOperator_ExpectAndReturn(token2,1);
-	tryEvaluatethenPush_Expect(token2,&numStack,&opeStack);
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	stackPush_Expect(token2,&operatorStack);
 	
-	//Number token 3
+	//Number2
 	getToken_ExpectAndReturn(&tokenizer,token3);
 	isNumber_ExpectAndReturn(token3,1);
-	stackPush_Expect(token3,&numStack);
+	stackPush_Expect(token3,&dataStack);
 	getToken_ExpectAndReturn(&tokenizer,NULL);
 	
-	operatorEvaluate_Expect(&numStack,&opeStack);
-
-	evaluate("2+3");
+	//Calculation
+	stackPop_ExpectAndReturn(&operatorStack,token2);
+	stackPop_ExpectAndReturn(&dataStack,token3);
+	stackPop_ExpectAndReturn(&dataStack,token1);
+	createNumberToken_ExpectAndReturn(3,answerToken);
+	stackPush_Expect(answerToken,&dataStack);
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	
+	stackPop_ExpectAndReturn(&dataStack,answerToken);
+	
+	check=evaluate("1+2");
+	TEST_ASSERT_EQUAL(3,check);
+	printf("Answer : %d ",check);
 }
 
+void test_should_return_6_for_60_divide_10(void){
+	Stack dataStack;
+	Stack operatorStack;
+	int check;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "60/10", .startIndex = 0, .length=3};
+	
+	Number number60 = {.type= NUMBER, .value=60};
+	Token *token1 = (Token*)&number60;
+	
+	Operator divide = {.type= OPERATOR, .id=DIVIDE, .precedence=100};
+	Token *token2 = (Token*)&divide;
+	
+	Number number10 = {.type= NUMBER, .value=10};
+	Token *token3 = (Token*)&number10;
+	
+	Number answer = {.type= NUMBER, .value=6};
+	Token *answerToken = (Token*)&answer;
+	
+	createStack_ExpectAndReturn(&dataStack);
+	createStack_ExpectAndReturn(&operatorStack);
+	stringCreate_ExpectAndReturn("60/10",&tokenizer);
+	//Number60
+	getToken_ExpectAndReturn(&tokenizer,token1);
+	isNumber_ExpectAndReturn(token1,1);
+	stackPush_Expect(token1,&dataStack);
+	
+	//Operator token divide
+	getToken_ExpectAndReturn(&tokenizer,token2);
+	isNumber_ExpectAndReturn(token2,0);
+	isOperator_ExpectAndReturn(token2,1);
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	stackPush_Expect(token2,&operatorStack);
+	
+	//Number10
+	getToken_ExpectAndReturn(&tokenizer,token3);
+	isNumber_ExpectAndReturn(token3,1);
+	stackPush_Expect(token3,&dataStack);
+	getToken_ExpectAndReturn(&tokenizer,NULL);
+	
+	//Calculation
+	stackPop_ExpectAndReturn(&operatorStack,token2);
+	stackPop_ExpectAndReturn(&dataStack,token3);
+	stackPop_ExpectAndReturn(&dataStack,token1);
+	createNumberToken_ExpectAndReturn(6,answerToken);
+	stackPush_Expect(answerToken,&dataStack);
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	
+	stackPop_ExpectAndReturn(&dataStack,answerToken);
+	
+	check=evaluate("60/10");
+	TEST_ASSERT_EQUAL(6,check);
+	printf("Answer : %d ",check);
+}
+
+
+
+
+
+
+
+
+
+
+/*
 void test_evaluate_2_PLUS_3_MULTIPLY_4(void){
 	int check;
 	//Initialize tokenizer,token and stack

@@ -32,10 +32,8 @@
 #include "CException.h"
 #include "mock_Stack.h"
 #include "mock_StringObject.h"
-#include "mock_calculateToken.h"
+#include "mock_createNumberToken.h"
 #include "mock_getToken.h"
-#include "mock_operatorEvaluate.h"
-#include "mock_tryEvaluatethenPush.h"
 
 int GlobalExpectCount;
 int GlobalVerifyOrder;
@@ -44,6 +42,9 @@ char* GlobalOrderError;
 //=======External Functions This Runner Calls=====
 extern void setUp(void);
 extern void tearDown(void);
+extern void test_shunting_yard_should_return_0_if_the_expression_is_null(void);
+extern void test_should_return_3_for_1_plus_2(void);
+extern void test_should_return_6_for_60_divide_10(void);
 
 
 //=======Mock Management=====
@@ -54,28 +55,22 @@ static void CMock_Init(void)
   GlobalOrderError = NULL;
   mock_Stack_Init();
   mock_StringObject_Init();
-  mock_calculateToken_Init();
+  mock_createNumberToken_Init();
   mock_getToken_Init();
-  mock_operatorEvaluate_Init();
-  mock_tryEvaluatethenPush_Init();
 }
 static void CMock_Verify(void)
 {
   mock_Stack_Verify();
   mock_StringObject_Verify();
-  mock_calculateToken_Verify();
+  mock_createNumberToken_Verify();
   mock_getToken_Verify();
-  mock_operatorEvaluate_Verify();
-  mock_tryEvaluatethenPush_Verify();
 }
 static void CMock_Destroy(void)
 {
   mock_Stack_Destroy();
   mock_StringObject_Destroy();
-  mock_calculateToken_Destroy();
+  mock_createNumberToken_Destroy();
   mock_getToken_Destroy();
-  mock_operatorEvaluate_Destroy();
-  mock_tryEvaluatethenPush_Destroy();
 }
 
 //=======Test Reset Option=====
@@ -94,6 +89,9 @@ int main(void)
 {
   Unity.TestFile = "test_Evaluate.c";
   UnityBegin();
+  RUN_TEST(test_shunting_yard_should_return_0_if_the_expression_is_null, 34);
+  RUN_TEST(test_should_return_3_for_1_plus_2, 59);
+  RUN_TEST(test_should_return_6_for_60_divide_10, 113);
 
   return (UnityEnd());
 }
