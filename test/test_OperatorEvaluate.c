@@ -130,6 +130,27 @@ void test_operatorEvaluate_99_DIVIDE_3(void)
 	operatorEvaluate(&numberStack,&divide);
 }
 
+void test_operatorEvaluate_60_DIVIDE_7(void)
+{
+	Stack numberStack;
+	Token *tempToken;
+	Number *tempAns;
+	int check;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "60%7", .startIndex = 0, .length=3};
+	Number number60 = {.type= NUMBER, .value=60};
+	Operator modulus = {.type= OPERATOR, .id=MODULUS , .precedence=100};
+	Number number7 = {.type= NUMBER, .value=7};
+	Number answer;
+	Token *answerToken=(Token*)&answer;
+	
+	stackPop_ExpectAndReturn(&numberStack,&number7);
+	stackPop_ExpectAndReturn(&numberStack,&number60);
+	createNumberToken_ExpectAndReturn(4,answerToken);
+	stackPush_Expect(&answer,&numberStack);
+	
+	operatorEvaluate(&numberStack,&modulus);
+}
 
 
 

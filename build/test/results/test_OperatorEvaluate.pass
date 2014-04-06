@@ -18,11 +18,14 @@
 - :test: test_operatorEvaluate_99_DIVIDE_3
   :line: 111
   :message: ''
+- :test: test_operatorEvaluate_60_DIVIDE_7
+  :line: 133
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 5
-  :passed: 5
+  :total: 6
+  :passed: 6
   :failed: 0
   :ignored: 0
 :stdout: []
