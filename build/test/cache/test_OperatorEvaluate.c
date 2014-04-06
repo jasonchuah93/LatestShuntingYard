@@ -993,3 +993,197 @@ void test_evaluateAllOperatorOnStack_100_divide_5_multiply_6_plus_99_minus_20(vo
  evaluateAllOperatorOnStack(&numStack,&operatorStack);
 
 }
+
+
+
+void test_evaluateAllOperatorOnStack_100_divide_5_multiply_6_plus_99_minus_20_modulus_30(void){
+
+ Stack numStack;
+
+ Stack operatorStack;
+
+ Token *tempToken;
+
+ Number *tempAns;
+
+ int check;
+
+
+
+ String tokenizer = {.rawString = "100/5*6+99-20", .startIndex = 0, .length=11};
+
+
+
+ Number number100 = {.type= NUMBER, .value=100};
+
+ Token *token1 = (Token*)&number100;
+
+
+
+ Operator divide= {.type= OPERATOR, .id=DIVIDE ,.precedence=100};
+
+ Token *token2 = (Token*)&divide;
+
+
+
+ Number number5 = {.type= NUMBER, .value=5};
+
+ Token *token3 = (Token*)&number5;
+
+
+
+ Operator multiply = {.type= OPERATOR, .id=MULTIPLY ,.precedence=100};
+
+ Token *token4 = (Token*)&multiply;
+
+
+
+ Number number6 = {.type= NUMBER, .value=6};
+
+ Token *token5 = (Token*)&number6;
+
+
+
+ Operator plus = {.type= OPERATOR, .id=ADD ,.precedence=70};
+
+ Token *token6 = (Token*)&plus;
+
+
+
+ Number number99 = {.type= NUMBER, .value=99};
+
+ Token *token7 = (Token*)&number99;
+
+
+
+ Operator minus = {.type= OPERATOR, .id=SUBTRACT ,.precedence=70};
+
+ Token *token8 = (Token*)&minus;
+
+
+
+ Number number20 = {.type= NUMBER, .value=20};
+
+ Token *token9 = (Token*)&number20;
+
+
+
+ Operator modulus = {.type= OPERATOR, .id=MODULUS ,.precedence=100};
+
+ Token *token10 = (Token*)&modulus;
+
+
+
+ Number number30 = {.type= NUMBER, .value=30};
+
+ Token *token11 = (Token*)&number30;
+
+
+
+
+
+ Number tempAnswer = {.type= NUMBER, .value=20};
+
+ Token *tempAnsToken = (Token*)&tempAnswer;
+
+
+
+ Number tempAnswer2 = {.type= NUMBER, .value=120};
+
+ Token *tempAnsToken2 = (Token*)&tempAnswer2;
+
+
+
+ Number tempAnswer3 = {.type= NUMBER, .value=219};
+
+ Token *tempAnsToken3 = (Token*)&tempAnswer3;
+
+
+
+ Number tempAnswer4 = {.type= NUMBER, .value=199};
+
+ Token *tempAnsToken4 = (Token*)&tempAnswer4;
+
+
+
+ Number finalAnswer;
+
+ Token *finalAnsToken = (Token*)&finalAnswer;
+
+
+
+
+
+ stackPop_CMockExpectAndReturn(588, &operatorStack, token2);
+
+ stackPop_CMockExpectAndReturn(589, &numStack, token3);
+
+ stackPop_CMockExpectAndReturn(590, &numStack, token1);
+
+ createNumberToken_CMockExpectAndReturn(591, 20, tempAnsToken);
+
+ stackPush_CMockExpect(592, tempAnsToken, &numStack);
+
+
+
+
+
+ stackPop_CMockExpectAndReturn(595, &operatorStack, token4);
+
+ stackPop_CMockExpectAndReturn(596, &numStack, token5);
+
+ stackPop_CMockExpectAndReturn(597, &numStack, tempAnsToken);
+
+ createNumberToken_CMockExpectAndReturn(598, 120, tempAnsToken2);
+
+ stackPush_CMockExpect(599, tempAnsToken2, &numStack);
+
+
+
+
+
+ stackPop_CMockExpectAndReturn(602, &operatorStack, token6);
+
+ stackPop_CMockExpectAndReturn(603, &numStack, token7);
+
+ stackPop_CMockExpectAndReturn(604, &numStack, tempAnsToken2);
+
+ createNumberToken_CMockExpectAndReturn(605, 219, tempAnsToken3);
+
+ stackPush_CMockExpect(606, tempAnsToken3, &numStack);
+
+
+
+
+
+ stackPop_CMockExpectAndReturn(609, &operatorStack, token8);
+
+ stackPop_CMockExpectAndReturn(610, &numStack, token9);
+
+ stackPop_CMockExpectAndReturn(611, &numStack, tempAnsToken3);
+
+ createNumberToken_CMockExpectAndReturn(612, 199, tempAnsToken4);
+
+ stackPush_CMockExpect(613, tempAnsToken4, &numStack);
+
+
+
+
+
+ stackPop_CMockExpectAndReturn(616, &operatorStack, token10);
+
+ stackPop_CMockExpectAndReturn(617, &numStack, token11);
+
+ stackPop_CMockExpectAndReturn(618, &numStack, tempAnsToken4);
+
+ createNumberToken_CMockExpectAndReturn(619, 19, finalAnsToken);
+
+ stackPush_CMockExpect(620, finalAnsToken, &numStack);
+
+ stackPop_CMockExpectAndReturn(621, &operatorStack, ((void *)0));
+
+
+
+ evaluateAllOperatorOnStack(&numStack,&operatorStack);
+
+}

@@ -45,11 +45,14 @@
 - :test: test_evaluateAllOperatorOnStack_100_divide_5_multiply_6_plus_99_minus_20
   :line: 448
   :message: ''
+- :test: test_evaluateAllOperatorOnStack_100_divide_5_multiply_6_plus_99_minus_20_modulus_30
+  :line: 529
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 14
-  :passed: 14
+  :total: 15
+  :passed: 15
   :failed: 0
   :ignored: 0
 :stdout: []
