@@ -196,6 +196,27 @@ void test_operatorEvaluate_56_BITWISEOR_30(void)
 	operatorEvaluate(&numberStack,&bitwiseOR);
 }
 
+void test_operatorEvaluate_56_BITWISEXOR_30(void)
+{
+	Stack numberStack;
+	Token *tempToken;
+	Number *tempAns;
+	int check;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "56^30", .startIndex = 0, .length=3};
+	Number number56 = {.type= NUMBER, .value=56};
+	Operator bitwiseXOR = {.type= OPERATOR, .id=BITWISE_XOR , .precedence=10};
+	Number number30 = {.type= NUMBER, .value=30};
+	Number answer;
+	Token *answerToken=(Token*)&answer;
+	
+	stackPop_ExpectAndReturn(&numberStack,&number30);
+	stackPop_ExpectAndReturn(&numberStack,&number56);
+	createNumberToken_ExpectAndReturn(38,answerToken);
+	stackPush_Expect(&answer,&numberStack);
+	
+	operatorEvaluate(&numberStack,&bitwiseXOR);
+}
 
 
 
