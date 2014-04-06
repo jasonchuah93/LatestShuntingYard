@@ -443,7 +443,7 @@ void test_evaluateAllOperatorOnStack_99_XOR_66_divide_11_plus_10(void){
 	stackPop_ExpectAndReturn(&operatorStack,NULL);
 	
 	evaluateAllOperatorOnStack(&numStack,&operatorStack);
-}	
+}
 
 
 

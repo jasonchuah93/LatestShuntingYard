@@ -718,7 +718,7 @@ void test_evaluateAllOperatorOnStack_99_XOR_66_divide_11_plus_10(void){
 
 
 
- String tokenizer = {.rawString = "99^66/11", .startIndex = 0, .length=5};
+ String tokenizer = {.rawString = "99^66/11", .startIndex = 0, .length=7};
 
 
 
