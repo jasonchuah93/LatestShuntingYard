@@ -241,4 +241,30 @@ void test_evaluate_with_different_expression(void){
 
  printf("Answer : %d ",check);
 
- }
+}
+
+
+
+void test_evaluate_with_logic_expression(void){
+
+ int check;
+
+ String tokenizer = {.rawString = "2|3&4^5|6^10|10&53^21&95|6^200&5|80", .startIndex = 0, .length = 27};
+
+
+
+
+
+ stringCreate_CMockExpectAndReturn(157, "2|3&4^5|6^10|10&53^21&95|6^200&5|80", &tokenizer);
+
+
+
+
+
+ check=evaluate("2|3&4^5|6^10|10&53^21&95|6^200&5|80");
+
+ UnityAssertEqualNumber((_U_SINT)((84)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)161, UNITY_DISPLAY_STYLE_INT);
+
+ printf("Answer : %d ",check);
+
+}

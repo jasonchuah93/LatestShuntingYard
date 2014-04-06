@@ -27,11 +27,14 @@
 - :test: test_evaluate_with_different_expression
   :line: 139
   :message: ''
+- :test: test_evaluate_with_logic_expression
+  :line: 152
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 8
-  :passed: 8
+  :total: 9
+  :passed: 9
   :failed: 0
   :ignored: 0
 :stdout:
@@ -51,3 +54,5 @@
 - 'Answer : 16 '
 - 'Loop needed for each expression to completely evaluate : 27 '
 - 'Answer : 31 '
+- 'Loop needed for each expression to completely evaluate : 27 '
+- 'Answer : 84 '

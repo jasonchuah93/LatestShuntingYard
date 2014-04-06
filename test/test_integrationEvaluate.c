@@ -147,10 +147,22 @@ void test_evaluate_with_different_expression(void){
 	check=evaluate("2|3+4*5-6-10|10&53^21+95%6^200%5*80");
 	TEST_ASSERT_EQUAL(31,check);
 	printf("Answer : %d ",check);
-	}
+}
 
-
+void test_evaluate_with_logic_expression(void){
+	int check;
+	String tokenizer = {.rawString = "2|3&4^5|6^10|10&53^21&95|6^200&5|80", .startIndex = 0, .length = 27};
 	
+	//Evaluate the expression
+	stringCreate_ExpectAndReturn("2|3&4^5|6^10|10&53^21&95|6^200&5|80",&tokenizer);
+	
+	//Token number 2
+	check=evaluate("2|3&4^5|6^10|10&53^21&95|6^200&5|80");
+	TEST_ASSERT_EQUAL(84,check);
+	printf("Answer : %d ",check);
+}
+
+
 	
 	
 	

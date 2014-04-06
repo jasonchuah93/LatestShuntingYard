@@ -738,7 +738,6 @@ void test_should_evaluate_43_HASHTAG_42_and_throw_error_invalid_operator(void){
 
 
 
-
 /******************************************************************
 	Still thinking how to add prefix without causing bad memory
 	access 
