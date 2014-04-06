@@ -12,11 +12,20 @@
 - :test: test_should_return_6_for_60_divide_10
   :line: 113
   :message: ''
+- :test: test_evaluate_2_MULTIPLY_3_PLUS_4
+  :line: 168
+  :message: ''
+- :test: test_evaluate_2_PLUS_3_MULTIPLY_4_PLUS_5_MULTIPLY_6
+  :line: 250
+  :message: ''
+- :test: test_evaluate_2_MULTIPLY_3_PLUS_4_MULTIPLY_5_PLUS_6
+  :line: 389
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 3
-  :passed: 3
+  :total: 6
+  :passed: 6
   :failed: 0
   :ignored: 0
 :stdout:
@@ -24,3 +33,9 @@
 - 'Answer : 3 '
 - 'Loop needed for each expression to completely evaluate : 3 '
 - 'Answer : 6 '
+- 'Loop needed for each expression to completely evaluate : 5 '
+- 'Answer : 10 '
+- 'Loop needed for each expression to completely evaluate : 9 '
+- 'Answer : 44 '
+- 'Loop needed for each expression to completely evaluate : 9 '
+- 'Answer : 32 '

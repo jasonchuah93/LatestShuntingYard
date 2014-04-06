@@ -45,6 +45,9 @@ extern void tearDown(void);
 extern void test_shunting_yard_should_return_0_if_the_expression_is_null(void);
 extern void test_should_return_3_for_1_plus_2(void);
 extern void test_should_return_6_for_60_divide_10(void);
+extern void test_evaluate_2_MULTIPLY_3_PLUS_4(void);
+extern void test_evaluate_2_PLUS_3_MULTIPLY_4_PLUS_5_MULTIPLY_6(void);
+extern void test_evaluate_2_MULTIPLY_3_PLUS_4_MULTIPLY_5_PLUS_6(void);
 
 
 //=======Mock Management=====
@@ -92,6 +95,9 @@ int main(void)
   RUN_TEST(test_shunting_yard_should_return_0_if_the_expression_is_null, 34);
   RUN_TEST(test_should_return_3_for_1_plus_2, 59);
   RUN_TEST(test_should_return_6_for_60_divide_10, 113);
+  RUN_TEST(test_evaluate_2_MULTIPLY_3_PLUS_4, 168);
+  RUN_TEST(test_evaluate_2_PLUS_3_MULTIPLY_4_PLUS_5_MULTIPLY_6, 250);
+  RUN_TEST(test_evaluate_2_MULTIPLY_3_PLUS_4_MULTIPLY_5_PLUS_6, 389);
 
   return (UnityEnd());
 }
