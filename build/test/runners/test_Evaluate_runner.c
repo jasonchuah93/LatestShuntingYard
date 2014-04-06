@@ -49,6 +49,7 @@ extern void test_evaluate_2_MULTIPLY_3_PLUS_4(void);
 extern void test_evaluate_2_PLUS_3_MULTIPLY_4_PLUS_5_MULTIPLY_6(void);
 extern void test_evaluate_2_MULTIPLY_3_PLUS_4_MULTIPLY_5_PLUS_6(void);
 extern void test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10(void);
+extern void test_should_evaluate_43_HASHTAG_42_and_throw_error_invalid_operator(void);
 
 
 //=======Mock Management=====
@@ -93,13 +94,14 @@ int main(void)
 {
   Unity.TestFile = "test_Evaluate.c";
   UnityBegin();
-  RUN_TEST(test_shunting_yard_should_return_0_if_the_expression_is_null, 34);
-  RUN_TEST(test_should_return_3_for_1_plus_2, 59);
-  RUN_TEST(test_should_return_6_for_60_divide_10, 113);
-  RUN_TEST(test_evaluate_2_MULTIPLY_3_PLUS_4, 168);
-  RUN_TEST(test_evaluate_2_PLUS_3_MULTIPLY_4_PLUS_5_MULTIPLY_6, 250);
-  RUN_TEST(test_evaluate_2_MULTIPLY_3_PLUS_4_MULTIPLY_5_PLUS_6, 389);
-  RUN_TEST(test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10, 524);
+  RUN_TEST(test_shunting_yard_should_return_0_if_the_expression_is_null, 35);
+  RUN_TEST(test_should_return_3_for_1_plus_2, 60);
+  RUN_TEST(test_should_return_6_for_60_divide_10, 115);
+  RUN_TEST(test_evaluate_2_MULTIPLY_3_PLUS_4, 172);
+  RUN_TEST(test_evaluate_2_PLUS_3_MULTIPLY_4_PLUS_5_MULTIPLY_6, 258);
+  RUN_TEST(test_evaluate_2_MULTIPLY_3_PLUS_4_MULTIPLY_5_PLUS_6, 401);
+  RUN_TEST(test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10, 538);
+  RUN_TEST(test_should_evaluate_43_HASHTAG_42_and_throw_error_invalid_operator, 703);
 
   return (UnityEnd());
 }

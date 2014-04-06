@@ -2,12 +2,52 @@
 :source:
   :path: test
   :file: test_integrationEvaluate.c
-:successes: []
+:successes:
+- :test: test_should_return_3_for_1_plus_2
+  :line: 41
+  :message: ''
+- :test: test_should_return_6_for_60_divide_10
+  :line: 53
+  :message: ''
+- :test: test_evaluate_2_MULTIPLY_3_PLUS_4
+  :line: 66
+  :message: ''
+- :test: test_evaluate_2_PLUS_3_MULTIPLY_4_PLUS_5_MULTIPLY_6
+  :line: 84
+  :message: ''
+- :test: test_evaluate_2_MULTIPLY_3_PLUS_4_MULTIPLY_5_PLUS_6
+  :line: 97
+  :message: ''
+- :test: test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10
+  :line: 111
+  :message: ''
+- :test: test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10_OR_10_AND_53_XOR_21
+  :line: 125
+  :message: ''
+- :test: test_evaluate_with_different_expression
+  :line: 139
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 0
-  :passed: 0
+  :total: 8
+  :passed: 8
   :failed: 0
   :ignored: 0
-:stdout: []
+:stdout:
+- 'Loop needed for each expression to completely evaluate : 3 '
+- 'Answer : 3 '
+- 'Loop needed for each expression to completely evaluate : 3 '
+- 'Answer : 6 '
+- 'Loop needed for each expression to completely evaluate : 5 '
+- 'Answer : 10 '
+- 'Loop needed for each expression to completely evaluate : 9 '
+- 'Answer : 44 '
+- 'Loop needed for each expression to completely evaluate : 9 '
+- 'Answer : 32 '
+- 'Loop needed for each expression to completely evaluate : 11 '
+- 'Answer : 7 '
+- 'Loop needed for each expression to completely evaluate : 17 '
+- 'Answer : 16 '
+- 'Loop needed for each expression to completely evaluate : 27 '
+- 'Answer : 31 '

@@ -1,13 +1,11 @@
 #include <stdio.h>
+#include "Evaluate.h"
 #include <malloc.h>
 #include <string.h>
-#include "Evaluate.h"
-#include "getToken.h"
+#include "CException.h"
 #include "Error.h"
 #include "convertValue.h"
 #include "GetElement.h"
-#include "CException.h"
-
 /*
 	This function will generate a token
 	
@@ -125,11 +123,13 @@ Operator *detectOperator(String *tokenizer, int i)
 				{
 					i++;
 					opeToken->id=ADD_SET_EQUAL;
+					opeToken->precedence=10;
 					
 				}
 				else
 				{
 					opeToken->id=ADD;
+					opeToken->precedence=60;
 				}
 				break;
 			}
@@ -139,11 +139,13 @@ Operator *detectOperator(String *tokenizer, int i)
 				{
 					i++;
 					opeToken->id=SUBTRACT_SET_EQUAL;
+					opeToken->precedence=10;
 					
 				}
 				else
 				{
 					opeToken->id=SUBTRACT;
+					opeToken->precedence=60;
 				}
 				break;
 			}
@@ -153,11 +155,13 @@ Operator *detectOperator(String *tokenizer, int i)
 				{
 					i++;
 					opeToken->id=MULTIPLY_SET_EQUAL;
+					opeToken->precedence=10;
 					
 				}
 				else
 				{
 					opeToken->id=MULTIPLY;
+					opeToken->precedence=70;
 				}
 				break;
 			}
@@ -167,11 +171,13 @@ Operator *detectOperator(String *tokenizer, int i)
 				{
 					i++;
 					opeToken->id=DIVIDE_SET_EQUAL;
+					opeToken->precedence=10;
 					
 				}
 				else
 				{
 					opeToken->id=DIVIDE;
+					opeToken->precedence=70;
 				}
 				break;
 			}
@@ -181,27 +187,32 @@ Operator *detectOperator(String *tokenizer, int i)
 				{
 					i++;
 					opeToken->id=MODULUS_SET_EQUAL;
+					opeToken->precedence=10;
 					
 				}
 				else
 				{
 					opeToken->id=MODULUS;
+					opeToken->precedence=70;
 				}
 				break;
 			}
 			case '$':
 			{
 				opeToken->id=CURRENT_PROGRAM_COUNTER;
+				opeToken->precedence=90;
 				break;
 			}
 			case '(':
 			{
 				opeToken->id=LEFT_PARENTHESIS;
+				opeToken->precedence=1;
 				break;
 			}
 			case ')':
 			{
 				opeToken->id=RIGHT_PARENTHESIS;
+				opeToken->precedence=2;
 				break;
 			}
 			case '=':
@@ -210,10 +221,12 @@ Operator *detectOperator(String *tokenizer, int i)
 				{
 					i++;
 					opeToken->id=EQUAL_TO;
+					opeToken->precedence=40;
 				}
 				else
 				{
 					opeToken->id=EQUAL;
+					opeToken->precedence=10;
 				}
 				break;
 			}
@@ -222,17 +235,20 @@ Operator *detectOperator(String *tokenizer, int i)
 				if(tokenizer->rawString[tokenizer->startIndex+1]=='=')
 				{
 					opeToken->id=NOT_EQUAL;
+					opeToken->precedence=40;
 					i++;
 				}
 				else
 				{
 					opeToken->id=LOGIC_NOT;
+					opeToken->precedence=80;
 				}
 				break;
 			}
 			case '~':
 			{
 				opeToken->id=COMPLEMENT;
+				opeToken->precedence=80;
 				break;
 			}
 			case '>':
@@ -240,6 +256,7 @@ Operator *detectOperator(String *tokenizer, int i)
 				if(tokenizer->rawString[tokenizer->startIndex+1]=='=')
 				{	
 					opeToken->id=GREATER_EQUAL_THAN;
+					opeToken->precedence=40;
 					i++;
 				}
 				else if(tokenizer->rawString[tokenizer->startIndex+1]=='>')
@@ -248,16 +265,19 @@ Operator *detectOperator(String *tokenizer, int i)
 					if(tokenizer->rawString[tokenizer->startIndex+2]=='=')
 					{	
 						opeToken->id=RIGHT_SHIFT_SET_EQUAL;
+						opeToken->precedence=10;
 						i++;
 					}
 					else
 					{
 						opeToken->id=RIGHT_SHIFT;
+						opeToken->precedence=50;
 					}
 				}	
 				else
 				{
 					opeToken->id=GREATER_THAN;
+					opeToken->precedence=40;
 				}
 				break;
 			}
@@ -266,6 +286,7 @@ Operator *detectOperator(String *tokenizer, int i)
 				if(tokenizer->rawString[tokenizer->startIndex+1]=='=')
 				{	
 					opeToken->id=LESS_EQUAL_THAN;
+					opeToken->precedence=40;
 					i++;
 				}
 				else if(tokenizer->rawString[tokenizer->startIndex+1]=='<')
@@ -274,16 +295,19 @@ Operator *detectOperator(String *tokenizer, int i)
 					if(tokenizer->rawString[tokenizer->startIndex+2]=='=')
 					{	
 						opeToken->id=LEFT_SHIFT_SET_EQUAL;
+						opeToken->precedence=10;
 						i++;
 					}
 					else
 					{
 						opeToken->id=LEFT_SHIFT;
+						opeToken->precedence=50;
 					}
 				}	
 				else
 				{
 					opeToken->id=LESS_THAN;
+					opeToken->precedence=40;
 				}
 				break;
 			}
@@ -293,15 +317,18 @@ Operator *detectOperator(String *tokenizer, int i)
 				{
 					i++;
 					opeToken->id = LOGICAL_AND;
+					opeToken->precedence=20;
 				}
 				else if(tokenizer->rawString[tokenizer->startIndex+1]=='=')
 				{
 					opeToken->id = AND_SET_EQUAL;
+					opeToken->precedence=10;
 					i++;
 				}
 				else
 				{
 					opeToken->id=BITWISE_AND;
+					opeToken->precedence=30;
 				}
 				break;
 			}
@@ -311,10 +338,12 @@ Operator *detectOperator(String *tokenizer, int i)
 				{
 					i++;
 					opeToken->id = XOR_SET_EQUAL;
+					opeToken->precedence=10;
 				}
 				else
 				{
 					opeToken->id=BITWISE_XOR;
+					opeToken->precedence=30;
 				}
 				break;
 			}
@@ -324,15 +353,18 @@ Operator *detectOperator(String *tokenizer, int i)
 				{
 					i++;
 					opeToken->id = OR_SET_EQUAL;
+					opeToken->precedence=10;
 				}
 				else if(tokenizer->rawString[tokenizer->startIndex+1]=='|')
 				{
 					i++;
 					opeToken->id = LOGICAL_OR;
+					opeToken->precedence=20;
 				}		
 				else
 				{
 					opeToken->id=BITWISE_OR;
+					opeToken->precedence=30;
 				}
 				break;
 			}
@@ -366,7 +398,6 @@ Operator *detectOperator(String *tokenizer, int i)
 	opeToken		If it is low, high or upper.
 	
 */
-
 Token *checkIdentifier(char * name)
 {
 	char *tempName = malloc(strlen(name)+1);
@@ -392,17 +423,38 @@ Token *checkIdentifier(char * name)
 	}
 	else 
 	{
+		free(tempName);
 		return NULL;
 	}
 	
 	opeToken->type=OPERATOR;
+	opeToken->precedence=80;
 	free(tempName);
 	
 	return (Token*)opeToken;
 	
 }
 	
-
+/*
+	This function will generate a Token from a number.
+	
+	input :
+	number				Carry the number that going to store in a Token.
+	
+	output:
+	none
+	
+	return:
+	(Token*)newToken	The token that generated.
+*/
+Token *createNumberToken(int number)
+{
+	Number *newToken = malloc (sizeof(Number));
+	newToken->type = NUMBER;
+	newToken->value=number;
+	
+	return (Token*)newToken;
+}
 
 /*
 	This function will determine token is operator or not.

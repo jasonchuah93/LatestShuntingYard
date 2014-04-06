@@ -10,6 +10,7 @@
 #include "mock_createNumberToken.h"
 #include "stackForEvaluate.h"
 #include "Error.h"
+#include "CException.h"
 
 void setUp(void){}
 void tearDown(void){}
@@ -35,7 +36,7 @@ void test_shunting_yard_should_return_0_if_the_expression_is_null(){
 	int check;
 	Stack numberStack;
 	Stack operatorStack;
-	ErrorCode exception;
+	Error exception;
 	String tokenizer = {.rawString = "0", .startIndex = 0, .length=1};
 	
 	Number number2 = {.type= NUMBER, .value=0};
@@ -52,7 +53,7 @@ void test_shunting_yard_should_return_0_if_the_expression_is_null(){
 	}
 	Catch(exception)
 	{
-		TEST_ASSERT_EQUAL(ERR_INVALID_EXPRESSION,exception);
+		TEST_ASSERT_EQUAL(INVALID_EXPRESSION,exception);
 	}
 }
 
@@ -104,7 +105,8 @@ void test_should_return_3_for_1_plus_2(void){
 	stackPop_ExpectAndReturn(&operatorStack,NULL);
 	
 	stackPop_ExpectAndReturn(&dataStack,answerToken);
-	
+	destroyStack_Expect(&dataStack);
+	destroyStack_Expect(&operatorStack);
 	check=evaluate("1+2");
 	TEST_ASSERT_EQUAL(3,check);
 	printf("Answer : %d ",check);
@@ -159,6 +161,8 @@ void test_should_return_6_for_60_divide_10(void){
 	stackPop_ExpectAndReturn(&operatorStack,NULL);
 	
 	stackPop_ExpectAndReturn(&dataStack,answerToken);
+	destroyStack_Expect(&dataStack);
+	destroyStack_Expect(&operatorStack);
 	
 	check=evaluate("60/10");
 	TEST_ASSERT_EQUAL(6,check);
@@ -241,6 +245,10 @@ void test_evaluate_2_MULTIPLY_3_PLUS_4(void){
 	stackPop_ExpectAndReturn(&opeStack,NULL);
 	
 	stackPop_ExpectAndReturn(&numStack,finalAnsToken); 
+	
+	destroyStack_Expect(&numStack);
+	destroyStack_Expect(&opeStack);
+	
 	check=evaluate("2*3+4");
 	TEST_ASSERT_EQUAL(10,check);
 	printf("Answer : %d ",check);
@@ -381,6 +389,10 @@ void test_evaluate_2_PLUS_3_MULTIPLY_4_PLUS_5_MULTIPLY_6(void){
 	stackPop_ExpectAndReturn(&opeStack,NULL);
 	
 	stackPop_ExpectAndReturn(&numStack,finalAnsToken); 
+	
+	destroyStack_Expect(&numStack);
+	destroyStack_Expect(&opeStack);
+	
 	check=evaluate("2+3*4+5*6");
 	TEST_ASSERT_EQUAL(44,check);
 	printf("Answer : %d ",check);
@@ -514,6 +526,8 @@ void test_evaluate_2_MULTIPLY_3_PLUS_4_MULTIPLY_5_PLUS_6(void){
 	stackPop_ExpectAndReturn(&opeStack,NULL);
 	
 	stackPop_ExpectAndReturn(&numStack,finalAnsToken); 
+	destroyStack_Expect(&numStack);
+	destroyStack_Expect(&opeStack);
 	
 	check=evaluate("2*3+4*5+6");
 	TEST_ASSERT_EQUAL(32,check);
@@ -678,11 +692,53 @@ void test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10(void){
 	stackPop_ExpectAndReturn(&opeStack,NULL);
 	
 	stackPop_ExpectAndReturn(&numStack,finalAnsToken); 
+	destroyStack_Expect(&numStack);
+	destroyStack_Expect(&opeStack);
 	
 	check=evaluate("2|3+4*5-6-10");
 	TEST_ASSERT_EQUAL(7,check);
 	printf("Answer : %d ",check);
 }
+
+void test_should_evaluate_43_HASHTAG_42_and_throw_error_invalid_operator(void){
+	
+	Stack dataStack;
+	Stack operatorStack;
+	int check;
+	Error e;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "43)42", .startIndex = 0};
+	
+	Number number43 = {.type= NUMBER, .value=43};
+	Token *token1 = (Token*)&number43;
+	
+	Operator hashtag = {.type= OPERATOR, .id=RIGHT_PARENTHESIS, .precedence=50};
+	Token *token2 = (Token*)&hashtag;
+	
+	Number number42 = {.type= NUMBER, .value=42};
+	Token *token3 = (Token*)&number42;
+	
+	createStack_ExpectAndReturn(&dataStack);
+	createStack_ExpectAndReturn(&operatorStack);
+	stringCreate_ExpectAndReturn("43#42",&tokenizer);
+	//44
+	getToken_ExpectAndReturn(&tokenizer,token1);
+	isNumber_ExpectAndReturn(token1,1);
+	stackPush_Expect(token1,&dataStack);
+	//HASHTAG
+	getToken_ExpectAndThrow(&tokenizer,UNKNOWN_OPERATOR);
+	
+	Try{
+		evaluate("43#42");
+		 TEST_FAIL_MESSAGE("Should throw ERR_INVALID_OPERATOR");
+	 }Catch(e){
+		 TEST_ASSERT_EQUAL(UNKNOWN_OPERATOR,e);
+	 }
+}
+
+
+
+
 /******************************************************************
 	Still thinking how to add prefix without causing bad memory
 	access 

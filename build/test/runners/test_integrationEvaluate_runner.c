@@ -10,10 +10,13 @@
   { \
     CEXCEPTION_T e; \
     Try { \
+      CMock_Init(); \
       setUp(); \
       TestFunc(); \
+      CMock_Verify(); \
     } Catch(e) { TEST_ASSERT_EQUAL_HEX32_MESSAGE(CEXCEPTION_NONE, e, "Unhandled Exception!"); } \
   } \
+  CMock_Destroy(); \
   if (TEST_PROTECT() && !TEST_IS_IGNORED) \
   { \
     tearDown(); \
@@ -23,9 +26,11 @@
 
 //=======Automagically Detected Files To Include=====
 #include "unity.h"
+#include "cmock.h"
 #include <setjmp.h>
 #include <stdio.h>
 #include "CException.h"
+#include "mock_StringObject.h"
 
 int GlobalExpectCount;
 int GlobalVerifyOrder;
@@ -34,12 +39,40 @@ char* GlobalOrderError;
 //=======External Functions This Runner Calls=====
 extern void setUp(void);
 extern void tearDown(void);
+extern void test_should_return_3_for_1_plus_2(void);
+extern void test_should_return_6_for_60_divide_10(void);
+extern void test_evaluate_2_MULTIPLY_3_PLUS_4(void);
+extern void test_evaluate_2_PLUS_3_MULTIPLY_4_PLUS_5_MULTIPLY_6(void);
+extern void test_evaluate_2_MULTIPLY_3_PLUS_4_MULTIPLY_5_PLUS_6(void);
+extern void test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10(void);
+extern void test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10_OR_10_AND_53_XOR_21(void);
+extern void test_evaluate_with_different_expression(void);
 
+
+//=======Mock Management=====
+static void CMock_Init(void)
+{
+  GlobalExpectCount = 0;
+  GlobalVerifyOrder = 0;
+  GlobalOrderError = NULL;
+  mock_StringObject_Init();
+}
+static void CMock_Verify(void)
+{
+  mock_StringObject_Verify();
+}
+static void CMock_Destroy(void)
+{
+  mock_StringObject_Destroy();
+}
 
 //=======Test Reset Option=====
 void resetTest()
 {
+  CMock_Verify();
+  CMock_Destroy();
   tearDown();
+  CMock_Init();
   setUp();
 }
 
@@ -49,6 +82,14 @@ int main(void)
 {
   Unity.TestFile = "test_integrationEvaluate.c";
   UnityBegin();
+  RUN_TEST(test_should_return_3_for_1_plus_2, 41);
+  RUN_TEST(test_should_return_6_for_60_divide_10, 53);
+  RUN_TEST(test_evaluate_2_MULTIPLY_3_PLUS_4, 66);
+  RUN_TEST(test_evaluate_2_PLUS_3_MULTIPLY_4_PLUS_5_MULTIPLY_6, 84);
+  RUN_TEST(test_evaluate_2_MULTIPLY_3_PLUS_4_MULTIPLY_5_PLUS_6, 97);
+  RUN_TEST(test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10, 111);
+  RUN_TEST(test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10_OR_10_AND_53_XOR_21, 125);
+  RUN_TEST(test_evaluate_with_different_expression, 139);
 
   return (UnityEnd());
 }

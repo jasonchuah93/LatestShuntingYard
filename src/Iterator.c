@@ -35,6 +35,7 @@ Iterator *getIterator(LinkedList *list)
 	return newIterator;
 }
 
+
 /*
 	View the next data of the element
 	
@@ -51,6 +52,7 @@ Element *getNext(Element *current)
 	temp=current->next;
 	return temp;
 }
+
 
 /*
 	Destroy the data inside the iterator 

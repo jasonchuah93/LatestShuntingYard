@@ -6,7 +6,6 @@
 #include "StringObject.h"
 #include "GetElement.h"
 #include <math.h>
-#include "iterator.h"
 /*
 	Convert an identifier to number respectively to the value in linked list.
 	
@@ -103,7 +102,7 @@ String *convertBasedNumberToBase10Number(String *input)
 				errorMessage.rawString = input->rawString;
 				errorMessage.position = i;
 				errorMessage.message = "Invalid expression ! ";
-				Throw(ERR_INVALID_EXPRESSION);
+				Throw(INVALID_EXPRESSION);
 			}
 			
 		}
@@ -137,7 +136,7 @@ String *convertBasedNumberToBase10Number(String *input)
 				errorMessage.rawString = input->rawString;
 				errorMessage.position = i;
 				errorMessage.message = "Invalid expression ! ";
-				Throw(ERR_INVALID_EXPRESSION);
+				Throw(INVALID_EXPRESSION);
 			}
 			
 		}
@@ -166,7 +165,7 @@ String *convertBasedNumberToBase10Number(String *input)
 				errorMessage.rawString = input->rawString;
 				errorMessage.position = i;
 				errorMessage.message = "Invalid expression ! ";
-				Throw(ERR_INVALID_EXPRESSION);
+				Throw(INVALID_EXPRESSION);
 			}
 		}
 
@@ -192,7 +191,7 @@ String *convertBasedNumberToBase10Number(String *input)
 				errorMessage.rawString = input->rawString;
 				errorMessage.position = i;
 				errorMessage.message = "Invalid expression ! ";
-				Throw(ERR_INVALID_EXPRESSION);
+				Throw(INVALID_EXPRESSION);
 			}
 		}
 
@@ -251,7 +250,7 @@ String *convertBasedNumberToBase10Number(String *input)
 				errorMessage.rawString = input->rawString;
 				errorMessage.position = i;
 				errorMessage.message = "Invalid expression ! ";
-				Throw(ERR_INVALID_EXPRESSION);
+				Throw(INVALID_EXPRESSION);
 			}
 		}
 	i--;
@@ -301,7 +300,6 @@ String *convertBasedNumberToBase10Number(String *input)
 	}
 	
 }
-
 
 
 

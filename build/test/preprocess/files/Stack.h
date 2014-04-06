@@ -1,4 +1,3 @@
-#include "LinkedList.h"
 
 
 
@@ -7,20 +6,24 @@
 
 
 
-typedef struct{
 
- Element *topOfStack;
+
+typedef struct
+
+{
+
+ void *topOfStack;
+
+
 
 }Stack;
 
 
 
-
-
 Stack *createStack();
 
-void stackPush(void * data,Stack *stack );
+void stackPush(void *newMember,Stack *stack);
 
-void *stackPop(Stack *stack);
+void * stackPop(Stack *stack);
 
 void destroyStack(Stack *stack);

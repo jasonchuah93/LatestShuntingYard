@@ -24,11 +24,7 @@ typedef struct {
 	int length;
 }Tokenizer;
 
-typedef struct {
-	char *rawString;
-	int startIndex;
-	int length;
-} String;
+
 
 //Three type of token needed.
 typedef struct {

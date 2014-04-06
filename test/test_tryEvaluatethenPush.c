@@ -9,6 +9,7 @@
 #include "calculateToken.h"
 #include "stackForEvaluate.h"
 #include "mock_createNumberToken.h"
+#include "CException.h"
 
 void setUp(void){}
 void tearDown(void){}

@@ -28,6 +28,35 @@ typedef struct _CMOCK_stringCopy_CALL_INSTANCE
 
 } CMOCK_stringCopy_CALL_INSTANCE;
 
+typedef struct _CMOCK_stringLeftTrim_CALL_INSTANCE
+{
+  UNITY_LINE_TYPE LineNumber;
+  int CallOrder;
+  String* Expected_string;
+  CEXCEPTION_T ExceptionToThrow;
+
+} CMOCK_stringLeftTrim_CALL_INSTANCE;
+
+typedef struct _CMOCK_stringRightTrim_CALL_INSTANCE
+{
+  UNITY_LINE_TYPE LineNumber;
+  int CallOrder;
+  String* Expected_string;
+  CEXCEPTION_T ExceptionToThrow;
+
+} CMOCK_stringRightTrim_CALL_INSTANCE;
+
+typedef struct _CMOCK_getWordAndUpdate_CALL_INSTANCE
+{
+  UNITY_LINE_TYPE LineNumber;
+  String* ReturnVal;
+  int CallOrder;
+  String* Expected_line;
+  char* Expected_delimiter;
+  CEXCEPTION_T ExceptionToThrow;
+
+} CMOCK_getWordAndUpdate_CALL_INSTANCE;
+
 static struct mock_StringObjectInstance
 {
   int stringCreate_IgnoreBool;
@@ -39,6 +68,19 @@ static struct mock_StringObjectInstance
   CMOCK_stringCopy_CALLBACK stringCopy_CallbackFunctionPointer;
   int stringCopy_CallbackCalls;
   CMOCK_MEM_INDEX_TYPE stringCopy_CallInstance;
+  int stringLeftTrim_IgnoreBool;
+  CMOCK_stringLeftTrim_CALLBACK stringLeftTrim_CallbackFunctionPointer;
+  int stringLeftTrim_CallbackCalls;
+  CMOCK_MEM_INDEX_TYPE stringLeftTrim_CallInstance;
+  int stringRightTrim_IgnoreBool;
+  CMOCK_stringRightTrim_CALLBACK stringRightTrim_CallbackFunctionPointer;
+  int stringRightTrim_CallbackCalls;
+  CMOCK_MEM_INDEX_TYPE stringRightTrim_CallInstance;
+  int getWordAndUpdate_IgnoreBool;
+  String* getWordAndUpdate_FinalReturn;
+  CMOCK_getWordAndUpdate_CALLBACK getWordAndUpdate_CallbackFunctionPointer;
+  int getWordAndUpdate_CallbackCalls;
+  CMOCK_MEM_INDEX_TYPE getWordAndUpdate_CallInstance;
 } Mock;
 
 extern jmp_buf AbortFrame;
@@ -58,6 +100,21 @@ void mock_StringObject_Verify(void)
   UNITY_TEST_ASSERT(CMOCK_GUTS_NONE == Mock.stringCopy_CallInstance, cmock_line, "Function 'stringCopy' called less times than expected.");
   if (Mock.stringCopy_CallbackFunctionPointer != NULL)
     Mock.stringCopy_CallInstance = CMOCK_GUTS_NONE;
+  if (Mock.stringLeftTrim_IgnoreBool)
+    Mock.stringLeftTrim_CallInstance = CMOCK_GUTS_NONE;
+  UNITY_TEST_ASSERT(CMOCK_GUTS_NONE == Mock.stringLeftTrim_CallInstance, cmock_line, "Function 'stringLeftTrim' called less times than expected.");
+  if (Mock.stringLeftTrim_CallbackFunctionPointer != NULL)
+    Mock.stringLeftTrim_CallInstance = CMOCK_GUTS_NONE;
+  if (Mock.stringRightTrim_IgnoreBool)
+    Mock.stringRightTrim_CallInstance = CMOCK_GUTS_NONE;
+  UNITY_TEST_ASSERT(CMOCK_GUTS_NONE == Mock.stringRightTrim_CallInstance, cmock_line, "Function 'stringRightTrim' called less times than expected.");
+  if (Mock.stringRightTrim_CallbackFunctionPointer != NULL)
+    Mock.stringRightTrim_CallInstance = CMOCK_GUTS_NONE;
+  if (Mock.getWordAndUpdate_IgnoreBool)
+    Mock.getWordAndUpdate_CallInstance = CMOCK_GUTS_NONE;
+  UNITY_TEST_ASSERT(CMOCK_GUTS_NONE == Mock.getWordAndUpdate_CallInstance, cmock_line, "Function 'getWordAndUpdate' called less times than expected.");
+  if (Mock.getWordAndUpdate_CallbackFunctionPointer != NULL)
+    Mock.getWordAndUpdate_CallInstance = CMOCK_GUTS_NONE;
 }
 
 void mock_StringObject_Init(void)
@@ -73,6 +130,12 @@ void mock_StringObject_Destroy(void)
   Mock.stringCreate_CallbackCalls = 0;
   Mock.stringCopy_CallbackFunctionPointer = NULL;
   Mock.stringCopy_CallbackCalls = 0;
+  Mock.stringLeftTrim_CallbackFunctionPointer = NULL;
+  Mock.stringLeftTrim_CallbackCalls = 0;
+  Mock.stringRightTrim_CallbackFunctionPointer = NULL;
+  Mock.stringRightTrim_CallbackCalls = 0;
+  Mock.getWordAndUpdate_CallbackFunctionPointer = NULL;
+  Mock.getWordAndUpdate_CallbackCalls = 0;
   GlobalExpectCount = 0;
   GlobalVerifyOrder = 0;
 }
@@ -225,6 +288,220 @@ void stringCopy_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, char* source, ch
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
   cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   CMockExpectParameters_stringCopy(cmock_call_instance, source, destination, startLocation, length);
+  cmock_call_instance->ExceptionToThrow = cmock_to_throw;
+}
+
+void stringLeftTrim(String* string)
+{
+  UNITY_LINE_TYPE cmock_line = TEST_LINE_NUM;
+  CMOCK_stringLeftTrim_CALL_INSTANCE* cmock_call_instance = (CMOCK_stringLeftTrim_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.stringLeftTrim_CallInstance);
+  Mock.stringLeftTrim_CallInstance = CMock_Guts_MemNext(Mock.stringLeftTrim_CallInstance);
+  if (Mock.stringLeftTrim_IgnoreBool)
+  {
+    return;
+  }
+  if (Mock.stringLeftTrim_CallbackFunctionPointer != NULL)
+  {
+    Mock.stringLeftTrim_CallbackFunctionPointer(string, Mock.stringLeftTrim_CallbackCalls++);
+    return;
+  }
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "Function 'stringLeftTrim' called more times than expected.");
+  cmock_line = cmock_call_instance->LineNumber;
+  if (cmock_call_instance->CallOrder > ++GlobalVerifyOrder)
+    UNITY_TEST_FAIL(cmock_line, "Function 'stringLeftTrim' called earlier than expected.");
+  if (cmock_call_instance->CallOrder < GlobalVerifyOrder)
+    UNITY_TEST_FAIL(cmock_line, "Function 'stringLeftTrim' called later than expected.");
+  UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_string), (void*)(string), sizeof(String), cmock_line, "Function 'stringLeftTrim' called with unexpected value for argument 'string'.");
+  if (cmock_call_instance->ExceptionToThrow != CEXCEPTION_NONE)
+  {
+    Throw(cmock_call_instance->ExceptionToThrow);
+  }
+}
+
+void CMockExpectParameters_stringLeftTrim(CMOCK_stringLeftTrim_CALL_INSTANCE* cmock_call_instance, String* string)
+{
+  cmock_call_instance->Expected_string = string;
+}
+
+void stringLeftTrim_CMockIgnore(void)
+{
+  Mock.stringLeftTrim_IgnoreBool = (int)1;
+}
+
+void stringLeftTrim_CMockExpect(UNITY_LINE_TYPE cmock_line, String* string)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_stringLeftTrim_CALL_INSTANCE));
+  CMOCK_stringLeftTrim_CALL_INSTANCE* cmock_call_instance = (CMOCK_stringLeftTrim_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.stringLeftTrim_CallInstance = CMock_Guts_MemChain(Mock.stringLeftTrim_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_stringLeftTrim(cmock_call_instance, string);
+}
+
+void stringLeftTrim_StubWithCallback(CMOCK_stringLeftTrim_CALLBACK Callback)
+{
+  Mock.stringLeftTrim_CallbackFunctionPointer = Callback;
+}
+
+void stringLeftTrim_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, String* string, CEXCEPTION_T cmock_to_throw)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_stringLeftTrim_CALL_INSTANCE));
+  CMOCK_stringLeftTrim_CALL_INSTANCE* cmock_call_instance = (CMOCK_stringLeftTrim_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.stringLeftTrim_CallInstance = CMock_Guts_MemChain(Mock.stringLeftTrim_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_stringLeftTrim(cmock_call_instance, string);
+  cmock_call_instance->ExceptionToThrow = cmock_to_throw;
+}
+
+void stringRightTrim(String* string)
+{
+  UNITY_LINE_TYPE cmock_line = TEST_LINE_NUM;
+  CMOCK_stringRightTrim_CALL_INSTANCE* cmock_call_instance = (CMOCK_stringRightTrim_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.stringRightTrim_CallInstance);
+  Mock.stringRightTrim_CallInstance = CMock_Guts_MemNext(Mock.stringRightTrim_CallInstance);
+  if (Mock.stringRightTrim_IgnoreBool)
+  {
+    return;
+  }
+  if (Mock.stringRightTrim_CallbackFunctionPointer != NULL)
+  {
+    Mock.stringRightTrim_CallbackFunctionPointer(string, Mock.stringRightTrim_CallbackCalls++);
+    return;
+  }
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "Function 'stringRightTrim' called more times than expected.");
+  cmock_line = cmock_call_instance->LineNumber;
+  if (cmock_call_instance->CallOrder > ++GlobalVerifyOrder)
+    UNITY_TEST_FAIL(cmock_line, "Function 'stringRightTrim' called earlier than expected.");
+  if (cmock_call_instance->CallOrder < GlobalVerifyOrder)
+    UNITY_TEST_FAIL(cmock_line, "Function 'stringRightTrim' called later than expected.");
+  UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_string), (void*)(string), sizeof(String), cmock_line, "Function 'stringRightTrim' called with unexpected value for argument 'string'.");
+  if (cmock_call_instance->ExceptionToThrow != CEXCEPTION_NONE)
+  {
+    Throw(cmock_call_instance->ExceptionToThrow);
+  }
+}
+
+void CMockExpectParameters_stringRightTrim(CMOCK_stringRightTrim_CALL_INSTANCE* cmock_call_instance, String* string)
+{
+  cmock_call_instance->Expected_string = string;
+}
+
+void stringRightTrim_CMockIgnore(void)
+{
+  Mock.stringRightTrim_IgnoreBool = (int)1;
+}
+
+void stringRightTrim_CMockExpect(UNITY_LINE_TYPE cmock_line, String* string)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_stringRightTrim_CALL_INSTANCE));
+  CMOCK_stringRightTrim_CALL_INSTANCE* cmock_call_instance = (CMOCK_stringRightTrim_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.stringRightTrim_CallInstance = CMock_Guts_MemChain(Mock.stringRightTrim_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_stringRightTrim(cmock_call_instance, string);
+}
+
+void stringRightTrim_StubWithCallback(CMOCK_stringRightTrim_CALLBACK Callback)
+{
+  Mock.stringRightTrim_CallbackFunctionPointer = Callback;
+}
+
+void stringRightTrim_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, String* string, CEXCEPTION_T cmock_to_throw)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_stringRightTrim_CALL_INSTANCE));
+  CMOCK_stringRightTrim_CALL_INSTANCE* cmock_call_instance = (CMOCK_stringRightTrim_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.stringRightTrim_CallInstance = CMock_Guts_MemChain(Mock.stringRightTrim_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_stringRightTrim(cmock_call_instance, string);
+  cmock_call_instance->ExceptionToThrow = cmock_to_throw;
+}
+
+String* getWordAndUpdate(String* line, char* delimiter)
+{
+  UNITY_LINE_TYPE cmock_line = TEST_LINE_NUM;
+  CMOCK_getWordAndUpdate_CALL_INSTANCE* cmock_call_instance = (CMOCK_getWordAndUpdate_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.getWordAndUpdate_CallInstance);
+  Mock.getWordAndUpdate_CallInstance = CMock_Guts_MemNext(Mock.getWordAndUpdate_CallInstance);
+  if (Mock.getWordAndUpdate_IgnoreBool)
+  {
+    if (cmock_call_instance == NULL)
+      return Mock.getWordAndUpdate_FinalReturn;
+    Mock.getWordAndUpdate_FinalReturn = cmock_call_instance->ReturnVal;
+    return cmock_call_instance->ReturnVal;
+  }
+  if (Mock.getWordAndUpdate_CallbackFunctionPointer != NULL)
+  {
+    return Mock.getWordAndUpdate_CallbackFunctionPointer(line, delimiter, Mock.getWordAndUpdate_CallbackCalls++);
+  }
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "Function 'getWordAndUpdate' called more times than expected.");
+  cmock_line = cmock_call_instance->LineNumber;
+  if (cmock_call_instance->CallOrder > ++GlobalVerifyOrder)
+    UNITY_TEST_FAIL(cmock_line, "Function 'getWordAndUpdate' called earlier than expected.");
+  if (cmock_call_instance->CallOrder < GlobalVerifyOrder)
+    UNITY_TEST_FAIL(cmock_line, "Function 'getWordAndUpdate' called later than expected.");
+  UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_line), (void*)(line), sizeof(String), cmock_line, "Function 'getWordAndUpdate' called with unexpected value for argument 'line'.");
+  UNITY_TEST_ASSERT_EQUAL_STRING(cmock_call_instance->Expected_delimiter, delimiter, cmock_line, "Function 'getWordAndUpdate' called with unexpected value for argument 'delimiter'.");
+  if (cmock_call_instance->ExceptionToThrow != CEXCEPTION_NONE)
+  {
+    Throw(cmock_call_instance->ExceptionToThrow);
+  }
+  return cmock_call_instance->ReturnVal;
+}
+
+void CMockExpectParameters_getWordAndUpdate(CMOCK_getWordAndUpdate_CALL_INSTANCE* cmock_call_instance, String* line, char* delimiter)
+{
+  cmock_call_instance->Expected_line = line;
+  cmock_call_instance->Expected_delimiter = delimiter;
+}
+
+void getWordAndUpdate_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, String* cmock_to_return)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_getWordAndUpdate_CALL_INSTANCE));
+  CMOCK_getWordAndUpdate_CALL_INSTANCE* cmock_call_instance = (CMOCK_getWordAndUpdate_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.getWordAndUpdate_CallInstance = CMock_Guts_MemChain(Mock.getWordAndUpdate_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  cmock_call_instance->ReturnVal = cmock_to_return;
+  Mock.getWordAndUpdate_IgnoreBool = (int)1;
+}
+
+void getWordAndUpdate_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, String* line, char* delimiter, String* cmock_to_return)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_getWordAndUpdate_CALL_INSTANCE));
+  CMOCK_getWordAndUpdate_CALL_INSTANCE* cmock_call_instance = (CMOCK_getWordAndUpdate_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.getWordAndUpdate_CallInstance = CMock_Guts_MemChain(Mock.getWordAndUpdate_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_getWordAndUpdate(cmock_call_instance, line, delimiter);
+  cmock_call_instance->ReturnVal = cmock_to_return;
+}
+
+void getWordAndUpdate_StubWithCallback(CMOCK_getWordAndUpdate_CALLBACK Callback)
+{
+  Mock.getWordAndUpdate_CallbackFunctionPointer = Callback;
+}
+
+void getWordAndUpdate_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, String* line, char* delimiter, CEXCEPTION_T cmock_to_throw)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_getWordAndUpdate_CALL_INSTANCE));
+  CMOCK_getWordAndUpdate_CALL_INSTANCE* cmock_call_instance = (CMOCK_getWordAndUpdate_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.getWordAndUpdate_CallInstance = CMock_Guts_MemChain(Mock.getWordAndUpdate_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_getWordAndUpdate(cmock_call_instance, line, delimiter);
   cmock_call_instance->ExceptionToThrow = cmock_to_throw;
 }
 

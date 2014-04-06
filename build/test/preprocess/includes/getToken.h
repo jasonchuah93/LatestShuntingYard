@@ -1,2 +1,3 @@
 ---
 - Evaluate.h
+- StringObject.h

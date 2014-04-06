@@ -9,6 +9,7 @@
 #include "Stack.h"
 #include "stackForEvaluate.h"
 #include "Error.h"
+#include "CException.h"
 
 /*
 	This function is to push tokens that tokenize from expression to stack 
@@ -27,7 +28,7 @@ int evaluate(char *expression){
 	String *tokenizer;
 	Token *token;
 	Token *ansToken;
-	ErrorCode exception;
+	Error exception;
 	int i;
 	int counter =0;
 	Number *result;
@@ -39,12 +40,13 @@ int evaluate(char *expression){
 	tokenizer = stringCreate(expression);
 	Operator *prefixToken=(Operator*)token;
 	if(expression ==NULL){	
-		Throw(ERR_INVALID_EXPRESSION);
+		Throw(INVALID_EXPRESSION);
 	}
 	while((token=getToken(tokenizer))!=NULL){
 		
 		if(counter%2==0&&*token==OPERATOR){
 			Throw(UNKNOWN_DATA);
+			
 		}
 		else if(counter%2==1&&*token==NUMBER){
 			Throw(UNKNOWN_OPERATOR);
@@ -64,6 +66,8 @@ int evaluate(char *expression){
 	
 	evaluateAllOperatorOnStack(numberStack,operatorStack);
 	result=(Number*)stackPop(numberStack);
+	destroyStack(numberStack);
+	destroyStack(operatorStack);
 	printf("Loop needed for each expression to completely evaluate : %d \n",counter);
 	return result->value;
 }

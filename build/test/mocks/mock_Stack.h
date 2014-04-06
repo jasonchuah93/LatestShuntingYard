@@ -22,12 +22,12 @@ void createStack_StubWithCallback(CMOCK_createStack_CALLBACK Callback);
 void createStack_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, CEXCEPTION_T cmock_to_throw);
 #define stackPush_Ignore() stackPush_CMockIgnore()
 void stackPush_CMockIgnore(void);
-#define stackPush_Expect(data, stack) stackPush_CMockExpect(__LINE__, data, stack)
-void stackPush_CMockExpect(UNITY_LINE_TYPE cmock_line, void* data, Stack* stack);
-typedef void (* CMOCK_stackPush_CALLBACK)(void* data, Stack* stack, int cmock_num_calls);
+#define stackPush_Expect(newMember, stack) stackPush_CMockExpect(__LINE__, newMember, stack)
+void stackPush_CMockExpect(UNITY_LINE_TYPE cmock_line, void* newMember, Stack* stack);
+typedef void (* CMOCK_stackPush_CALLBACK)(void* newMember, Stack* stack, int cmock_num_calls);
 void stackPush_StubWithCallback(CMOCK_stackPush_CALLBACK Callback);
-#define stackPush_ExpectAndThrow(data, stack, cmock_to_throw) stackPush_CMockExpectAndThrow(__LINE__, data, stack, cmock_to_throw)
-void stackPush_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, void* data, Stack* stack, CEXCEPTION_T cmock_to_throw);
+#define stackPush_ExpectAndThrow(newMember, stack, cmock_to_throw) stackPush_CMockExpectAndThrow(__LINE__, newMember, stack, cmock_to_throw)
+void stackPush_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, void* newMember, Stack* stack, CEXCEPTION_T cmock_to_throw);
 #define stackPop_IgnoreAndReturn(cmock_retval) stackPop_CMockIgnoreAndReturn(__LINE__, cmock_retval)
 void stackPop_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, void* cmock_to_return);
 #define stackPop_ExpectAndReturn(stack, cmock_retval) stackPop_CMockExpectAndReturn(__LINE__, stack, cmock_retval)

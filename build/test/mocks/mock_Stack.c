@@ -19,7 +19,7 @@ typedef struct _CMOCK_stackPush_CALL_INSTANCE
 {
   UNITY_LINE_TYPE LineNumber;
   int CallOrder;
-  void* Expected_data;
+  void* Expected_newMember;
   Stack* Expected_stack;
   CEXCEPTION_T ExceptionToThrow;
 
@@ -186,7 +186,7 @@ void createStack_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, CEXCEPTION_T cm
   cmock_call_instance->ExceptionToThrow = cmock_to_throw;
 }
 
-void stackPush(void* data, Stack* stack)
+void stackPush(void* newMember, Stack* stack)
 {
   UNITY_LINE_TYPE cmock_line = TEST_LINE_NUM;
   CMOCK_stackPush_CALL_INSTANCE* cmock_call_instance = (CMOCK_stackPush_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.stackPush_CallInstance);
@@ -197,7 +197,7 @@ void stackPush(void* data, Stack* stack)
   }
   if (Mock.stackPush_CallbackFunctionPointer != NULL)
   {
-    Mock.stackPush_CallbackFunctionPointer(data, stack, Mock.stackPush_CallbackCalls++);
+    Mock.stackPush_CallbackFunctionPointer(newMember, stack, Mock.stackPush_CallbackCalls++);
     return;
   }
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "Function 'stackPush' called more times than expected.");
@@ -206,7 +206,7 @@ void stackPush(void* data, Stack* stack)
     UNITY_TEST_FAIL(cmock_line, "Function 'stackPush' called earlier than expected.");
   if (cmock_call_instance->CallOrder < GlobalVerifyOrder)
     UNITY_TEST_FAIL(cmock_line, "Function 'stackPush' called later than expected.");
-  UNITY_TEST_ASSERT_EQUAL_PTR(cmock_call_instance->Expected_data, data, cmock_line, "Function 'stackPush' called with unexpected value for argument 'data'.");
+  UNITY_TEST_ASSERT_EQUAL_PTR(cmock_call_instance->Expected_newMember, newMember, cmock_line, "Function 'stackPush' called with unexpected value for argument 'newMember'.");
   UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_stack), (void*)(stack), sizeof(Stack), cmock_line, "Function 'stackPush' called with unexpected value for argument 'stack'.");
   if (cmock_call_instance->ExceptionToThrow != CEXCEPTION_NONE)
   {
@@ -214,9 +214,9 @@ void stackPush(void* data, Stack* stack)
   }
 }
 
-void CMockExpectParameters_stackPush(CMOCK_stackPush_CALL_INSTANCE* cmock_call_instance, void* data, Stack* stack)
+void CMockExpectParameters_stackPush(CMOCK_stackPush_CALL_INSTANCE* cmock_call_instance, void* newMember, Stack* stack)
 {
-  cmock_call_instance->Expected_data = data;
+  cmock_call_instance->Expected_newMember = newMember;
   cmock_call_instance->Expected_stack = stack;
 }
 
@@ -225,7 +225,7 @@ void stackPush_CMockIgnore(void)
   Mock.stackPush_IgnoreBool = (int)1;
 }
 
-void stackPush_CMockExpect(UNITY_LINE_TYPE cmock_line, void* data, Stack* stack)
+void stackPush_CMockExpect(UNITY_LINE_TYPE cmock_line, void* newMember, Stack* stack)
 {
   CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_stackPush_CALL_INSTANCE));
   CMOCK_stackPush_CALL_INSTANCE* cmock_call_instance = (CMOCK_stackPush_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
@@ -234,7 +234,7 @@ void stackPush_CMockExpect(UNITY_LINE_TYPE cmock_line, void* data, Stack* stack)
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
   cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
-  CMockExpectParameters_stackPush(cmock_call_instance, data, stack);
+  CMockExpectParameters_stackPush(cmock_call_instance, newMember, stack);
 }
 
 void stackPush_StubWithCallback(CMOCK_stackPush_CALLBACK Callback)
@@ -242,7 +242,7 @@ void stackPush_StubWithCallback(CMOCK_stackPush_CALLBACK Callback)
   Mock.stackPush_CallbackFunctionPointer = Callback;
 }
 
-void stackPush_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, void* data, Stack* stack, CEXCEPTION_T cmock_to_throw)
+void stackPush_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, void* newMember, Stack* stack, CEXCEPTION_T cmock_to_throw)
 {
   CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_stackPush_CALL_INSTANCE));
   CMOCK_stackPush_CALL_INSTANCE* cmock_call_instance = (CMOCK_stackPush_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
@@ -251,7 +251,7 @@ void stackPush_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, void* data, Stack
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
   cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
-  CMockExpectParameters_stackPush(cmock_call_instance, data, stack);
+  CMockExpectParameters_stackPush(cmock_call_instance, newMember, stack);
   cmock_call_instance->ExceptionToThrow = cmock_to_throw;
 }
 

@@ -10,6 +10,7 @@
 #include "mock_getToken.h"
 #include "mock_tryEvaluatethenPush.h"
 #include "Error.h"
+#include "CException.h"
 
 void setUp(void){}
 void tearDown(void){}
@@ -33,7 +34,7 @@ void tearDown(void){}
 	Stack numberStack;
 	Token *tempToken;
 	Number *tempAns;
-	ErrorCode exception;
+	Error exception;
 	
 	//Initialize tokenizer,token and stack
 	String tokenizer = {.rawString = "1$2", .startIndex = 0, .length=3};

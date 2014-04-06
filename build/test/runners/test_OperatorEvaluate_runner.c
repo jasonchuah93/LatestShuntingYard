@@ -106,22 +106,22 @@ int main(void)
 {
   Unity.TestFile = "test_OperatorEvaluate.c";
   UnityBegin();
-  RUN_TEST(test_operatorEvaluate_should_throw_error_when_encounter_invalid_operator, 31);
-  RUN_TEST(test_operatorEvaluate_3_PLUS_7, 56);
-  RUN_TEST(test_operatorEvaluate_100_MINUS_37, 79);
-  RUN_TEST(test_operatorEvaluate_100_MULTIPLY_50, 102);
-  RUN_TEST(test_operatorEvaluate_99_DIVIDE_3, 124);
-  RUN_TEST(test_operatorEvaluate_60_MODULUS_7, 146);
-  RUN_TEST(test_operatorEvaluate_45_BITWISEAND_54, 168);
-  RUN_TEST(test_operatorEvaluate_56_BITWISEOR_30, 190);
-  RUN_TEST(test_operatorEvaluate_56_BITWISEXOR_30, 212);
-  RUN_TEST(test_evaluateAllOperatorOnStack_2_plus_3_plus_4, 250);
-  RUN_TEST(test_evaluateAllOperatorOnStack_10_plus_3_multiply_9, 298);
-  RUN_TEST(test_evaluateAllOperatorOnStack_100_divide_5_plus_60, 346);
-  RUN_TEST(test_evaluateAllOperatorOnStack_99_XOR_66_divide_11_plus_10, 394);
-  RUN_TEST(test_evaluateAllOperatorOnStack_100_divide_5_multiply_6_plus_99_minus_20, 459);
-  RUN_TEST(test_evaluateAllOperatorOnStack_100_divide_5_multiply_6_plus_99_minus_20_modulus_30, 540);
-  RUN_TEST(test_evaluateAllOperatorOnStack_100_divide_5_multiply_6_plus_99_minus_20_modulus_30_bitwiseAnd_89, 637);
+  RUN_TEST(test_operatorEvaluate_should_throw_error_when_encounter_invalid_operator, 32);
+  RUN_TEST(test_operatorEvaluate_3_PLUS_7, 57);
+  RUN_TEST(test_operatorEvaluate_100_MINUS_37, 80);
+  RUN_TEST(test_operatorEvaluate_100_MULTIPLY_50, 103);
+  RUN_TEST(test_operatorEvaluate_99_DIVIDE_3, 125);
+  RUN_TEST(test_operatorEvaluate_60_MODULUS_7, 147);
+  RUN_TEST(test_operatorEvaluate_45_BITWISEAND_54, 169);
+  RUN_TEST(test_operatorEvaluate_56_BITWISEOR_30, 191);
+  RUN_TEST(test_operatorEvaluate_56_BITWISEXOR_30, 213);
+  RUN_TEST(test_evaluateAllOperatorOnStack_2_plus_3_plus_4, 251);
+  RUN_TEST(test_evaluateAllOperatorOnStack_10_plus_3_multiply_9, 299);
+  RUN_TEST(test_evaluateAllOperatorOnStack_100_divide_5_plus_60, 347);
+  RUN_TEST(test_evaluateAllOperatorOnStack_99_XOR_66_divide_11_plus_10, 395);
+  RUN_TEST(test_evaluateAllOperatorOnStack_100_divide_5_multiply_6_plus_99_minus_20, 460);
+  RUN_TEST(test_evaluateAllOperatorOnStack_100_divide_5_multiply_6_plus_99_minus_20_modulus_30, 541);
+  RUN_TEST(test_evaluateAllOperatorOnStack_100_divide_5_multiply_6_plus_99_minus_20_modulus_30_bitwiseAnd_89, 638);
 
   return (UnityEnd());
 }

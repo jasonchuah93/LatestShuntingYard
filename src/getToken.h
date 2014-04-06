@@ -2,7 +2,7 @@
 #define __GETTOKEN_H__
 
 #include "Evaluate.h"
-
+#include "StringObject.h"
 
 //Function declaration
 

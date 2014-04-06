@@ -9,6 +9,9 @@
 #include "calculateToken.h"
 #include "LinkedList.h"
 #include "Evaluate.h"
+#include "CException.h"
+
+
 
 
 void setUp(void){}
@@ -25,9 +28,9 @@ void tearDown(void){}
 
 
 
- stackPop_CMockExpectAndReturn(38, &operatorStack, ((void *)0));
+ stackPop_CMockExpectAndReturn(39, &operatorStack, ((void *)0));
 
- stackPush_CMockExpect(39, opeToken, &operatorStack);
+ stackPush_CMockExpect(40, opeToken, &operatorStack);
 
  tryEvaluateOperatorOnStackThenPush(opeToken,&numberStack,&operatorStack);
 
@@ -51,11 +54,11 @@ void test_tryEvaluateOperatorOnStaclThenPush_will_push_OperatorTOken_into_Operat
 
 
 
- stackPop_CMockExpectAndReturn(51, &operatorStack, &plus);
+ stackPop_CMockExpectAndReturn(52, &operatorStack, &plus);
 
- stackPush_CMockExpect(52, &plus, &operatorStack);
+ stackPush_CMockExpect(53, &plus, &operatorStack);
 
- stackPush_CMockExpect(53, &multiply, &operatorStack);
+ stackPush_CMockExpect(54, &multiply, &operatorStack);
 
  tryEvaluateOperatorOnStackThenPush(&multiply,&numberStack,&operatorStack);
 
@@ -91,19 +94,19 @@ void test_tryEvaluateOperatorOnStackThenPush_will_not_push_OperatorTOken_into_Op
 
  Token *tempAnsToken =(Token*)&tempAns;
 
- stackPop_CMockExpectAndReturn(71, &operatorStack, &multiply);
+ stackPop_CMockExpectAndReturn(72, &operatorStack, &multiply);
 
- stackPop_CMockExpectAndReturn(72, &numberStack, &number2);
+ stackPop_CMockExpectAndReturn(73, &numberStack, &number2);
 
- stackPop_CMockExpectAndReturn(73, &numberStack, &number1);
+ stackPop_CMockExpectAndReturn(74, &numberStack, &number1);
 
- createNumberToken_CMockExpectAndReturn(74, 2, tempAnsToken);
+ createNumberToken_CMockExpectAndReturn(75, 2, tempAnsToken);
 
- stackPush_CMockExpect(75, &tempAns, &numberStack);
+ stackPush_CMockExpect(76, &tempAns, &numberStack);
 
- stackPop_CMockExpectAndReturn(76, &operatorStack, ((void *)0));
+ stackPop_CMockExpectAndReturn(77, &operatorStack, ((void *)0));
 
- stackPush_CMockExpect(77, &plus, &operatorStack);
+ stackPush_CMockExpect(78, &plus, &operatorStack);
 
 
 
@@ -141,19 +144,19 @@ void test_tryEvaluateOperatorOnStackThenPush_will_not_push_OperatorTOken_into_Op
 
 
 
- stackPop_CMockExpectAndReturn(96, &operatorStack, &minus);
+ stackPop_CMockExpectAndReturn(97, &operatorStack, &minus);
 
- stackPop_CMockExpectAndReturn(97, &numberStack, &number20);
+ stackPop_CMockExpectAndReturn(98, &numberStack, &number20);
 
- stackPop_CMockExpectAndReturn(98, &numberStack, &number100);
+ stackPop_CMockExpectAndReturn(99, &numberStack, &number100);
 
- createNumberToken_CMockExpectAndReturn(99, 80, tempAnsToken);
+ createNumberToken_CMockExpectAndReturn(100, 80, tempAnsToken);
 
- stackPush_CMockExpect(100, &tempAns, &numberStack);
+ stackPush_CMockExpect(101, &tempAns, &numberStack);
 
- stackPop_CMockExpectAndReturn(101, &operatorStack, ((void *)0));
+ stackPop_CMockExpectAndReturn(102, &operatorStack, ((void *)0));
 
- stackPush_CMockExpect(102, &minusA, &operatorStack);
+ stackPush_CMockExpect(103, &minusA, &operatorStack);
 
 
 
@@ -199,23 +202,23 @@ void test_tryEvaluateOperatorOnStackThenPush_evaluate_all_operatorTokens_to_be_p
 
 
 
- stackPop_CMockExpectAndReturn(125, &operatorStack, &multiply);
+ stackPop_CMockExpectAndReturn(126, &operatorStack, &multiply);
 
- stackPop_CMockExpectAndReturn(126, &numberStack, &number22);
+ stackPop_CMockExpectAndReturn(127, &numberStack, &number22);
 
- stackPop_CMockExpectAndReturn(127, &numberStack, &number21);
+ stackPop_CMockExpectAndReturn(128, &numberStack, &number21);
 
- createNumberToken_CMockExpectAndReturn(128, 462, tempAnsToken);
+ createNumberToken_CMockExpectAndReturn(129, 462, tempAnsToken);
 
- stackPush_CMockExpect(129, tempAnsToken, &numberStack);
+ stackPush_CMockExpect(130, tempAnsToken, &numberStack);
 
 
 
- stackPop_CMockExpectAndReturn(131, &operatorStack, &plus);
+ stackPop_CMockExpectAndReturn(132, &operatorStack, &plus);
 
- stackPush_CMockExpect(132, &plus, &operatorStack);
+ stackPush_CMockExpect(133, &plus, &operatorStack);
 
- stackPush_CMockExpect(133, &divide, &operatorStack);
+ stackPush_CMockExpect(134, &divide, &operatorStack);
 
 
 
@@ -265,33 +268,33 @@ void test_tryEvaluateOperatorOnStackThenPush_evaluate_all_operatorTokens_to_be_p
 
 
 
- stackPop_CMockExpectAndReturn(158, &operatorStack, &plus);
+ stackPop_CMockExpectAndReturn(159, &operatorStack, &plus);
 
- stackPop_CMockExpectAndReturn(159, &dataStack, &number22);
+ stackPop_CMockExpectAndReturn(160, &dataStack, &number22);
 
- stackPop_CMockExpectAndReturn(160, &dataStack, &number21);
+ stackPop_CMockExpectAndReturn(161, &dataStack, &number21);
 
- createNumberToken_CMockExpectAndReturn(161, 43, tempAnsToken1);
+ createNumberToken_CMockExpectAndReturn(162, 43, tempAnsToken1);
 
- stackPush_CMockExpect(162, tempAnsToken1, &dataStack);
-
-
-
- stackPop_CMockExpectAndReturn(164, &operatorStack, &bitwiseAND);
-
- stackPop_CMockExpectAndReturn(165, &dataStack, &number30);
-
- stackPop_CMockExpectAndReturn(166, &dataStack, &number6);
-
- createNumberToken_CMockExpectAndReturn(167, 6, tempAnsToken2);
-
- stackPush_CMockExpect(168, tempAnsToken2, &dataStack);
+ stackPush_CMockExpect(163, tempAnsToken1, &dataStack);
 
 
 
- stackPop_CMockExpectAndReturn(170, &operatorStack, ((void *)0));
+ stackPop_CMockExpectAndReturn(165, &operatorStack, &bitwiseAND);
 
- stackPush_CMockExpect(171, &bitwiseOR, &operatorStack);
+ stackPop_CMockExpectAndReturn(166, &dataStack, &number30);
+
+ stackPop_CMockExpectAndReturn(167, &dataStack, &number6);
+
+ createNumberToken_CMockExpectAndReturn(168, 6, tempAnsToken2);
+
+ stackPush_CMockExpect(169, tempAnsToken2, &dataStack);
+
+
+
+ stackPop_CMockExpectAndReturn(171, &operatorStack, ((void *)0));
+
+ stackPush_CMockExpect(172, &bitwiseOR, &operatorStack);
 
 
 

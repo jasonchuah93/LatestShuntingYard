@@ -28,5 +28,29 @@ typedef void (* CMOCK_stringCopy_CALLBACK)(char* source, char* destination, int 
 void stringCopy_StubWithCallback(CMOCK_stringCopy_CALLBACK Callback);
 #define stringCopy_ExpectAndThrow(source, destination, startLocation, length, cmock_to_throw) stringCopy_CMockExpectAndThrow(__LINE__, source, destination, startLocation, length, cmock_to_throw)
 void stringCopy_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, char* source, char* destination, int startLocation, int length, CEXCEPTION_T cmock_to_throw);
+#define stringLeftTrim_Ignore() stringLeftTrim_CMockIgnore()
+void stringLeftTrim_CMockIgnore(void);
+#define stringLeftTrim_Expect(string) stringLeftTrim_CMockExpect(__LINE__, string)
+void stringLeftTrim_CMockExpect(UNITY_LINE_TYPE cmock_line, String* string);
+typedef void (* CMOCK_stringLeftTrim_CALLBACK)(String* string, int cmock_num_calls);
+void stringLeftTrim_StubWithCallback(CMOCK_stringLeftTrim_CALLBACK Callback);
+#define stringLeftTrim_ExpectAndThrow(string, cmock_to_throw) stringLeftTrim_CMockExpectAndThrow(__LINE__, string, cmock_to_throw)
+void stringLeftTrim_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, String* string, CEXCEPTION_T cmock_to_throw);
+#define stringRightTrim_Ignore() stringRightTrim_CMockIgnore()
+void stringRightTrim_CMockIgnore(void);
+#define stringRightTrim_Expect(string) stringRightTrim_CMockExpect(__LINE__, string)
+void stringRightTrim_CMockExpect(UNITY_LINE_TYPE cmock_line, String* string);
+typedef void (* CMOCK_stringRightTrim_CALLBACK)(String* string, int cmock_num_calls);
+void stringRightTrim_StubWithCallback(CMOCK_stringRightTrim_CALLBACK Callback);
+#define stringRightTrim_ExpectAndThrow(string, cmock_to_throw) stringRightTrim_CMockExpectAndThrow(__LINE__, string, cmock_to_throw)
+void stringRightTrim_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, String* string, CEXCEPTION_T cmock_to_throw);
+#define getWordAndUpdate_IgnoreAndReturn(cmock_retval) getWordAndUpdate_CMockIgnoreAndReturn(__LINE__, cmock_retval)
+void getWordAndUpdate_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, String* cmock_to_return);
+#define getWordAndUpdate_ExpectAndReturn(line, delimiter, cmock_retval) getWordAndUpdate_CMockExpectAndReturn(__LINE__, line, delimiter, cmock_retval)
+void getWordAndUpdate_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, String* line, char* delimiter, String* cmock_to_return);
+typedef String* (* CMOCK_getWordAndUpdate_CALLBACK)(String* line, char* delimiter, int cmock_num_calls);
+void getWordAndUpdate_StubWithCallback(CMOCK_getWordAndUpdate_CALLBACK Callback);
+#define getWordAndUpdate_ExpectAndThrow(line, delimiter, cmock_to_throw) getWordAndUpdate_CMockExpectAndThrow(__LINE__, line, delimiter, cmock_to_throw)
+void getWordAndUpdate_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, String* line, char* delimiter, CEXCEPTION_T cmock_to_throw);
 
 #endif
