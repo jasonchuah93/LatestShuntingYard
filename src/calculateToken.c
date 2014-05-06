@@ -67,3 +67,20 @@ int calculate(Operator *opeToken, Number *first, Number *second){
 	
 	return answer;
 }
+
+int prefixCalculate(Operator *opeToken1, Number *first){
+	int answer;
+	switch(opeToken1->id)
+	{	
+		case LEFT_PARENTHESIS:
+			answer=(first->value);
+		break;
+		
+		default:
+		{
+			Throw(UNKNOWN_OPERATOR);
+		}
+	}
+	
+	return answer;
+}

@@ -28,5 +28,21 @@ typedef void (* CMOCK_evaluateAllOperatorOnStack_CALLBACK)(Stack* numberStack, S
 void evaluateAllOperatorOnStack_StubWithCallback(CMOCK_evaluateAllOperatorOnStack_CALLBACK Callback);
 #define evaluateAllOperatorOnStack_ExpectAndThrow(numberStack, operatorStack, cmock_to_throw) evaluateAllOperatorOnStack_CMockExpectAndThrow(__LINE__, numberStack, operatorStack, cmock_to_throw)
 void evaluateAllOperatorOnStack_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, Stack* numberStack, Stack* operatorStack, CEXCEPTION_T cmock_to_throw);
+#define operatorPrefixEvaluate_Ignore() operatorPrefixEvaluate_CMockIgnore()
+void operatorPrefixEvaluate_CMockIgnore(void);
+#define operatorPrefixEvaluate_Expect(numberStack, opeToken1) operatorPrefixEvaluate_CMockExpect(__LINE__, numberStack, opeToken1)
+void operatorPrefixEvaluate_CMockExpect(UNITY_LINE_TYPE cmock_line, Stack* numberStack, Operator* opeToken1);
+typedef void (* CMOCK_operatorPrefixEvaluate_CALLBACK)(Stack* numberStack, Operator* opeToken1, int cmock_num_calls);
+void operatorPrefixEvaluate_StubWithCallback(CMOCK_operatorPrefixEvaluate_CALLBACK Callback);
+#define operatorPrefixEvaluate_ExpectAndThrow(numberStack, opeToken1, cmock_to_throw) operatorPrefixEvaluate_CMockExpectAndThrow(__LINE__, numberStack, opeToken1, cmock_to_throw)
+void operatorPrefixEvaluate_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, Stack* numberStack, Operator* opeToken1, CEXCEPTION_T cmock_to_throw);
+#define evaluatePrefixOperatorOnStack_Ignore() evaluatePrefixOperatorOnStack_CMockIgnore()
+void evaluatePrefixOperatorOnStack_CMockIgnore(void);
+#define evaluatePrefixOperatorOnStack_Expect(numberStack, operatorStack) evaluatePrefixOperatorOnStack_CMockExpect(__LINE__, numberStack, operatorStack)
+void evaluatePrefixOperatorOnStack_CMockExpect(UNITY_LINE_TYPE cmock_line, Stack* numberStack, Stack* operatorStack);
+typedef void (* CMOCK_evaluatePrefixOperatorOnStack_CALLBACK)(Stack* numberStack, Stack* operatorStack, int cmock_num_calls);
+void evaluatePrefixOperatorOnStack_StubWithCallback(CMOCK_evaluatePrefixOperatorOnStack_CALLBACK Callback);
+#define evaluatePrefixOperatorOnStack_ExpectAndThrow(numberStack, operatorStack, cmock_to_throw) evaluatePrefixOperatorOnStack_CMockExpectAndThrow(__LINE__, numberStack, operatorStack, cmock_to_throw)
+void evaluatePrefixOperatorOnStack_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, Stack* numberStack, Stack* operatorStack, CEXCEPTION_T cmock_to_throw);
 
 #endif

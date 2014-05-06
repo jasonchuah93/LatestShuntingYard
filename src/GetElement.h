@@ -2,6 +2,9 @@
 #define __Element_H__
 
 #include "Iterator.h"
+#include "Evaluate.h"
+#include "StringObject.h"
+#include "convertValue.h"
 
 DefineElement *getElement(LinkedList *list, char* name);
 

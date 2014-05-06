@@ -10,6 +10,7 @@
 #include "createNumberToken.h" 
 #include "LinkedList.h"
 #include "stackForEvaluate.h"
+#include <malloc.h>
 
 /**
 	Evaluate all operators on the operator stack, with top of stack 
@@ -37,6 +38,24 @@ void operatorEvaluate(Stack *numberStack , Operator *opeToken){
 	stackPush(answerToken,numberStack);
 }	
 
+void operatorPrefixEvaluate(Stack *numberStack , Operator *opeToken1){
+	
+	Number *num1;
+	Token *token1; 
+	int answer; 
+	Token *answerToken; 
+	
+	token1=(Token*)stackPop(numberStack); 
+	num1=(Number*)token1; 
+	answer = prefixCalculate(opeToken1,num1); 
+	free(opeToken1);
+	answerToken=createNumberToken(answer);
+	stackPush(answerToken,numberStack);
+	
+	
+}	
+
+
 /**
 	Evaluate all operators on the operator stack, with top of stack 
 	operator being evaluated first.
@@ -55,3 +74,17 @@ void evaluateAllOperatorOnStack(Stack *numberStack,Stack *operatorStack){
 	}
 }
 
+void evaluatePrefixOperatorOnStack(Stack *numberStack,Stack *operatorStack){
+	
+	Operator *opeToken;
+
+	
+	while((opeToken=stackPop(operatorStack))!=NULL)
+	{
+		operatorPrefixEvaluate(numberStack,opeToken);
+		free(opeToken);
+		
+	}
+
+	
+}

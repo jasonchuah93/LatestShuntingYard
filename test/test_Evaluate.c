@@ -736,8 +736,209 @@ void test_should_evaluate_43_HASHTAG_42_and_throw_error_invalid_operator(void){
 	 }
 }
 
+void test_should_evaluate_left_parenthesis_2_right_parenthesis(void){
+	Stack dataStack;
+	Stack operatorStack;
+	int check;
+	int e;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "(2)", .startIndex = 0, .length = 3};
+	
+	Operator leftBracket = {.type= OPERATOR, .id = LEFT_PARENTHESIS ,.precedence=2};
+	Token *token1 = (Token*)&leftBracket;
 
+	Number number2 = {.type= NUMBER, .value=2};
+	Token *token2 = (Token*)&number2;
+	
+	Operator rightBracket = {.type= OPERATOR, .id = RIGHT_PARENTHESIS ,.precedence=1};
+	Token *token3 = (Token*)&rightBracket;	
+	
+	Number answer = {.type= NUMBER, .value=2};
+	Token *answerToken = (Token*)&answer;
+	
+	createStack_ExpectAndReturn(&dataStack);
+	createStack_ExpectAndReturn(&operatorStack);
+	stringCreate_ExpectAndReturn("(2)",&tokenizer);
+	
+	//Operator token left parenthesis
+	getToken_ExpectAndReturn(&tokenizer,token1);
+	isOperator_ExpectAndReturn(token1,1);
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	stackPush_Expect(token1,&operatorStack);
+	
+	//Number2
+	getToken_ExpectAndReturn(&tokenizer,token2);
+	isOperator_ExpectAndReturn(token2,0);
+	isNumber_ExpectAndReturn(token2,1);
+	stackPush_Expect(token2,&dataStack);
+	
+	//Operator token right parenthesis
+	getToken_ExpectAndReturn(&tokenizer,token3);
+	isOperator_ExpectAndReturn(token3,1);
+	stackPop_ExpectAndReturn(&operatorStack,token1);
+	stackPop_ExpectAndReturn(&dataStack,token2);
+	createNumberToken_ExpectAndReturn(2,answerToken);
+	stackPush_Expect(answerToken,&dataStack);
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	stackPush_Expect(token3,&operatorStack);
+	destroyStack_Expect(&operatorStack);
+	getToken_ExpectAndReturn(&tokenizer,NULL);
+	
+	//Evaluate
+	
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	stackPop_ExpectAndReturn(&dataStack,answerToken);
+	destroyStack_Expect(&dataStack);
+	
+	check=prefixEvaluate("(2)");
+	TEST_ASSERT_EQUAL(2,check);
+	printf("Answer : %d ",check);
+	
+}
 
+void test_should_evaluate_left_parenthesis_22_right_parenthesis(void){
+	Stack dataStack;
+	Stack operatorStack;
+	int check;
+	int e;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "(22)", .startIndex = 0, .length = 3};
+	
+	Operator leftBracket = {.type= OPERATOR, .id = LEFT_PARENTHESIS ,.precedence=2};
+	Token *token1 = (Token*)&leftBracket;
+
+	Number number22 = {.type= NUMBER, .value=22};
+	Token *token2 = (Token*)&number22;
+	
+	Operator rightBracket = {.type= OPERATOR, .id = RIGHT_PARENTHESIS ,.precedence=1};
+	Token *token3 = (Token*)&rightBracket;	
+	
+	Number answer = {.type= NUMBER, .value=22};
+	Token *answerToken = (Token*)&answer;
+	
+	createStack_ExpectAndReturn(&dataStack);
+	createStack_ExpectAndReturn(&operatorStack);
+	stringCreate_ExpectAndReturn("(22)",&tokenizer);
+	
+	//Operator token left parenthesis
+	getToken_ExpectAndReturn(&tokenizer,token1);
+	isOperator_ExpectAndReturn(token1,1);
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	stackPush_Expect(token1,&operatorStack);
+	
+	//Number2
+	getToken_ExpectAndReturn(&tokenizer,token2);
+	isOperator_ExpectAndReturn(token2,0);
+	isNumber_ExpectAndReturn(token2,1);
+	stackPush_Expect(token2,&dataStack);
+	
+	//Operator token right parenthesis
+	getToken_ExpectAndReturn(&tokenizer,token3);
+	isOperator_ExpectAndReturn(token3,1);
+	stackPop_ExpectAndReturn(&operatorStack,token1);
+	stackPop_ExpectAndReturn(&dataStack,token2);
+	createNumberToken_ExpectAndReturn(22,answerToken);
+	stackPush_Expect(answerToken,&dataStack);
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	stackPush_Expect(token3,&operatorStack);
+	destroyStack_Expect(&operatorStack);
+	getToken_ExpectAndReturn(&tokenizer,NULL);
+	
+	//Evaluate
+	
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	stackPop_ExpectAndReturn(&dataStack,answerToken);
+	destroyStack_Expect(&dataStack);
+	
+	check=prefixEvaluate("(22)");
+	TEST_ASSERT_EQUAL(22,check);
+	printf("Answer : %d ",check);
+	
+}
+
+void test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis(void){
+	Stack dataStack;
+	Stack operatorStack;
+	int check;
+	int e;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "((22))", .startIndex = 0, .length = 3};
+	
+	Operator leftBracket = {.type= OPERATOR, .id = LEFT_PARENTHESIS ,.precedence=2};
+	Token *token1 = (Token*)&leftBracket;
+	
+	Operator leftBracket2 = {.type= OPERATOR, .id = LEFT_PARENTHESIS ,.precedence=2};
+	Token *token2 = (Token*)&leftBracket2;
+
+	Number number22 = {.type= NUMBER, .value=22};
+	Token *token3 = (Token*)&number22;
+	
+	Operator rightBracket = {.type= OPERATOR, .id = RIGHT_PARENTHESIS ,.precedence=1};
+	Token *token4 = (Token*)&rightBracket;	
+	
+	Operator rightBracket2 = {.type= OPERATOR, .id = RIGHT_PARENTHESIS ,.precedence=1};
+	Token *token5 = (Token*)&rightBracket2;	
+	
+	Number answer = {.type= NUMBER, .value=22};
+	Token *answerToken = (Token*)&answer;
+	
+	createStack_ExpectAndReturn(&dataStack);
+	createStack_ExpectAndReturn(&operatorStack);
+	stringCreate_ExpectAndReturn("((22))",&tokenizer);
+	
+	//Operator token left parenthesis
+	getToken_ExpectAndReturn(&tokenizer,token1);
+	isOperator_ExpectAndReturn(token1,1);
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	stackPush_Expect(token1,&operatorStack);
+	
+	//Operator token left parenthesis2
+	getToken_ExpectAndReturn(&tokenizer,token2);
+	isOperator_ExpectAndReturn(token1,1);
+	stackPop_ExpectAndReturn(&operatorStack,token1);
+	stackPush_Expect(token1,&operatorStack);
+	stackPush_Expect(token2,&operatorStack);
+	destroyStack_Expect(&operatorStack);
+	
+	//Number2
+	getToken_ExpectAndReturn(&tokenizer,token3);
+	isOperator_ExpectAndReturn(token3,0);
+	isNumber_ExpectAndReturn(token3,1);
+	stackPush_Expect(token3,&dataStack);
+	
+	//Operator token right parenthesis
+	getToken_ExpectAndReturn(&tokenizer,token4);
+	isOperator_ExpectAndReturn(token4,1);
+	stackPop_ExpectAndReturn(&operatorStack,token2);
+	stackPop_ExpectAndReturn(&dataStack,token3);
+	createNumberToken_ExpectAndReturn(22,answerToken);
+	stackPush_Expect(answerToken,&dataStack);
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	stackPush_Expect(token4,&operatorStack);
+	destroyStack_Expect(&operatorStack);
+	
+	//Operator token right parenthesis2
+	getToken_ExpectAndReturn(&tokenizer,token5);
+	isOperator_ExpectAndReturn(token5,1);
+	stackPop_ExpectAndReturn(&operatorStack,token1);
+	stackPop_ExpectAndReturn(&dataStack,answerToken);
+	createNumberToken_ExpectAndReturn(22,answerToken);
+	stackPush_Expect(answerToken,&dataStack);
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	stackPush_Expect(token5,&operatorStack);
+	destroyStack_Expect(&operatorStack);
+	getToken_ExpectAndReturn(&tokenizer,NULL);
+	
+	//Evaluate
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	stackPop_ExpectAndReturn(&dataStack,answerToken);
+	destroyStack_Expect(&dataStack);
+	
+	check=prefixEvaluate("((22))");
+	TEST_ASSERT_EQUAL(22,check);
+	printf("Answer : %d ",check);
+	
+}
 /******************************************************************
 	Still thinking how to add prefix without causing bad memory
 	access 

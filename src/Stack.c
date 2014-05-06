@@ -41,7 +41,7 @@ Stack *createStack()
 	
 	Return: none
 */
-void stackPush(void * data,Stack *stack )
+void stackPush(void *data,Stack *stack )
 {
 	LinkedList *list = (LinkedList*)stack;
 	Element *newElement = malloc(sizeof(Element));

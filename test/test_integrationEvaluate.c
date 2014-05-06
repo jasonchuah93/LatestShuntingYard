@@ -162,7 +162,6 @@ void test_evaluate_with_logic_expression(void){
 	printf("Answer : %d ",check);
 }
 
-
 	
 	
 	

@@ -45,5 +45,6 @@ typedef struct {
 
 //Main functions
 int evaluate(char *expression);
+int prefixEvaluate(char *expression);
 
 #endif // EVALUATE_H

@@ -26,6 +26,26 @@ typedef struct _CMOCK_evaluateAllOperatorOnStack_CALL_INSTANCE
 
 } CMOCK_evaluateAllOperatorOnStack_CALL_INSTANCE;
 
+typedef struct _CMOCK_operatorPrefixEvaluate_CALL_INSTANCE
+{
+  UNITY_LINE_TYPE LineNumber;
+  int CallOrder;
+  Stack* Expected_numberStack;
+  Operator* Expected_opeToken1;
+  CEXCEPTION_T ExceptionToThrow;
+
+} CMOCK_operatorPrefixEvaluate_CALL_INSTANCE;
+
+typedef struct _CMOCK_evaluatePrefixOperatorOnStack_CALL_INSTANCE
+{
+  UNITY_LINE_TYPE LineNumber;
+  int CallOrder;
+  Stack* Expected_numberStack;
+  Stack* Expected_operatorStack;
+  CEXCEPTION_T ExceptionToThrow;
+
+} CMOCK_evaluatePrefixOperatorOnStack_CALL_INSTANCE;
+
 static struct mock_operatorEvaluateInstance
 {
   int operatorEvaluate_IgnoreBool;
@@ -36,6 +56,14 @@ static struct mock_operatorEvaluateInstance
   CMOCK_evaluateAllOperatorOnStack_CALLBACK evaluateAllOperatorOnStack_CallbackFunctionPointer;
   int evaluateAllOperatorOnStack_CallbackCalls;
   CMOCK_MEM_INDEX_TYPE evaluateAllOperatorOnStack_CallInstance;
+  int operatorPrefixEvaluate_IgnoreBool;
+  CMOCK_operatorPrefixEvaluate_CALLBACK operatorPrefixEvaluate_CallbackFunctionPointer;
+  int operatorPrefixEvaluate_CallbackCalls;
+  CMOCK_MEM_INDEX_TYPE operatorPrefixEvaluate_CallInstance;
+  int evaluatePrefixOperatorOnStack_IgnoreBool;
+  CMOCK_evaluatePrefixOperatorOnStack_CALLBACK evaluatePrefixOperatorOnStack_CallbackFunctionPointer;
+  int evaluatePrefixOperatorOnStack_CallbackCalls;
+  CMOCK_MEM_INDEX_TYPE evaluatePrefixOperatorOnStack_CallInstance;
 } Mock;
 
 extern jmp_buf AbortFrame;
@@ -55,6 +83,16 @@ void mock_operatorEvaluate_Verify(void)
   UNITY_TEST_ASSERT(CMOCK_GUTS_NONE == Mock.evaluateAllOperatorOnStack_CallInstance, cmock_line, "Function 'evaluateAllOperatorOnStack' called less times than expected.");
   if (Mock.evaluateAllOperatorOnStack_CallbackFunctionPointer != NULL)
     Mock.evaluateAllOperatorOnStack_CallInstance = CMOCK_GUTS_NONE;
+  if (Mock.operatorPrefixEvaluate_IgnoreBool)
+    Mock.operatorPrefixEvaluate_CallInstance = CMOCK_GUTS_NONE;
+  UNITY_TEST_ASSERT(CMOCK_GUTS_NONE == Mock.operatorPrefixEvaluate_CallInstance, cmock_line, "Function 'operatorPrefixEvaluate' called less times than expected.");
+  if (Mock.operatorPrefixEvaluate_CallbackFunctionPointer != NULL)
+    Mock.operatorPrefixEvaluate_CallInstance = CMOCK_GUTS_NONE;
+  if (Mock.evaluatePrefixOperatorOnStack_IgnoreBool)
+    Mock.evaluatePrefixOperatorOnStack_CallInstance = CMOCK_GUTS_NONE;
+  UNITY_TEST_ASSERT(CMOCK_GUTS_NONE == Mock.evaluatePrefixOperatorOnStack_CallInstance, cmock_line, "Function 'evaluatePrefixOperatorOnStack' called less times than expected.");
+  if (Mock.evaluatePrefixOperatorOnStack_CallbackFunctionPointer != NULL)
+    Mock.evaluatePrefixOperatorOnStack_CallInstance = CMOCK_GUTS_NONE;
 }
 
 void mock_operatorEvaluate_Init(void)
@@ -70,6 +108,10 @@ void mock_operatorEvaluate_Destroy(void)
   Mock.operatorEvaluate_CallbackCalls = 0;
   Mock.evaluateAllOperatorOnStack_CallbackFunctionPointer = NULL;
   Mock.evaluateAllOperatorOnStack_CallbackCalls = 0;
+  Mock.operatorPrefixEvaluate_CallbackFunctionPointer = NULL;
+  Mock.operatorPrefixEvaluate_CallbackCalls = 0;
+  Mock.evaluatePrefixOperatorOnStack_CallbackFunctionPointer = NULL;
+  Mock.evaluatePrefixOperatorOnStack_CallbackCalls = 0;
   GlobalExpectCount = 0;
   GlobalVerifyOrder = 0;
 }
@@ -209,6 +251,144 @@ void evaluateAllOperatorOnStack_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, 
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
   cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
   CMockExpectParameters_evaluateAllOperatorOnStack(cmock_call_instance, numberStack, operatorStack);
+  cmock_call_instance->ExceptionToThrow = cmock_to_throw;
+}
+
+void operatorPrefixEvaluate(Stack* numberStack, Operator* opeToken1)
+{
+  UNITY_LINE_TYPE cmock_line = TEST_LINE_NUM;
+  CMOCK_operatorPrefixEvaluate_CALL_INSTANCE* cmock_call_instance = (CMOCK_operatorPrefixEvaluate_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.operatorPrefixEvaluate_CallInstance);
+  Mock.operatorPrefixEvaluate_CallInstance = CMock_Guts_MemNext(Mock.operatorPrefixEvaluate_CallInstance);
+  if (Mock.operatorPrefixEvaluate_IgnoreBool)
+  {
+    return;
+  }
+  if (Mock.operatorPrefixEvaluate_CallbackFunctionPointer != NULL)
+  {
+    Mock.operatorPrefixEvaluate_CallbackFunctionPointer(numberStack, opeToken1, Mock.operatorPrefixEvaluate_CallbackCalls++);
+    return;
+  }
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "Function 'operatorPrefixEvaluate' called more times than expected.");
+  cmock_line = cmock_call_instance->LineNumber;
+  if (cmock_call_instance->CallOrder > ++GlobalVerifyOrder)
+    UNITY_TEST_FAIL(cmock_line, "Function 'operatorPrefixEvaluate' called earlier than expected.");
+  if (cmock_call_instance->CallOrder < GlobalVerifyOrder)
+    UNITY_TEST_FAIL(cmock_line, "Function 'operatorPrefixEvaluate' called later than expected.");
+  UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_numberStack), (void*)(numberStack), sizeof(Stack), cmock_line, "Function 'operatorPrefixEvaluate' called with unexpected value for argument 'numberStack'.");
+  UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_opeToken1), (void*)(opeToken1), sizeof(Operator), cmock_line, "Function 'operatorPrefixEvaluate' called with unexpected value for argument 'opeToken1'.");
+  if (cmock_call_instance->ExceptionToThrow != CEXCEPTION_NONE)
+  {
+    Throw(cmock_call_instance->ExceptionToThrow);
+  }
+}
+
+void CMockExpectParameters_operatorPrefixEvaluate(CMOCK_operatorPrefixEvaluate_CALL_INSTANCE* cmock_call_instance, Stack* numberStack, Operator* opeToken1)
+{
+  cmock_call_instance->Expected_numberStack = numberStack;
+  cmock_call_instance->Expected_opeToken1 = opeToken1;
+}
+
+void operatorPrefixEvaluate_CMockIgnore(void)
+{
+  Mock.operatorPrefixEvaluate_IgnoreBool = (int)1;
+}
+
+void operatorPrefixEvaluate_CMockExpect(UNITY_LINE_TYPE cmock_line, Stack* numberStack, Operator* opeToken1)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_operatorPrefixEvaluate_CALL_INSTANCE));
+  CMOCK_operatorPrefixEvaluate_CALL_INSTANCE* cmock_call_instance = (CMOCK_operatorPrefixEvaluate_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.operatorPrefixEvaluate_CallInstance = CMock_Guts_MemChain(Mock.operatorPrefixEvaluate_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_operatorPrefixEvaluate(cmock_call_instance, numberStack, opeToken1);
+}
+
+void operatorPrefixEvaluate_StubWithCallback(CMOCK_operatorPrefixEvaluate_CALLBACK Callback)
+{
+  Mock.operatorPrefixEvaluate_CallbackFunctionPointer = Callback;
+}
+
+void operatorPrefixEvaluate_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, Stack* numberStack, Operator* opeToken1, CEXCEPTION_T cmock_to_throw)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_operatorPrefixEvaluate_CALL_INSTANCE));
+  CMOCK_operatorPrefixEvaluate_CALL_INSTANCE* cmock_call_instance = (CMOCK_operatorPrefixEvaluate_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.operatorPrefixEvaluate_CallInstance = CMock_Guts_MemChain(Mock.operatorPrefixEvaluate_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_operatorPrefixEvaluate(cmock_call_instance, numberStack, opeToken1);
+  cmock_call_instance->ExceptionToThrow = cmock_to_throw;
+}
+
+void evaluatePrefixOperatorOnStack(Stack* numberStack, Stack* operatorStack)
+{
+  UNITY_LINE_TYPE cmock_line = TEST_LINE_NUM;
+  CMOCK_evaluatePrefixOperatorOnStack_CALL_INSTANCE* cmock_call_instance = (CMOCK_evaluatePrefixOperatorOnStack_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.evaluatePrefixOperatorOnStack_CallInstance);
+  Mock.evaluatePrefixOperatorOnStack_CallInstance = CMock_Guts_MemNext(Mock.evaluatePrefixOperatorOnStack_CallInstance);
+  if (Mock.evaluatePrefixOperatorOnStack_IgnoreBool)
+  {
+    return;
+  }
+  if (Mock.evaluatePrefixOperatorOnStack_CallbackFunctionPointer != NULL)
+  {
+    Mock.evaluatePrefixOperatorOnStack_CallbackFunctionPointer(numberStack, operatorStack, Mock.evaluatePrefixOperatorOnStack_CallbackCalls++);
+    return;
+  }
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "Function 'evaluatePrefixOperatorOnStack' called more times than expected.");
+  cmock_line = cmock_call_instance->LineNumber;
+  if (cmock_call_instance->CallOrder > ++GlobalVerifyOrder)
+    UNITY_TEST_FAIL(cmock_line, "Function 'evaluatePrefixOperatorOnStack' called earlier than expected.");
+  if (cmock_call_instance->CallOrder < GlobalVerifyOrder)
+    UNITY_TEST_FAIL(cmock_line, "Function 'evaluatePrefixOperatorOnStack' called later than expected.");
+  UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_numberStack), (void*)(numberStack), sizeof(Stack), cmock_line, "Function 'evaluatePrefixOperatorOnStack' called with unexpected value for argument 'numberStack'.");
+  UNITY_TEST_ASSERT_EQUAL_MEMORY((void*)(cmock_call_instance->Expected_operatorStack), (void*)(operatorStack), sizeof(Stack), cmock_line, "Function 'evaluatePrefixOperatorOnStack' called with unexpected value for argument 'operatorStack'.");
+  if (cmock_call_instance->ExceptionToThrow != CEXCEPTION_NONE)
+  {
+    Throw(cmock_call_instance->ExceptionToThrow);
+  }
+}
+
+void CMockExpectParameters_evaluatePrefixOperatorOnStack(CMOCK_evaluatePrefixOperatorOnStack_CALL_INSTANCE* cmock_call_instance, Stack* numberStack, Stack* operatorStack)
+{
+  cmock_call_instance->Expected_numberStack = numberStack;
+  cmock_call_instance->Expected_operatorStack = operatorStack;
+}
+
+void evaluatePrefixOperatorOnStack_CMockIgnore(void)
+{
+  Mock.evaluatePrefixOperatorOnStack_IgnoreBool = (int)1;
+}
+
+void evaluatePrefixOperatorOnStack_CMockExpect(UNITY_LINE_TYPE cmock_line, Stack* numberStack, Stack* operatorStack)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_evaluatePrefixOperatorOnStack_CALL_INSTANCE));
+  CMOCK_evaluatePrefixOperatorOnStack_CALL_INSTANCE* cmock_call_instance = (CMOCK_evaluatePrefixOperatorOnStack_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.evaluatePrefixOperatorOnStack_CallInstance = CMock_Guts_MemChain(Mock.evaluatePrefixOperatorOnStack_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_evaluatePrefixOperatorOnStack(cmock_call_instance, numberStack, operatorStack);
+}
+
+void evaluatePrefixOperatorOnStack_StubWithCallback(CMOCK_evaluatePrefixOperatorOnStack_CALLBACK Callback)
+{
+  Mock.evaluatePrefixOperatorOnStack_CallbackFunctionPointer = Callback;
+}
+
+void evaluatePrefixOperatorOnStack_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, Stack* numberStack, Stack* operatorStack, CEXCEPTION_T cmock_to_throw)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_evaluatePrefixOperatorOnStack_CALL_INSTANCE));
+  CMOCK_evaluatePrefixOperatorOnStack_CALL_INSTANCE* cmock_call_instance = (CMOCK_evaluatePrefixOperatorOnStack_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, "CMock has run out of memory. Please allocate more.");
+  Mock.evaluatePrefixOperatorOnStack_CallInstance = CMock_Guts_MemChain(Mock.evaluatePrefixOperatorOnStack_CallInstance, cmock_guts_index);
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExceptionToThrow = CEXCEPTION_NONE;
+  CMockExpectParameters_evaluatePrefixOperatorOnStack(cmock_call_instance, numberStack, operatorStack);
   cmock_call_instance->ExceptionToThrow = cmock_to_throw;
 }
 

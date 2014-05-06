@@ -9,6 +9,7 @@
 #include "Stack.h"
 #include "stackForEvaluate.h"
 #include "Error.h"
+#include "convertValue.h"
 #include "CException.h"
 
 /*
@@ -38,7 +39,7 @@ int evaluate(char *expression){
 	Stack *operatorStack;
 	operatorStack=createStack();
 	tokenizer = stringCreate(expression);
-	Operator *prefixToken=(Operator*)token;
+	//Operator *prefixToken=(Operator*)token;
 	if(expression ==NULL){	
 		Throw(INVALID_EXPRESSION);
 	}
@@ -64,7 +65,9 @@ int evaluate(char *expression){
 		counter ++;
 	}
 	
+	
 	evaluateAllOperatorOnStack(numberStack,operatorStack);
+	
 	result=(Number*)stackPop(numberStack);
 	destroyStack(numberStack);
 	destroyStack(operatorStack);
@@ -72,6 +75,56 @@ int evaluate(char *expression){
 	return result->value;
 }
 
+int prefixEvaluate(char *expression){
+	String *tokenizer;
+	Token *token;
+	Token *ansToken;
+	Error exception;
+	int i;
+	int counter =0;
+	Number *result;
+	
+	Stack *numberStack;
+	numberStack=createStack();
+	Stack *operatorStack;
+	operatorStack=createStack();
+	tokenizer = stringCreate(expression);
+	//Operator *prefixToken=(Operator*)token;
+	if(expression ==NULL){	
+		Throw(INVALID_EXPRESSION);
+	}
+	while((token=getToken(tokenizer))!=NULL){
+		/*
+		if(counter%2==0&&*token==OPERATOR){
+			Throw(UNKNOWN_DATA);
+			
+		}
+		else if(counter%2==1&&*token==NUMBER){
+			Throw(UNKNOWN_OPERATOR);
+		}
+		*/
+		if(isOperator(token)) 
+		{
+			tryEvaluatePrefixOperatorOnStackThenPush((Operator*)token,numberStack,operatorStack);
+		}
+		
+		else if(isNumber(token)){
+			
+			stackPush(token,numberStack);
+		}
+		
+		counter ++;
+	}
+	
+	
+	evaluatePrefixOperatorOnStack(numberStack,operatorStack);
+	
+	result=(Number*)stackPop(numberStack);
+	destroyStack(numberStack);
+	
+	printf("Loop needed for each expression to completely evaluate : %d \n",counter);
+	return result->value;
+}
 
 
 

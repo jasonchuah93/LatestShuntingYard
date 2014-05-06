@@ -1424,3 +1424,411 @@ void test_should_evaluate_43_HASHTAG_42_and_throw_error_invalid_operator(void){
   }
 
 }
+
+
+
+void test_should_evaluate_left_parenthesis_2_right_parenthesis(void){
+
+ Stack dataStack;
+
+ Stack operatorStack;
+
+ int check;
+
+ int e;
+
+
+
+ String tokenizer = {.rawString = "(2)", .startIndex = 0, .length = 3};
+
+
+
+ Operator leftBracket = {.type= OPERATOR, .id = LEFT_PARENTHESIS ,.precedence=2};
+
+ Token *token1 = (Token*)&leftBracket;
+
+
+
+ Number number2 = {.type= NUMBER, .value=2};
+
+ Token *token2 = (Token*)&number2;
+
+
+
+ Operator rightBracket = {.type= OPERATOR, .id = RIGHT_PARENTHESIS ,.precedence=1};
+
+ Token *token3 = (Token*)&rightBracket;
+
+
+
+ Number answer = {.type= NUMBER, .value=2};
+
+ Token *answerToken = (Token*)&answer;
+
+
+
+ createStack_CMockExpectAndReturn(759, &dataStack);
+
+ createStack_CMockExpectAndReturn(760, &operatorStack);
+
+ stringCreate_CMockExpectAndReturn(761, "(2)", &tokenizer);
+
+
+
+
+
+ getToken_CMockExpectAndReturn(764, &tokenizer, token1);
+
+ isOperator_CMockExpectAndReturn(765, token1, 1);
+
+ stackPop_CMockExpectAndReturn(766, &operatorStack, ((void *)0));
+
+ stackPush_CMockExpect(767, token1, &operatorStack);
+
+
+
+
+
+ getToken_CMockExpectAndReturn(770, &tokenizer, token2);
+
+ isOperator_CMockExpectAndReturn(771, token2, 0);
+
+ isNumber_CMockExpectAndReturn(772, token2, 1);
+
+ stackPush_CMockExpect(773, token2, &dataStack);
+
+
+
+
+
+ getToken_CMockExpectAndReturn(776, &tokenizer, token3);
+
+ isOperator_CMockExpectAndReturn(777, token3, 1);
+
+ stackPop_CMockExpectAndReturn(778, &operatorStack, token1);
+
+ stackPop_CMockExpectAndReturn(779, &dataStack, token2);
+
+ createNumberToken_CMockExpectAndReturn(780, 2, answerToken);
+
+ stackPush_CMockExpect(781, answerToken, &dataStack);
+
+ stackPop_CMockExpectAndReturn(782, &operatorStack, ((void *)0));
+
+ stackPush_CMockExpect(783, token3, &operatorStack);
+
+ destroyStack_CMockExpect(784, &operatorStack);
+
+ getToken_CMockExpectAndReturn(785, &tokenizer, ((void *)0));
+
+
+
+
+
+
+
+ stackPop_CMockExpectAndReturn(789, &operatorStack, ((void *)0));
+
+ stackPop_CMockExpectAndReturn(790, &dataStack, answerToken);
+
+ destroyStack_CMockExpect(791, &dataStack);
+
+
+
+ check=prefixEvaluate("(2)");
+
+ UnityAssertEqualNumber((_U_SINT)((2)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)794, UNITY_DISPLAY_STYLE_INT);
+
+ printf("Answer : %d ",check);
+
+
+
+}
+
+
+
+void test_should_evaluate_left_parenthesis_22_right_parenthesis(void){
+
+ Stack dataStack;
+
+ Stack operatorStack;
+
+ int check;
+
+ int e;
+
+
+
+ String tokenizer = {.rawString = "(22)", .startIndex = 0, .length = 3};
+
+
+
+ Operator leftBracket = {.type= OPERATOR, .id = LEFT_PARENTHESIS ,.precedence=2};
+
+ Token *token1 = (Token*)&leftBracket;
+
+
+
+ Number number22 = {.type= NUMBER, .value=22};
+
+ Token *token2 = (Token*)&number22;
+
+
+
+ Operator rightBracket = {.type= OPERATOR, .id = RIGHT_PARENTHESIS ,.precedence=1};
+
+ Token *token3 = (Token*)&rightBracket;
+
+
+
+ Number answer = {.type= NUMBER, .value=22};
+
+ Token *answerToken = (Token*)&answer;
+
+
+
+ createStack_CMockExpectAndReturn(819, &dataStack);
+
+ createStack_CMockExpectAndReturn(820, &operatorStack);
+
+ stringCreate_CMockExpectAndReturn(821, "(22)", &tokenizer);
+
+
+
+
+
+ getToken_CMockExpectAndReturn(824, &tokenizer, token1);
+
+ isOperator_CMockExpectAndReturn(825, token1, 1);
+
+ stackPop_CMockExpectAndReturn(826, &operatorStack, ((void *)0));
+
+ stackPush_CMockExpect(827, token1, &operatorStack);
+
+
+
+
+
+ getToken_CMockExpectAndReturn(830, &tokenizer, token2);
+
+ isOperator_CMockExpectAndReturn(831, token2, 0);
+
+ isNumber_CMockExpectAndReturn(832, token2, 1);
+
+ stackPush_CMockExpect(833, token2, &dataStack);
+
+
+
+
+
+ getToken_CMockExpectAndReturn(836, &tokenizer, token3);
+
+ isOperator_CMockExpectAndReturn(837, token3, 1);
+
+ stackPop_CMockExpectAndReturn(838, &operatorStack, token1);
+
+ stackPop_CMockExpectAndReturn(839, &dataStack, token2);
+
+ createNumberToken_CMockExpectAndReturn(840, 22, answerToken);
+
+ stackPush_CMockExpect(841, answerToken, &dataStack);
+
+ stackPop_CMockExpectAndReturn(842, &operatorStack, ((void *)0));
+
+ stackPush_CMockExpect(843, token3, &operatorStack);
+
+ destroyStack_CMockExpect(844, &operatorStack);
+
+ getToken_CMockExpectAndReturn(845, &tokenizer, ((void *)0));
+
+
+
+
+
+
+
+ stackPop_CMockExpectAndReturn(849, &operatorStack, ((void *)0));
+
+ stackPop_CMockExpectAndReturn(850, &dataStack, answerToken);
+
+ destroyStack_CMockExpect(851, &dataStack);
+
+
+
+ check=prefixEvaluate("(22)");
+
+ UnityAssertEqualNumber((_U_SINT)((22)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)854, UNITY_DISPLAY_STYLE_INT);
+
+ printf("Answer : %d ",check);
+
+
+
+}
+
+
+
+void test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis(void){
+
+ Stack dataStack;
+
+ Stack operatorStack;
+
+ int check;
+
+ int e;
+
+
+
+ String tokenizer = {.rawString = "((22))", .startIndex = 0, .length = 3};
+
+
+
+ Operator leftBracket = {.type= OPERATOR, .id = LEFT_PARENTHESIS ,.precedence=2};
+
+ Token *token1 = (Token*)&leftBracket;
+
+
+
+ Operator leftBracket2 = {.type= OPERATOR, .id = LEFT_PARENTHESIS ,.precedence=2};
+
+ Token *token2 = (Token*)&leftBracket2;
+
+
+
+ Number number22 = {.type= NUMBER, .value=22};
+
+ Token *token3 = (Token*)&number22;
+
+
+
+ Operator rightBracket = {.type= OPERATOR, .id = RIGHT_PARENTHESIS ,.precedence=1};
+
+ Token *token4 = (Token*)&rightBracket;
+
+
+
+ Operator rightBracket2 = {.type= OPERATOR, .id = RIGHT_PARENTHESIS ,.precedence=1};
+
+ Token *token5 = (Token*)&rightBracket2;
+
+
+
+ Number answer = {.type= NUMBER, .value=22};
+
+ Token *answerToken = (Token*)&answer;
+
+
+
+ createStack_CMockExpectAndReturn(885, &dataStack);
+
+ createStack_CMockExpectAndReturn(886, &operatorStack);
+
+ stringCreate_CMockExpectAndReturn(887, "((22))", &tokenizer);
+
+
+
+
+
+ getToken_CMockExpectAndReturn(890, &tokenizer, token1);
+
+ isOperator_CMockExpectAndReturn(891, token1, 1);
+
+ stackPop_CMockExpectAndReturn(892, &operatorStack, ((void *)0));
+
+ stackPush_CMockExpect(893, token1, &operatorStack);
+
+
+
+
+
+ getToken_CMockExpectAndReturn(896, &tokenizer, token2);
+
+ isOperator_CMockExpectAndReturn(897, token1, 1);
+
+ stackPop_CMockExpectAndReturn(898, &operatorStack, token1);
+
+ stackPush_CMockExpect(899, token1, &operatorStack);
+
+ stackPush_CMockExpect(900, token2, &operatorStack);
+
+ destroyStack_CMockExpect(901, &operatorStack);
+
+
+
+
+
+ getToken_CMockExpectAndReturn(904, &tokenizer, token3);
+
+ isOperator_CMockExpectAndReturn(905, token3, 0);
+
+ isNumber_CMockExpectAndReturn(906, token3, 1);
+
+ stackPush_CMockExpect(907, token3, &dataStack);
+
+
+
+
+
+ getToken_CMockExpectAndReturn(910, &tokenizer, token4);
+
+ isOperator_CMockExpectAndReturn(911, token4, 1);
+
+ stackPop_CMockExpectAndReturn(912, &operatorStack, token2);
+
+ stackPop_CMockExpectAndReturn(913, &dataStack, token3);
+
+ createNumberToken_CMockExpectAndReturn(914, 22, answerToken);
+
+ stackPush_CMockExpect(915, answerToken, &dataStack);
+
+ stackPop_CMockExpectAndReturn(916, &operatorStack, ((void *)0));
+
+ stackPush_CMockExpect(917, token4, &operatorStack);
+
+ destroyStack_CMockExpect(918, &operatorStack);
+
+
+
+
+
+ getToken_CMockExpectAndReturn(921, &tokenizer, token5);
+
+ isOperator_CMockExpectAndReturn(922, token5, 1);
+
+ stackPop_CMockExpectAndReturn(923, &operatorStack, token1);
+
+ stackPop_CMockExpectAndReturn(924, &dataStack, answerToken);
+
+ createNumberToken_CMockExpectAndReturn(925, 22, answerToken);
+
+ stackPush_CMockExpect(926, answerToken, &dataStack);
+
+ stackPop_CMockExpectAndReturn(927, &operatorStack, ((void *)0));
+
+ stackPush_CMockExpect(928, token5, &operatorStack);
+
+ destroyStack_CMockExpect(929, &operatorStack);
+
+ getToken_CMockExpectAndReturn(930, &tokenizer, ((void *)0));
+
+
+
+
+
+ stackPop_CMockExpectAndReturn(933, &operatorStack, ((void *)0));
+
+ stackPop_CMockExpectAndReturn(934, &dataStack, answerToken);
+
+ destroyStack_CMockExpect(935, &dataStack);
+
+
+
+ check=prefixEvaluate("((22))");
+
+ UnityAssertEqualNumber((_U_SINT)((22)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)938, UNITY_DISPLAY_STYLE_INT);
+
+ printf("Answer : %d ",check);
+
+
+
+}

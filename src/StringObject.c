@@ -1,11 +1,12 @@
-#include "StringObject.h"
-#include "convertValue.h"
 #include <stdio.h>
 #include <string.h>
+#include "StringObject.h"
+#include "convertValue.h"
+#include "GetElement.h"
 #include <malloc.h>
 #include "CException.h"
 #include "Error.h"
-#include "Evaluate.h"
+
 
 LinkedList *DefineList;
 
@@ -52,7 +53,7 @@ String *stringCreate(char *expression) {
 				}while(isalnum(newString->rawString[tempIndex])||(newString->rawString[tempIndex]=='.'));
 				
 				stringCopy(newString->rawString,name,stringStartLocation,lengthOfTheIdentifier);
-				newToken=checkIdentifier(name);
+				newToken=(Token*)checkIdentifier(name);
 				tempIndex-=lengthOfTheIdentifier+1;
 				
 				if(newToken==NULL)

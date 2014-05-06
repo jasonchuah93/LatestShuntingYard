@@ -1,11 +1,13 @@
-#include "convertValue.h"
-#include <malloc.h>
-#include "Error.h"
 #include <string.h>
 #include <stdio.h>
-#include "StringObject.h"
-#include "GetElement.h"
+#include "convertValue.h"
+#include <malloc.h>
 #include <math.h>
+#include "Error.h"
+
+
+
+
 /*
 	Convert an identifier to number respectively to the value in linked list.
 	

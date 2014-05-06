@@ -20,5 +20,13 @@ typedef void (* CMOCK_tryEvaluateOperatorOnStackThenPush_CALLBACK)(Operator* new
 void tryEvaluateOperatorOnStackThenPush_StubWithCallback(CMOCK_tryEvaluateOperatorOnStackThenPush_CALLBACK Callback);
 #define tryEvaluateOperatorOnStackThenPush_ExpectAndThrow(newToken, numberStack, operatorStack, cmock_to_throw) tryEvaluateOperatorOnStackThenPush_CMockExpectAndThrow(__LINE__, newToken, numberStack, operatorStack, cmock_to_throw)
 void tryEvaluateOperatorOnStackThenPush_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, Operator* newToken, Stack* numberStack, Stack* operatorStack, CEXCEPTION_T cmock_to_throw);
+#define tryEvaluatePrefixOperatorOnStackThenPush_Ignore() tryEvaluatePrefixOperatorOnStackThenPush_CMockIgnore()
+void tryEvaluatePrefixOperatorOnStackThenPush_CMockIgnore(void);
+#define tryEvaluatePrefixOperatorOnStackThenPush_Expect(newToken, numberStack, operatorStack) tryEvaluatePrefixOperatorOnStackThenPush_CMockExpect(__LINE__, newToken, numberStack, operatorStack)
+void tryEvaluatePrefixOperatorOnStackThenPush_CMockExpect(UNITY_LINE_TYPE cmock_line, Operator* newToken, Stack* numberStack, Stack* operatorStack);
+typedef void (* CMOCK_tryEvaluatePrefixOperatorOnStackThenPush_CALLBACK)(Operator* newToken, Stack* numberStack, Stack* operatorStack, int cmock_num_calls);
+void tryEvaluatePrefixOperatorOnStackThenPush_StubWithCallback(CMOCK_tryEvaluatePrefixOperatorOnStackThenPush_CALLBACK Callback);
+#define tryEvaluatePrefixOperatorOnStackThenPush_ExpectAndThrow(newToken, numberStack, operatorStack, cmock_to_throw) tryEvaluatePrefixOperatorOnStackThenPush_CMockExpectAndThrow(__LINE__, newToken, numberStack, operatorStack, cmock_to_throw)
+void tryEvaluatePrefixOperatorOnStackThenPush_CMockExpectAndThrow(UNITY_LINE_TYPE cmock_line, Operator* newToken, Stack* numberStack, Stack* operatorStack, CEXCEPTION_T cmock_to_throw);
 
 #endif

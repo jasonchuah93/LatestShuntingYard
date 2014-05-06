@@ -209,13 +209,13 @@ Operator *detectOperator(String *tokenizer, int i)
 			case '(':
 			{
 				opeToken->id=LEFT_PARENTHESIS;
-				opeToken->precedence=1;
+				opeToken->precedence=2;
 				break;
 			}
 			case ')':
 			{
 				opeToken->id=RIGHT_PARENTHESIS;
-				opeToken->precedence=2;
+				opeToken->precedence=1;
 				break;
 			}
 			case '=':

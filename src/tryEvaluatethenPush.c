@@ -10,6 +10,7 @@
 #include "createNumberToken.h" 
 #include "LinkedList.h"
 #include "stackForEvaluate.h"
+#include <malloc.h>
 
 /**
 	Evaluate all operator token on the operator stack that have strictly lower
@@ -37,11 +38,13 @@ void tryEvaluateOperatorOnStackThenPush(Operator *newToken,Stack *numberStack,St
 			{
 				break;
 			}
-			else
+			else 
 			{
 				operatorEvaluate(numberStack,previousToken);
 			}
+			
 			previousToken=(Operator*)stackPop(operatorStack);
+			
 		}
 		if(previousToken!=NULL)
 		{
@@ -49,4 +52,38 @@ void tryEvaluateOperatorOnStackThenPush(Operator *newToken,Stack *numberStack,St
 		}
 		stackPush(newToken,operatorStack);
 	}
+}
+
+void tryEvaluatePrefixOperatorOnStackThenPush(Operator *newToken,Stack *numberStack,Stack *operatorStack)
+{
+	Operator *previousToken;
+	
+	previousToken=(Operator*)stackPop(operatorStack);
+	if(previousToken==NULL)
+	{
+		stackPush(newToken,operatorStack);
+	}
+	else{
+		while(previousToken!=NULL)
+		{
+			if(newToken->precedence >= previousToken->precedence)
+			{
+				break;
+			}
+			else 
+			{
+				operatorPrefixEvaluate(numberStack,previousToken);
+			}
+			
+			previousToken=(Operator*)stackPop(operatorStack);
+			
+		}
+		if(previousToken!=NULL)
+		{
+			stackPush(previousToken,operatorStack);
+		}
+		stackPush(newToken,operatorStack);
+		destroyStack(operatorStack);
+	}
+	
 }
