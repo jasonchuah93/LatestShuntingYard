@@ -48,6 +48,9 @@ extern void test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10(void);
 extern void test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10_OR_10_AND_53_XOR_21(void);
 extern void test_evaluate_with_different_expression(void);
 extern void test_evaluate_with_logic_expression(void);
+extern void test_should_evaluate_left_parenthesis_2_right_parenthesis(void);
+extern void test_should_evaluate_left_parenthesis_22_right_parenthesis(void);
+extern void test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis(void);
 
 
 //=======Mock Management=====
@@ -92,6 +95,9 @@ int main(void)
   RUN_TEST(test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10_OR_10_AND_53_XOR_21, 125);
   RUN_TEST(test_evaluate_with_different_expression, 139);
   RUN_TEST(test_evaluate_with_logic_expression, 152);
+  RUN_TEST(test_should_evaluate_left_parenthesis_2_right_parenthesis, 165);
+  RUN_TEST(test_should_evaluate_left_parenthesis_22_right_parenthesis, 181);
+  RUN_TEST(test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis, 195);
 
   return (UnityEnd());
 }

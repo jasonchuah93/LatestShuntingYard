@@ -162,8 +162,48 @@ void test_evaluate_with_logic_expression(void){
 	printf("Answer : %d ",check);
 }
 
+void test_should_evaluate_left_parenthesis_2_right_parenthesis(void){
+	
+	int check;
+	int e;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "(2)", .startIndex = 0, .length = 3};
+	
+	stringCreate_ExpectAndReturn("(2)",&tokenizer);
 	
 	
+	check=prefixEvaluate("(2)");
+	TEST_ASSERT_EQUAL(2,check);
+	printf("Answer : %d ",check);
 	
+}	
+	
+void test_should_evaluate_left_parenthesis_22_right_parenthesis(void){
+	int check;
+	int e;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "(22)", .startIndex = 0, .length = 3};
+	
+	stringCreate_ExpectAndReturn("(22)",&tokenizer);
+	
+	check=prefixEvaluate("(22)");
+	TEST_ASSERT_EQUAL(22,check);
+	printf("Answer : %d ",check);
+	
+}
+
+void test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis(void){
+	int check;
+	int e;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "((22))", .startIndex = 0, .length = 3};
+	
+	stringCreate_ExpectAndReturn("((22))",&tokenizer);
+	
+	check=prefixEvaluate("((22))");
+	TEST_ASSERT_EQUAL(22,check);
+	printf("Answer : %d ",check);
+	
+}	
 	
 	

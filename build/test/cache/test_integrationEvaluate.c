@@ -268,3 +268,91 @@ void test_evaluate_with_logic_expression(void){
  printf("Answer : %d ",check);
 
 }
+
+
+
+void test_should_evaluate_left_parenthesis_2_right_parenthesis(void){
+
+
+
+ int check;
+
+ int e;
+
+
+
+ String tokenizer = {.rawString = "(2)", .startIndex = 0, .length = 3};
+
+
+
+ stringCreate_CMockExpectAndReturn(172, "(2)", &tokenizer);
+
+
+
+
+
+ check=prefixEvaluate("(2)");
+
+ UnityAssertEqualNumber((_U_SINT)((2)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)176, UNITY_DISPLAY_STYLE_INT);
+
+ printf("Answer : %d ",check);
+
+
+
+}
+
+
+
+void test_should_evaluate_left_parenthesis_22_right_parenthesis(void){
+
+ int check;
+
+ int e;
+
+
+
+ String tokenizer = {.rawString = "(22)", .startIndex = 0, .length = 3};
+
+
+
+ stringCreate_CMockExpectAndReturn(187, "(22)", &tokenizer);
+
+
+
+ check=prefixEvaluate("(22)");
+
+ UnityAssertEqualNumber((_U_SINT)((22)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)190, UNITY_DISPLAY_STYLE_INT);
+
+ printf("Answer : %d ",check);
+
+
+
+}
+
+
+
+void test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis(void){
+
+ int check;
+
+ int e;
+
+
+
+ String tokenizer = {.rawString = "((22))", .startIndex = 0, .length = 3};
+
+
+
+ stringCreate_CMockExpectAndReturn(201, "((22))", &tokenizer);
+
+
+
+ check=prefixEvaluate("((22))");
+
+ UnityAssertEqualNumber((_U_SINT)((22)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)204, UNITY_DISPLAY_STYLE_INT);
+
+ printf("Answer : %d ",check);
+
+
+
+}
