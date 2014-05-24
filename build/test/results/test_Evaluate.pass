@@ -22,25 +22,31 @@
   :line: 401
   :message: ''
 - :test: test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10
-  :line: 538
+  :line: 537
   :message: ''
 - :test: test_should_evaluate_43_HASHTAG_42_and_throw_error_invalid_operator
-  :line: 703
+  :line: 702
   :message: ''
 - :test: test_should_evaluate_left_parenthesis_2_right_parenthesis
-  :line: 739
+  :line: 738
   :message: ''
 - :test: test_should_evaluate_left_parenthesis_22_right_parenthesis
-  :line: 799
+  :line: 798
   :message: ''
 - :test: test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis
-  :line: 859
+  :line: 858
+  :message: ''
+- :test: test_NEGATIVE_2_SHOULD_RETURN_NEGATIVE_2
+  :line: 1029
+  :message: ''
+- :test: test_NEGATIVE_2_NEGATIVE_3_SHOULD_RETURN_NEGATIVE_5
+  :line: 1085
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 11
-  :passed: 11
+  :total: 13
+  :passed: 13
   :failed: 0
   :ignored: 0
 :stdout:
@@ -62,3 +68,7 @@
 - 'Answer : 22 '
 - 'Loop needed for each expression to completely evaluate : 5 '
 - 'Answer : 22 '
+- 'Loop needed for each expression to completely evaluate : 2 '
+- 'Answer : -2 '
+- 'Loop needed for each expression to completely evaluate : 4 '
+- 'Answer : -6 '

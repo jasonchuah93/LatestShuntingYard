@@ -44,7 +44,7 @@ int evaluate(char *expression){
 		Throw(INVALID_EXPRESSION);
 	}
 	while((token=getToken(tokenizer))!=NULL){
-		
+		/*
 		if(counter%2==0&&*token==OPERATOR){
 			Throw(UNKNOWN_DATA);
 			
@@ -52,11 +52,13 @@ int evaluate(char *expression){
 		else if(counter%2==1&&*token==NUMBER){
 			Throw(UNKNOWN_OPERATOR);
 		}
+		*/
 		
 		if(isNumber(token)){
 			
 			stackPush(token,numberStack);
 		}
+		
 		else if(isOperator(token)) 
 		{
 			tryEvaluateOperatorOnStackThenPush((Operator*)token,numberStack,operatorStack);
@@ -94,15 +96,7 @@ int prefixEvaluate(char *expression){
 		Throw(INVALID_EXPRESSION);
 	}
 	while((token=getToken(tokenizer))!=NULL){
-		/*
-		if(counter%2==0&&*token==OPERATOR){
-			Throw(UNKNOWN_DATA);
-			
-		}
-		else if(counter%2==1&&*token==NUMBER){
-			Throw(UNKNOWN_OPERATOR);
-		}
-		*/
+		
 		if(isOperator(token)) 
 		{
 			tryEvaluatePrefixOperatorOnStackThenPush((Operator*)token,numberStack,operatorStack);
@@ -124,6 +118,16 @@ int prefixEvaluate(char *expression){
 	
 	printf("Loop needed for each expression to completely evaluate : %d \n",counter);
 	return result->value;
+}
+
+int universalEvaluate(char *expression){
+
+
+
+
+
+
+
 }
 
 

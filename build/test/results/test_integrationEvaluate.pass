@@ -19,31 +19,34 @@
   :line: 97
   :message: ''
 - :test: test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10
-  :line: 111
+  :line: 110
   :message: ''
 - :test: test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10_OR_10_AND_53_XOR_21
-  :line: 125
+  :line: 124
   :message: ''
 - :test: test_evaluate_with_different_expression
-  :line: 139
+  :line: 138
   :message: ''
-- :test: test_evaluate_with_logic_expression
-  :line: 152
+- :test: test_evaluate_with_longer_expression
+  :line: 151
   :message: ''
 - :test: test_should_evaluate_left_parenthesis_2_right_parenthesis
-  :line: 165
+  :line: 164
   :message: ''
 - :test: test_should_evaluate_left_parenthesis_22_right_parenthesis
-  :line: 181
+  :line: 180
   :message: ''
 - :test: test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis
-  :line: 195
+  :line: 194
+  :message: ''
+- :test: test_should_evaluate_left__left_left_parenthesis_16_right_right_right_parenthesis
+  :line: 208
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 12
-  :passed: 12
+  :total: 13
+  :passed: 13
   :failed: 0
   :ignored: 0
 :stdout:
@@ -71,3 +74,5 @@
 - 'Answer : 22 '
 - 'Loop needed for each expression to completely evaluate : 5 '
 - 'Answer : 22 '
+- 'Loop needed for each expression to completely evaluate : 7 '
+- 'Answer : 16 '

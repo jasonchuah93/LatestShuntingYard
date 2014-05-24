@@ -6,7 +6,7 @@
 //Function declaration
 
 int calculate(Operator *opeToken, Number *first , Number *second);
-int prefixCalculate(Operator *opeToken1, Number *first);
+int prefixCalculate(Operator *opeToken1, Number *first ,Number *second);
 
 
 #endif //__CALCULATETOKEN_H__

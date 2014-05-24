@@ -28,12 +28,21 @@ void operatorEvaluate(Stack *numberStack , Operator *opeToken){
 	Token *token2; 
 	int answer; 
 	Token *answerToken; 
-	
 	token1=(Token*)stackPop(numberStack); 
 	num1=(Number*)token1; 
 	token2=(Token*)stackPop(numberStack); 
 	num2=(Number*)token2;
-	answer = calculate(opeToken,num2,num1); 
+	
+	
+	if(opeToken->precedence==1)
+	{
+		answer = prefixCalculate(opeToken,num2,num1);
+	}
+	else
+	{
+		answer = calculate(opeToken,num2,num1); 
+	}
+	
 	answerToken=createNumberToken(answer);
 	stackPush(answerToken,numberStack);
 }	
@@ -41,14 +50,14 @@ void operatorEvaluate(Stack *numberStack , Operator *opeToken){
 void operatorPrefixEvaluate(Stack *numberStack , Operator *opeToken1){
 	
 	Number *num1;
+	Number *num2;
 	Token *token1; 
 	int answer; 
 	Token *answerToken; 
 	
 	token1=(Token*)stackPop(numberStack); 
 	num1=(Number*)token1; 
-	answer = prefixCalculate(opeToken1,num1); 
-	free(opeToken1);
+	answer = prefixCalculate(opeToken1,num1,num2); 
 	answerToken=createNumberToken(answer);
 	stackPush(answerToken,numberStack);
 	
@@ -82,7 +91,6 @@ void evaluatePrefixOperatorOnStack(Stack *numberStack,Stack *operatorStack){
 	while((opeToken=stackPop(operatorStack))!=NULL)
 	{
 		operatorPrefixEvaluate(numberStack,opeToken);
-		free(opeToken);
 		
 	}
 

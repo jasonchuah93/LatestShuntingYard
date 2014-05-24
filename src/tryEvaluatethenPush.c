@@ -27,6 +27,7 @@ void tryEvaluateOperatorOnStackThenPush(Operator *newToken,Stack *numberStack,St
 {
 	Operator *previousToken;
 	previousToken=(Operator*)stackPop(operatorStack);
+	
 	if(previousToken==NULL)
 	{
 		stackPush(newToken,operatorStack);
@@ -51,14 +52,15 @@ void tryEvaluateOperatorOnStackThenPush(Operator *newToken,Stack *numberStack,St
 			stackPush(previousToken,operatorStack);
 		}
 		stackPush(newToken,operatorStack);
+		
 	}
 }
 
 void tryEvaluatePrefixOperatorOnStackThenPush(Operator *newToken,Stack *numberStack,Stack *operatorStack)
 {
 	Operator *previousToken;
-	
 	previousToken=(Operator*)stackPop(operatorStack);
+	
 	if(previousToken==NULL)
 	{
 		stackPush(newToken,operatorStack);

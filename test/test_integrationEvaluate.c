@@ -107,7 +107,6 @@ void test_evaluate_2_MULTIPLY_3_PLUS_4_MULTIPLY_5_PLUS_6(void){
 	printf("Answer : %d ",check);
 }
 
-
 void test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10(void){
 	
 	int check;
@@ -149,7 +148,7 @@ void test_evaluate_with_different_expression(void){
 	printf("Answer : %d ",check);
 }
 
-void test_evaluate_with_logic_expression(void){
+void test_evaluate_with_longer_expression(void){
 	int check;
 	String tokenizer = {.rawString = "2|3&4^5|6^10|10&53^21&95|6^200&5|80", .startIndex = 0, .length = 27};
 	
@@ -196,7 +195,7 @@ void test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis(void
 	int check;
 	int e;
 	//Initialize tokenizer,token and stack
-	String tokenizer = {.rawString = "((22))", .startIndex = 0, .length = 3};
+	String tokenizer = {.rawString = "((22))", .startIndex = 0, .length = 5};
 	
 	stringCreate_ExpectAndReturn("((22))",&tokenizer);
 	
@@ -206,4 +205,17 @@ void test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis(void
 	
 }	
 	
+void test_should_evaluate_left__left_left_parenthesis_16_right_right_right_parenthesis(void){
+	int check;
+	int e;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "(((16)))", .startIndex = 0, .length = 6};
 	
+	stringCreate_ExpectAndReturn("(((16)))",&tokenizer);
+	
+	check=prefixEvaluate("(((16)))");
+	TEST_ASSERT_EQUAL(16,check);
+	printf("Answer : %d ",check);
+	
+}	
+
