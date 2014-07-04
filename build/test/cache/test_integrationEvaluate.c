@@ -289,7 +289,7 @@ void test_should_evaluate_left_parenthesis_2_right_parenthesis(void){
 
 
 
- check=prefixEvaluate("(2)");
+ check=evaluate("(2)");
 
  UnityAssertEqualNumber((_U_SINT)((2)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)175, UNITY_DISPLAY_STYLE_INT);
 
@@ -317,7 +317,7 @@ void test_should_evaluate_left_parenthesis_22_right_parenthesis(void){
 
 
 
- check=prefixEvaluate("(22)");
+ check=evaluate("(22)");
 
  UnityAssertEqualNumber((_U_SINT)((22)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)189, UNITY_DISPLAY_STYLE_INT);
 
@@ -345,7 +345,7 @@ void test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis(void
 
 
 
- check=prefixEvaluate("((22))");
+ check=evaluate("((22))");
 
  UnityAssertEqualNumber((_U_SINT)((22)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)203, UNITY_DISPLAY_STYLE_INT);
 
@@ -357,7 +357,7 @@ void test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis(void
 
 
 
-void test_should_evaluate_left__left_left_parenthesis_16_right_right_right_parenthesis(void){
+void test_should_evaluate_left_left_left_parenthesis_16_right_right_right_parenthesis(void){
 
  int check;
 
@@ -373,7 +373,7 @@ void test_should_evaluate_left__left_left_parenthesis_16_right_right_right_paren
 
 
 
- check=prefixEvaluate("(((16)))");
+ check=evaluate("(((16)))");
 
  UnityAssertEqualNumber((_U_SINT)((16)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)217, UNITY_DISPLAY_STYLE_INT);
 

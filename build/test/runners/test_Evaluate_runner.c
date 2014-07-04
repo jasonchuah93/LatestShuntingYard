@@ -109,9 +109,9 @@ int main(void)
   RUN_TEST(test_should_evaluate_43_HASHTAG_42_and_throw_error_invalid_operator, 702);
   RUN_TEST(test_should_evaluate_left_parenthesis_2_right_parenthesis, 738);
   RUN_TEST(test_should_evaluate_left_parenthesis_22_right_parenthesis, 798);
-  RUN_TEST(test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis, 858);
-  RUN_TEST(test_NEGATIVE_2_SHOULD_RETURN_NEGATIVE_2, 1029);
-  RUN_TEST(test_NEGATIVE_2_NEGATIVE_3_SHOULD_RETURN_NEGATIVE_5, 1085);
+  RUN_TEST(test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis, 860);
+  RUN_TEST(test_NEGATIVE_2_SHOULD_RETURN_NEGATIVE_2, 1035);
+  RUN_TEST(test_NEGATIVE_2_NEGATIVE_3_SHOULD_RETURN_NEGATIVE_5, 1091);
 
   return (UnityEnd());
 }

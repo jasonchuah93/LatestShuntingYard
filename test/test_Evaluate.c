@@ -761,18 +761,19 @@ void test_should_evaluate_left_parenthesis_2_right_parenthesis(void){
 	
 	//Operator token left parenthesis
 	getToken_ExpectAndReturn(&tokenizer,token1);
+	isNumber_ExpectAndReturn(token1,0);
 	isOperator_ExpectAndReturn(token1,1);
 	stackPop_ExpectAndReturn(&operatorStack,NULL);
 	stackPush_Expect(token1,&operatorStack);
 	
 	//Number2
 	getToken_ExpectAndReturn(&tokenizer,token2);
-	isOperator_ExpectAndReturn(token2,0);
 	isNumber_ExpectAndReturn(token2,1);
 	stackPush_Expect(token2,&dataStack);
 	
 	//Operator token right parenthesis
 	getToken_ExpectAndReturn(&tokenizer,token3);
+	isNumber_ExpectAndReturn(token3,0);
 	isOperator_ExpectAndReturn(token3,1);
 	stackPop_ExpectAndReturn(&operatorStack,token1);
 	stackPop_ExpectAndReturn(&dataStack,token2);
@@ -784,12 +785,11 @@ void test_should_evaluate_left_parenthesis_2_right_parenthesis(void){
 	getToken_ExpectAndReturn(&tokenizer,NULL);
 	
 	//Evaluate
-	
 	stackPop_ExpectAndReturn(&operatorStack,NULL);
 	stackPop_ExpectAndReturn(&dataStack,answerToken);
 	destroyStack_Expect(&dataStack);
-	
-	check=prefixEvaluate("(2)");
+	destroyStack_Expect(&operatorStack);
+	check=evaluate("(2)");
 	TEST_ASSERT_EQUAL(2,check);
 	printf("Answer : %d ",check);
 	
@@ -821,18 +821,19 @@ void test_should_evaluate_left_parenthesis_22_right_parenthesis(void){
 	
 	//Operator token left parenthesis
 	getToken_ExpectAndReturn(&tokenizer,token1);
+	isNumber_ExpectAndReturn(token1,0);
 	isOperator_ExpectAndReturn(token1,1);
 	stackPop_ExpectAndReturn(&operatorStack,NULL);
 	stackPush_Expect(token1,&operatorStack);
 	
 	//Number2
 	getToken_ExpectAndReturn(&tokenizer,token2);
-	isOperator_ExpectAndReturn(token2,0);
 	isNumber_ExpectAndReturn(token2,1);
 	stackPush_Expect(token2,&dataStack);
 	
 	//Operator token right parenthesis
 	getToken_ExpectAndReturn(&tokenizer,token3);
+	isNumber_ExpectAndReturn(token3,0);
 	isOperator_ExpectAndReturn(token3,1);
 	stackPop_ExpectAndReturn(&operatorStack,token1);
 	stackPop_ExpectAndReturn(&dataStack,token2);
@@ -848,8 +849,9 @@ void test_should_evaluate_left_parenthesis_22_right_parenthesis(void){
 	stackPop_ExpectAndReturn(&operatorStack,NULL);
 	stackPop_ExpectAndReturn(&dataStack,answerToken);
 	destroyStack_Expect(&dataStack);
+	destroyStack_Expect(&operatorStack);
 	
-	check=prefixEvaluate("(22)");
+	check=evaluate("(22)");
 	TEST_ASSERT_EQUAL(22,check);
 	printf("Answer : %d ",check);
 	
@@ -887,12 +889,14 @@ void test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis(void
 	
 	//Operator token left parenthesis
 	getToken_ExpectAndReturn(&tokenizer,token1);
+	isNumber_ExpectAndReturn(token1,0);
 	isOperator_ExpectAndReturn(token1,1);
 	stackPop_ExpectAndReturn(&operatorStack,NULL);
 	stackPush_Expect(token1,&operatorStack);
 	
 	//Operator token left parenthesis2
 	getToken_ExpectAndReturn(&tokenizer,token2);
+	isNumber_ExpectAndReturn(token1,0);
 	isOperator_ExpectAndReturn(token1,1);
 	stackPop_ExpectAndReturn(&operatorStack,token1);
 	stackPush_Expect(token1,&operatorStack);
@@ -901,12 +905,12 @@ void test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis(void
 	
 	//Number2
 	getToken_ExpectAndReturn(&tokenizer,token3);
-	isOperator_ExpectAndReturn(token3,0);
 	isNumber_ExpectAndReturn(token3,1);
 	stackPush_Expect(token3,&dataStack);
 	
 	//Operator token right parenthesis
 	getToken_ExpectAndReturn(&tokenizer,token4);
+	isNumber_ExpectAndReturn(token4,0);
 	isOperator_ExpectAndReturn(token4,1);
 	stackPop_ExpectAndReturn(&operatorStack,token2);
 	stackPop_ExpectAndReturn(&dataStack,token3);
@@ -918,6 +922,7 @@ void test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis(void
 	
 	//Operator token right parenthesis2
 	getToken_ExpectAndReturn(&tokenizer,token5);
+	isNumber_ExpectAndReturn(token5,0);
 	isOperator_ExpectAndReturn(token5,1);
 	stackPop_ExpectAndReturn(&operatorStack,token1);
 	stackPop_ExpectAndReturn(&dataStack,answerToken);
@@ -932,8 +937,9 @@ void test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis(void
 	stackPop_ExpectAndReturn(&operatorStack,NULL);
 	stackPop_ExpectAndReturn(&dataStack,answerToken);
 	destroyStack_Expect(&dataStack);
+	destroyStack_Expect(&operatorStack);
 	
-	check=prefixEvaluate("((22))");
+	check=evaluate("((22))");
 	TEST_ASSERT_EQUAL(22,check);
 	printf("Answer : %d ",check);
 	

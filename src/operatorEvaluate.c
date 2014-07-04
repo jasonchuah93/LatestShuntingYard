@@ -28,23 +28,27 @@ void operatorEvaluate(Stack *numberStack , Operator *opeToken){
 	Token *token2; 
 	int answer; 
 	Token *answerToken; 
-	token1=(Token*)stackPop(numberStack); 
-	num1=(Number*)token1; 
-	token2=(Token*)stackPop(numberStack); 
-	num2=(Number*)token2;
 	
-	
-	if(opeToken->precedence==1)
+	if(opeToken->id==LEFT_PARENTHESIS)
 	{
-		answer = prefixCalculate(opeToken,num2,num1);
+		token1=(Token*)stackPop(numberStack); 
+		num1=(Number*)token1; 
+		answer = prefixCalculate(opeToken,num1,num2); 
+		answerToken=createNumberToken(answer);
+		stackPush(answerToken,numberStack);
 	}
 	else
 	{
+		token1=(Token*)stackPop(numberStack); 
+		num1=(Number*)token1; 
+		token2=(Token*)stackPop(numberStack); 
+		num2=(Number*)token2;
 		answer = calculate(opeToken,num2,num1); 
+		answerToken=createNumberToken(answer);
+		stackPush(answerToken,numberStack);
 	}
 	
-	answerToken=createNumberToken(answer);
-	stackPush(answerToken,numberStack);
+	
 }	
 
 void operatorPrefixEvaluate(Stack *numberStack , Operator *opeToken1){
@@ -60,7 +64,6 @@ void operatorPrefixEvaluate(Stack *numberStack , Operator *opeToken1){
 	answer = prefixCalculate(opeToken1,num1,num2); 
 	answerToken=createNumberToken(answer);
 	stackPush(answerToken,numberStack);
-	
 	
 }	
 

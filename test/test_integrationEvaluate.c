@@ -171,7 +171,7 @@ void test_should_evaluate_left_parenthesis_2_right_parenthesis(void){
 	stringCreate_ExpectAndReturn("(2)",&tokenizer);
 	
 	
-	check=prefixEvaluate("(2)");
+	check=evaluate("(2)");
 	TEST_ASSERT_EQUAL(2,check);
 	printf("Answer : %d ",check);
 	
@@ -185,7 +185,7 @@ void test_should_evaluate_left_parenthesis_22_right_parenthesis(void){
 	
 	stringCreate_ExpectAndReturn("(22)",&tokenizer);
 	
-	check=prefixEvaluate("(22)");
+	check=evaluate("(22)");
 	TEST_ASSERT_EQUAL(22,check);
 	printf("Answer : %d ",check);
 	
@@ -199,13 +199,13 @@ void test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis(void
 	
 	stringCreate_ExpectAndReturn("((22))",&tokenizer);
 	
-	check=prefixEvaluate("((22))");
+	check=evaluate("((22))");
 	TEST_ASSERT_EQUAL(22,check);
 	printf("Answer : %d ",check);
 	
 }	
 	
-void test_should_evaluate_left__left_left_parenthesis_16_right_right_right_parenthesis(void){
+void test_should_evaluate_left_left_left_parenthesis_16_right_right_right_parenthesis(void){
 	int check;
 	int e;
 	//Initialize tokenizer,token and stack
@@ -213,7 +213,7 @@ void test_should_evaluate_left__left_left_parenthesis_16_right_right_right_paren
 	
 	stringCreate_ExpectAndReturn("(((16)))",&tokenizer);
 	
-	check=prefixEvaluate("(((16)))");
+	check=evaluate("(((16)))");
 	TEST_ASSERT_EQUAL(16,check);
 	printf("Answer : %d ",check);
 	
