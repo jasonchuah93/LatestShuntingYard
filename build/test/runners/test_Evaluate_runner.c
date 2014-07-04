@@ -101,17 +101,17 @@ int main(void)
   UnityBegin();
   RUN_TEST(test_shunting_yard_should_return_0_if_the_expression_is_null, 35);
   RUN_TEST(test_should_return_3_for_1_plus_2, 60);
-  RUN_TEST(test_should_return_6_for_60_divide_10, 115);
-  RUN_TEST(test_evaluate_2_MULTIPLY_3_PLUS_4, 172);
-  RUN_TEST(test_evaluate_2_PLUS_3_MULTIPLY_4_PLUS_5_MULTIPLY_6, 258);
-  RUN_TEST(test_evaluate_2_MULTIPLY_3_PLUS_4_MULTIPLY_5_PLUS_6, 401);
-  RUN_TEST(test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10, 537);
-  RUN_TEST(test_should_evaluate_43_HASHTAG_42_and_throw_error_invalid_operator, 702);
-  RUN_TEST(test_should_evaluate_left_parenthesis_2_right_parenthesis, 738);
-  RUN_TEST(test_should_evaluate_left_parenthesis_22_right_parenthesis, 798);
-  RUN_TEST(test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis, 860);
-  RUN_TEST(test_NEGATIVE_2_SHOULD_RETURN_NEGATIVE_2, 1035);
-  RUN_TEST(test_NEGATIVE_2_NEGATIVE_3_SHOULD_RETURN_NEGATIVE_5, 1091);
+  RUN_TEST(test_should_return_6_for_60_divide_10, 116);
+  RUN_TEST(test_evaluate_2_MULTIPLY_3_PLUS_4, 173);
+  RUN_TEST(test_evaluate_2_PLUS_3_MULTIPLY_4_PLUS_5_MULTIPLY_6, 259);
+  RUN_TEST(test_evaluate_2_MULTIPLY_3_PLUS_4_MULTIPLY_5_PLUS_6, 402);
+  RUN_TEST(test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10, 538);
+  RUN_TEST(test_should_evaluate_43_HASHTAG_42_and_throw_error_invalid_operator, 703);
+  RUN_TEST(test_should_evaluate_left_parenthesis_2_right_parenthesis, 739);
+  RUN_TEST(test_should_evaluate_left_parenthesis_22_right_parenthesis, 795);
+  RUN_TEST(test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis, 852);
+  RUN_TEST(test_NEGATIVE_2_SHOULD_RETURN_NEGATIVE_2, 1028);
+  RUN_TEST(test_NEGATIVE_2_NEGATIVE_3_SHOULD_RETURN_NEGATIVE_5, 1085);
 
   return (UnityEnd());
 }

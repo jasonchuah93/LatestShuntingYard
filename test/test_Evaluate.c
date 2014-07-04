@@ -75,6 +75,7 @@ void test_should_return_3_for_1_plus_2(void){
 	
 	Number answer = {.type= NUMBER, .value=3};
 	Token *answerToken = (Token*)&answer;
+	
 	createStack_ExpectAndReturn(&dataStack);
 	createStack_ExpectAndReturn(&operatorStack);
 	stringCreate_ExpectAndReturn("1+2",&tokenizer);
@@ -776,12 +777,7 @@ void test_should_evaluate_left_parenthesis_2_right_parenthesis(void){
 	isNumber_ExpectAndReturn(token3,0);
 	isOperator_ExpectAndReturn(token3,1);
 	stackPop_ExpectAndReturn(&operatorStack,token1);
-	stackPop_ExpectAndReturn(&dataStack,token2);
-	createNumberToken_ExpectAndReturn(2,answerToken);
-	stackPush_Expect(answerToken,&dataStack);
 	stackPop_ExpectAndReturn(&operatorStack,NULL);
-	stackPush_Expect(token3,&operatorStack);
-	destroyStack_Expect(&operatorStack);
 	getToken_ExpectAndReturn(&tokenizer,NULL);
 	
 	//Evaluate
@@ -789,6 +785,7 @@ void test_should_evaluate_left_parenthesis_2_right_parenthesis(void){
 	stackPop_ExpectAndReturn(&dataStack,answerToken);
 	destroyStack_Expect(&dataStack);
 	destroyStack_Expect(&operatorStack);
+	
 	check=evaluate("(2)");
 	TEST_ASSERT_EQUAL(2,check);
 	printf("Answer : %d ",check);
@@ -836,12 +833,7 @@ void test_should_evaluate_left_parenthesis_22_right_parenthesis(void){
 	isNumber_ExpectAndReturn(token3,0);
 	isOperator_ExpectAndReturn(token3,1);
 	stackPop_ExpectAndReturn(&operatorStack,token1);
-	stackPop_ExpectAndReturn(&dataStack,token2);
-	createNumberToken_ExpectAndReturn(22,answerToken);
-	stackPush_Expect(answerToken,&dataStack);
 	stackPop_ExpectAndReturn(&operatorStack,NULL);
-	stackPush_Expect(token3,&operatorStack);
-	destroyStack_Expect(&operatorStack);
 	getToken_ExpectAndReturn(&tokenizer,NULL);
 	
 	//Evaluate
@@ -901,7 +893,6 @@ void test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis(void
 	stackPop_ExpectAndReturn(&operatorStack,token1);
 	stackPush_Expect(token1,&operatorStack);
 	stackPush_Expect(token2,&operatorStack);
-	destroyStack_Expect(&operatorStack);
 	
 	//Number2
 	getToken_ExpectAndReturn(&tokenizer,token3);
@@ -913,24 +904,14 @@ void test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis(void
 	isNumber_ExpectAndReturn(token4,0);
 	isOperator_ExpectAndReturn(token4,1);
 	stackPop_ExpectAndReturn(&operatorStack,token2);
-	stackPop_ExpectAndReturn(&dataStack,token3);
-	createNumberToken_ExpectAndReturn(22,answerToken);
-	stackPush_Expect(answerToken,&dataStack);
 	stackPop_ExpectAndReturn(&operatorStack,NULL);
-	stackPush_Expect(token4,&operatorStack);
-	destroyStack_Expect(&operatorStack);
 	
 	//Operator token right parenthesis2
 	getToken_ExpectAndReturn(&tokenizer,token5);
 	isNumber_ExpectAndReturn(token5,0);
 	isOperator_ExpectAndReturn(token5,1);
 	stackPop_ExpectAndReturn(&operatorStack,token1);
-	stackPop_ExpectAndReturn(&dataStack,answerToken);
-	createNumberToken_ExpectAndReturn(22,answerToken);
-	stackPush_Expect(answerToken,&dataStack);
 	stackPop_ExpectAndReturn(&operatorStack,NULL);
-	stackPush_Expect(token5,&operatorStack);
-	destroyStack_Expect(&operatorStack);
 	getToken_ExpectAndReturn(&tokenizer,NULL);
 	
 	//Evaluate
@@ -950,8 +931,12 @@ void test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis(void
 	Still thinking how to add prefix without causing bad memory
 	access 
 *********************************************************************/
-/*
-void test_2_MULTIPLY_LEFT_PARENTHESIS_THREE_PLUS_FOUR_RIGHT_PARENTHESIS(void){
+
+void xtest_2_MULTIPLY_LEFT_PARENTHESIS_THREE_PLUS_FOUR_RIGHT_PARENTHESIS(void){
+	Stack dataStack;
+	Stack operatorStack;
+	int check;
+	
 	String tokenizer = {.rawString = "2*(3+4)", .startIndex = 0, .length = 7 };
 	
 	Number number2 = {.type= NUMBER, .value=2};
@@ -979,27 +964,34 @@ void test_2_MULTIPLY_LEFT_PARENTHESIS_THREE_PLUS_FOUR_RIGHT_PARENTHESIS(void){
 	Token *ansToken = (Token*)&answer;
 	
 	//Evaluate the expression
+	createStack_ExpectAndReturn(&dataStack);
+	createStack_ExpectAndReturn(&operatorStack);
 	stringCreate_ExpectAndReturn("2*(3+4)",&tokenizer);
+	
 	
 	//Token number 2
 	getToken_ExpectAndReturn(&tokenizer,token1);
 	isNumber_ExpectAndReturn(token1,1);
-	stackPush_Expect(token1,&numStack);
+	stackPush_Expect(token1,&dataStack);
 	
 	//Token operator multiply
 	getToken_ExpectAndReturn(&tokenizer,token2);
 	isNumber_ExpectAndReturn(token2,0);
 	isOperator_ExpectAndReturn(token2,1);
-	tryEvaluatethenPush_Expect(token2,&numStack,&opeStack);
-	//stackPush_Expect(token2,&opeStack);
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	stackPush_Expect(token2,&operatorStack);
+	
 	
 	//Token operator left parenthesis
 	getToken_ExpectAndReturn(&tokenizer,token3);
 	isNumber_ExpectAndReturn(token3,0);
 	isOperator_ExpectAndReturn(token3,1);
-	tryEvaluatethenPush_Expect(token3,&numStack,&opeStack);
-	//stackPush_Expect(token3,&opeStack);
+	stackPop_ExpectAndReturn(&operatorStack,token2);
+	stackPush_Expect(token2,&operatorStack);
+	stackPush_Expect(token3,&operatorStack);
 	
+	
+	/*
 	//Token number 3
 	getToken_ExpectAndReturn(&tokenizer,token4);
 	isNumber_ExpectAndReturn(token4,1);
@@ -1024,13 +1016,14 @@ void test_2_MULTIPLY_LEFT_PARENTHESIS_THREE_PLUS_FOUR_RIGHT_PARENTHESIS(void){
 	tryEvaluatethenPush_Expect(token7,&numStack,&opeStack);
 	//stackPush_Expect(token7,&opeStack);
 	getToken_ExpectAndReturn(&tokenizer,NULL);
+	*/
 	
-	//ANSWER
-	operatorEvaluate_Expect(&numStack,&opeStack);
+	check=evaluate("2*(3+4)");
+	TEST_ASSERT_EQUAL(14,check);
+	printf("Answer : %d ",check);
 	
-	evaluate("2*(3+4)");
 }
-*/
+
 
 void test_NEGATIVE_2_SHOULD_RETURN_NEGATIVE_2(void){
 	
@@ -1088,6 +1081,7 @@ void test_NEGATIVE_2_SHOULD_RETURN_NEGATIVE_2(void){
 	printf("Answer : %d ",check);
 
 }
+
 void test_NEGATIVE_2_NEGATIVE_3_SHOULD_RETURN_NEGATIVE_5(void){
 	
 	Stack numStack;
@@ -1172,6 +1166,7 @@ void test_NEGATIVE_2_NEGATIVE_3_SHOULD_RETURN_NEGATIVE_5(void){
 	printf("Answer : %d ",check);
 
 }
+
 /*
 void test_NEGATIVE_2_PLUS_NEGATIVE_3(void){
 	String tokenizer = {.rawString = "-2+-3", .startIndex = 0, .length = 5 };
