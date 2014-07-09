@@ -53,6 +53,9 @@ extern void test_should_evaluate_43_HASHTAG_42_and_throw_error_invalid_operator(
 extern void test_should_evaluate_left_parenthesis_2_right_parenthesis(void);
 extern void test_should_evaluate_left_parenthesis_22_right_parenthesis(void);
 extern void test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis(void);
+extern void test_left_bracket_2_plus_3_right_bracket(void);
+extern void test_left_bracket_20_multiply_3_subtract_50_right_bracket(void);
+extern void test_left_left_left_bracket_20_multiply_3_subtract_50_right_right_right_bracket(void);
 extern void test_NEGATIVE_2_SHOULD_RETURN_NEGATIVE_2(void);
 extern void test_NEGATIVE_2_NEGATIVE_3_SHOULD_RETURN_NEGATIVE_5(void);
 
@@ -110,8 +113,11 @@ int main(void)
   RUN_TEST(test_should_evaluate_left_parenthesis_2_right_parenthesis, 739);
   RUN_TEST(test_should_evaluate_left_parenthesis_22_right_parenthesis, 795);
   RUN_TEST(test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis, 852);
-  RUN_TEST(test_NEGATIVE_2_SHOULD_RETURN_NEGATIVE_2, 1028);
-  RUN_TEST(test_NEGATIVE_2_NEGATIVE_3_SHOULD_RETURN_NEGATIVE_5, 1085);
+  RUN_TEST(test_left_bracket_2_plus_3_right_bracket, 929);
+  RUN_TEST(test_left_bracket_20_multiply_3_subtract_50_right_bracket, 1001);
+  RUN_TEST(test_left_left_left_bracket_20_multiply_3_subtract_50_right_right_right_bracket, 1098);
+  RUN_TEST(test_NEGATIVE_2_SHOULD_RETURN_NEGATIVE_2, 1317);
+  RUN_TEST(test_NEGATIVE_2_NEGATIVE_3_SHOULD_RETURN_NEGATIVE_5, 1374);
 
   return (UnityEnd());
 }

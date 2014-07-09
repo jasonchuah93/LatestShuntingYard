@@ -926,6 +926,295 @@ void test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis(void
 	
 }
 
+void test_left_bracket_2_plus_3_right_bracket(void){
+	Stack dataStack;
+	Stack operatorStack;
+	int check;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "(2+3)", .startIndex = 0, .length = 5};
+	
+	Operator leftBracket = {.type= OPERATOR, .id = LEFT_PARENTHESIS ,.precedence=2};
+	Token *token1 = (Token*)&leftBracket;
+	
+	Number number2 = {.type= NUMBER, .value=2};
+	Token *token2 = (Token*)&number2;
+	
+	Operator plus = {.type= OPERATOR, .id = ADD ,.precedence=60};
+	Token *token3 = (Token*)&plus;
+	
+	Number number3 = {.type= NUMBER, .value=3};
+	Token *token4 = (Token*)&number3;
+	
+	Operator rightBracket = {.type= OPERATOR, .id = RIGHT_PARENTHESIS ,.precedence=1};
+	Token *token5 = (Token*)&rightBracket;
+	
+	Number answer = {.type= NUMBER, .value=5};
+	Token *ansToken = (Token*)&answer;
+	
+	createStack_ExpectAndReturn(&dataStack);
+	createStack_ExpectAndReturn(&operatorStack);
+	stringCreate_ExpectAndReturn("(2+3)",&tokenizer);
+	//(
+	getToken_ExpectAndReturn(&tokenizer,token1);
+	isNumber_ExpectAndReturn(token1,0);
+	isOperator_ExpectAndReturn(token1,1);
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	stackPush_Expect(token1,&operatorStack);
+	//2
+	getToken_ExpectAndReturn(&tokenizer,token2);
+	isNumber_ExpectAndReturn(token2,1);
+	stackPush_Expect(token2,&dataStack);
+	//+
+	getToken_ExpectAndReturn(&tokenizer,token3);
+	isNumber_ExpectAndReturn(token3,0);
+	isOperator_ExpectAndReturn(token3,1);
+	stackPop_ExpectAndReturn(&operatorStack,token1);
+	stackPush_Expect(token1,&operatorStack);
+	stackPush_Expect(token3,&operatorStack);
+	//3
+	getToken_ExpectAndReturn(&tokenizer,token4);
+	isNumber_ExpectAndReturn(token4,1);
+	stackPush_Expect(token4,&dataStack);
+	//)
+	getToken_ExpectAndReturn(&tokenizer,token5);
+	isNumber_ExpectAndReturn(token5,0);
+	isOperator_ExpectAndReturn(token5,1);
+	stackPop_ExpectAndReturn(&operatorStack,token3);
+	stackPop_ExpectAndReturn(&dataStack,token4);
+	stackPop_ExpectAndReturn(&dataStack,token2);
+	createNumberToken_ExpectAndReturn(5,ansToken);
+	stackPush_Expect(ansToken,&dataStack);
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	getToken_ExpectAndReturn(&tokenizer,NULL);
+	
+	//Evaluate
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	stackPop_ExpectAndReturn(&dataStack,ansToken);
+	destroyStack_Expect(&dataStack);
+	destroyStack_Expect(&operatorStack);
+	
+	check=evaluate("(2+3)");
+	TEST_ASSERT_EQUAL(5,check);
+	printf("Answer : %d ",check);
+}
+
+void test_left_bracket_20_multiply_3_subtract_50_right_bracket(void){
+	Stack dataStack;
+	Stack operatorStack;
+	int check;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "(20*3-50)", .startIndex = 0, .length = 7};
+	
+	Operator leftBracket = {.type= OPERATOR, .id = LEFT_PARENTHESIS ,.precedence=2};
+	Token *token1 = (Token*)&leftBracket;
+	
+	Number number20 = {.type= NUMBER, .value=20};
+	Token *token2 = (Token*)&number20;
+	
+	Operator multiply = {.type= OPERATOR, .id = MULTIPLY ,.precedence=70};
+	Token *token3 = (Token*)&multiply;
+	
+	Number number3 = {.type= NUMBER, .value=3};
+	Token *token4 = (Token*)&number3;
+	
+	Operator minus = {.type= OPERATOR, .id = SUBTRACT ,.precedence=60};
+	Token *token5 = (Token*)&minus;
+	
+	Number number50 = {.type= NUMBER, .value=50};
+	Token *token6 = (Token*)&number50;
+	
+	Operator rightBracket = {.type= OPERATOR, .id = RIGHT_PARENTHESIS ,.precedence=1};
+	Token *token7 = (Token*)&rightBracket;
+	
+	Number tempAnswer = {.type= NUMBER, .value=60};
+	Token *tempAnsToken = (Token*)&tempAnswer;
+	
+	Number answer = {.type= NUMBER, .value=10};
+	Token *ansToken = (Token*)&answer;
+	
+	createStack_ExpectAndReturn(&dataStack);
+	createStack_ExpectAndReturn(&operatorStack);
+	stringCreate_ExpectAndReturn("(20*3-50)",&tokenizer);
+	//(
+	getToken_ExpectAndReturn(&tokenizer,token1);
+	isNumber_ExpectAndReturn(token1,0);
+	isOperator_ExpectAndReturn(token1,1);
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	stackPush_Expect(token1,&operatorStack);
+	//20
+	getToken_ExpectAndReturn(&tokenizer,token2);
+	isNumber_ExpectAndReturn(token2,1);
+	stackPush_Expect(token2,&dataStack);
+	//*
+	getToken_ExpectAndReturn(&tokenizer,token3);
+	isNumber_ExpectAndReturn(token3,0);
+	isOperator_ExpectAndReturn(token3,1);
+	stackPop_ExpectAndReturn(&operatorStack,token1);
+	stackPush_Expect(token1,&operatorStack);
+	stackPush_Expect(token3,&operatorStack);
+	//3
+	getToken_ExpectAndReturn(&tokenizer,token4);
+	isNumber_ExpectAndReturn(token4,1);
+	stackPush_Expect(token4,&dataStack);
+	//-
+	getToken_ExpectAndReturn(&tokenizer,token5);
+	isNumber_ExpectAndReturn(token5,0);
+	isOperator_ExpectAndReturn(token5,1);
+	stackPop_ExpectAndReturn(&operatorStack,token3);
+	stackPop_ExpectAndReturn(&dataStack,token4);
+	stackPop_ExpectAndReturn(&dataStack,token2);
+	createNumberToken_ExpectAndReturn(60,tempAnsToken);
+	stackPush_Expect(tempAnsToken,&dataStack);
+	stackPop_ExpectAndReturn(&operatorStack,token1);
+	stackPush_Expect(token1,&operatorStack);
+	stackPush_Expect(token5,&operatorStack);
+	//50
+	getToken_ExpectAndReturn(&tokenizer,token6);
+	isNumber_ExpectAndReturn(token6,1);
+	stackPush_Expect(token6,&dataStack);
+	// )
+	getToken_ExpectAndReturn(&tokenizer,token7);
+	isNumber_ExpectAndReturn(token7,0);
+	isOperator_ExpectAndReturn(token7,1);
+	stackPop_ExpectAndReturn(&operatorStack,token5);
+	stackPop_ExpectAndReturn(&dataStack,token6);
+	stackPop_ExpectAndReturn(&dataStack,tempAnsToken);
+	createNumberToken_ExpectAndReturn(10,ansToken);
+	stackPush_Expect(ansToken,&dataStack);
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	getToken_ExpectAndReturn(&tokenizer,NULL);
+	
+	//Evaluate
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	stackPop_ExpectAndReturn(&dataStack,ansToken);
+	destroyStack_Expect(&dataStack);
+	destroyStack_Expect(&operatorStack);
+	
+	check=evaluate("(20*3-50)");
+	TEST_ASSERT_EQUAL(10,check);
+	printf("Answer : %d ",check);
+}
+
+void test_left_left_left_bracket_20_multiply_3_subtract_50_right_right_right_bracket(void){
+	Stack dataStack;
+	Stack operatorStack;
+	int check;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "(((20+60/4)))", .startIndex = 0, .length = 11};
+	
+	Operator leftBracket = {.type= OPERATOR, .id = LEFT_PARENTHESIS ,.precedence=2};
+	Token *token1 = (Token*)&leftBracket;
+	
+	Operator leftBracket2 = {.type= OPERATOR, .id = LEFT_PARENTHESIS ,.precedence=2};
+	Token *token2 = (Token*)&leftBracket2;
+	
+	Operator leftBracket3 = {.type= OPERATOR, .id = LEFT_PARENTHESIS ,.precedence=2};
+	Token *token3 = (Token*)&leftBracket3;
+	
+	Number number20 = {.type= NUMBER, .value=20};
+	Token *token4 = (Token*)&number20;
+	
+	Operator plus = {.type= OPERATOR, .id = ADD ,.precedence=60};
+	Token *token5 = (Token*)&plus;
+	
+	Number number60 = {.type= NUMBER, .value=60};
+	Token *token6 = (Token*)&number60;
+	
+	Operator divide = {.type= OPERATOR, .id = DIVIDE ,.precedence=70};
+	Token *token7 = (Token*)&divide;
+	
+	Number number4 = {.type= NUMBER, .value=4};
+	Token *token8 = (Token*)&number4;
+	
+	Operator rightBracket = {.type= OPERATOR, .id = RIGHT_PARENTHESIS ,.precedence=1};
+	Token *token9 = (Token*)&rightBracket;
+	
+	Operator rightBracket2 = {.type= OPERATOR, .id = RIGHT_PARENTHESIS ,.precedence=1};
+	Token *token10 = (Token*)&rightBracket2;
+	
+	Operator rightBracket3 = {.type= OPERATOR, .id = RIGHT_PARENTHESIS ,.precedence=1};
+	Token *token11 = (Token*)&rightBracket3;
+	
+	Number tempAnswer = {.type= NUMBER, .value=15};
+	Token *tempAnsToken = (Token*)&tempAnswer;
+	
+	Number answer = {.type= NUMBER, .value=35};
+	Token *ansToken = (Token*)&answer;
+	
+	createStack_ExpectAndReturn(&dataStack);
+	createStack_ExpectAndReturn(&operatorStack);
+	stringCreate_ExpectAndReturn("(((20+60/4)))",&tokenizer);
+	//(
+	getToken_ExpectAndReturn(&tokenizer,token1);
+	isNumber_ExpectAndReturn(token1,0);
+	isOperator_ExpectAndReturn(token1,1);
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	stackPush_Expect(token1,&operatorStack);
+	//(
+	getToken_ExpectAndReturn(&tokenizer,token2);
+	isNumber_ExpectAndReturn(token2,0);
+	isOperator_ExpectAndReturn(token2,1);
+	stackPop_ExpectAndReturn(&operatorStack,token1);
+	stackPush_Expect(token1,&operatorStack);
+	stackPush_Expect(token2,&operatorStack);
+	//(
+	getToken_ExpectAndReturn(&tokenizer,token3);
+	isNumber_ExpectAndReturn(token3,0);
+	isOperator_ExpectAndReturn(token3,1);
+	stackPop_ExpectAndReturn(&operatorStack,token2);
+	stackPush_Expect(token2,&operatorStack);
+	stackPush_Expect(token3,&operatorStack);
+	//20
+	getToken_ExpectAndReturn(&tokenizer,token4);
+	isNumber_ExpectAndReturn(token4,1);
+	stackPush_Expect(token4,&dataStack);
+	//+
+	getToken_ExpectAndReturn(&tokenizer,token5);
+	isNumber_ExpectAndReturn(token5,0);
+	isOperator_ExpectAndReturn(token5,1);
+	stackPop_ExpectAndReturn(&operatorStack,token3);
+	stackPush_Expect(token3,&operatorStack);
+	stackPush_Expect(token5,&operatorStack);
+	//60
+	getToken_ExpectAndReturn(&tokenizer,token6);
+	isNumber_ExpectAndReturn(token6,1);
+	stackPush_Expect(token6,&dataStack);
+	// /
+	getToken_ExpectAndReturn(&tokenizer,token7);
+	isNumber_ExpectAndReturn(token7,0);
+	isOperator_ExpectAndReturn(token7,1);
+	stackPop_ExpectAndReturn(&operatorStack,token5);
+	stackPush_Expect(token5,&operatorStack);
+	stackPush_Expect(token7,&operatorStack);
+	//4
+	getToken_ExpectAndReturn(&tokenizer,token8);
+	isNumber_ExpectAndReturn(token8,1);
+	stackPush_Expect(token8,&dataStack);
+	// )
+	getToken_ExpectAndReturn(&tokenizer,token9);
+	isNumber_ExpectAndReturn(token9,0);
+	isOperator_ExpectAndReturn(token9,1);
+	//stackPop_ExpectAndReturn(&operatorStack,token3);
+	//stackPop_ExpectAndReturn(&dataStack,token4);
+	//stackPop_ExpectAndReturn(&dataStack,token2);
+	//createNumberToken_ExpectAndReturn(60,tempAnsToken);
+	//stackPush_Expect(tempAnsToken,&dataStack);
+	//stackPop_ExpectAndReturn(&operatorStack,token1);
+	//stackPush_Expect(token1,&operatorStack);
+	//stackPush_Expect(token5,&operatorStack);
+	
+	
+	//Evaluate
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	stackPop_ExpectAndReturn(&dataStack,ansToken);
+	destroyStack_Expect(&dataStack);
+	destroyStack_Expect(&operatorStack);
+	
+	
+	check=evaluate("(((20+60/4)))");
+	TEST_ASSERT_EQUAL(10,check);
+	printf("Answer : %d ",check);
+}
 
 /******************************************************************
 	Still thinking how to add prefix without causing bad memory
@@ -990,25 +1279,25 @@ void xtest_2_MULTIPLY_LEFT_PARENTHESIS_THREE_PLUS_FOUR_RIGHT_PARENTHESIS(void){
 	stackPush_Expect(token2,&operatorStack);
 	stackPush_Expect(token3,&operatorStack);
 	
-	
-	/*
 	//Token number 3
 	getToken_ExpectAndReturn(&tokenizer,token4);
 	isNumber_ExpectAndReturn(token4,1);
-	stackPush_Expect(token4,&numStack);
+	stackPush_Expect(token4,&dataStack);
 	
 	//Token operator plus
 	getToken_ExpectAndReturn(&tokenizer,token5);
 	isNumber_ExpectAndReturn(token5,0);
 	isOperator_ExpectAndReturn(token5,1);
-	tryEvaluatethenPush_Expect(token5,&numStack,&opeStack);
-	//stackPush_Expect(token5,&opeStack);
+	stackPop_ExpectAndReturn(&operatorStack,token2);
+	stackPop_ExpectAndReturn(&dataStack,token4);
+	stackPop_ExpectAndReturn(&dataStack,token1);
 	
 	//Token number 4
-	getToken_ExpectAndReturn(&tokenizer,token6);
-	isNumber_ExpectAndReturn(token6,1);
-	stackPush_Expect(token6,&numStack);
+	//getToken_ExpectAndReturn(&tokenizer,token6);
+	//isNumber_ExpectAndReturn(token6,1);
+	//stackPush_Expect(token6,&numStack);
 	
+	/*
 	//Token operator left parenthesis
 	getToken_ExpectAndReturn(&tokenizer,token7);
 	isNumber_ExpectAndReturn(token7,0);

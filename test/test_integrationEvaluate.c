@@ -191,7 +191,7 @@ void test_should_evaluate_left_parenthesis_22_right_parenthesis(void){
 	
 }
 
-void test_should_evaluate_left_left_parenthesis_22_right_right_parenthesis(void){
+void xtest_should_evaluate_left_left_parenthesis_22_right_right_parenthesis(void){
 	int check;
 	int e;
 	//Initialize tokenizer,token and stack

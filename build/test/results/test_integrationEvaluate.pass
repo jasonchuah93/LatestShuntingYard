@@ -36,17 +36,11 @@
 - :test: test_should_evaluate_left_parenthesis_22_right_parenthesis
   :line: 180
   :message: ''
-- :test: test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis
-  :line: 194
-  :message: ''
-- :test: test_should_evaluate_left_left_left_parenthesis_16_right_right_right_parenthesis
-  :line: 208
-  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 13
-  :passed: 13
+  :total: 11
+  :passed: 11
   :failed: 0
   :ignored: 0
 :stdout:
@@ -72,7 +66,3 @@
 - 'Answer : 2 '
 - 'Loop needed for each expression to completely evaluate : 3 '
 - 'Answer : 22 '
-- 'Loop needed for each expression to completely evaluate : 5 '
-- 'Answer : 22 '
-- 'Loop needed for each expression to completely evaluate : 7 '
-- 'Answer : 16 '

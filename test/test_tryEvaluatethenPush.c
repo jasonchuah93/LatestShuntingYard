@@ -41,7 +41,7 @@ void tearDown(void){}
 	tryEvaluateOperatorOnStackThenPush(opeToken,&numberStack,&operatorStack);
 }
  
-void test_tryEvaluateOperatorOnStaclThenPush_will_push_OperatorTOken_into_Operator_Stack_if_newToken_precendence_is_higher_than_previousToken(void)
+void test_tryEvaluateOperatorOnStackThenPush_will_push_OperatorTOken_into_Operator_Stack_if_newToken_precendence_is_higher_than_previousToken(void)
 {
 	Stack numberStack;
 	Stack operatorStack;
@@ -66,9 +66,9 @@ void test_tryEvaluateOperatorOnStackThenPush_will_not_push_OperatorTOken_into_Op
 	Number number2 = {.type= NUMBER, .value=2};
 	Operator plus = {.type= OPERATOR, .id=ADD, .precedence=70};
 	Number number3 = {.type= NUMBER, .value=3};
-	
 	Number tempAns = {.type= NUMBER, .value=2};
 	Token *tempAnsToken =(Token*)&tempAns;
+	
 	stackPop_ExpectAndReturn(&operatorStack,&multiply);
 	stackPop_ExpectAndReturn(&numberStack,&number2);
 	stackPop_ExpectAndReturn(&numberStack,&number1);
@@ -174,7 +174,26 @@ void test_tryEvaluateOperatorOnStackThenPush_evaluate_all_operatorTokens_to_be_p
 	tryEvaluateOperatorOnStackThenPush(&bitwiseOR,&dataStack,&operatorStack);
 }
 
- 
+ void test_tryEvaluatePrefixOperatorOnStackThenPush_for_two_opening_bracket_15_two_closing_bracket(void)
+ {
+	Stack dataStack;
+	Stack operatorStack;
+	
+	Operator openBracket = {.type= OPERATOR, .id=LEFT_PARENTHESIS, .precedence=2};
+	Operator openBracket2 = {.type= OPERATOR, .id=LEFT_PARENTHESIS, .precedence=2};
+	Number number15 = {.type= NUMBER, .value=15};
+	Operator closeBracket = {.type= OPERATOR, .id=RIGHT_PARENTHESIS, .precedence=1};
+	Operator closeBracket2 = {.type= OPERATOR, .id=RIGHT_PARENTHESIS, .precedence=1};
+	Number answer = {.type= NUMBER, .value=15};
+	Token *ansToken = (Token*)&answer;
+	
+	
+	stackPop_ExpectAndReturn(&operatorStack,&openBracket);
+	stackPop_ExpectAndReturn(&operatorStack,&openBracket2);
+	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	
+	tryEvaluatePrefixOperatorOnStackThenPush(&closeBracket,&dataStack,&operatorStack);
+}
  
  
  

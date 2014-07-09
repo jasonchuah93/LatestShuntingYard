@@ -37,6 +37,16 @@ void operatorEvaluate(Stack *numberStack , Operator *opeToken){
 		answerToken=createNumberToken(answer);
 		stackPush(answerToken,numberStack);
 	}
+	else if(opeToken->id==LEFT_PARENTHESIS)
+	{
+		token1=(Token*)stackPop(numberStack); 
+		num1=(Number*)token1; 
+		token2=(Token*)stackPop(numberStack); 
+		num2=(Number*)token2;
+		answer = calculate(opeToken,num2,num1); 
+		answerToken=createNumberToken(answer);
+		stackPush(answerToken,numberStack);
+	}
 	else
 	{
 		token1=(Token*)stackPop(numberStack); 

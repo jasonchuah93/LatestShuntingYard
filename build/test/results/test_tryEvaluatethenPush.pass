@@ -6,7 +6,7 @@
 - :test: test_tryEvaluateOperatorOnStackThenPush_will_push_OperatorToken_if_Operator_Stack_is_empty
   :line: 34
   :message: ''
-- :test: test_tryEvaluateOperatorOnStaclThenPush_will_push_OperatorTOken_into_Operator_Stack_if_newToken_precendence_is_higher_than_previousToken
+- :test: test_tryEvaluateOperatorOnStackThenPush_will_push_OperatorTOken_into_Operator_Stack_if_newToken_precendence_is_higher_than_previousToken
   :line: 44
   :message: ''
 - :test: test_tryEvaluateOperatorOnStackThenPush_will_not_push_OperatorTOken_into_Operator_Stack_if_newToken_precendence_is_lower_than_previousToken
@@ -21,11 +21,14 @@
 - :test: test_tryEvaluateOperatorOnStackThenPush_evaluate_all_operatorTokens_to_be_push_in_the_operator_stack_2
   :line: 139
   :message: ''
+- :test: test_tryEvaluatePrefixOperatorOnStackThenPush_for_two_opening_bracket_15_two_closing_bracket
+  :line: 177
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 6
-  :passed: 6
+  :total: 7
+  :passed: 7
   :failed: 0
   :ignored: 0
 :stdout: []
