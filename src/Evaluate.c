@@ -76,6 +76,8 @@ int evaluate(char *expression){
 	evaluateAllOperatorOnStack(numberStack,operatorStack);
 	
 	result=(Number*)stackPop(numberStack);
+	free(((Operator*)token));
+	free(((Operator*)token));
 	destroyStack(numberStack);
 	
 	if(operatorStack !=NULL)

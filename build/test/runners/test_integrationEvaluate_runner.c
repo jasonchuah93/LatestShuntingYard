@@ -50,6 +50,7 @@ extern void test_evaluate_with_different_expression(void);
 extern void test_evaluate_with_longer_expression(void);
 extern void test_should_evaluate_left_parenthesis_2_right_parenthesis(void);
 extern void test_should_evaluate_left_parenthesis_22_right_parenthesis(void);
+extern void test_should_evaluate_left_left_parenthesis_22_right_right_parenthesis(void);
 
 
 //=======Mock Management=====
@@ -96,6 +97,7 @@ int main(void)
   RUN_TEST(test_evaluate_with_longer_expression, 151);
   RUN_TEST(test_should_evaluate_left_parenthesis_2_right_parenthesis, 164);
   RUN_TEST(test_should_evaluate_left_parenthesis_22_right_parenthesis, 180);
+  RUN_TEST(test_should_evaluate_left_left_parenthesis_22_right_right_parenthesis, 194);
 
   return (UnityEnd());
 }
