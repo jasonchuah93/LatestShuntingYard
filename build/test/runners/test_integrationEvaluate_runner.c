@@ -55,6 +55,7 @@ extern void test_should_evaluate_left_left_parenthesis_22_right_right_parenthesi
 extern void test_should_evaluate_left_left_left_parenthesis_55_right_right_right_parenthesis(void);
 extern void test_should_evaluate_10_multiply_left_parenthesis_6_plus_2_right_parenthesis(void);
 extern void test_should_evaluate_left_parenthesis_10_divide_5_right_parenthesis_multiply_left_parenthesis_6_plus_2_right_parenthesis(void);
+extern void test_left_left_left_bracket_20_plus_60_divide_4_right_right_right_bracket(void);
 
 
 //=======Mock Management=====
@@ -106,6 +107,7 @@ int main(void)
   RUN_TEST(test_should_evaluate_left_left_left_parenthesis_55_right_right_right_parenthesis, 222);
   RUN_TEST(test_should_evaluate_10_multiply_left_parenthesis_6_plus_2_right_parenthesis, 236);
   RUN_TEST(test_should_evaluate_left_parenthesis_10_divide_5_right_parenthesis_multiply_left_parenthesis_6_plus_2_right_parenthesis, 250);
+  RUN_TEST(test_left_left_left_bracket_20_plus_60_divide_4_right_right_right_bracket, 264);
 
   return (UnityEnd());
 }

@@ -50,6 +50,8 @@ extern void test_evaluate_2_PLUS_3_MULTIPLY_4_PLUS_5_MULTIPLY_6(void);
 extern void test_evaluate_2_MULTIPLY_3_PLUS_4_MULTIPLY_5_PLUS_6(void);
 extern void test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10(void);
 extern void test_should_evaluate_43_HASHTAG_42_and_throw_error_invalid_operator(void);
+extern void test_left_bracket_2_plus_3_right_bracket(void);
+extern void test_left_bracket_20_multiply_3_subtract_50_right_bracket(void);
 extern void test_NEGATIVE_2_SHOULD_RETURN_NEGATIVE_2(void);
 extern void test_NEGATIVE_2_NEGATIVE_3_SHOULD_RETURN_NEGATIVE_5(void);
 
@@ -104,6 +106,8 @@ int main(void)
   RUN_TEST(test_evaluate_2_MULTIPLY_3_PLUS_4_MULTIPLY_5_PLUS_6, 402);
   RUN_TEST(test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10, 538);
   RUN_TEST(test_should_evaluate_43_HASHTAG_42_and_throw_error_invalid_operator, 703);
+  RUN_TEST(test_left_bracket_2_plus_3_right_bracket, 857);
+  RUN_TEST(test_left_bracket_20_multiply_3_subtract_50_right_bracket, 929);
   RUN_TEST(test_NEGATIVE_2_SHOULD_RETURN_NEGATIVE_2, 1276);
   RUN_TEST(test_NEGATIVE_2_NEGATIVE_3_SHOULD_RETURN_NEGATIVE_5, 1333);
 

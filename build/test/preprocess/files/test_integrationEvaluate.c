@@ -466,3 +466,27 @@ void test_should_evaluate_left_parenthesis_10_divide_5_right_parenthesis_multipl
 
 
 }
+
+
+
+void test_left_left_left_bracket_20_plus_60_divide_4_right_right_right_bracket(void){
+
+ int check;
+
+
+
+ String tokenizer = {.rawString = "(((20+60/4)))"};
+
+
+
+ stringCreate_CMockExpectAndReturn(269, "(((20+60/4)))", &tokenizer);
+
+
+
+ check=evaluate("(((20+60/4)))");
+
+ UnityAssertEqualNumber((_U_SINT)((35)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)272, UNITY_DISPLAY_STYLE_INT);
+
+ printf("Answer : %d ",check);
+
+}

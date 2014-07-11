@@ -1663,7 +1663,7 @@ void xtest_should_evaluate_left_parenthesis_22_right_parenthesis(void){
 
 
 
-void xtest_left_bracket_2_plus_3_right_bracket(void){
+void test_left_bracket_2_plus_3_right_bracket(void){
 
  Stack dataStack;
 
@@ -1807,7 +1807,7 @@ void xtest_left_bracket_2_plus_3_right_bracket(void){
 
 
 
-void xtest_left_bracket_20_multiply_3_subtract_50_right_bracket(void){
+void test_left_bracket_20_multiply_3_subtract_50_right_bracket(void){
 
  Stack dataStack;
 
@@ -2001,7 +2001,7 @@ void xtest_left_bracket_20_multiply_3_subtract_50_right_bracket(void){
 
 
 
-void xtest_left_left_left_bracket_20_multiply_3_subtract_50_right_right_right_bracket(void){
+void xtest_left_left_left_bracket_20_plus_60_divide_4_right_right_right_bracket(void){
 
  Stack dataStack;
 

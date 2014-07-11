@@ -51,11 +51,14 @@
 - :test: test_should_evaluate_left_parenthesis_10_divide_5_right_parenthesis_multiply_left_parenthesis_6_plus_2_right_parenthesis
   :line: 250
   :message: ''
+- :test: test_left_left_left_bracket_20_plus_60_divide_4_right_right_right_bracket
+  :line: 264
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 16
-  :passed: 16
+  :total: 17
+  :passed: 17
   :failed: 0
   :ignored: 0
 :stdout:
@@ -91,3 +94,5 @@
 - 'Answer : 80 '
 - 'Loop needed for each expression to completely evaluate : 11 '
 - 'Answer : 16 '
+- 'Loop needed for each expression to completely evaluate : 11 '
+- 'Answer : 35 '

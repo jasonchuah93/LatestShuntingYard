@@ -260,4 +260,15 @@ void test_should_evaluate_left_parenthesis_10_divide_5_right_parenthesis_multipl
 	printf("Answer : %d ",check);
 	
 }	
- 
+
+void test_left_left_left_bracket_20_plus_60_divide_4_right_right_right_bracket(void){
+	int check;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "(((20+60/4)))"};
+	
+	stringCreate_ExpectAndReturn("(((20+60/4)))",&tokenizer);
+	
+	check=evaluate("(((20+60/4)))");
+	TEST_ASSERT_EQUAL(35,check);
+	printf("Answer : %d ",check);
+}
