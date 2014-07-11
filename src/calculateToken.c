@@ -75,7 +75,6 @@ int prefixCalculate(Operator *opeToken1, Number *first){
 	{	
 		case LEFT_PARENTHESIS:
 			answer=(first->value);
-			free(opeToken1);
 		break;
 		
 		default:

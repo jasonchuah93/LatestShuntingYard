@@ -74,6 +74,7 @@ void operatorPrefixEvaluate(Stack *numberStack , Operator *opeToken1){
 	answerToken=createNumberToken(answer);
 	stackPush(answerToken,numberStack);
 	
+	
 }	
 
 

@@ -247,7 +247,7 @@ void test_evaluate_with_longer_expression(void){
 
  int check;
 
- String tokenizer = {.rawString = "2|3&4^5|6^10|10&53^21&95|6^200&5|80", .startIndex = 0, .length = 27};
+ String tokenizer = {.rawString = "2|3&4^5|6^10|10&53^21&95|6^200&5|80"};
 
 
 
@@ -279,7 +279,7 @@ void test_should_evaluate_left_parenthesis_2_right_parenthesis(void){
 
 
 
- String tokenizer = {.rawString = "(2)", .startIndex = 0, .length = 3};
+ String tokenizer = {.rawString = "(2)"};
 
 
 
@@ -301,7 +301,7 @@ void test_should_evaluate_left_parenthesis_2_right_parenthesis(void){
 
 
 
-void test_should_evaluate_left_parenthesis_22_right_parenthesis(void){
+void test_should_evaluate_left_parenthesis_100_right_parenthesis(void){
 
  int check;
 
@@ -309,7 +309,7 @@ void test_should_evaluate_left_parenthesis_22_right_parenthesis(void){
 
 
 
- String tokenizer = {.rawString = "(100)", .startIndex = 0, .length = 3};
+ String tokenizer = {.rawString = "(100)"};
 
 
 
@@ -329,7 +329,7 @@ void test_should_evaluate_left_parenthesis_22_right_parenthesis(void){
 
 
 
-void xtest_should_evaluate_left_left_parenthesis_22_right_right_parenthesis(void){
+void test_should_evaluate_left_parenthesis_100_plus_100_divide_20_right_parenthesis(void){
 
  int check;
 
@@ -337,17 +337,17 @@ void xtest_should_evaluate_left_left_parenthesis_22_right_right_parenthesis(void
 
 
 
- String tokenizer = {.rawString = "((22))", .startIndex = 0, .length = 5};
+ String tokenizer = {.rawString = "(100-60/20)"};
 
 
 
- stringCreate_CMockExpectAndReturn(200, "((22))", &tokenizer);
+ stringCreate_CMockExpectAndReturn(200, "(100-60/20)", &tokenizer);
 
 
 
- check=evaluate("((22))");
+ check=evaluate("(100-60/20)");
 
- UnityAssertEqualNumber((_U_SINT)((22)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)203, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((97)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)203, UNITY_DISPLAY_STYLE_INT);
 
  printf("Answer : %d ",check);
 
@@ -357,7 +357,7 @@ void xtest_should_evaluate_left_left_parenthesis_22_right_right_parenthesis(void
 
 
 
-void xtest_should_evaluate_left_left_left_parenthesis_16_right_right_right_parenthesis(void){
+void test_should_evaluate_left_left_parenthesis_22_right_right_parenthesis(void){
 
  int check;
 
@@ -365,17 +365,101 @@ void xtest_should_evaluate_left_left_left_parenthesis_16_right_right_right_paren
 
 
 
- String tokenizer = {.rawString = "(((16)))", .startIndex = 0, .length = 6};
+ String tokenizer = {.rawString = "((22))"};
 
 
 
- stringCreate_CMockExpectAndReturn(214, "(((16)))", &tokenizer);
+ stringCreate_CMockExpectAndReturn(214, "((22))", &tokenizer);
 
 
 
- check=evaluate("(((16)))");
+ check=evaluate("((22))");
 
- UnityAssertEqualNumber((_U_SINT)((16)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)217, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((22)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)217, UNITY_DISPLAY_STYLE_INT);
+
+ printf("Answer : %d ",check);
+
+
+
+}
+
+
+
+void test_should_evaluate_left_left_left_parenthesis_55_right_right_right_parenthesis(void){
+
+ int check;
+
+ int e;
+
+
+
+ String tokenizer = {.rawString = "(((55)))", .startIndex = 0, .length = 6};
+
+
+
+ stringCreate_CMockExpectAndReturn(228, "(((55)))", &tokenizer);
+
+
+
+ check=evaluate("(((55)))");
+
+ UnityAssertEqualNumber((_U_SINT)((55)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)231, UNITY_DISPLAY_STYLE_INT);
+
+ printf("Answer : %d ",check);
+
+
+
+}
+
+
+
+void test_should_evaluate_10_multiply_left_parenthesis_6_plus_2_right_parenthesis(void){
+
+ int check;
+
+ int e;
+
+
+
+ String tokenizer = {.rawString = "10*(6+2)", };
+
+
+
+ stringCreate_CMockExpectAndReturn(242, "10*(6+2)", &tokenizer);
+
+
+
+ check=evaluate("10*(6+2)");
+
+ UnityAssertEqualNumber((_U_SINT)((80)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)245, UNITY_DISPLAY_STYLE_INT);
+
+ printf("Answer : %d ",check);
+
+
+
+}
+
+
+
+void test_should_evaluate_left_parenthesis_10_divide_5_right_parenthesis_multiply_left_parenthesis_6_plus_2_right_parenthesis(void){
+
+ int check;
+
+ int e;
+
+
+
+ String tokenizer = {.rawString = "(10/5)*(6+2)", };
+
+
+
+ stringCreate_CMockExpectAndReturn(256, "(10/5)*(6+2)", &tokenizer);
+
+
+
+ check=evaluate("(10/5)*(6+2)");
+
+ UnityAssertEqualNumber((_U_SINT)((16)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)259, UNITY_DISPLAY_STYLE_INT);
 
  printf("Answer : %d ",check);
 

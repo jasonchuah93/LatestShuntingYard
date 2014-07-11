@@ -1427,7 +1427,7 @@ void test_should_evaluate_43_HASHTAG_42_and_throw_error_invalid_operator(void){
 
 
 
-void test_should_evaluate_left_parenthesis_2_right_parenthesis(void){
+void xtest_should_evaluate_left_parenthesis_2_right_parenthesis(void){
 
  Stack dataStack;
 
@@ -1545,7 +1545,7 @@ void test_should_evaluate_left_parenthesis_2_right_parenthesis(void){
 
 
 
-void test_should_evaluate_left_parenthesis_22_right_parenthesis(void){
+void xtest_should_evaluate_left_parenthesis_22_right_parenthesis(void){
 
  Stack dataStack;
 
@@ -1641,143 +1641,19 @@ void test_should_evaluate_left_parenthesis_22_right_parenthesis(void){
 
 
 
+ stackPop_CMockExpectAndReturn(846, &operatorStack, ((void *)0));
 
+ stackPop_CMockExpectAndReturn(847, &dataStack, answerToken);
 
- stackPop_CMockExpectAndReturn(847, &operatorStack, ((void *)0));
+ destroyStack_CMockExpect(848, &dataStack);
 
- stackPop_CMockExpectAndReturn(848, &dataStack, answerToken);
-
- destroyStack_CMockExpect(849, &dataStack);
-
- destroyStack_CMockExpect(850, &operatorStack);
+ destroyStack_CMockExpect(849, &operatorStack);
 
 
 
  check=evaluate("(22)");
 
- UnityAssertEqualNumber((_U_SINT)((22)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)853, UNITY_DISPLAY_STYLE_INT);
-
- printf("Answer : %d ",check);
-
-
-
-}
-
-
-
-void test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis(void){
-
- Stack dataStack;
-
- Stack operatorStack;
-
- int check;
-
- int e;
-
-
-
- String tokenizer = {.rawString = "((22))", .startIndex = 0, .length = 3};
-
-
-
- Operator leftBracket = {.type= OPERATOR, .id = LEFT_PARENTHESIS ,.precedence=2};
-
- Token *token1 = (Token*)&leftBracket;
-
-
-
- Operator leftBracket2 = {.type= OPERATOR, .id = LEFT_PARENTHESIS ,.precedence=2};
-
- Token *token2 = (Token*)&leftBracket2;
-
-
-
- Number number22 = {.type= NUMBER, .value=22};
-
- Token *token3 = (Token*)&number22;
-
-
-
- Operator rightBracket = {.type= OPERATOR, .id = RIGHT_PARENTHESIS ,.precedence=1};
-
- Token *token4 = (Token*)&rightBracket;
-
-
-
- Operator rightBracket2 = {.type= OPERATOR, .id = RIGHT_PARENTHESIS ,.precedence=1};
-
- Token *token5 = (Token*)&rightBracket2;
-
-
-
- Number answer = {.type= NUMBER, .value=22};
-
- Token *answerToken = (Token*)&answer;
-
-
-
- createStack_CMockExpectAndReturn(884, &dataStack);
-
- createStack_CMockExpectAndReturn(885, &operatorStack);
-
- stringCreate_CMockExpectAndReturn(886, "((22))", &tokenizer);
-
-
-
-
-
- getToken_CMockExpectAndReturn(889, &tokenizer, token1);
-
- isNumber_CMockExpectAndReturn(890, token1, 0);
-
- isOperator_CMockExpectAndReturn(891, token1, 1);
-
- stackPop_CMockExpectAndReturn(892, &operatorStack, ((void *)0));
-
- stackPush_CMockExpect(893, token1, &operatorStack);
-
-
-
-
-
- getToken_CMockExpectAndReturn(896, &tokenizer, token2);
-
- isNumber_CMockExpectAndReturn(897, token1, 0);
-
- isOperator_CMockExpectAndReturn(898, token1, 1);
-
- stackPop_CMockExpectAndReturn(899, &operatorStack, token1);
-
- stackPush_CMockExpect(900, token1, &operatorStack);
-
- stackPush_CMockExpect(901, token2, &operatorStack);
-
-
-
-
-
- getToken_CMockExpectAndReturn(904, &tokenizer, token3);
-
- isNumber_CMockExpectAndReturn(905, token3, 1);
-
- stackPush_CMockExpect(906, token3, &dataStack);
-
-
-
-
-
- getToken_CMockExpectAndReturn(909, &tokenizer, token4);
-
- isNumber_CMockExpectAndReturn(910, token4, 0);
-
- isOperator_CMockExpectAndReturn(911, token4, 1);
-
- stackPop_CMockExpectAndReturn(912, &operatorStack, token2);
-
- check=evaluate("((22))");
-
- UnityAssertEqualNumber((_U_SINT)((22)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)933, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((22)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)852, UNITY_DISPLAY_STYLE_INT);
 
  printf("Answer : %d ",check);
 
@@ -1837,93 +1713,93 @@ void xtest_left_bracket_2_plus_3_right_bracket(void){
 
 
 
- createStack_CMockExpectAndReturn(963, &dataStack);
+ createStack_CMockExpectAndReturn(882, &dataStack);
 
- createStack_CMockExpectAndReturn(964, &operatorStack);
+ createStack_CMockExpectAndReturn(883, &operatorStack);
 
- stringCreate_CMockExpectAndReturn(965, "(2+3)", &tokenizer);
-
-
-
- getToken_CMockExpectAndReturn(967, &tokenizer, token1);
-
- isNumber_CMockExpectAndReturn(968, token1, 0);
-
- isOperator_CMockExpectAndReturn(969, token1, 1);
-
- stackPop_CMockExpectAndReturn(970, &operatorStack, ((void *)0));
-
- stackPush_CMockExpect(971, token1, &operatorStack);
+ stringCreate_CMockExpectAndReturn(884, "(2+3)", &tokenizer);
 
 
 
- getToken_CMockExpectAndReturn(973, &tokenizer, token2);
+ getToken_CMockExpectAndReturn(886, &tokenizer, token1);
 
- isNumber_CMockExpectAndReturn(974, token2, 1);
+ isNumber_CMockExpectAndReturn(887, token1, 0);
 
- stackPush_CMockExpect(975, token2, &dataStack);
+ isOperator_CMockExpectAndReturn(888, token1, 1);
 
+ stackPop_CMockExpectAndReturn(889, &operatorStack, ((void *)0));
 
-
- getToken_CMockExpectAndReturn(977, &tokenizer, token3);
-
- isNumber_CMockExpectAndReturn(978, token3, 0);
-
- isOperator_CMockExpectAndReturn(979, token3, 1);
-
- stackPop_CMockExpectAndReturn(980, &operatorStack, token1);
-
- stackPush_CMockExpect(981, token1, &operatorStack);
-
- stackPush_CMockExpect(982, token3, &operatorStack);
+ stackPush_CMockExpect(890, token1, &operatorStack);
 
 
 
- getToken_CMockExpectAndReturn(984, &tokenizer, token4);
+ getToken_CMockExpectAndReturn(892, &tokenizer, token2);
 
- isNumber_CMockExpectAndReturn(985, token4, 1);
+ isNumber_CMockExpectAndReturn(893, token2, 1);
 
- stackPush_CMockExpect(986, token4, &dataStack);
-
-
-
- getToken_CMockExpectAndReturn(988, &tokenizer, token5);
-
- isNumber_CMockExpectAndReturn(989, token5, 0);
-
- isOperator_CMockExpectAndReturn(990, token5, 1);
-
- stackPop_CMockExpectAndReturn(991, &operatorStack, token3);
-
- stackPop_CMockExpectAndReturn(992, &dataStack, token4);
-
- stackPop_CMockExpectAndReturn(993, &dataStack, token2);
-
- createNumberToken_CMockExpectAndReturn(994, 5, ansToken);
-
- stackPush_CMockExpect(995, ansToken, &dataStack);
-
- stackPop_CMockExpectAndReturn(996, &operatorStack, ((void *)0));
-
- getToken_CMockExpectAndReturn(997, &tokenizer, ((void *)0));
+ stackPush_CMockExpect(894, token2, &dataStack);
 
 
 
+ getToken_CMockExpectAndReturn(896, &tokenizer, token3);
+
+ isNumber_CMockExpectAndReturn(897, token3, 0);
+
+ isOperator_CMockExpectAndReturn(898, token3, 1);
+
+ stackPop_CMockExpectAndReturn(899, &operatorStack, token1);
+
+ stackPush_CMockExpect(900, token1, &operatorStack);
+
+ stackPush_CMockExpect(901, token3, &operatorStack);
 
 
- stackPop_CMockExpectAndReturn(1000, &operatorStack, ((void *)0));
 
- stackPop_CMockExpectAndReturn(1001, &dataStack, ansToken);
+ getToken_CMockExpectAndReturn(903, &tokenizer, token4);
 
- destroyStack_CMockExpect(1002, &dataStack);
+ isNumber_CMockExpectAndReturn(904, token4, 1);
 
- destroyStack_CMockExpect(1003, &operatorStack);
+ stackPush_CMockExpect(905, token4, &dataStack);
+
+
+
+ getToken_CMockExpectAndReturn(907, &tokenizer, token5);
+
+ isNumber_CMockExpectAndReturn(908, token5, 0);
+
+ isOperator_CMockExpectAndReturn(909, token5, 1);
+
+ stackPop_CMockExpectAndReturn(910, &operatorStack, token3);
+
+ stackPop_CMockExpectAndReturn(911, &dataStack, token4);
+
+ stackPop_CMockExpectAndReturn(912, &dataStack, token2);
+
+ createNumberToken_CMockExpectAndReturn(913, 5, ansToken);
+
+ stackPush_CMockExpect(914, ansToken, &dataStack);
+
+ stackPop_CMockExpectAndReturn(915, &operatorStack, ((void *)0));
+
+ getToken_CMockExpectAndReturn(916, &tokenizer, ((void *)0));
+
+
+
+
+
+ stackPop_CMockExpectAndReturn(919, &operatorStack, ((void *)0));
+
+ stackPop_CMockExpectAndReturn(920, &dataStack, ansToken);
+
+ destroyStack_CMockExpect(921, &dataStack);
+
+ destroyStack_CMockExpect(922, &operatorStack);
 
 
 
  check=evaluate("(2+3)");
 
- UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)1006, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)925, UNITY_DISPLAY_STYLE_INT);
 
  printf("Answer : %d ",check);
 
@@ -1999,125 +1875,125 @@ void xtest_left_bracket_20_multiply_3_subtract_50_right_bracket(void){
 
 
 
- createStack_CMockExpectAndReturn(1044, &dataStack);
+ createStack_CMockExpectAndReturn(963, &dataStack);
 
- createStack_CMockExpectAndReturn(1045, &operatorStack);
+ createStack_CMockExpectAndReturn(964, &operatorStack);
 
- stringCreate_CMockExpectAndReturn(1046, "(20*3-50)", &tokenizer);
+ stringCreate_CMockExpectAndReturn(965, "(20*3-50)", &tokenizer);
 
 
 
- getToken_CMockExpectAndReturn(1048, &tokenizer, token1);
+ getToken_CMockExpectAndReturn(967, &tokenizer, token1);
 
- isNumber_CMockExpectAndReturn(1049, token1, 0);
+ isNumber_CMockExpectAndReturn(968, token1, 0);
 
- isOperator_CMockExpectAndReturn(1050, token1, 1);
+ isOperator_CMockExpectAndReturn(969, token1, 1);
 
- stackPop_CMockExpectAndReturn(1051, &operatorStack, ((void *)0));
+ stackPop_CMockExpectAndReturn(970, &operatorStack, ((void *)0));
 
- stackPush_CMockExpect(1052, token1, &operatorStack);
+ stackPush_CMockExpect(971, token1, &operatorStack);
 
 
 
- getToken_CMockExpectAndReturn(1054, &tokenizer, token2);
+ getToken_CMockExpectAndReturn(973, &tokenizer, token2);
 
- isNumber_CMockExpectAndReturn(1055, token2, 1);
+ isNumber_CMockExpectAndReturn(974, token2, 1);
 
- stackPush_CMockExpect(1056, token2, &dataStack);
+ stackPush_CMockExpect(975, token2, &dataStack);
 
 
 
- getToken_CMockExpectAndReturn(1058, &tokenizer, token3);
+ getToken_CMockExpectAndReturn(977, &tokenizer, token3);
 
- isNumber_CMockExpectAndReturn(1059, token3, 0);
+ isNumber_CMockExpectAndReturn(978, token3, 0);
 
- isOperator_CMockExpectAndReturn(1060, token3, 1);
+ isOperator_CMockExpectAndReturn(979, token3, 1);
 
- stackPop_CMockExpectAndReturn(1061, &operatorStack, token1);
+ stackPop_CMockExpectAndReturn(980, &operatorStack, token1);
 
- stackPush_CMockExpect(1062, token1, &operatorStack);
+ stackPush_CMockExpect(981, token1, &operatorStack);
 
- stackPush_CMockExpect(1063, token3, &operatorStack);
+ stackPush_CMockExpect(982, token3, &operatorStack);
 
 
 
- getToken_CMockExpectAndReturn(1065, &tokenizer, token4);
+ getToken_CMockExpectAndReturn(984, &tokenizer, token4);
 
- isNumber_CMockExpectAndReturn(1066, token4, 1);
+ isNumber_CMockExpectAndReturn(985, token4, 1);
 
- stackPush_CMockExpect(1067, token4, &dataStack);
+ stackPush_CMockExpect(986, token4, &dataStack);
 
 
 
- getToken_CMockExpectAndReturn(1069, &tokenizer, token5);
+ getToken_CMockExpectAndReturn(988, &tokenizer, token5);
 
- isNumber_CMockExpectAndReturn(1070, token5, 0);
+ isNumber_CMockExpectAndReturn(989, token5, 0);
 
- isOperator_CMockExpectAndReturn(1071, token5, 1);
+ isOperator_CMockExpectAndReturn(990, token5, 1);
 
- stackPop_CMockExpectAndReturn(1072, &operatorStack, token3);
+ stackPop_CMockExpectAndReturn(991, &operatorStack, token3);
 
- stackPop_CMockExpectAndReturn(1073, &dataStack, token4);
+ stackPop_CMockExpectAndReturn(992, &dataStack, token4);
 
- stackPop_CMockExpectAndReturn(1074, &dataStack, token2);
+ stackPop_CMockExpectAndReturn(993, &dataStack, token2);
 
- createNumberToken_CMockExpectAndReturn(1075, 60, tempAnsToken);
+ createNumberToken_CMockExpectAndReturn(994, 60, tempAnsToken);
 
- stackPush_CMockExpect(1076, tempAnsToken, &dataStack);
+ stackPush_CMockExpect(995, tempAnsToken, &dataStack);
 
- stackPop_CMockExpectAndReturn(1077, &operatorStack, token1);
+ stackPop_CMockExpectAndReturn(996, &operatorStack, token1);
 
- stackPush_CMockExpect(1078, token1, &operatorStack);
+ stackPush_CMockExpect(997, token1, &operatorStack);
 
- stackPush_CMockExpect(1079, token5, &operatorStack);
+ stackPush_CMockExpect(998, token5, &operatorStack);
 
 
 
- getToken_CMockExpectAndReturn(1081, &tokenizer, token6);
+ getToken_CMockExpectAndReturn(1000, &tokenizer, token6);
 
- isNumber_CMockExpectAndReturn(1082, token6, 1);
+ isNumber_CMockExpectAndReturn(1001, token6, 1);
 
- stackPush_CMockExpect(1083, token6, &dataStack);
+ stackPush_CMockExpect(1002, token6, &dataStack);
 
 
 
- getToken_CMockExpectAndReturn(1085, &tokenizer, token7);
+ getToken_CMockExpectAndReturn(1004, &tokenizer, token7);
 
- isNumber_CMockExpectAndReturn(1086, token7, 0);
+ isNumber_CMockExpectAndReturn(1005, token7, 0);
 
- isOperator_CMockExpectAndReturn(1087, token7, 1);
+ isOperator_CMockExpectAndReturn(1006, token7, 1);
 
- stackPop_CMockExpectAndReturn(1088, &operatorStack, token5);
+ stackPop_CMockExpectAndReturn(1007, &operatorStack, token5);
 
- stackPop_CMockExpectAndReturn(1089, &dataStack, token6);
+ stackPop_CMockExpectAndReturn(1008, &dataStack, token6);
 
- stackPop_CMockExpectAndReturn(1090, &dataStack, tempAnsToken);
+ stackPop_CMockExpectAndReturn(1009, &dataStack, tempAnsToken);
 
- createNumberToken_CMockExpectAndReturn(1091, 10, ansToken);
+ createNumberToken_CMockExpectAndReturn(1010, 10, ansToken);
 
- stackPush_CMockExpect(1092, ansToken, &dataStack);
+ stackPush_CMockExpect(1011, ansToken, &dataStack);
 
- stackPop_CMockExpectAndReturn(1093, &operatorStack, ((void *)0));
+ stackPop_CMockExpectAndReturn(1012, &operatorStack, ((void *)0));
 
- getToken_CMockExpectAndReturn(1094, &tokenizer, ((void *)0));
+ getToken_CMockExpectAndReturn(1013, &tokenizer, ((void *)0));
 
 
 
 
 
- stackPop_CMockExpectAndReturn(1097, &operatorStack, ((void *)0));
+ stackPop_CMockExpectAndReturn(1016, &operatorStack, ((void *)0));
 
- stackPop_CMockExpectAndReturn(1098, &dataStack, ansToken);
+ stackPop_CMockExpectAndReturn(1017, &dataStack, ansToken);
 
- destroyStack_CMockExpect(1099, &dataStack);
+ destroyStack_CMockExpect(1018, &dataStack);
 
- destroyStack_CMockExpect(1100, &operatorStack);
+ destroyStack_CMockExpect(1019, &operatorStack);
 
 
 
  check=evaluate("(20*3-50)");
 
- UnityAssertEqualNumber((_U_SINT)((10)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)1103, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((10)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)1022, UNITY_DISPLAY_STYLE_INT);
 
  printf("Answer : %d ",check);
 
@@ -2217,183 +2093,183 @@ void xtest_left_left_left_bracket_20_multiply_3_subtract_50_right_right_right_br
 
 
 
- createStack_CMockExpectAndReturn(1153, &dataStack);
+ createStack_CMockExpectAndReturn(1072, &dataStack);
 
- createStack_CMockExpectAndReturn(1154, &operatorStack);
+ createStack_CMockExpectAndReturn(1073, &operatorStack);
 
- stringCreate_CMockExpectAndReturn(1155, "(((20+60/4)))", &tokenizer);
+ stringCreate_CMockExpectAndReturn(1074, "(((20+60/4)))", &tokenizer);
 
 
 
- getToken_CMockExpectAndReturn(1157, &tokenizer, token1);
+ getToken_CMockExpectAndReturn(1076, &tokenizer, token1);
 
- isNumber_CMockExpectAndReturn(1158, token1, 0);
+ isNumber_CMockExpectAndReturn(1077, token1, 0);
 
- isOperator_CMockExpectAndReturn(1159, token1, 1);
+ isOperator_CMockExpectAndReturn(1078, token1, 1);
 
- stackPop_CMockExpectAndReturn(1160, &operatorStack, ((void *)0));
+ stackPop_CMockExpectAndReturn(1079, &operatorStack, ((void *)0));
 
- stackPush_CMockExpect(1161, token1, &operatorStack);
+ stackPush_CMockExpect(1080, token1, &operatorStack);
 
 
 
- getToken_CMockExpectAndReturn(1163, &tokenizer, token2);
+ getToken_CMockExpectAndReturn(1082, &tokenizer, token2);
 
- isNumber_CMockExpectAndReturn(1164, token2, 0);
+ isNumber_CMockExpectAndReturn(1083, token2, 0);
 
- isOperator_CMockExpectAndReturn(1165, token2, 1);
+ isOperator_CMockExpectAndReturn(1084, token2, 1);
 
- stackPop_CMockExpectAndReturn(1166, &operatorStack, token1);
+ stackPop_CMockExpectAndReturn(1085, &operatorStack, token1);
 
- stackPush_CMockExpect(1167, token1, &operatorStack);
+ stackPush_CMockExpect(1086, token1, &operatorStack);
 
- stackPush_CMockExpect(1168, token2, &operatorStack);
+ stackPush_CMockExpect(1087, token2, &operatorStack);
 
 
 
- getToken_CMockExpectAndReturn(1170, &tokenizer, token3);
+ getToken_CMockExpectAndReturn(1089, &tokenizer, token3);
 
- isNumber_CMockExpectAndReturn(1171, token3, 0);
+ isNumber_CMockExpectAndReturn(1090, token3, 0);
 
- isOperator_CMockExpectAndReturn(1172, token3, 1);
+ isOperator_CMockExpectAndReturn(1091, token3, 1);
 
- stackPop_CMockExpectAndReturn(1173, &operatorStack, token2);
+ stackPop_CMockExpectAndReturn(1092, &operatorStack, token2);
 
- stackPush_CMockExpect(1174, token2, &operatorStack);
+ stackPush_CMockExpect(1093, token2, &operatorStack);
 
- stackPush_CMockExpect(1175, token3, &operatorStack);
+ stackPush_CMockExpect(1094, token3, &operatorStack);
 
 
 
- getToken_CMockExpectAndReturn(1177, &tokenizer, token4);
+ getToken_CMockExpectAndReturn(1096, &tokenizer, token4);
 
- isNumber_CMockExpectAndReturn(1178, token4, 1);
+ isNumber_CMockExpectAndReturn(1097, token4, 1);
 
- stackPush_CMockExpect(1179, token4, &dataStack);
+ stackPush_CMockExpect(1098, token4, &dataStack);
 
 
 
- getToken_CMockExpectAndReturn(1181, &tokenizer, token5);
+ getToken_CMockExpectAndReturn(1100, &tokenizer, token5);
 
- isNumber_CMockExpectAndReturn(1182, token5, 0);
+ isNumber_CMockExpectAndReturn(1101, token5, 0);
 
- isOperator_CMockExpectAndReturn(1183, token5, 1);
+ isOperator_CMockExpectAndReturn(1102, token5, 1);
 
- stackPop_CMockExpectAndReturn(1184, &operatorStack, token3);
+ stackPop_CMockExpectAndReturn(1103, &operatorStack, token3);
 
- stackPush_CMockExpect(1185, token3, &operatorStack);
+ stackPush_CMockExpect(1104, token3, &operatorStack);
 
- stackPush_CMockExpect(1186, token5, &operatorStack);
+ stackPush_CMockExpect(1105, token5, &operatorStack);
 
 
 
- getToken_CMockExpectAndReturn(1188, &tokenizer, token6);
+ getToken_CMockExpectAndReturn(1107, &tokenizer, token6);
 
- isNumber_CMockExpectAndReturn(1189, token6, 1);
+ isNumber_CMockExpectAndReturn(1108, token6, 1);
 
- stackPush_CMockExpect(1190, token6, &dataStack);
+ stackPush_CMockExpect(1109, token6, &dataStack);
 
 
 
- getToken_CMockExpectAndReturn(1192, &tokenizer, token7);
+ getToken_CMockExpectAndReturn(1111, &tokenizer, token7);
 
- isNumber_CMockExpectAndReturn(1193, token7, 0);
+ isNumber_CMockExpectAndReturn(1112, token7, 0);
 
- isOperator_CMockExpectAndReturn(1194, token7, 1);
+ isOperator_CMockExpectAndReturn(1113, token7, 1);
 
- stackPop_CMockExpectAndReturn(1195, &operatorStack, token5);
+ stackPop_CMockExpectAndReturn(1114, &operatorStack, token5);
 
- stackPush_CMockExpect(1196, token5, &operatorStack);
+ stackPush_CMockExpect(1115, token5, &operatorStack);
 
- stackPush_CMockExpect(1197, token7, &operatorStack);
+ stackPush_CMockExpect(1116, token7, &operatorStack);
 
 
 
- getToken_CMockExpectAndReturn(1199, &tokenizer, token8);
+ getToken_CMockExpectAndReturn(1118, &tokenizer, token8);
 
- isNumber_CMockExpectAndReturn(1200, token8, 1);
+ isNumber_CMockExpectAndReturn(1119, token8, 1);
 
- stackPush_CMockExpect(1201, token8, &dataStack);
+ stackPush_CMockExpect(1120, token8, &dataStack);
 
 
 
- getToken_CMockExpectAndReturn(1203, &tokenizer, token9);
+ getToken_CMockExpectAndReturn(1122, &tokenizer, token9);
 
- isNumber_CMockExpectAndReturn(1204, token9, 0);
+ isNumber_CMockExpectAndReturn(1123, token9, 0);
 
- isOperator_CMockExpectAndReturn(1205, token9, 1);
+ isOperator_CMockExpectAndReturn(1124, token9, 1);
 
- stackPop_CMockExpectAndReturn(1206, &operatorStack, token7);
+ stackPop_CMockExpectAndReturn(1125, &operatorStack, token7);
 
- stackPop_CMockExpectAndReturn(1207, &dataStack, token8);
+ stackPop_CMockExpectAndReturn(1126, &dataStack, token8);
 
- stackPop_CMockExpectAndReturn(1208, &dataStack, token6);
+ stackPop_CMockExpectAndReturn(1127, &dataStack, token6);
 
- createNumberToken_CMockExpectAndReturn(1209, 15, tempAnsToken);
+ createNumberToken_CMockExpectAndReturn(1128, 15, tempAnsToken);
 
- stackPush_CMockExpect(1210, tempAnsToken, &dataStack);
+ stackPush_CMockExpect(1129, tempAnsToken, &dataStack);
 
- stackPop_CMockExpectAndReturn(1211, &operatorStack, token5);
+ stackPop_CMockExpectAndReturn(1130, &operatorStack, token5);
 
- stackPop_CMockExpectAndReturn(1212, &dataStack, tempAnsToken);
+ stackPop_CMockExpectAndReturn(1131, &dataStack, tempAnsToken);
 
- stackPop_CMockExpectAndReturn(1213, &dataStack, token4);
+ stackPop_CMockExpectAndReturn(1132, &dataStack, token4);
 
- createNumberToken_CMockExpectAndReturn(1214, 35, ansToken);
+ createNumberToken_CMockExpectAndReturn(1133, 35, ansToken);
 
- stackPush_CMockExpect(1215, ansToken, &dataStack);
+ stackPush_CMockExpect(1134, ansToken, &dataStack);
 
- stackPop_CMockExpectAndReturn(1216, &operatorStack, token3);
+ stackPop_CMockExpectAndReturn(1135, &operatorStack, token3);
 
- stackPop_CMockExpectAndReturn(1217, &operatorStack, ((void *)0));
+ stackPop_CMockExpectAndReturn(1136, &operatorStack, ((void *)0));
 
 
 
 
 
- getToken_CMockExpectAndReturn(1220, &tokenizer, token10);
+ getToken_CMockExpectAndReturn(1139, &tokenizer, token10);
 
- isNumber_CMockExpectAndReturn(1221, token10, 0);
+ isNumber_CMockExpectAndReturn(1140, token10, 0);
 
- isOperator_CMockExpectAndReturn(1222, token10, 1);
+ isOperator_CMockExpectAndReturn(1141, token10, 1);
 
- stackPop_CMockExpectAndReturn(1223, &operatorStack, token2);
+ stackPop_CMockExpectAndReturn(1142, &operatorStack, token2);
 
- stackPop_CMockExpectAndReturn(1224, &operatorStack, ((void *)0));
+ stackPop_CMockExpectAndReturn(1143, &operatorStack, ((void *)0));
 
 
 
 
 
- getToken_CMockExpectAndReturn(1227, &tokenizer, token11);
+ getToken_CMockExpectAndReturn(1146, &tokenizer, token11);
 
- isNumber_CMockExpectAndReturn(1228, token11, 0);
+ isNumber_CMockExpectAndReturn(1147, token11, 0);
 
- isOperator_CMockExpectAndReturn(1229, token11, 1);
+ isOperator_CMockExpectAndReturn(1148, token11, 1);
 
- stackPop_CMockExpectAndReturn(1230, &operatorStack, token1);
+ stackPop_CMockExpectAndReturn(1149, &operatorStack, token1);
 
- stackPop_CMockExpectAndReturn(1231, &operatorStack, ((void *)0));
+ stackPop_CMockExpectAndReturn(1150, &operatorStack, ((void *)0));
 
- getToken_CMockExpectAndReturn(1232, &tokenizer, ((void *)0));
+ getToken_CMockExpectAndReturn(1151, &tokenizer, ((void *)0));
 
 
 
 
 
- stackPop_CMockExpectAndReturn(1235, &operatorStack, ((void *)0));
+ stackPop_CMockExpectAndReturn(1154, &operatorStack, ((void *)0));
 
- stackPop_CMockExpectAndReturn(1236, &dataStack, ansToken);
+ stackPop_CMockExpectAndReturn(1155, &dataStack, ansToken);
 
- destroyStack_CMockExpect(1237, &dataStack);
+ destroyStack_CMockExpect(1156, &dataStack);
 
- destroyStack_CMockExpect(1238, &operatorStack);
+ destroyStack_CMockExpect(1157, &operatorStack);
 
 
 
  check=evaluate("(((20+60/4)))");
 
- UnityAssertEqualNumber((_U_SINT)((35)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)1241, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((35)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)1160, UNITY_DISPLAY_STYLE_INT);
 
  printf("Answer : %d ",check);
 
@@ -2481,139 +2357,139 @@ void xtest_2_MULTIPLY_LEFT_PARENTHESIS_THREE_PLUS_FOUR_RIGHT_PARENTHESIS(void){
 
 
 
- createStack_CMockExpectAndReturn(1285, &dataStack);
+ createStack_CMockExpectAndReturn(1204, &dataStack);
 
- createStack_CMockExpectAndReturn(1286, &operatorStack);
+ createStack_CMockExpectAndReturn(1205, &operatorStack);
 
- stringCreate_CMockExpectAndReturn(1287, "2*(3+4)", &tokenizer);
+ stringCreate_CMockExpectAndReturn(1206, "2*(3+4)", &tokenizer);
 
 
 
 
 
- getToken_CMockExpectAndReturn(1290, &tokenizer, token1);
+ getToken_CMockExpectAndReturn(1209, &tokenizer, token1);
 
- isNumber_CMockExpectAndReturn(1291, token1, 1);
+ isNumber_CMockExpectAndReturn(1210, token1, 1);
 
- stackPush_CMockExpect(1292, token1, &dataStack);
+ stackPush_CMockExpect(1211, token1, &dataStack);
 
 
 
 
 
- getToken_CMockExpectAndReturn(1295, &tokenizer, token2);
+ getToken_CMockExpectAndReturn(1214, &tokenizer, token2);
 
- isNumber_CMockExpectAndReturn(1296, token2, 0);
+ isNumber_CMockExpectAndReturn(1215, token2, 0);
 
- isOperator_CMockExpectAndReturn(1297, token2, 1);
+ isOperator_CMockExpectAndReturn(1216, token2, 1);
 
- stackPop_CMockExpectAndReturn(1298, &operatorStack, ((void *)0));
+ stackPop_CMockExpectAndReturn(1217, &operatorStack, ((void *)0));
 
- stackPush_CMockExpect(1299, token2, &operatorStack);
+ stackPush_CMockExpect(1218, token2, &operatorStack);
 
 
 
 
 
- getToken_CMockExpectAndReturn(1302, &tokenizer, token3);
+ getToken_CMockExpectAndReturn(1221, &tokenizer, token3);
 
- isNumber_CMockExpectAndReturn(1303, token3, 0);
+ isNumber_CMockExpectAndReturn(1222, token3, 0);
 
- isOperator_CMockExpectAndReturn(1304, token3, 1);
+ isOperator_CMockExpectAndReturn(1223, token3, 1);
 
- stackPop_CMockExpectAndReturn(1305, &operatorStack, token2);
+ stackPop_CMockExpectAndReturn(1224, &operatorStack, token2);
 
- stackPush_CMockExpect(1306, token2, &operatorStack);
+ stackPush_CMockExpect(1225, token2, &operatorStack);
 
- stackPush_CMockExpect(1307, token3, &operatorStack);
+ stackPush_CMockExpect(1226, token3, &operatorStack);
 
 
 
 
 
- getToken_CMockExpectAndReturn(1310, &tokenizer, token4);
+ getToken_CMockExpectAndReturn(1229, &tokenizer, token4);
 
- isNumber_CMockExpectAndReturn(1311, token4, 1);
+ isNumber_CMockExpectAndReturn(1230, token4, 1);
 
- stackPush_CMockExpect(1312, token4, &dataStack);
+ stackPush_CMockExpect(1231, token4, &dataStack);
 
 
 
 
 
- getToken_CMockExpectAndReturn(1315, &tokenizer, token5);
+ getToken_CMockExpectAndReturn(1234, &tokenizer, token5);
 
- isNumber_CMockExpectAndReturn(1316, token5, 0);
+ isNumber_CMockExpectAndReturn(1235, token5, 0);
 
- isOperator_CMockExpectAndReturn(1317, token5, 1);
+ isOperator_CMockExpectAndReturn(1236, token5, 1);
 
- stackPop_CMockExpectAndReturn(1318, &operatorStack, token3);
+ stackPop_CMockExpectAndReturn(1237, &operatorStack, token3);
 
- stackPush_CMockExpect(1319, token3, &operatorStack);
+ stackPush_CMockExpect(1238, token3, &operatorStack);
 
- stackPush_CMockExpect(1320, token5, &operatorStack);
+ stackPush_CMockExpect(1239, token5, &operatorStack);
 
 
 
 
 
- getToken_CMockExpectAndReturn(1323, &tokenizer, token6);
+ getToken_CMockExpectAndReturn(1242, &tokenizer, token6);
 
- isNumber_CMockExpectAndReturn(1324, token6, 1);
+ isNumber_CMockExpectAndReturn(1243, token6, 1);
 
- stackPush_CMockExpect(1325, token6, &dataStack);
+ stackPush_CMockExpect(1244, token6, &dataStack);
 
 
 
 
 
- getToken_CMockExpectAndReturn(1328, &tokenizer, token7);
+ getToken_CMockExpectAndReturn(1247, &tokenizer, token7);
 
- isNumber_CMockExpectAndReturn(1329, token7, 0);
+ isNumber_CMockExpectAndReturn(1248, token7, 0);
 
- isOperator_CMockExpectAndReturn(1330, token7, 1);
+ isOperator_CMockExpectAndReturn(1249, token7, 1);
 
- stackPop_CMockExpectAndReturn(1331, &operatorStack, token5);
+ stackPop_CMockExpectAndReturn(1250, &operatorStack, token5);
 
- stackPop_CMockExpectAndReturn(1332, &dataStack, token6);
+ stackPop_CMockExpectAndReturn(1251, &dataStack, token6);
 
- stackPop_CMockExpectAndReturn(1333, &dataStack, token4);
+ stackPop_CMockExpectAndReturn(1252, &dataStack, token4);
 
- createNumberToken_CMockExpectAndReturn(1334, 7, tempAnsToken);
+ createNumberToken_CMockExpectAndReturn(1253, 7, tempAnsToken);
 
- stackPush_CMockExpect(1335, tempAnsToken, &dataStack);
+ stackPush_CMockExpect(1254, tempAnsToken, &dataStack);
 
- stackPop_CMockExpectAndReturn(1336, &operatorStack, ((void *)0));
+ stackPop_CMockExpectAndReturn(1255, &operatorStack, ((void *)0));
 
- getToken_CMockExpectAndReturn(1337, &tokenizer, ((void *)0));
+ getToken_CMockExpectAndReturn(1256, &tokenizer, ((void *)0));
 
 
 
 
 
- stackPop_CMockExpectAndReturn(1340, &operatorStack, token2);
+ stackPop_CMockExpectAndReturn(1259, &operatorStack, token2);
 
- stackPop_CMockExpectAndReturn(1341, &dataStack, tempAnsToken);
+ stackPop_CMockExpectAndReturn(1260, &dataStack, tempAnsToken);
 
- stackPop_CMockExpectAndReturn(1342, &dataStack, token1);
+ stackPop_CMockExpectAndReturn(1261, &dataStack, token1);
 
- createNumberToken_CMockExpectAndReturn(1343, 14, ansToken);
+ createNumberToken_CMockExpectAndReturn(1262, 14, ansToken);
 
- stackPush_CMockExpect(1344, ansToken, &dataStack);
+ stackPush_CMockExpect(1263, ansToken, &dataStack);
 
- stackPop_CMockExpectAndReturn(1345, &operatorStack, ((void *)0));
+ stackPop_CMockExpectAndReturn(1264, &operatorStack, ((void *)0));
 
- stackPop_CMockExpectAndReturn(1346, &dataStack, ansToken);
+ stackPop_CMockExpectAndReturn(1265, &dataStack, ansToken);
 
- destroyStack_CMockExpect(1347, &dataStack);
+ destroyStack_CMockExpect(1266, &dataStack);
 
- destroyStack_CMockExpect(1348, &operatorStack);
+ destroyStack_CMockExpect(1267, &operatorStack);
 
 
 
  check=evaluate("2*(3+4)");
 
- UnityAssertEqualNumber((_U_SINT)((14)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)1351, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((14)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)1270, UNITY_DISPLAY_STYLE_INT);
 
  printf("Answer : %d ",check);
 
@@ -2669,67 +2545,67 @@ void test_NEGATIVE_2_SHOULD_RETURN_NEGATIVE_2(void){
 
 
 
- createStack_CMockExpectAndReturn(1379, &numStack);
+ createStack_CMockExpectAndReturn(1298, &numStack);
 
- createStack_CMockExpectAndReturn(1380, &opeStack);
+ createStack_CMockExpectAndReturn(1299, &opeStack);
 
- stringCreate_CMockExpectAndReturn(1381, "-2", &tokenizer);
-
-
-
-
-
- getToken_CMockExpectAndReturn(1384, &tokenizer, token1);
-
- isNumber_CMockExpectAndReturn(1385, token1, 0);
-
- isOperator_CMockExpectAndReturn(1386, token1, 1);
-
- stackPop_CMockExpectAndReturn(1387, &opeStack, ((void *)0));
-
- stackPush_CMockExpect(1388, token1, &opeStack);
+ stringCreate_CMockExpectAndReturn(1300, "-2", &tokenizer);
 
 
 
 
 
- getToken_CMockExpectAndReturn(1391, &tokenizer, token2);
+ getToken_CMockExpectAndReturn(1303, &tokenizer, token1);
 
- isNumber_CMockExpectAndReturn(1392, token2, 1);
+ isNumber_CMockExpectAndReturn(1304, token1, 0);
 
- stackPush_CMockExpect(1393, token2, &numStack);
+ isOperator_CMockExpectAndReturn(1305, token1, 1);
 
- getToken_CMockExpectAndReturn(1394, &tokenizer, ((void *)0));
+ stackPop_CMockExpectAndReturn(1306, &opeStack, ((void *)0));
 
-
-
-
-
- stackPop_CMockExpectAndReturn(1397, &opeStack, token1);
-
- stackPop_CMockExpectAndReturn(1398, &numStack, token2);
-
- stackPop_CMockExpectAndReturn(1399, &numStack, token3);
-
- createNumberToken_CMockExpectAndReturn(1400, -2, ansToken);
-
- stackPush_CMockExpect(1401, ansToken, &numStack);
-
- stackPop_CMockExpectAndReturn(1402, &opeStack, ((void *)0));
+ stackPush_CMockExpect(1307, token1, &opeStack);
 
 
 
- stackPop_CMockExpectAndReturn(1404, &numStack, ansToken);
 
- destroyStack_CMockExpect(1405, &numStack);
 
- destroyStack_CMockExpect(1406, &opeStack);
+ getToken_CMockExpectAndReturn(1310, &tokenizer, token2);
+
+ isNumber_CMockExpectAndReturn(1311, token2, 1);
+
+ stackPush_CMockExpect(1312, token2, &numStack);
+
+ getToken_CMockExpectAndReturn(1313, &tokenizer, ((void *)0));
+
+
+
+
+
+ stackPop_CMockExpectAndReturn(1316, &opeStack, token1);
+
+ stackPop_CMockExpectAndReturn(1317, &numStack, token2);
+
+ stackPop_CMockExpectAndReturn(1318, &numStack, token3);
+
+ createNumberToken_CMockExpectAndReturn(1319, -2, ansToken);
+
+ stackPush_CMockExpect(1320, ansToken, &numStack);
+
+ stackPop_CMockExpectAndReturn(1321, &opeStack, ((void *)0));
+
+
+
+ stackPop_CMockExpectAndReturn(1323, &numStack, ansToken);
+
+ destroyStack_CMockExpect(1324, &numStack);
+
+ destroyStack_CMockExpect(1325, &opeStack);
 
 
 
  check=evaluate("-2");
 
- UnityAssertEqualNumber((_U_SINT)((-2)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)1409, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((-2)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)1328, UNITY_DISPLAY_STYLE_INT);
 
  printf("Answer : %d ",check);
 
@@ -2801,105 +2677,105 @@ void test_NEGATIVE_2_NEGATIVE_3_SHOULD_RETURN_NEGATIVE_5(void){
 
 
 
- createStack_CMockExpectAndReturn(1445, &numStack);
+ createStack_CMockExpectAndReturn(1364, &numStack);
 
- createStack_CMockExpectAndReturn(1446, &opeStack);
+ createStack_CMockExpectAndReturn(1365, &opeStack);
 
- stringCreate_CMockExpectAndReturn(1447, "-2*3", &tokenizer);
-
-
-
-
-
- getToken_CMockExpectAndReturn(1450, &tokenizer, token1);
-
- isNumber_CMockExpectAndReturn(1451, token1, 0);
-
- isOperator_CMockExpectAndReturn(1452, token1, 1);
-
- stackPop_CMockExpectAndReturn(1453, &opeStack, ((void *)0));
-
- stackPush_CMockExpect(1454, token1, &opeStack);
+ stringCreate_CMockExpectAndReturn(1366, "-2*3", &tokenizer);
 
 
 
 
 
- getToken_CMockExpectAndReturn(1457, &tokenizer, token2);
+ getToken_CMockExpectAndReturn(1369, &tokenizer, token1);
 
- isNumber_CMockExpectAndReturn(1458, token2, 1);
+ isNumber_CMockExpectAndReturn(1370, token1, 0);
 
- stackPush_CMockExpect(1459, token2, &numStack);
+ isOperator_CMockExpectAndReturn(1371, token1, 1);
 
+ stackPop_CMockExpectAndReturn(1372, &opeStack, ((void *)0));
 
-
-
-
- getToken_CMockExpectAndReturn(1462, &tokenizer, token3);
-
- isNumber_CMockExpectAndReturn(1463, token3, 0);
-
- isOperator_CMockExpectAndReturn(1464, token3, 1);
-
- stackPop_CMockExpectAndReturn(1465, &opeStack, token1);
-
- stackPush_CMockExpect(1466, token1, &opeStack);
-
- stackPush_CMockExpect(1467, token3, &opeStack);
+ stackPush_CMockExpect(1373, token1, &opeStack);
 
 
 
 
 
- getToken_CMockExpectAndReturn(1470, &tokenizer, token4);
+ getToken_CMockExpectAndReturn(1376, &tokenizer, token2);
 
- isNumber_CMockExpectAndReturn(1471, token4, 1);
+ isNumber_CMockExpectAndReturn(1377, token2, 1);
 
- stackPush_CMockExpect(1472, token4, &numStack);
-
- getToken_CMockExpectAndReturn(1473, &tokenizer, ((void *)0));
+ stackPush_CMockExpect(1378, token2, &numStack);
 
 
 
 
 
+ getToken_CMockExpectAndReturn(1381, &tokenizer, token3);
 
+ isNumber_CMockExpectAndReturn(1382, token3, 0);
 
- stackPop_CMockExpectAndReturn(1477, &opeStack, token3);
+ isOperator_CMockExpectAndReturn(1383, token3, 1);
 
- stackPop_CMockExpectAndReturn(1478, &numStack, token4);
+ stackPop_CMockExpectAndReturn(1384, &opeStack, token1);
 
- stackPop_CMockExpectAndReturn(1479, &numStack, token2);
+ stackPush_CMockExpect(1385, token1, &opeStack);
 
- createNumberToken_CMockExpectAndReturn(1480, 6, tempAnsToken);
-
- stackPush_CMockExpect(1481, tempAnsToken, &numStack);
-
- stackPop_CMockExpectAndReturn(1482, &opeStack, token1);
-
- stackPop_CMockExpectAndReturn(1483, &numStack, tempAnsToken);
-
- stackPop_CMockExpectAndReturn(1484, &numStack, token5);
-
- createNumberToken_CMockExpectAndReturn(1485, -6, ansToken);
-
- stackPush_CMockExpect(1486, ansToken, &numStack);
-
- stackPop_CMockExpectAndReturn(1487, &opeStack, ((void *)0));
+ stackPush_CMockExpect(1386, token3, &opeStack);
 
 
 
- stackPop_CMockExpectAndReturn(1489, &numStack, ansToken);
 
- destroyStack_CMockExpect(1490, &numStack);
 
- destroyStack_CMockExpect(1491, &opeStack);
+ getToken_CMockExpectAndReturn(1389, &tokenizer, token4);
+
+ isNumber_CMockExpectAndReturn(1390, token4, 1);
+
+ stackPush_CMockExpect(1391, token4, &numStack);
+
+ getToken_CMockExpectAndReturn(1392, &tokenizer, ((void *)0));
+
+
+
+
+
+
+
+ stackPop_CMockExpectAndReturn(1396, &opeStack, token3);
+
+ stackPop_CMockExpectAndReturn(1397, &numStack, token4);
+
+ stackPop_CMockExpectAndReturn(1398, &numStack, token2);
+
+ createNumberToken_CMockExpectAndReturn(1399, 6, tempAnsToken);
+
+ stackPush_CMockExpect(1400, tempAnsToken, &numStack);
+
+ stackPop_CMockExpectAndReturn(1401, &opeStack, token1);
+
+ stackPop_CMockExpectAndReturn(1402, &numStack, tempAnsToken);
+
+ stackPop_CMockExpectAndReturn(1403, &numStack, token5);
+
+ createNumberToken_CMockExpectAndReturn(1404, -6, ansToken);
+
+ stackPush_CMockExpect(1405, ansToken, &numStack);
+
+ stackPop_CMockExpectAndReturn(1406, &opeStack, ((void *)0));
+
+
+
+ stackPop_CMockExpectAndReturn(1408, &numStack, ansToken);
+
+ destroyStack_CMockExpect(1409, &numStack);
+
+ destroyStack_CMockExpect(1410, &opeStack);
 
 
 
  check=evaluate("-2*3");
 
- UnityAssertEqualNumber((_U_SINT)((-6)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)1494, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((-6)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)1413, UNITY_DISPLAY_STYLE_INT);
 
  printf("Answer : %d ",check);
 

@@ -150,7 +150,7 @@ void test_evaluate_with_different_expression(void){
 
 void test_evaluate_with_longer_expression(void){
 	int check;
-	String tokenizer = {.rawString = "2|3&4^5|6^10|10&53^21&95|6^200&5|80", .startIndex = 0, .length = 27};
+	String tokenizer = {.rawString = "2|3&4^5|6^10|10&53^21&95|6^200&5|80"};
 	
 	//Evaluate the expression
 	stringCreate_ExpectAndReturn("2|3&4^5|6^10|10&53^21&95|6^200&5|80",&tokenizer);
@@ -166,7 +166,7 @@ void test_should_evaluate_left_parenthesis_2_right_parenthesis(void){
 	int check;
 	int e;
 	//Initialize tokenizer,token and stack
-	String tokenizer = {.rawString = "(2)", .startIndex = 0, .length = 3};
+	String tokenizer = {.rawString = "(2)"};
 	
 	stringCreate_ExpectAndReturn("(2)",&tokenizer);
 	
@@ -177,11 +177,11 @@ void test_should_evaluate_left_parenthesis_2_right_parenthesis(void){
 	
 }	
 	
-void test_should_evaluate_left_parenthesis_22_right_parenthesis(void){
+void test_should_evaluate_left_parenthesis_100_right_parenthesis(void){
 	int check;
 	int e;
 	//Initialize tokenizer,token and stack
-	String tokenizer = {.rawString = "(100)", .startIndex = 0, .length = 3};
+	String tokenizer = {.rawString = "(100)"};
 	
 	stringCreate_ExpectAndReturn("(100)",&tokenizer);
 	
@@ -191,11 +191,25 @@ void test_should_evaluate_left_parenthesis_22_right_parenthesis(void){
 	
 }
 
-void xtest_should_evaluate_left_left_parenthesis_22_right_right_parenthesis(void){
+void test_should_evaluate_left_parenthesis_100_plus_100_divide_20_right_parenthesis(void){
 	int check;
 	int e;
 	//Initialize tokenizer,token and stack
-	String tokenizer = {.rawString = "((22))", .startIndex = 0, .length = 5};
+	String tokenizer = {.rawString = "(100-60/20)"};
+	
+	stringCreate_ExpectAndReturn("(100-60/20)",&tokenizer);
+	
+	check=evaluate("(100-60/20)");
+	TEST_ASSERT_EQUAL(97,check);
+	printf("Answer : %d ",check);
+	
+}
+
+void test_should_evaluate_left_left_parenthesis_22_right_right_parenthesis(void){
+	int check;
+	int e;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "((22))"};
 	
 	stringCreate_ExpectAndReturn("((22))",&tokenizer);
 	
@@ -205,17 +219,45 @@ void xtest_should_evaluate_left_left_parenthesis_22_right_right_parenthesis(void
 	
 }	
 	
-void xtest_should_evaluate_left_left_left_parenthesis_16_right_right_right_parenthesis(void){
+void test_should_evaluate_left_left_left_parenthesis_55_right_right_right_parenthesis(void){
 	int check;
 	int e;
 	//Initialize tokenizer,token and stack
-	String tokenizer = {.rawString = "(((16)))", .startIndex = 0, .length = 6};
+	String tokenizer = {.rawString = "(((55)))", .startIndex = 0, .length = 6};
 	
-	stringCreate_ExpectAndReturn("(((16)))",&tokenizer);
+	stringCreate_ExpectAndReturn("(((55)))",&tokenizer);
 	
-	check=evaluate("(((16)))");
-	TEST_ASSERT_EQUAL(16,check);
+	check=evaluate("(((55)))");
+	TEST_ASSERT_EQUAL(55,check);
 	printf("Answer : %d ",check);
 	
 }	
 
+void test_should_evaluate_10_multiply_left_parenthesis_6_plus_2_right_parenthesis(void){
+	int check;
+	int e;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "10*(6+2)", };
+	
+	stringCreate_ExpectAndReturn("10*(6+2)",&tokenizer);
+	
+	check=evaluate("10*(6+2)");
+	TEST_ASSERT_EQUAL(80,check);
+	printf("Answer : %d ",check);
+	
+}	
+
+void test_should_evaluate_left_parenthesis_10_divide_5_right_parenthesis_multiply_left_parenthesis_6_plus_2_right_parenthesis(void){
+	int check;
+	int e;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "(10/5)*(6+2)", };
+	
+	stringCreate_ExpectAndReturn("(10/5)*(6+2)",&tokenizer);
+	
+	check=evaluate("(10/5)*(6+2)");
+	TEST_ASSERT_EQUAL(16,check);
+	printf("Answer : %d ",check);
+	
+}	
+ 

@@ -27,38 +27,17 @@
 - :test: test_should_evaluate_43_HASHTAG_42_and_throw_error_invalid_operator
   :line: 703
   :message: ''
-- :test: test_should_evaluate_left_parenthesis_2_right_parenthesis
-  :line: 739
-  :message: ''
-- :test: test_should_evaluate_left_parenthesis_22_right_parenthesis
-  :line: 795
-  :message: ''
-- :test: test_should_evaluate_left__left_parenthesis_22_right_right_parenthesis
-  :line: 852
-  :message: ''
-- :test: test_left_bracket_2_plus_3_right_bracket
-  :line: 929
-  :message: ''
-- :test: test_left_bracket_20_multiply_3_subtract_50_right_bracket
-  :line: 1001
-  :message: ''
-- :test: test_left_left_left_bracket_20_multiply_3_subtract_50_right_right_right_bracket
-  :line: 1098
-  :message: ''
-- :test: test_2_MULTIPLY_LEFT_PARENTHESIS_THREE_PLUS_FOUR_RIGHT_PARENTHESIS
-  :line: 1241
-  :message: ''
 - :test: test_NEGATIVE_2_SHOULD_RETURN_NEGATIVE_2
-  :line: 1348
+  :line: 1276
   :message: ''
 - :test: test_NEGATIVE_2_NEGATIVE_3_SHOULD_RETURN_NEGATIVE_5
-  :line: 1405
+  :line: 1333
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 17
-  :passed: 17
+  :total: 10
+  :passed: 10
   :failed: 0
   :ignored: 0
 :stdout:
@@ -74,20 +53,6 @@
 - 'Answer : 32 '
 - 'Loop needed for each expression to completely evaluate : 11 '
 - 'Answer : 7 '
-- 'Loop needed for each expression to completely evaluate : 3 '
-- 'Answer : 2 '
-- 'Loop needed for each expression to completely evaluate : 3 '
-- 'Answer : 22 '
-- 'Loop needed for each expression to completely evaluate : 5 '
-- 'Answer : 22 '
-- 'Loop needed for each expression to completely evaluate : 5 '
-- 'Answer : 5 '
-- 'Loop needed for each expression to completely evaluate : 7 '
-- 'Answer : 10 '
-- 'Loop needed for each expression to completely evaluate : 11 '
-- 'Answer : 35 '
-- 'Loop needed for each expression to completely evaluate : 7 '
-- 'Answer : 14 '
 - 'Loop needed for each expression to completely evaluate : 2 '
 - 'Answer : -2 '
 - 'Loop needed for each expression to completely evaluate : 4 '
