@@ -69,16 +69,13 @@ int calculate(Operator *opeToken, Number *first, Number *second){
 	return answer;
 }
 
-int prefixCalculate(Operator *opeToken1, Number *first, Number *second){
+int prefixCalculate(Operator *opeToken1, Number *first){
 	int answer;
 	switch(opeToken1->id)
 	{	
-		case ADD:
-			answer=first->value+second->value;
-		break;
-		
 		case LEFT_PARENTHESIS:
 			answer=(first->value);
+			free(opeToken1);
 		break;
 		
 		default:

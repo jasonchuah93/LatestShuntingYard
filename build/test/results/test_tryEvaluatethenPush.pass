@@ -21,14 +21,11 @@
 - :test: test_tryEvaluateOperatorOnStackThenPush_evaluate_all_operatorTokens_to_be_push_in_the_operator_stack_2
   :line: 139
   :message: ''
-- :test: test_tryEvaluatePrefixOperatorOnStackThenPush_for_two_opening_bracket_15_two_closing_bracket
-  :line: 177
-  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 7
-  :passed: 7
+  :total: 6
+  :passed: 6
   :failed: 0
   :ignored: 0
 :stdout: []

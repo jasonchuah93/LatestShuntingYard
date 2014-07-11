@@ -73,11 +73,16 @@ int evaluate(char *expression){
 		counter ++;
 	}
 	
-	evaluateAllOperatorOnStack(numberStack,operatorStack);
+	if(operatorStack == NULL)
+	{
+		 operatorPrefixEvaluate(numberStack , (Operator*)token);
+	}
+	else
+	{
+		evaluateAllOperatorOnStack(numberStack,operatorStack);
+	}
 	
 	result=(Number*)stackPop(numberStack);
-	free(((Operator*)token));
-	free(((Operator*)token));
 	destroyStack(numberStack);
 	
 	if(operatorStack !=NULL)

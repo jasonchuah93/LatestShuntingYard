@@ -309,17 +309,17 @@ void test_should_evaluate_left_parenthesis_22_right_parenthesis(void){
 
 
 
- String tokenizer = {.rawString = "(22)", .startIndex = 0, .length = 3};
+ String tokenizer = {.rawString = "(100)", .startIndex = 0, .length = 3};
 
 
 
- stringCreate_CMockExpectAndReturn(186, "(22)", &tokenizer);
+ stringCreate_CMockExpectAndReturn(186, "(100)", &tokenizer);
 
 
 
- check=evaluate("(22)");
+ check=evaluate("(100)");
 
- UnityAssertEqualNumber((_U_SINT)((22)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)189, UNITY_DISPLAY_STYLE_INT);
+ UnityAssertEqualNumber((_U_SINT)((100)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)189, UNITY_DISPLAY_STYLE_INT);
 
  printf("Answer : %d ",check);
 
@@ -329,7 +329,7 @@ void test_should_evaluate_left_parenthesis_22_right_parenthesis(void){
 
 
 
-void test_should_evaluate_left_left_parenthesis_22_right_right_parenthesis(void){
+void xtest_should_evaluate_left_left_parenthesis_22_right_right_parenthesis(void){
 
  int check;
 

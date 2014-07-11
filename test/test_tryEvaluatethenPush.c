@@ -174,26 +174,7 @@ void test_tryEvaluateOperatorOnStackThenPush_evaluate_all_operatorTokens_to_be_p
 	tryEvaluateOperatorOnStackThenPush(&bitwiseOR,&dataStack,&operatorStack);
 }
 
- void test_tryEvaluatePrefixOperatorOnStackThenPush_for_two_opening_bracket_15_two_closing_bracket(void)
- {
-	Stack dataStack;
-	Stack operatorStack;
-	
-	Operator openBracket = {.type= OPERATOR, .id=LEFT_PARENTHESIS, .precedence=2};
-	Operator openBracket2 = {.type= OPERATOR, .id=LEFT_PARENTHESIS, .precedence=2};
-	Number number15 = {.type= NUMBER, .value=15};
-	Operator closeBracket = {.type= OPERATOR, .id=RIGHT_PARENTHESIS, .precedence=1};
-	Operator closeBracket2 = {.type= OPERATOR, .id=RIGHT_PARENTHESIS, .precedence=1};
-	Number answer = {.type= NUMBER, .value=15};
-	Token *ansToken = (Token*)&answer;
-	
-	
-	stackPop_ExpectAndReturn(&operatorStack,&openBracket);
-	stackPop_ExpectAndReturn(&operatorStack,&openBracket2);
-	stackPop_ExpectAndReturn(&operatorStack,NULL);
-	
-	tryEvaluatePrefixOperatorOnStackThenPush(&closeBracket,&dataStack,&operatorStack);
-}
+ 
  
  
  

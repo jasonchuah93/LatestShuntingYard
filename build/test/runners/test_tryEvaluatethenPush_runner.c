@@ -48,7 +48,6 @@ extern void test_tryEvaluateOperatorOnStackThenPush_will_not_push_OperatorTOken_
 extern void test_tryEvaluateOperatorOnStackThenPush_evaluate_newToke_and_previousToken_if_both_have_same_precedence(void);
 extern void test_tryEvaluateOperatorOnStackThenPush_evaluate_all_operatorTokens_to_be_push_in_the_operator_stack_1(void);
 extern void test_tryEvaluateOperatorOnStackThenPush_evaluate_all_operatorTokens_to_be_push_in_the_operator_stack_2(void);
-extern void test_tryEvaluatePrefixOperatorOnStackThenPush_for_two_opening_bracket_15_two_closing_bracket(void);
 
 
 //=======Mock Management=====
@@ -99,7 +98,6 @@ int main(void)
   RUN_TEST(test_tryEvaluateOperatorOnStackThenPush_evaluate_newToke_and_previousToken_if_both_have_same_precedence, 83);
   RUN_TEST(test_tryEvaluateOperatorOnStackThenPush_evaluate_all_operatorTokens_to_be_push_in_the_operator_stack_1, 108);
   RUN_TEST(test_tryEvaluateOperatorOnStackThenPush_evaluate_all_operatorTokens_to_be_push_in_the_operator_stack_2, 139);
-  RUN_TEST(test_tryEvaluatePrefixOperatorOnStackThenPush_for_two_opening_bracket_15_two_closing_bracket, 177);
 
   return (UnityEnd());
 }

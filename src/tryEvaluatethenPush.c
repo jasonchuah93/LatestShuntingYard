@@ -73,13 +73,18 @@ void tryEvaluatePrefixOperatorOnStackThenPush(Operator *newToken,Stack *numberSt
 			{
 				if(((Operator*)previousToken)->id == LEFT_PARENTHESIS)
 				{
-					//free(previousToken);
+					operatorPrefixEvaluate(numberStack ,previousToken);
+					free(newToken);
+					
 				}
+				
 				else 
 				{
 					operatorEvaluate(numberStack,previousToken);
+					free(newToken);
 				}
-				//free(newToken);
+				
+				
 			}
 			else if(newToken->precedence >= previousToken->precedence || ((Operator*)newToken)->id==LEFT_PARENTHESIS)
 			{
@@ -93,7 +98,7 @@ void tryEvaluatePrefixOperatorOnStackThenPush(Operator *newToken,Stack *numberSt
 			previousToken=(Operator*)stackPop(operatorStack);
 			
 		}
-		if(previousToken!=NULL  )
+		if(previousToken!=NULL )
 		{
 			stackPush(previousToken,operatorStack);
 		}
@@ -102,6 +107,7 @@ void tryEvaluatePrefixOperatorOnStackThenPush(Operator *newToken,Stack *numberSt
 		{
 			stackPush(newToken,operatorStack);
 		}
+		
 	}
 	
 }

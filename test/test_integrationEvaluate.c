@@ -181,17 +181,17 @@ void test_should_evaluate_left_parenthesis_22_right_parenthesis(void){
 	int check;
 	int e;
 	//Initialize tokenizer,token and stack
-	String tokenizer = {.rawString = "(22)", .startIndex = 0, .length = 3};
+	String tokenizer = {.rawString = "(100)", .startIndex = 0, .length = 3};
 	
-	stringCreate_ExpectAndReturn("(22)",&tokenizer);
+	stringCreate_ExpectAndReturn("(100)",&tokenizer);
 	
-	check=evaluate("(22)");
-	TEST_ASSERT_EQUAL(22,check);
+	check=evaluate("(100)");
+	TEST_ASSERT_EQUAL(100,check);
 	printf("Answer : %d ",check);
 	
 }
 
-void test_should_evaluate_left_left_parenthesis_22_right_right_parenthesis(void){
+void xtest_should_evaluate_left_left_parenthesis_22_right_right_parenthesis(void){
 	int check;
 	int e;
 	//Initialize tokenizer,token and stack
