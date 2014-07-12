@@ -490,3 +490,27 @@ void test_left_left_left_bracket_20_plus_60_divide_4_right_right_right_bracket(v
  printf("Answer : %d ",check);
 
 }
+
+
+
+void test_left_bracket_6_plus_97_right_bracket_multiply_30(void){
+
+ int check;
+
+
+
+ String tokenizer = {.rawString = "(6+97)*30"};
+
+
+
+ stringCreate_CMockExpectAndReturn(281, "(6+97)*30", &tokenizer);
+
+
+
+ check=evaluate("(6+97)*30");
+
+ UnityAssertEqualNumber((_U_SINT)((3090)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)284, UNITY_DISPLAY_STYLE_INT);
+
+ printf("Answer : %d ",check);
+
+}

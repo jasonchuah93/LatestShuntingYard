@@ -272,3 +272,16 @@ void test_left_left_left_bracket_20_plus_60_divide_4_right_right_right_bracket(v
 	TEST_ASSERT_EQUAL(35,check);
 	printf("Answer : %d ",check);
 }
+
+void test_left_bracket_6_plus_97_right_bracket_multiply_30(void){
+	int check;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "(6+97)*30"};
+	
+	stringCreate_ExpectAndReturn("(6+97)*30",&tokenizer);
+	
+	check=evaluate("(6+97)*30");
+	TEST_ASSERT_EQUAL(3090,check);
+	printf("Answer : %d ",check);
+}
+
