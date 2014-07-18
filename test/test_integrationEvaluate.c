@@ -369,4 +369,72 @@ void test_evaluate_50_add_should_return_error(void){
 	
 }
 
+void test_NEGATIVE_2_NEGATIVE_3_SHOULD_RETURN_NEGATIVE_6(void){
+	
+	Stack numStack;
+	Stack opeStack;
+	int check;
+	
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "-2*3", .startIndex = 0, .length = 4 };
+	
+	stringCreate_ExpectAndReturn("-2*3",&tokenizer);
+	
+	check=evaluate("-2*3");
+	TEST_ASSERT_EQUAL(-6,check);
+	printf("Answer : %d ",check);
+
+}
+
+void test_LEFT_PARENTHESIS_10_MULTIPLY_100_RIGHT_PARENTHESIS_DIVIDE_BY_LEFT_PARENTHESIS_LEFT_PARENTHESIS_NEGATIVE_5_MULTIPLY_6_RIGHT_PARENTHESIS_SUBTRACT_LEFT_PARENTHESIS_2_MINUS_30_RIGHT_PARENTHESIS_RIGHT_PARENTHESIS(void) {
+	
+	Stack numStack;
+	Stack opeStack;
+	int check;
+	
+	String tokenizer = {.rawString = "(10*100)/((5*6)-(2-30))", .startIndex = 0, .length = 24 };
+	
+	//Evaluate the expression
+	stringCreate_ExpectAndReturn("(10*100)/((5*6)-(2-30))",&tokenizer);
+	
+	check=evaluate("(10*100)/((5*6)-(2-30))");
+	TEST_ASSERT_EQUAL(17,check);
+	printf("Answer : %d ",check);
+	
+	
+	
+}
+
+void test_NEGATIVE_LEFT_PARENTHESIS_NEGATIVE_2_RIGHT_PARENTHESIS(void){
+	
+	Stack numStack;
+	Stack opeStack;
+	int check;
+	
+	String tokenizer = {.rawString = "-(-2)", .startIndex = 0, .length = 5 };
+	
+	//Evaluate the expression
+	stringCreate_ExpectAndReturn("-(-2)",&tokenizer);
+	
+	check=evaluate("-(-2)");
+	TEST_ASSERT_EQUAL(2,check);
+	printf("Answer : %d ",check);
+}
+
+void test_NEGATIVE_LEFT_PARENTHESIS_POSITIVE_LEFT_PARENTHESIS_NEGATIVE_LEFT_PARENTHESIS__NEGATIVE_1_RIGHT_PARENTHESIS_MULTIPLY_3_RIGHT_PARENTHESIS_SUBTRACT_FOUR_RIGHT_PARENTHESIS(void){
+	
+	Stack numStack;
+	Stack opeStack;
+	int check;
+	
+	String tokenizer = {.rawString = "-(+(-(-1)*3)-4)", .startIndex = 0, .length = 15 };
+	
+	//Evaluate the expression
+	stringCreate_ExpectAndReturn("-(+(-(-1)*3)-4)",&tokenizer);
+	
+	check=evaluate("-(+(-(-1)*3)-4)");
+	TEST_ASSERT_EQUAL(1,check);
+	printf("Answer : %d ",check);
+}
+
 

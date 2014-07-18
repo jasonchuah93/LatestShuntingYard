@@ -71,7 +71,7 @@ int calculate(Operator *opeToken, Number *first, Number *second){
 }
 
 int prefixCalculate(Operator *opeToken1, Number *first){
-	int answer;
+	int answer,i;
 	switch(opeToken1->id)
 	{	
 		case LEFT_PARENTHESIS:

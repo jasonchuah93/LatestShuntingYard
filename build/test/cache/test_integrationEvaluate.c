@@ -682,3 +682,139 @@ void test_evaluate_50_add_should_return_error(void){
 
 
 }
+
+
+
+void test_NEGATIVE_2_NEGATIVE_3_SHOULD_RETURN_NEGATIVE_6(void){
+
+
+
+ Stack numStack;
+
+ Stack opeStack;
+
+ int check;
+
+
+
+
+
+ String tokenizer = {.rawString = "-2*3", .startIndex = 0, .length = 4 };
+
+
+
+ stringCreate_CMockExpectAndReturn(381, "-2*3", &tokenizer);
+
+
+
+ check=evaluate("-2*3");
+
+ UnityAssertEqualNumber((_U_SINT)((-6)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)384, UNITY_DISPLAY_STYLE_INT);
+
+ printf("Answer : %d ",check);
+
+
+
+}
+
+
+
+void test_LEFT_PARENTHESIS_10_MULTIPLY_100_RIGHT_PARENTHESIS_DIVIDE_BY_LEFT_PARENTHESIS_LEFT_PARENTHESIS_NEGATIVE_5_MULTIPLY_6_RIGHT_PARENTHESIS_SUBTRACT_LEFT_PARENTHESIS_2_MINUS_30_RIGHT_PARENTHESIS_RIGHT_PARENTHESIS(void) {
+
+
+
+ Stack numStack;
+
+ Stack opeStack;
+
+ int check;
+
+
+
+ String tokenizer = {.rawString = "(10*100)/((5*6)-(2-30))", .startIndex = 0, .length = 24 };
+
+
+
+
+
+ stringCreate_CMockExpectAndReturn(398, "(10*100)/((5*6)-(2-30))", &tokenizer);
+
+
+
+ check=evaluate("(10*100)/((5*6)-(2-30))");
+
+ UnityAssertEqualNumber((_U_SINT)((17)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)401, UNITY_DISPLAY_STYLE_INT);
+
+ printf("Answer : %d ",check);
+
+
+
+
+
+
+
+}
+
+
+
+void test_NEGATIVE_LEFT_PARENTHESIS_NEGATIVE_2_RIGHT_PARENTHESIS(void){
+
+
+
+ Stack numStack;
+
+ Stack opeStack;
+
+ int check;
+
+
+
+ String tokenizer = {.rawString = "-(-2)", .startIndex = 0, .length = 5 };
+
+
+
+
+
+ stringCreate_CMockExpectAndReturn(417, "-(-2)", &tokenizer);
+
+
+
+ check=evaluate("-(-2)");
+
+ UnityAssertEqualNumber((_U_SINT)((2)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)420, UNITY_DISPLAY_STYLE_INT);
+
+ printf("Answer : %d ",check);
+
+}
+
+
+
+void test_NEGATIVE_LEFT_PARENTHESIS_POSITIVE_LEFT_PARENTHESIS_NEGATIVE_LEFT_PARENTHESIS__NEGATIVE_1_RIGHT_PARENTHESIS_MULTIPLY_3_RIGHT_PARENTHESIS_SUBTRACT_FOUR_RIGHT_PARENTHESIS(void){
+
+
+
+ Stack numStack;
+
+ Stack opeStack;
+
+ int check;
+
+
+
+ String tokenizer = {.rawString = "-(+(-(-1)*3)-4)", .startIndex = 0, .length = 15 };
+
+
+
+
+
+ stringCreate_CMockExpectAndReturn(433, "-(+(-(-1)*3)-4)", &tokenizer);
+
+
+
+ check=evaluate("-(+(-(-1)*3)-4)");
+
+ UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)436, UNITY_DISPLAY_STYLE_INT);
+
+ printf("Answer : %d ",check);
+
+}
