@@ -285,3 +285,88 @@ void test_left_bracket_6_plus_97_right_bracket_multiply_30(void){
 	printf("Answer : %d ",check);
 }
 
+void test_one_minus_hundred(void){
+	int check;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "1-100"};
+	
+	stringCreate_ExpectAndReturn("1-100",&tokenizer);
+	
+	check=evaluate("1-100");
+	TEST_ASSERT_EQUAL(-99,check);
+	printf("Answer : %d ",check);
+}
+
+void test_evaluate_positive_fifty(void){
+	int check;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "+50"};
+	
+	stringCreate_ExpectAndReturn("+50",&tokenizer);
+	
+	check=evaluate("+50");
+	TEST_ASSERT_EQUAL(50,check);
+	printf("Answer : %d ",check);
+}
+
+void test_evaluate_negative_hundred(void){
+	int check;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "-100"};
+	
+	stringCreate_ExpectAndReturn("-100",&tokenizer);
+	
+	check=evaluate("-100");
+	TEST_ASSERT_EQUAL(-100,check);
+	printf("Answer : %d ",check);
+}
+
+void test_evaluate_multiply_ten_should_return_error(void){
+	int check,e;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "*10"};
+	
+	stringCreate_ExpectAndReturn("*10",&tokenizer);
+	
+	Try{
+		evaluate("*10");
+	}Catch(e){
+		TEST_ASSERT_EQUAL(UNKNOWN_OPERATOR,e);
+		return;
+	}
+	
+}
+
+void test_evaluate_80_multiply_should_return_error(void){
+	int check,e;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "80*"};
+	
+	stringCreate_ExpectAndReturn("80*",&tokenizer);
+	
+	Try{
+		evaluate("80*");
+	}Catch(e){
+		TEST_ASSERT_EQUAL(UNKNOWN_OPERATOR,e);
+		return;
+	}
+	
+}
+
+void test_evaluate_50_add_should_return_error(void){
+	int check,e;
+	//Initialize tokenizer,token and stack
+	String tokenizer = {.rawString = "50+"};
+	
+	stringCreate_ExpectAndReturn("50+",&tokenizer);
+	
+	Try{
+		evaluate("50+");
+	}Catch(e){
+		TEST_ASSERT_EQUAL(UNKNOWN_OPERATOR,e);
+		return;
+	}
+	
+}
+
+

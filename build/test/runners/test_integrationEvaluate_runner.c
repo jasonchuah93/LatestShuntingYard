@@ -57,6 +57,12 @@ extern void test_should_evaluate_10_multiply_left_parenthesis_6_plus_2_right_par
 extern void test_should_evaluate_left_parenthesis_10_divide_5_right_parenthesis_multiply_left_parenthesis_6_plus_2_right_parenthesis(void);
 extern void test_left_left_left_bracket_20_plus_60_divide_4_right_right_right_bracket(void);
 extern void test_left_bracket_6_plus_97_right_bracket_multiply_30(void);
+extern void test_one_minus_hundred(void);
+extern void test_evaluate_positive_fifty(void);
+extern void test_evaluate_negative_hundred(void);
+extern void test_evaluate_multiply_ten_should_return_error(void);
+extern void test_evaluate_80_multiply_should_return_error(void);
+extern void test_evaluate_50_add_should_return_error(void);
 
 
 //=======Mock Management=====
@@ -110,6 +116,12 @@ int main(void)
   RUN_TEST(test_should_evaluate_left_parenthesis_10_divide_5_right_parenthesis_multiply_left_parenthesis_6_plus_2_right_parenthesis, 250);
   RUN_TEST(test_left_left_left_bracket_20_plus_60_divide_4_right_right_right_bracket, 264);
   RUN_TEST(test_left_bracket_6_plus_97_right_bracket_multiply_30, 276);
+  RUN_TEST(test_one_minus_hundred, 288);
+  RUN_TEST(test_evaluate_positive_fifty, 300);
+  RUN_TEST(test_evaluate_negative_hundred, 312);
+  RUN_TEST(test_evaluate_multiply_ten_should_return_error, 324);
+  RUN_TEST(test_evaluate_80_multiply_should_return_error, 340);
+  RUN_TEST(test_evaluate_50_add_should_return_error, 356);
 
   return (UnityEnd());
 }

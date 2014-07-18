@@ -514,3 +514,171 @@ void test_left_bracket_6_plus_97_right_bracket_multiply_30(void){
  printf("Answer : %d ",check);
 
 }
+
+
+
+void test_one_minus_hundred(void){
+
+ int check;
+
+
+
+ String tokenizer = {.rawString = "1-100"};
+
+
+
+ stringCreate_CMockExpectAndReturn(293, "1-100", &tokenizer);
+
+
+
+ check=evaluate("1-100");
+
+ UnityAssertEqualNumber((_U_SINT)((-99)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)296, UNITY_DISPLAY_STYLE_INT);
+
+ printf("Answer : %d ",check);
+
+}
+
+
+
+void test_evaluate_positive_fifty(void){
+
+ int check;
+
+
+
+ String tokenizer = {.rawString = "+50"};
+
+
+
+ stringCreate_CMockExpectAndReturn(305, "+50", &tokenizer);
+
+
+
+ check=evaluate("+50");
+
+ UnityAssertEqualNumber((_U_SINT)((50)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)308, UNITY_DISPLAY_STYLE_INT);
+
+ printf("Answer : %d ",check);
+
+}
+
+
+
+void test_evaluate_negative_hundred(void){
+
+ int check;
+
+
+
+ String tokenizer = {.rawString = "-100"};
+
+
+
+ stringCreate_CMockExpectAndReturn(317, "-100", &tokenizer);
+
+
+
+ check=evaluate("-100");
+
+ UnityAssertEqualNumber((_U_SINT)((-100)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)320, UNITY_DISPLAY_STYLE_INT);
+
+ printf("Answer : %d ",check);
+
+}
+
+
+
+void test_evaluate_multiply_ten_should_return_error(void){
+
+ int check,e;
+
+
+
+ String tokenizer = {.rawString = "*10"};
+
+
+
+ stringCreate_CMockExpectAndReturn(329, "*10", &tokenizer);
+
+
+
+ { jmp_buf *PrevFrame, NewFrame; unsigned int MY_ID = (0); PrevFrame = CExceptionFrames[(0)].pFrame; CExceptionFrames[MY_ID].pFrame = (jmp_buf*)(&NewFrame); CExceptionFrames[MY_ID].Exception = (0x5A5A5A5A); if (_setjmp(NewFrame) == 0) { if (&PrevFrame){
+
+  evaluate("*10");
+
+ }else { } CExceptionFrames[MY_ID].Exception = (0x5A5A5A5A); } else { e = CExceptionFrames[MY_ID].Exception; e=e; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != (0x5A5A5A5A)){
+
+  UnityAssertEqualNumber((_U_SINT)((UNKNOWN_OPERATOR)), (_U_SINT)((e)), (((void *)0)), (_U_UINT)334, UNITY_DISPLAY_STYLE_INT);
+
+  return;
+
+ }
+
+
+
+}
+
+
+
+void test_evaluate_80_multiply_should_return_error(void){
+
+ int check,e;
+
+
+
+ String tokenizer = {.rawString = "80*"};
+
+
+
+ stringCreate_CMockExpectAndReturn(345, "80*", &tokenizer);
+
+
+
+ { jmp_buf *PrevFrame, NewFrame; unsigned int MY_ID = (0); PrevFrame = CExceptionFrames[(0)].pFrame; CExceptionFrames[MY_ID].pFrame = (jmp_buf*)(&NewFrame); CExceptionFrames[MY_ID].Exception = (0x5A5A5A5A); if (_setjmp(NewFrame) == 0) { if (&PrevFrame){
+
+  evaluate("80*");
+
+ }else { } CExceptionFrames[MY_ID].Exception = (0x5A5A5A5A); } else { e = CExceptionFrames[MY_ID].Exception; e=e; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != (0x5A5A5A5A)){
+
+  UnityAssertEqualNumber((_U_SINT)((UNKNOWN_OPERATOR)), (_U_SINT)((e)), (((void *)0)), (_U_UINT)350, UNITY_DISPLAY_STYLE_INT);
+
+  return;
+
+ }
+
+
+
+}
+
+
+
+void test_evaluate_50_add_should_return_error(void){
+
+ int check,e;
+
+
+
+ String tokenizer = {.rawString = "50+"};
+
+
+
+ stringCreate_CMockExpectAndReturn(361, "50+", &tokenizer);
+
+
+
+ { jmp_buf *PrevFrame, NewFrame; unsigned int MY_ID = (0); PrevFrame = CExceptionFrames[(0)].pFrame; CExceptionFrames[MY_ID].pFrame = (jmp_buf*)(&NewFrame); CExceptionFrames[MY_ID].Exception = (0x5A5A5A5A); if (_setjmp(NewFrame) == 0) { if (&PrevFrame){
+
+  evaluate("50+");
+
+ }else { } CExceptionFrames[MY_ID].Exception = (0x5A5A5A5A); } else { e = CExceptionFrames[MY_ID].Exception; e=e; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != (0x5A5A5A5A)){
+
+  UnityAssertEqualNumber((_U_SINT)((UNKNOWN_OPERATOR)), (_U_SINT)((e)), (((void *)0)), (_U_UINT)366, UNITY_DISPLAY_STYLE_INT);
+
+  return;
+
+ }
+
+
+
+}

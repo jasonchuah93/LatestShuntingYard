@@ -146,7 +146,7 @@ Operator *detectOperator(String *tokenizer, int i)
 					
 				}
 				else
-				{
+				{	
 					opeToken->id=SUBTRACT;
 					opeToken->precedence=60;
 				}

@@ -57,11 +57,29 @@
 - :test: test_left_bracket_6_plus_97_right_bracket_multiply_30
   :line: 276
   :message: ''
+- :test: test_one_minus_hundred
+  :line: 288
+  :message: ''
+- :test: test_evaluate_positive_fifty
+  :line: 300
+  :message: ''
+- :test: test_evaluate_negative_hundred
+  :line: 312
+  :message: ''
+- :test: test_evaluate_multiply_ten_should_return_error
+  :line: 324
+  :message: ''
+- :test: test_evaluate_80_multiply_should_return_error
+  :line: 340
+  :message: ''
+- :test: test_evaluate_50_add_should_return_error
+  :line: 356
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 18
-  :passed: 18
+  :total: 24
+  :passed: 24
   :failed: 0
   :ignored: 0
 :stdout:
@@ -101,3 +119,10 @@
 - 'Answer : 35 '
 - 'Loop needed for each expression to completely evaluate : 7 '
 - 'Answer : 3090 '
+- 'Loop needed for each expression to completely evaluate : 3 '
+- 'Answer : -99 '
+- 'Loop needed for each expression to completely evaluate : 2 '
+- 'Answer : 50 '
+- 'Loop needed for each expression to completely evaluate : 2 '
+- 'Answer : -100 '
+- 'Loop needed for each expression to completely evaluate : 2 '

@@ -29,7 +29,8 @@ int calculate(Operator *opeToken, Number *first, Number *second){
 		break;	
 		
 		case SUBTRACT:
-			answer=first->value-second->value;
+			answer = first->value - second->value;
+				 
 		break;
 		
 		case BITWISE_AND:
@@ -75,6 +76,14 @@ int prefixCalculate(Operator *opeToken1, Number *first){
 	{	
 		case LEFT_PARENTHESIS:
 			answer=(first->value);
+		break;
+		
+		case ADD:
+			answer=+first->value;
+		break;
+		
+		case SUBTRACT:
+			answer=-first->value;
 		break;
 		
 		default:

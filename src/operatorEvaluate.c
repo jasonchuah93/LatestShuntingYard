@@ -47,15 +47,23 @@ void operatorEvaluate(Stack *numberStack , Operator *opeToken){
 		answerToken=createNumberToken(answer);
 		stackPush(answerToken,numberStack);
 	}
-	else
+	else 
 	{
 		token1=(Token*)stackPop(numberStack); 
-		num1=(Number*)token1; 
+		num1=(Number*)token1;
 		token2=(Token*)stackPop(numberStack); 
-		num2=(Number*)token2;
-		answer = calculate(opeToken,num2,num1); 
-		answerToken=createNumberToken(answer);
-		stackPush(answerToken,numberStack);
+		if(token2!=NULL){
+			num2=(Number*)token2;
+			answer = calculate(opeToken,num2,num1); 
+			answerToken=createNumberToken(answer);
+			stackPush(answerToken,numberStack);
+		}
+		else
+		{
+			answer = prefixCalculate(opeToken,num1); 
+			answerToken=createNumberToken(answer);
+			stackPush(answerToken,numberStack);
+		}
 	}
 	
 	
