@@ -818,3 +818,123 @@ void test_NEGATIVE_LEFT_PARENTHESIS_POSITIVE_LEFT_PARENTHESIS_NEGATIVE_LEFT_PARE
  printf("Answer : %d ",check);
 
 }
+
+
+
+void test_negative_space_two(void){
+
+ Stack numStack;
+
+ Stack opeStack;
+
+ int check;
+
+
+
+ String tokenizer = {.rawString = "-     14"};
+
+
+
+
+
+ stringCreate_CMockExpectAndReturn(448, "-     14", &tokenizer);
+
+
+
+ check=evaluate("-     14");
+
+ UnityAssertEqualNumber((_U_SINT)((-14)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)451, UNITY_DISPLAY_STYLE_INT);
+
+ printf("Answer : %d ",check);
+
+}
+
+
+
+void test_LOGIC_NOT_twelve(void){
+
+ Stack numStack;
+
+ Stack opeStack;
+
+ int check;
+
+
+
+ String tokenizer = {.rawString = "!12"};
+
+
+
+
+
+ stringCreate_CMockExpectAndReturn(463, "!12", &tokenizer);
+
+
+
+ check=evaluate("!12");
+
+ UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)466, UNITY_DISPLAY_STYLE_INT);
+
+ printf("Answer : %d ",check);
+
+}
+
+
+
+void xtest_LOGIC_NOT_LOGIC_NOT_twelve(void){
+
+ Stack numStack;
+
+ Stack opeStack;
+
+ int check;
+
+
+
+ String tokenizer = {.rawString = "!!12"};
+
+
+
+
+
+ stringCreate_CMockExpectAndReturn(478, "!!12", &tokenizer);
+
+
+
+ check=evaluate("!!12");
+
+ UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)481, UNITY_DISPLAY_STYLE_INT);
+
+ printf("Answer : %d ",check);
+
+}
+
+
+
+void xtest_minus_minus_five(void){
+
+ Stack numStack;
+
+ Stack opeStack;
+
+ int check;
+
+
+
+ String tokenizer = {.rawString = "--5"};
+
+
+
+
+
+ stringCreate_CMockExpectAndReturn(493, "--5", &tokenizer);
+
+
+
+ check=evaluate("--5");
+
+ UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((check)), (((void *)0)), (_U_UINT)496, UNITY_DISPLAY_STYLE_INT);
+
+ printf("Answer : %d ",check);
+
+}

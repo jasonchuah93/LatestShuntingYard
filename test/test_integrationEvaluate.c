@@ -437,4 +437,63 @@ void test_NEGATIVE_LEFT_PARENTHESIS_POSITIVE_LEFT_PARENTHESIS_NEGATIVE_LEFT_PARE
 	printf("Answer : %d ",check);
 }
 
+void test_negative_space_two(void){
+	Stack numStack;
+	Stack opeStack;
+	int check;
+	
+	String tokenizer = {.rawString = "-     14"};
+	
+	//Evaluate the expression
+	stringCreate_ExpectAndReturn("-     14",&tokenizer);
+	
+	check=evaluate("-     14");
+	TEST_ASSERT_EQUAL(-14,check);
+	printf("Answer : %d ",check);
+}
+
+void test_LOGIC_NOT_twelve(void){
+	Stack numStack;
+	Stack opeStack;
+	int check;
+	
+	String tokenizer = {.rawString = "!12"};
+	
+	//Evaluate the expression
+	stringCreate_ExpectAndReturn("!12",&tokenizer);
+	
+	check=evaluate("!12");
+	TEST_ASSERT_EQUAL(0,check);
+	printf("Answer : %d ",check);
+}
+
+void xtest_LOGIC_NOT_LOGIC_NOT_twelve(void){
+	Stack numStack;
+	Stack opeStack;
+	int check;
+	
+	String tokenizer = {.rawString = "!!12"};
+	
+	//Evaluate the expression
+	stringCreate_ExpectAndReturn("!!12",&tokenizer);
+	
+	check=evaluate("!!12");
+	TEST_ASSERT_EQUAL(1,check);
+	printf("Answer : %d ",check);
+}
+
+void xtest_minus_minus_five(void){
+	Stack numStack;
+	Stack opeStack;
+	int check;
+	
+	String tokenizer = {.rawString = "--5"};
+	
+	//Evaluate the expression
+	stringCreate_ExpectAndReturn("--5",&tokenizer);
+	
+	check=evaluate("--5");
+	TEST_ASSERT_EQUAL(5,check);
+	printf("Answer : %d ",check);
+}
 

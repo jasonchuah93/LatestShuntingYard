@@ -87,11 +87,17 @@
 - :test: test_NEGATIVE_LEFT_PARENTHESIS_POSITIVE_LEFT_PARENTHESIS_NEGATIVE_LEFT_PARENTHESIS__NEGATIVE_1_RIGHT_PARENTHESIS_MULTIPLY_3_RIGHT_PARENTHESIS_SUBTRACT_FOUR_RIGHT_PARENTHESIS
   :line: 424
   :message: ''
+- :test: test_negative_space_two
+  :line: 440
+  :message: ''
+- :test: test_LOGIC_NOT_twelve
+  :line: 455
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 28
-  :passed: 28
+  :total: 30
+  :passed: 30
   :failed: 0
   :ignored: 0
 :stdout:
@@ -146,3 +152,7 @@
 - 'Answer : 2 '
 - 'Loop needed for each expression to completely evaluate : 15 '
 - 'Answer : 1 '
+- 'Loop needed for each expression to completely evaluate : 2 '
+- 'Answer : -14 '
+- 'Loop needed for each expression to completely evaluate : 2 '
+- 'Answer : 0 '

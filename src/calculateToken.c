@@ -60,7 +60,7 @@ int calculate(Operator *opeToken, Number *first, Number *second){
 		case DECREMENT:
 			answer=--first->value;
 		break;
-		
+			
 		default:
 		{
 			Throw(UNKNOWN_OPERATOR);
@@ -84,6 +84,11 @@ int prefixCalculate(Operator *opeToken1, Number *first){
 		
 		case SUBTRACT:
 			answer=-first->value;
+		
+		break;
+		
+		case LOGIC_NOT:
+			answer=!first->value;
 		break;
 		
 		default:

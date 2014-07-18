@@ -33,14 +33,17 @@
 - :test: test_left_bracket_20_multiply_3_subtract_50_right_bracket
   :line: 929
   :message: ''
+- :test: test_logic_not_12_SHOULD_RETURN_0
+  :line: 1026
+  :message: ''
 - :test: test_NEGATIVE_2_SHOULD_RETURN_NEGATIVE_2
-  :line: 1033
+  :line: 1079
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 11
-  :passed: 11
+  :total: 12
+  :passed: 12
   :failed: 0
   :ignored: 0
 :stdout:
@@ -60,5 +63,7 @@
 - 'Answer : 5 '
 - 'Loop needed for each expression to completely evaluate : 7 '
 - 'Answer : 10 '
+- 'Loop needed for each expression to completely evaluate : 2 '
+- 'Answer : 0 '
 - 'Loop needed for each expression to completely evaluate : 2 '
 - 'Answer : -2 '

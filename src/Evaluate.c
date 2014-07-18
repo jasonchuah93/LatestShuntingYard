@@ -43,15 +43,6 @@ int evaluate(char *expression){
 		Throw(INVALID_EXPRESSION);
 	}
 	while((token=getToken(tokenizer))!=NULL){
-		/*
-		if(counter%2==0&&*token==OPERATOR){
-			Throw(UNKNOWN_DATA);
-			
-		}
-		else if(counter%2==1&&*token==NUMBER){
-			Throw(UNKNOWN_OPERATOR);
-		}
-		*/
 		
 		if(isNumber(token)){
 			

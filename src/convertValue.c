@@ -1,6 +1,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "convertValue.h"
+#include "GetElement.h"
 #include <malloc.h>
 #include <math.h>
 #include "Error.h"
