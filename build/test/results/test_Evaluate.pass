@@ -4,46 +4,52 @@
   :file: test_Evaluate.c
 :successes:
 - :test: test_shunting_yard_should_return_0_if_the_expression_is_null
-  :line: 35
+  :line: 36
   :message: ''
 - :test: test_should_return_3_for_1_plus_2
-  :line: 60
+  :line: 61
   :message: ''
 - :test: test_should_return_6_for_60_divide_10
-  :line: 116
+  :line: 110
   :message: ''
 - :test: test_evaluate_2_MULTIPLY_3_PLUS_4
-  :line: 173
+  :line: 167
   :message: ''
 - :test: test_evaluate_2_PLUS_3_MULTIPLY_4_PLUS_5_MULTIPLY_6
-  :line: 259
+  :line: 253
   :message: ''
 - :test: test_evaluate_2_MULTIPLY_3_PLUS_4_MULTIPLY_5_PLUS_6
-  :line: 402
+  :line: 396
   :message: ''
 - :test: test_2_OR_3_PLUS_4_MULTIPLY_5_MINUS_6_MINUS_10
-  :line: 538
+  :line: 532
   :message: ''
 - :test: test_should_evaluate_43_HASHTAG_42_and_throw_error_invalid_operator
-  :line: 703
+  :line: 697
+  :message: ''
+- :test: test_should_evaluate_left_parenthesis_2_right_parenthesis
+  :line: 733
+  :message: ''
+- :test: test_should_evaluate_left_parenthesis_22_right_parenthesis
+  :line: 792
   :message: ''
 - :test: test_left_bracket_2_plus_3_right_bracket
-  :line: 857
+  :line: 851
   :message: ''
 - :test: test_left_bracket_20_multiply_3_subtract_50_right_bracket
-  :line: 929
+  :line: 923
   :message: ''
 - :test: test_logic_not_12_SHOULD_RETURN_0
-  :line: 1026
+  :line: 1020
   :message: ''
 - :test: test_NEGATIVE_2_SHOULD_RETURN_NEGATIVE_2
-  :line: 1079
+  :line: 1073
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 12
-  :passed: 12
+  :total: 14
+  :passed: 14
   :failed: 0
   :ignored: 0
 :stdout:
@@ -59,6 +65,10 @@
 - 'Answer : 32 '
 - 'Loop needed for each expression to completely evaluate : 11 '
 - 'Answer : 7 '
+- 'Loop needed for each expression to completely evaluate : 3 '
+- 'Answer : 2 '
+- 'Loop needed for each expression to completely evaluate : 3 '
+- 'Answer : 22 '
 - 'Loop needed for each expression to completely evaluate : 5 '
 - 'Answer : 5 '
 - 'Loop needed for each expression to completely evaluate : 7 '

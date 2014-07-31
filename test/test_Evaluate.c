@@ -15,7 +15,7 @@
 void setUp(void){}
 void tearDown(void){}
 
-/*********************************************************************************************************************************
+/********************************************************************************************************************************
  Test on function evaluate
  Input parameter : 
 					1)char *expression
@@ -32,7 +32,8 @@ Using following real function :
 							3)tryEvaluateOperatorOnStackThenPush(Operator *newToken,Stack *numberStack,Stack *operatorStack);
 							4)calculate(Operator *opeToken, Number *first , Number *second);
  ********************************************************************************************************************************/	
-void test_shunting_yard_should_return_0_if_the_expression_is_null(){
+
+ void test_shunting_yard_should_return_0_if_the_expression_is_null(){
 	int check;
 	Stack numberStack;
 	Stack operatorStack;
@@ -65,51 +66,44 @@ void test_should_return_3_for_1_plus_2(void){
 	String tokenizer = {.rawString = "1+2", .startIndex = 0, .length=3};
 	
 	Number number1 = {.type= NUMBER, .value=1};
-	Token *token1 = (Token*)&number1;
-	
-	Operator plus = {.type= OPERATOR, .id=ADD, .precedence=70};
-	Token *token2 = (Token*)&plus;
-	
-	Number number2 = {.type= NUMBER, .value=2};
-	Token *token3 = (Token*)&number2;
-	
-	Number answer = {.type= NUMBER, .value=3};
-	Token *answerToken = (Token*)&answer;
+	Number number2 = {.type= NUMBER, .value=2};	
+	Number number3 = {.type= NUMBER, .value=3};
+	Operator plus =  {.type= OPERATOR, .id=ADD, .precedence=70};
 	
 	createStack_ExpectAndReturn(&dataStack);
 	createStack_ExpectAndReturn(&operatorStack);
 	stringCreate_ExpectAndReturn("1+2",&tokenizer);
 	//Number1
-	getToken_ExpectAndReturn(&tokenizer,token1);
-	isNumber_ExpectAndReturn(token1,1);
-	stackPush_Expect(token1,&dataStack);
+	getToken_ExpectAndReturn(&tokenizer, (Token *)&number1);
+	isNumber_ExpectAndReturn((Token *)&number1, 1);
+	stackPush_Expect((Token *)&number1, &dataStack);
 	
 	//Operator token plus
-	getToken_ExpectAndReturn(&tokenizer,token2);
-	isNumber_ExpectAndReturn(token2,0);
-	isOperator_ExpectAndReturn(token2,1);
-	stackPop_ExpectAndReturn(&operatorStack,NULL);
-	stackPush_Expect(token2,&operatorStack);
+	getToken_ExpectAndReturn(&tokenizer, (Token *)&plus);
+	isNumber_ExpectAndReturn((Token *)&plus, 0);
+	isOperator_ExpectAndReturn((Token *)&plus, 1);
+	stackPop_ExpectAndReturn(&operatorStack, NULL);
+	stackPush_Expect((Token *)&plus, &operatorStack);
 	
 	//Number2
-	getToken_ExpectAndReturn(&tokenizer,token3);
-	isNumber_ExpectAndReturn(token3,1);
-	stackPush_Expect(token3,&dataStack);
-	getToken_ExpectAndReturn(&tokenizer,NULL);
+	getToken_ExpectAndReturn(&tokenizer, (Token *)&number2);
+	isNumber_ExpectAndReturn((Token *)&number2, 1);
+	stackPush_Expect((Token *)&number2, &dataStack);
+	getToken_ExpectAndReturn(&tokenizer, NULL);
 	
 	//Calculation
-	stackPop_ExpectAndReturn(&operatorStack,token2);
-	stackPop_ExpectAndReturn(&dataStack,token3);
-	stackPop_ExpectAndReturn(&dataStack,token1);
-	createNumberToken_ExpectAndReturn(3,answerToken);
-	stackPush_Expect(answerToken,&dataStack);
-	stackPop_ExpectAndReturn(&operatorStack,NULL);
+	stackPop_ExpectAndReturn(&operatorStack, (Token *)&plus);
+	stackPop_ExpectAndReturn(&dataStack, (Token *)&number2);
+	stackPop_ExpectAndReturn(&dataStack, (Token *)&number1);
+	createNumberToken_ExpectAndReturn(3, (Token *)&number3);
+	stackPush_Expect((Token *)&number3, &dataStack);
+	stackPop_ExpectAndReturn(&operatorStack, NULL);
 	
-	stackPop_ExpectAndReturn(&dataStack,answerToken);
+	stackPop_ExpectAndReturn(&dataStack, (Token *)&number3);
 	destroyStack_Expect(&dataStack);
 	destroyStack_Expect(&operatorStack);
-	check=evaluate("1+2");
-	TEST_ASSERT_EQUAL(3,check);
+	check = evaluate("1+2");
+	TEST_ASSERT_EQUAL(3, check);
 	printf("Answer : %d ",check);
 }
 
@@ -736,7 +730,7 @@ void test_should_evaluate_43_HASHTAG_42_and_throw_error_invalid_operator(void){
 	 }
 }
 
-void xtest_should_evaluate_left_parenthesis_2_right_parenthesis(void){
+void test_should_evaluate_left_parenthesis_2_right_parenthesis(void){
 	Stack dataStack;
 	Stack operatorStack;
 	int check;
@@ -795,7 +789,7 @@ void xtest_should_evaluate_left_parenthesis_2_right_parenthesis(void){
 	
 }
 
-void xtest_should_evaluate_left_parenthesis_22_right_parenthesis(void){
+void test_should_evaluate_left_parenthesis_22_right_parenthesis(void){
 	Stack dataStack;
 	Stack operatorStack;
 	int check;

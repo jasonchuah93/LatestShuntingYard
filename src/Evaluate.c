@@ -23,6 +23,7 @@
 					   3)stackPush();   push tokens to number stack or operator stack
 					  
 */	
+//Old evaluate
 
 int evaluate(char *expression){
 	String *tokenizer;
@@ -37,8 +38,9 @@ int evaluate(char *expression){
 	numberStack=createStack();
 	Stack *operatorStack;
 	operatorStack=createStack();
+	
 	tokenizer = stringCreate(expression);
-	//Operator *prefixToken=(Operator*)token;
+	
 	if(expression ==NULL){	
 		Throw(INVALID_EXPRESSION);
 	}
